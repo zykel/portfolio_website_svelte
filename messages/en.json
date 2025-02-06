@@ -30,6 +30,9 @@
 	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating interactive data visualizations.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include anything from</p>",
 	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>visualization systems</span> for data analysis and decision-making to</li><li class='solutions-li'><span class='highlight'>visual data stories</span> and <span class='highlight'>notebooks</span> for communicating insights in an engaging way.</li></ul>",
 
+	"sec_contact_question": "Would you like to know how data visualization can help you solve your problems?",
+	"sec_contact_invite": "let's get in contact",
+
 	"jobname_freelance": "Freelancer",
 	"jobname_phd": "PhD studies in Computer Science",
 	"jobname_master": "M.Sc. Computational Visualistics",

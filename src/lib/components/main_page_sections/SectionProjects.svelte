@@ -1,6 +1,6 @@
 <script>
 	import * as m from '$lib/paraglide/messages.js';
-	import ProjectCard from '$lib/components/section_projects/ProjectCard.svelte';
+	import ProjectCard from '$lib/components/main_page_sections/ProjectCard.svelte';
 
 	const projectInfos = [
 		{

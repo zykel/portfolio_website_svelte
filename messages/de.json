@@ -30,6 +30,9 @@
 	"sec_about_work_paragraphs": "<p class='paragraph'>Ich arbeite freiberuflich und liebe es, interaktive Datenvisualisierungen zu erschaffen.</p><p class='paragraph'>Während meiner Promotion habe ich mit Expert:innen aus der Konfliktforschung und aus der Medizin zusammengearbeit, um mich in ihre Fachprobleme einzuarbeiten und Visualisierungslösungen zu entwickeln um die Probleme zu lösen. Dabei hat mir mein mathematischer Hintergrund geholfen, komplexe Probleme auf analytische und strukturierte Weise zu lösen.</p><p class='paragraph'>Meine mßgeschneiderten Lösungen beinhalten alles von</p>",
 	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>Visualisierungssystemen</span> zur Datenanalyse und Entscheidungsfindung bis zu</li><li class='solutions-li'><span class='highlight'>Visuelle Datengeschichten</span> und <span class='highlight'>Notebooks</span> um Erkenntnisse auf fesselnde/mitreißende Weise zu kommunizieren.</li></ul>",
 
+	"sec_contact_question": "Würden Sie gerne wissen, wie Datenvisualisierung Ihnen helfen kann, ihre fachlichen Probleme zu lösen?",
+	"sec_contact_invite": "Melden Sie sich!",
+
 	"jobname_freelance": "Freiberufler",
 	"jobname_phd": "Dr.-Ing. Informatik",
 	"jobname_master": "M.Sc. Computervisualistik",
