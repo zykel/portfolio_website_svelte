@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"hello_world": "Hello, {name} from en!",
+	"hero_text": "data<br />visualization<br />design &<br />development",
 	"title_projects_abbrev": "projects",
 	"title_about": "about",
 	"title_contact": "contact",
@@ -22,5 +23,20 @@
 
 	"tag_interactive_notebook": "Interactive notebook",
 	"tag_visualization_system": "Visualization system",
-	"tag_visual_data_story": "Visual data story"
+	"tag_visual_data_story": "Visual data story",
+
+	"sec_about_greeting": "Hi, I'm<br />Benedikt!",
+	"sec_about_work_history_title": "MY WORK",
+	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating interactive data visualizations.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include anything from</p>",
+	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>visualization systems</span> for data analysis and decision-making to</li><li class='solutions-li'><span class='highlight'>visual data stories</span> and <span class='highlight'>notebooks</span> for communicating insights in an engaging way.</li></ul>",
+
+	"jobname_freelance": "Freelancer",
+	"jobname_phd": "PhD studies in Computer Science",
+	"jobname_master": "M.Sc. Computational Visualistics",
+	"jobname_bachelor": "B.Sc. Mathematics",
+
+	"word_since": "since",
+
+	"pn_ovgu": "Otto von Guericke University Magdeburg",
+	"pn_uni_konstanz": "University of Konstanz"
 }

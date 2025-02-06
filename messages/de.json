@@ -1,6 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"hello_world": "Hello, {name} from de!",
+	"hero_text": "Daten<br />Visualisierung<br />Design &<br />Entwicklung",
 	"title_projects_abbrev": "Projekte",
 	"title_about": "About",
 	"title_contact": "Kontakt",
@@ -22,5 +23,20 @@
 
 	"tag_interactive_notebook": "Interaktives Notebook",
 	"tag_visualization_system": "Visualisierungssystem",
-	"tag_visual_data_story": "Visuelle Datengeschichte"
+	"tag_visual_data_story": "Visuelle Datengeschichte",
+
+	"sec_about_greeting": "Hi, ich bin<br />Benedikt!",
+	"sec_about_work_history_title": "MEINE ARBEIT",
+	"sec_about_work_paragraphs": "<p class='paragraph'>Ich arbeite freiberuflich und liebe es, interaktive Datenvisualisierungen zu erschaffen.</p><p class='paragraph'>Während meiner Promotion habe ich mit Expert:innen aus der Konfliktforschung und aus der Medizin zusammengearbeit, um mich in ihre Fachprobleme einzuarbeiten und Visualisierungslösungen zu entwickeln um die Probleme zu lösen. Dabei hat mir mein mathematischer Hintergrund geholfen, komplexe Probleme auf analytische und strukturierte Weise zu lösen.</p><p class='paragraph'>Meine mßgeschneiderten Lösungen beinhalten alles von</p>",
+	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>Visualisierungssystemen</span> zur Datenanalyse und Entscheidungsfindung bis zu</li><li class='solutions-li'><span class='highlight'>Visuelle Datengeschichten</span> und <span class='highlight'>Notebooks</span> um Erkenntnisse auf fesselnde/mitreißende Weise zu kommunizieren.</li></ul>",
+
+	"jobname_freelance": "Freiberufler",
+	"jobname_phd": "Dr.-Ing. Informatik",
+	"jobname_master": "M.Sc. Computervisualistik",
+	"jobname_bachelor": "B.Sc. Mathematik",
+
+	"word_since": "seit",
+
+	"pn_ovgu": "Otto-von-Guericke-Universität Magdeburg",
+	"pn_uni_konstanz": "Universität Konstanz"
 }

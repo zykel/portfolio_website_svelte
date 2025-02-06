@@ -13,10 +13,7 @@
 		</video>
 		<div class="safari-play-button-cover"></div>
 		<h1 id="hero-text">
-			data<br />
-			visualization<br />
-			design &<br />
-			development
+			{@html m['hero_text']()}
 		</h1>
 	</div>
 	<!-- <div class="center-container">
