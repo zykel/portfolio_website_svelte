@@ -3,5 +3,24 @@
 	"hello_world": "Hello, {name} from en!",
 	"title_projects_abbrev": "projects",
 	"title_about": "about",
-	"title_contact": "contact"
+	"title_contact": "contact",
+	"sec_title_projects": "selected projects",
+
+	"vehicle_project_title": "Exploration of a conflict research method",
+	"tutorials_project_title": "D3.js tutorials for students",
+	"teaching_tasks_project_title": "Programming tasks for students",
+	"characterization_project_title": "Analysis of spatio-temporal data stories",
+	"endovis_project_title": "Exploration of surgical process data",
+	"exex_project_title": "Explanation of a conflict research method",
+
+	"vehicle_project_description_short": "A visualization system to analyze the results of a statistical method for merging conflict event data sets.",
+	"tutorials_project_description_short": "Playful explanations for learning the basics of creating interactive data visualizations.",
+	"teaching_tasks_project_description_short": "Exercise tasks for learning D3.js based on socially relevant data sets and questions.",
+	"characterization_project_description_short": "An interactive notebook to explain the results of an analysis of the storytelling techniques used across 130 data stories.",
+	"endovis_project_description_short": "An interactive web application to allow surgical experts to explore heterogeneous time-dependent surgical data.",
+	"exex_project_description_short": "An interactive data story for communicating a method for causal inference to conflict researchers.",
+
+	"tag_interactive_notebook": "Interactive notebook",
+	"tag_visualization_system": "Visualization system",
+	"tag_visual_data_story": "Visual data story"
 }
