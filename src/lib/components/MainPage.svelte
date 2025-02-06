@@ -5,6 +5,7 @@
 	import SectionProjects from '$lib/components/main_page_sections/SectionProjects.svelte';
 	import SectionAbout from '$lib/components/main_page_sections/SectionAbout.svelte';
 	import SectionContact from '$lib/components/main_page_sections/SectionContact.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 </script>
 
 <Navigation />
@@ -12,3 +13,4 @@
 <SectionProjects />
 <SectionAbout />
 <SectionContact />
+<Footer />

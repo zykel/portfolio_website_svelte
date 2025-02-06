@@ -28,9 +28,11 @@
 			</div>
 			<div>
 				<ul class="nav-links gap-row-container">
-					<li><a href="#projects-title" class="page-link"><span>projects</span></a></li>
-					<li><a href="#about-title" class="page-link"><span>about</span></a></li>
-					<li><a href="#contact-title" class="page-link"><span>contact</span></a></li>
+					<li>
+						<a href="#projects-title" class="page-link"><span>{m.title_projects_abbrev()}</span></a>
+					</li>
+					<li><a href="#about-title" class="page-link"><span>{m.title_about()}</span></a></li>
+					<li><a href="#contact-title" class="page-link"><span>{m.title_contact()}</span></a></li>
 				</ul>
 			</div>
 		</nav>
@@ -53,9 +55,9 @@
 			<span></span>
 		</div>
 		<div class="menu-links">
-			<li><a href="#projects-title" class="func-toggle-menu">projects</a></li>
-			<li><a href="#about-title" class="func-toggle-menu">about</a></li>
-			<li><a href="#contact-title" class="func-toggle-menu">contact</a></li>
+			<li><a href="#projects-title" class="func-toggle-menu">{m.title_projects_abbrev()}</a></li>
+			<li><a href="#about-title" class="func-toggle-menu">{m.title_about()}</a></li>
+			<li><a href="#contact-title" class="func-toggle-menu">{m.title_contact()}</a></li>
 		</div>
 	</div>
 </nav>
