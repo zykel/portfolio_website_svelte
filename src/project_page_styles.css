@@ -1,0 +1,145 @@
+.project-page__title {
+	font-size: 2.5rem;
+	color: rgb(120 120 120);
+	line-height: 3.4rem;
+	margin-top: 10rem;
+	margin-bottom: 2.6rem;
+}
+
+.project-page__title-pic {
+	width: 100%;
+	border-radius: 0.7rem;
+}
+
+.project-page__text-content {
+	color: rgb(40 40 40);
+	display: flex;
+	width: 100%;
+	gap: 5rem;
+	margin-top: 3.4rem;
+}
+
+.project-page__description {
+	width: 60%;
+}
+
+.project-page__details {
+	width: 40%;
+}
+
+.project-page__paragraph {
+	line-height: 1.7rem;
+	margin-bottom: 1.7rem;
+}
+
+.publication {
+	font-size: smaller;
+	color: rgb(160 160 160);
+}
+
+.publication-doi {
+	color: inherit;
+}
+
+/* Details Table */
+.project-page__details table {
+	line-height: 1.7rem;
+	width: 100%;
+	border-collapse: collapse; /* Removes spacing between cells entirely */
+	/* border-spacing: 1rem 0; */
+}
+.project-page__details td {
+	vertical-align: top;
+	border-bottom: 1.7rem solid var(--light-grey);
+}
+.project-page__detail-title {
+	white-space: nowrap;
+	color: rgb(180, 180, 180);
+	border-right: 1rem solid var(--light-grey);
+	text-transform: uppercase;
+}
+
+/* Visit Project Website Button */
+.project-page__visit-btn {
+	display: block;
+	box-sizing: border-box;
+	text-align: center;
+	width: 100%;
+	background: #5f5b83;
+	color: white;
+	letter-spacing: 1px;
+	padding: 1rem 0.2rem;
+	/* border: none; */
+	border-radius: 0.7rem;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	cursor: pointer;
+	margin-bottom: 1.7rem;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.project-page__visit-btn:hover {
+	transition: all 300ms ease;
+	background-color: #ffd8af;
+	/* background-color: rgb(180, 180, 180); */
+	color: black;
+	/* color: rgb(66, 66, 66); Change as desired */
+}
+
+/* Impressions */
+.project-page__impressions {
+	margin-top: 1.7rem;
+	margin-bottom: 10rem;
+}
+
+.project-page__impressions-title {
+	font-size: 2rem;
+	color: rgb(180 180 180);
+	margin-bottom: 1rem;
+	text-transform: uppercase;
+}
+
+.project-page__impressions-small-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	/* grid-auto-flow: dense; */
+	gap: 2rem;
+	/*gap: 2rem;*/ /* Also update the width of the small pics [here1] if you update this*/
+}
+
+.project-page__impression-wide {
+	/* flex: 2 0 0; */
+	width: 100%;
+}
+.project-page__impression-small {
+	/* width: calc(50% - 1rem); update [here1] */
+}
+
+.project-page__impression-pic {
+	width: 100%;
+	border-radius: 0.7rem;
+}
+
+.impression-caption-container {
+	display: flex;
+	padding: 0.3rem 0 2rem 0;
+}
+
+.impression-caption,
+.impression-caption-static {
+	color: rgb(128, 128, 128);
+}
+.impression-caption-static {
+	width: 100%;
+}
+.impression-caption {
+	width: calc(100% - var(--play-button-project-page-size));
+	padding-right: 0.7rem;
+}
+
+/* Footer (overwriting) */
+.project-page__footer {
+	padding-top: 5vh;
+}

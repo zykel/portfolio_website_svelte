@@ -40,7 +40,30 @@
 	"jobname_master": "M.Sc. Computational Visualistics",
 	"jobname_bachelor": "B.Sc. Mathematics",
 
+	"btn_visit_project": "VISIT PROJECT WEBSITE",
+
+	"characterization_description_paragraph_1": "To better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
+	"characterization_description_paragraph_2": "We focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
+	"characterization_description_paragraph_3": "We summarized the results in an interactive notebook which facilitates an easy combination of visualizations and textual explanations, while providing the option to inspect the underlying code for full transparency.",
+
+	"caption_characterization_deviations": "For a subset of stories, bars depict how far the usage of the different storytelling techniques deviates from the average for that subset",
+	"caption_characterization_trends": "The trends over the past five years regarding the average usage frequency of different storytelling techniques",
+	"caption_characterization_mds": "The result of multidimensional scaling: Each circle represents one story, and the proximity of the circles represents how similar the corresponding stories are to each other",
+	"caption_characterization_sources": "A comparison of the pairwise similarities between different story sources, like The New York Times (NYT)",
+	"caption_characterization_distribution": "The distribution of the pairwise similarities between all stories",
+
 	"word_since": "since",
+	"word_project": "Project",
+	"word_publication": "Publication",
+	"word_type": "Type",
+	"word_tech": "Tech",
+	"word_roles": "Roles",
+	"word_year": "Year",
+	"word_partners": "Partners",
+	"word_conceptualization": "Conceptualization",
+	"word_design": "Design",
+	"word_implementation": "Implementation",
+	"word_impressions": "Impressions",
 
 	"pn_ovgu": "Otto von Guericke University Magdeburg",
 	"pn_uni_konstanz": "University of Konstanz"
