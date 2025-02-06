@@ -9,7 +9,7 @@
 			description: m['vehicle_project_description_short'](),
 			type: m['tag_visualization_system'](),
 			video: 'vehicle-teaser',
-			url: 'projects/vehicle/index.html',
+			url: 'projects/vehicle',
 			videoSrc: '/teaser_meltt.mp4'
 		},
 		{
@@ -18,7 +18,7 @@
 			description: m['tutorials_project_description_short'](),
 			type: m['tag_interactive_notebook'](),
 			video: 'tutorials-teaser',
-			url: 'projects/teaching_tutorials/index.html',
+			url: 'projects/teaching_tutorials',
 			videoSrc: '/teaser_d3_tutorial.mp4'
 		},
 		{
@@ -27,7 +27,7 @@
 			description: m['teaching_tasks_project_description_short'](),
 			type: m['tag_interactive_notebook'](),
 			video: 'tasks-teaser',
-			url: 'projects/teaching_tasks/index.html',
+			url: 'projects/teaching_tasks',
 			videoSrc: '/teaser_teaching_task.mp4'
 		},
 		{
@@ -36,7 +36,7 @@
 			description: m['characterization_project_description_short'](),
 			type: m['tag_interactive_notebook'](),
 			video: 'characterization-teaser',
-			url: 'projects/characterization/index.html',
+			url: 'projects/characterization',
 			videoSrc: '/teaser_characterization.mp4'
 		},
 		{
@@ -45,7 +45,7 @@
 			description: m['endovis_project_description_short'](),
 			type: m['tag_visualization_system'](),
 			video: 'endovis-teaser',
-			url: 'projects/endovis/index.html',
+			url: 'projects/endovis',
 			videoSrc: '/teaser_endovis.mp4'
 		},
 		{
@@ -54,7 +54,7 @@
 			description: m['exex_project_description_short'](),
 			type: m['tag_visual_data_story'](),
 			video: 'exex-teaser',
-			url: 'projects/exex/index.html',
+			url: 'projects/exex',
 			videoSrc: '/teaser_exex.mp4'
 		}
 	];
