@@ -1,6 +1,7 @@
 import { select } from 'd3';
 
 export const createIntersectionHandlerForSectionTitles = () => {
+	// More sveltey alternative: https://www.npmjs.com/package/svelte-intersection-observer
 	// Section title fade in on scroll
 	const intersectionObserver = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {

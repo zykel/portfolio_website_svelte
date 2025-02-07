@@ -3,6 +3,8 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import ImpressionImg from '$lib/components/project_pages/ImpressionImg.svelte';
 	import * as m from '$lib/paraglide/messages.js';
+
+	const slug = 'characterization';
 </script>
 
 <svelte:window
@@ -33,7 +35,7 @@
 		<div class="project-page__text-content">
 			<div class="project-page__description">
 				<p class="project-page__paragraph">
-					{m.characterization_description_paragraph_1()}
+					{m[`${slug}_description_paragraph_1`]()}
 				</p>
 				<p class="project-page__paragraph">
 					{m.characterization_description_paragraph_2()}
