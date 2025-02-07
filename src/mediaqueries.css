@@ -1,0 +1,147 @@
+
+/*
+Das hier, sobald hamburger
+#hero-video-container
+    margin-top: -10vh;
+sobald das hamburger nav eingeschaltet wird
+und
+#hero
+    justify-content: center
+
+Und gucken, was bei 790px mit dem grid passiert
+
+*/
+
+@media screen and (max-width: 1200px) {
+    #projects-grid {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    #work-and-background-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .self-description {
+        width: 100%;
+    }
+
+    #background-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .desktop-nav {
+        display: none;
+    }
+    .hamburger-nav {
+        display: flex;
+    }
+    #hero {
+        justify-content: center
+    }
+    #hero-video-container {
+        margin-top: -8vh;
+        margin-top: -8svh;
+    }
+
+    .slim-fit-container {
+        width: 90vw;
+    }
+
+    #projects-grid {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    #projects-grid {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 534px) {
+    #projects-title {
+        line-height: 3rem;
+    }
+    #projects-title-container {
+        margin-top: -5.65rem;
+    }
+    #hero-video-container {
+        margin-top: -15vh;
+        margin-top: -15svh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #projects-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #pic-and-hi-container {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 3vh;
+    }
+
+    #contact-button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+/* DUPLICATE */
+@media screen and (orientation: portrait) {
+    /* styles for screens with a portrait orientation */
+    .teaser-video {
+        /* pointer-events: none; */
+    }
+}
+
+
+@media screen and (max-width: 540px) {
+    footer {
+        height: 28vh;
+    }
+    .footer-nav {
+        padding-bottom: 8vh;
+    }
+    .footer-nav .nav-links {
+        gap: 0rem;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .footer-nav li {
+        margin: 0 0.5rem 0 0.5rem;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    #hero-text {
+        font-size: 3rem;
+        line-height: 3.9rem;
+    }
+}
+@media screen and (max-width: 365px) {
+    html {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 300px) {
+    html {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 260px) {
+    html {
+        font-size: 10px;
+    }
+}

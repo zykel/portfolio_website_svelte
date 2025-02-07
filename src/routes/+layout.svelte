@@ -2,6 +2,7 @@
 	import { i18n } from '$lib/i18n';
 	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 	import '../styles.css';
+	import '../mediaqueries.css';
 
 	let { children } = $props();
 </script>
