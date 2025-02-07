@@ -1,4 +1,9 @@
 <script>
+	import {
+		startProjectVideoPlayback,
+		pauseProjectVideoPlayback
+	} from '$lib/scripts/utilityCrosspage';
+
 	let { videoId, videoElement } = $props();
 </script>
 
@@ -15,38 +20,18 @@
 		if (videoElement.paused) {
 			// Ensure that no two videos are running at the same time
 			// Pause all videos
-			document
-				.querySelectorAll('.teaser-video')
-				.forEach((video) => /** @type {HTMLVideoElement} */ (video).pause());
-			// Find all symbols
-			const playSymbols = document.querySelectorAll(`.video-btn-play-path`);
-			const pauseSymbols = document.querySelectorAll(`.video-btn-pause-path-g`);
-			// Set all symbols to reflect that the video is not playing
-			playSymbols.forEach((playSymbol) => {
-				/** @type {HTMLElement} */ (playSymbol).style.display = 'block';
-			});
-			pauseSymbols.forEach((pauseSymbol) => {
-				/** @type {HTMLElement} */ (pauseSymbol).style.display = 'none';
+			document.querySelectorAll('.teaser-video').forEach((videoElementOtherToCast) => {
+				const videoElementOther = /** @type {HTMLVideoElement} */ (videoElementOtherToCast);
+				const videoId = videoElementOther.getAttribute('data-video-id');
+				if (videoId) pauseProjectVideoPlayback(videoElementOther, videoId, true);
 			});
 
 			// Play the actual video
-			videoElement.play();
+			startProjectVideoPlayback(videoElement, videoId);
 		} else {
-			videoElement.pause();
+			// Play the actual video
+			pauseProjectVideoPlayback(videoElement, videoId);
 		}
-
-		// Find the symbols
-		const playSymbol = /** @type {HTMLElement} */ (
-			document.querySelector(`.play-button-svg[data-video-id="${videoId}"] > .video-btn-play-path`)
-		);
-		const pauseSymbol = /** @type {HTMLElement} */ (
-			document.querySelector(
-				`.play-button-svg[data-video-id="${videoId}"] > .video-btn-pause-path-g`
-			)
-		);
-		// Toggle the symbols
-		playSymbol.style.display = videoElement.paused ? 'block' : 'none';
-		pauseSymbol.style.display = videoElement.paused ? 'none' : 'block';
 	}}
 	onkeydown={(event) => {
 		if (event.key === 'Enter' || event.key === ' ') {

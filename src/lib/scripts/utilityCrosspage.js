@@ -18,11 +18,15 @@ export const openProjectURL = function (url, node) {
 /**
  * @param {HTMLVideoElement | null} videoElement
  * @param {String} videoId
- * @param {Boolean} isProjectImg
+ * @param {Boolean} underlineCorrespondingTitle
  */
-export const startProjectVideoPlayback = (videoElement, videoId, isProjectImg) => {
+export const startProjectVideoPlayback = (
+	videoElement,
+	videoId,
+	underlineCorrespondingTitle = false
+) => {
 	// If the video is also a project image on the main page, underline the corresponding project title
-	if (isProjectImg) {
+	if (underlineCorrespondingTitle) {
 		// const videoId = target.getAttribute('data-video-id');
 		const projectTitleNode = /** @type {HTMLElement} */ (
 			document.querySelector(`.project-title[data-video-id="${videoId}"]`)
@@ -54,11 +58,15 @@ export const startProjectVideoPlayback = (videoElement, videoId, isProjectImg) =
 /**
  * @param {HTMLVideoElement | null} videoElement
  * @param {String} videoId
- * @param {Boolean} isProjectImg
+ * @param {Boolean} removeUnderlineCorrespondingTitle
  */
-export const pauseProjectVideoPlayback = (videoElement, videoId, isProjectImg) => {
+export const pauseProjectVideoPlayback = (
+	videoElement,
+	videoId,
+	removeUnderlineCorrespondingTitle = false
+) => {
 	// If the video is also a project image on the main page, remove underline from the corresponding project title
-	if (isProjectImg) {
+	if (removeUnderlineCorrespondingTitle) {
 		// const videoId = target.getAttribute('data-video-id');
 		const projectTitleNode = /** @type {HTMLElement} */ (
 			document.querySelector(`.project-title[data-video-id="${videoId}"]`)
