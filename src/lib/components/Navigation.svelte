@@ -12,6 +12,11 @@
 		const localisedPath = i18n.resolveRoute(canonicalPath, newLanguage);
 		goto(localisedPath);
 	}
+
+	let hamburgerMenuOpen = $state(false);
+	function toggleMenu() {
+		hamburgerMenuOpen = !hamburgerMenuOpen;
+	}
 </script>
 
 <div class="desktop-nav to-fade-in">
@@ -49,12 +54,28 @@
 		<button onclick={() => switchToLanguage('de')}>de</button>
 	</div>
 	<div class="hamburger-menu">
-		<div class="hamburger-icon func-toggle-menu">
+		<!-- <div
+			class="hamburger-icon func-toggle-menu{hamburgerMenuOpen ? ' open' : ''}"
+			onclick={toggleMenu}
+			onkeydown={(e) => e.key === 'Enter' && toggleMenu()}
+			aria-label="Toggle menu"
+			role="button"
+		>
 			<span></span>
 			<span></span>
 			<span></span>
-		</div>
-		<div class="menu-links">
+		</div> -->
+		<button
+			class="hamburger-icon func-toggle-menu{hamburgerMenuOpen ? ' open' : ''}"
+			onclick={toggleMenu}
+			onkeydown={(e) => e.key === 'Enter' && toggleMenu()}
+			aria-label="Toggle menu"
+		>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<div class="menu-links{hamburgerMenuOpen ? ' open' : ''}">
 			<li><a href="#projects-title" class="func-toggle-menu">{m.title_projects_abbrev()}</a></li>
 			<li><a href="#about-title" class="func-toggle-menu">{m.title_about()}</a></li>
 			<li><a href="#contact-title" class="func-toggle-menu">{m.title_contact()}</a></li>
