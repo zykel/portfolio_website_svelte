@@ -5,6 +5,16 @@
 	import * as m from '$lib/paraglide/messages.js';
 </script>
 
+<svelte:window
+	onload={() => {
+		// Preload the videos (necessary for safari)
+		let videos = document.querySelectorAll('.teaser-video');
+		videos.forEach((video) => {
+			/** @type {HTMLVideoElement} */ (video).load();
+		});
+	}}
+/>
+
 <svelte:head>
 	<title>{m.word_project()}: {m.characterization_project_title()}</title>
 </svelte:head>
@@ -16,7 +26,7 @@
 		<p class="project-page__title">{m.word_project()}: {m.characterization_project_title()}</p>
 		<img
 			src="/projects/characterization/title_pic.png"
-			alt="Title picture"
+			alt="A screenshot of the project"
 			class="project-page__title-pic"
 		/>
 
