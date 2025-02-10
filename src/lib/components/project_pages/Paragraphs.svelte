@@ -1,0 +1,22 @@
+<script>
+	import * as m from '$lib/paraglide/messages';
+
+	let { projectId } = $props();
+</script>
+
+{#snippet p(/** @type {string} */ text)}
+	<p class="project-page__paragraph">
+		{text}
+	</p>
+{/snippet}
+
+{#if projectId === 'endovis'}
+	{@render p(m.endovis_description_paragraph_1())}
+	{@render p(m.endovis_description_paragraph_2())}
+	{@render p(m.endovis_description_paragraph_3())}
+{/if}
+
+{#if projectId === 'exex'}
+	{@render p(m.exex_description_paragraph_1())}
+	{@render p(m.exex_description_paragraph_2())}
+{/if}

@@ -50,6 +50,9 @@
 	"endovis_description_paragraph_2": "We focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
 	"endovis_description_paragraph_3": "We summarized the results in an interactive notebook which facilitates an easy combination of visualizations and textual explanations, while providing the option to inspect the underlying code for full transparency.",
 
+	"exex_description_paragraph_1": "EXEX better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
+	"exex_description_paragraph_2": "EXEX focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
+
 	"caption_characterization_deviations": "For a subset of stories, bars depict how far the usage of the different storytelling techniques deviates from the average for that subset",
 	"caption_characterization_trends": "The trends over the past five years regarding the average usage frequency of different storytelling techniques",
 	"caption_characterization_mds": "The result of multidimensional scaling: Each circle represents one story, and the proximity of the circles represents how similar the corresponding stories are to each other",

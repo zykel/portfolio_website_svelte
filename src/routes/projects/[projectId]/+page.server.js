@@ -7,11 +7,4 @@ export async function load({ params }) {
 	};
 }
 
-// src/routes/+page.server.ts
-
-// export const load({ locals }) {
-//   return {
-//     promotion: m[locals.i18nContext + "_promotion"](),
-//     title: m[locals.i18nContext + "_title"](),
-//   }
-// }
+// Relevant, but did not end up using it: https://github.com/opral/inlang-paraglide-js/issues/164
