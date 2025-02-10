@@ -4,11 +4,11 @@
 		pauseProjectVideoPlayback
 	} from '$lib/scripts/utilityCrosspage';
 
-	let { videoId, videoElement } = $props();
+	let { videoId, videoElement, placedOnMainPage = true } = $props();
 </script>
 
 <svg
-	class="play-button-svg play-button-main-page"
+	class="play-button-svg play-button-{placedOnMainPage ? 'main' : 'project'}-page"
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 100 100"
 	data-video-id={videoId}

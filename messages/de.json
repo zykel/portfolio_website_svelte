@@ -59,6 +59,10 @@
 	"caption_characterization_sources": "DE A comparison of the pairwise similarities between different story sources, like The New York Times (NYT)",
 	"caption_characterization_distribution": "DE The distribution of the pairwise similarities between all stories",
 
+	"caption_endovis_procedures": "DE A set of bar charts that can be re-arranged in synchrony",
+	"caption_endovis_align": "DE A temporal alignment point can be changed across multiple views in parallel",
+	"caption_endovis_expand": "DE Individual charts displaying device measurements over time can be enlarged for closer inspection",
+
 	"word_since": "seit",
 	"word_project": "Projekt",
 	"word_publication": "Publikation",
