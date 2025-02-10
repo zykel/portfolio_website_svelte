@@ -21,8 +21,6 @@
 	<title>{m.word_project()}: {m.characterization_project_title()}</title>
 </svelte:head>
 
-<Navigation />
-
 <div class="center-container">
 	<div class="slim-fit-container">
 		<p class="project-page__title">{m.word_project()}: {m.characterization_project_title()}</p>
@@ -125,5 +123,3 @@
 		</div>
 	</div>
 </div>
-
-<Footer />
