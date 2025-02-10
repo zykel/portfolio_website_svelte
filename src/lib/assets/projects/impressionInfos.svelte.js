@@ -49,32 +49,9 @@ export const getImpressionInfos = (projectId) => {
 		};
 	} else if (projectId === 'endovis') {
 		return {
-			wide_imgs: [
-				{
-					src: '/projects/characterization/deviations.png',
-					caption: m.caption_characterization_deviations()
-				}
-			],
-			small_left_imgs: [
-				{
-					src: '/projects/characterization/trends.png',
-					caption: m.caption_characterization_trends()
-				},
-				{
-					src: '/projects/characterization/mds.png',
-					caption: m.caption_characterization_mds()
-				}
-			],
-			small_right_imgs: [
-				{
-					src: '/projects/characterization/sources.png',
-					caption: m.caption_characterization_sources()
-				},
-				{
-					src: '/projects/characterization/distribution.png',
-					caption: m.caption_characterization_distribution()
-				}
-			]
+			wide_imgs: [],
+			small_left_imgs: [],
+			small_right_imgs: []
 		};
 	} else {
 		return {

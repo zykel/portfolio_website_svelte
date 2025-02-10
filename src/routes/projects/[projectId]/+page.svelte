@@ -25,7 +25,7 @@
 				<Paragraphs {projectId} />
 				{#if infosUnilingual[projectId].publication !== ''}
 					<p class="project-page__paragraph publication">
-						{@html infosUnilingual[projectId].publication}
+						{m.word_publication()}: {@html infosUnilingual[projectId].publication}
 					</p>
 				{/if}
 			</div>
