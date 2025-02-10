@@ -2,6 +2,7 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import ProjectTitle from '$lib/components/project_pages/ProjectTitle.svelte';
 	import Paragraphs from '$lib/components/project_pages/Paragraphs.svelte';
+	import ProjectDetails from '$lib/components/project_pages/ProjectDetails.svelte';
 
 	let { data } = $props();
 
@@ -21,6 +22,7 @@
 			<div class="project-page__description">
 				<Paragraphs {projectId} />
 			</div>
+			<ProjectDetails {projectId} />
 		</div>
 	</div>
 </div>
