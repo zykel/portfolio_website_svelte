@@ -10,6 +10,12 @@
 	</p>
 {/snippet}
 
+{#if projectId === 'characterization'}
+	{@render p(m.characterization_description_paragraph_1())}
+	{@render p(m.characterization_description_paragraph_2())}
+	{@render p(m.characterization_description_paragraph_3())}
+{/if}
+
 {#if projectId === 'endovis'}
 	{@render p(m.endovis_description_paragraph_1())}
 	{@render p(m.endovis_description_paragraph_2())}

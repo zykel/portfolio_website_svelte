@@ -8,6 +8,10 @@
 	<p class="project-page__title">{m.word_project()}: {text}</p>
 {/snippet}
 
+{#if projectId === 'characterization'}
+	{@render title(m.characterization_project_title())}
+{/if}
+
 {#if projectId === 'endovis'}
 	{@render title(m.endovis_project_title())}
 {/if}
