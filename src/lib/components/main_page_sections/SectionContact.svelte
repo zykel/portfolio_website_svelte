@@ -1,12 +1,10 @@
 <script>
 	import * as m from '$lib/paraglide/messages.js';
 	import { line, curveBasis } from 'd3-shape';
-	import { range } from 'd3';
-
+	import { range } from 'd3-array';
 	import { Tween } from 'svelte/motion';
-	import { cubicOut, linear as easing } from 'svelte/easing';
 	import { interpolateString } from 'd3-interpolate';
-	import { get } from 'svelte/store';
+	import { easeElastic } from 'd3-ease';
 	import { onMount } from 'svelte';
 
 	let width = $state(0);
@@ -29,8 +27,6 @@
 		const xStart = 0;
 		const xEnd = width === 0 ? 1 : width;
 		const nrSteps = 8 + i;
-
-		// if (width === 0) return [range(nrSteps).map(() => [0, 0])];
 
 		const xArray = range(xStart, xEnd + (xEnd - xStart) / nrSteps, (xEnd - xStart) / nrSteps);
 
@@ -55,14 +51,13 @@
 			const pathStringInitial = lineGenerator(points);
 			const pathStringTween = new Tween(pathStringInitial, {
 				interpolate: interpolateString,
-				duration: 1000,
-				easing: cubicOut
+				duration: 1500 + i * 100,
+				delay: i * 60,
+				easing: easeElastic.amplitude(amp).period(per)
 			});
 			return { id: i, pathStringTween };
 		});
 	});
-
-	// const pathData = $derived(getPathData());
 
 	const updatePathData = () => {
 		pathData.forEach((/** @type {any} */ pathDatum) => {

@@ -1,4 +1,4 @@
-import { select } from 'd3';
+import { select } from 'd3-selection';
 
 export const createIntersectionHandlerForSectionTitles = () => {
 	// More sveltey alternative: https://www.npmjs.com/package/svelte-intersection-observer
