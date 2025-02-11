@@ -1,11 +1,12 @@
 <script>
 	import * as m from '$lib/paraglide/messages.js';
+	import { languageTag } from '$lib/paraglide/runtime';
 	import { fade } from 'svelte/transition';
 </script>
 
 <!-- HERO -->
 <section id="hero" class="to-fade-in_outdated">
-	<div id="hero-video-container">
+	<div id="hero-video-container" class={languageTag()}>
 		<!-- <img src="assets/hero_img.png" alt="Title picture"> -->
 		<video loop autoplay muted playsinline id="hero-video" poster="/hero_video_poster.png">
 			<source src="/hero_pulse.mp4" type="video/mp4" />

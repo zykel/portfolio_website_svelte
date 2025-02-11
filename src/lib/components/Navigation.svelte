@@ -3,7 +3,14 @@
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import * as m from '$lib/paraglide/messages.js';
+	import { languageTag } from '$lib/paraglide/runtime.js';
 	import { fade } from 'svelte/transition';
+	import SwitchLanguageButton from '$lib/components/SwitchLanguageButton.svelte';
+
+	let hamburgerMenuOpen = $state(false);
+	function toggleMenu() {
+		hamburgerMenuOpen = !hamburgerMenuOpen;
+	}
 
 	/**
 	 * @param {import("$lib/paraglide/runtime").AvailableLanguageTag} newLanguage
@@ -13,26 +20,22 @@
 		const localisedPath = i18n.resolveRoute(canonicalPath, newLanguage);
 		goto(localisedPath);
 	}
-
-	let hamburgerMenuOpen = $state(false);
-	function toggleMenu() {
-		hamburgerMenuOpen = !hamburgerMenuOpen;
-	}
 </script>
 
 <div class="desktop-nav to-fade-in_outdated">
 	<div class="center-container">
 		<nav class="heading-nav slim-fit-container space-between-container">
-			<div>
+			<div class="nav-grid-left">
 				<a href="https://benediktmayer.com/" class="logo-link"
 					><span class="logo-text-content">Benedikt Mayer</span></a
 				>
 			</div>
-			<div>
-				<button onclick={() => switchToLanguage('en')}>en</button>
-				<button onclick={() => switchToLanguage('de')}>de</button>
+			<div class="nav-grid-middle">
+				<SwitchLanguageButton language={'en'} {switchToLanguage} />
+				<!-- <span style:color="gray" style:font-size="1rem"></span> -->
+				<SwitchLanguageButton language={'de'} {switchToLanguage} />
 			</div>
-			<div>
+			<div class="nav-grid-right">
 				<ul class="nav-links gap-row-container">
 					<li>
 						<a href="#projects-title" class="page-link"><span>{m.title_projects_abbrev()}</span></a>
@@ -45,16 +48,17 @@
 	</div>
 </div>
 <nav class="hamburger-nav to-fade-in_outdated">
-	<div>
+	<div class="nav-grid-left">
 		<a href="https://benediktmayer.com/" class="logo-link"
 			><span class="logo-text-content">Benedikt Mayer</span></a
 		>
 	</div>
-	<div>
-		<button onclick={() => switchToLanguage('en')}>en</button>
-		<button onclick={() => switchToLanguage('de')}>de</button>
+	<div class="nav-grid-middle">
+		<SwitchLanguageButton language={'en'} {switchToLanguage} />
+		<!-- <span style:color="gray" style:font-size="1rem">/</span> -->
+		<SwitchLanguageButton language={'de'} {switchToLanguage} />
 	</div>
-	<div class="hamburger-menu">
+	<div class="hamburger-menu nav-grid-right">
 		<!-- <div
 			class="hamburger-icon func-toggle-menu{hamburgerMenuOpen ? ' open' : ''}"
 			onclick={toggleMenu}
