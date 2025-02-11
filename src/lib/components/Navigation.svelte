@@ -20,7 +20,7 @@
 	}
 </script>
 
-<div class="desktop-nav to-fade-in_outdated" in:fade>
+<div class="desktop-nav to-fade-in_outdated">
 	<div class="center-container">
 		<nav class="heading-nav slim-fit-container space-between-container">
 			<div>
@@ -44,7 +44,7 @@
 		</nav>
 	</div>
 </div>
-<nav class="hamburger-nav to-fade-in_outdated" in:fade>
+<nav class="hamburger-nav to-fade-in_outdated">
 	<div>
 		<a href="https://benediktmayer.com/" class="logo-link"
 			><span class="logo-text-content">Benedikt Mayer</span></a

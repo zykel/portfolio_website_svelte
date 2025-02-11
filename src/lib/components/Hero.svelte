@@ -4,7 +4,7 @@
 </script>
 
 <!-- HERO -->
-<section id="hero" class="to-fade-in_outdated" in:fade>
+<section id="hero" class="to-fade-in_outdated">
 	<div id="hero-video-container">
 		<!-- <img src="assets/hero_img.png" alt="Title picture"> -->
 		<video loop autoplay muted playsinline id="hero-video" poster="/hero_video_poster.png">

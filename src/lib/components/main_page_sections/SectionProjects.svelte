@@ -66,7 +66,7 @@
 		<div class="slim-fit-container">
 			<div class="section-title-grid">
 				<div id="projects-title-container" class="section-title-container">
-					<h1 id="projects-title" class="light-font to-fade-in_outdated" in:fade>
+					<h1 id="projects-title" class="light-font to-fade-in_outdated">
 						<a class="section-title-a" href="#projects-title">{m['sec_title_projects']()}</a>
 					</h1>
 				</div>

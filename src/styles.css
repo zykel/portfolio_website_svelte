@@ -468,6 +468,8 @@ button.hamburger-icon {
 	position: relative;
 	margin-top: 5vh;
 	margin-top: 5svh;
+	min-height: min(70vh, 100%);
+	min-height: min(70svh, 100%);
 }
 
 #hero-video {

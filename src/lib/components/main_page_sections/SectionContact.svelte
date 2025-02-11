@@ -2,7 +2,12 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { line, curveBasis } from 'd3-shape';
 	import { range } from 'd3';
+
+	import { Tween } from 'svelte/motion';
+	import { cubicOut, linear as easing } from 'svelte/easing';
+	import { interpolateString } from 'd3-interpolate';
 	import { get } from 'svelte/store';
+	import { onMount } from 'svelte';
 
 	let width = $state(0);
 	const height = 200;
@@ -10,21 +15,24 @@
 	const amp = 1;
 	const per = 0.9;
 
-	const getFanFactor = (/** @type {number} */ x) => 1 - Math.abs((x - width / 2) / (width / 2));
+	const getFanFactor = (/** @type {number} */ x) => {
+		if (width === 0) return 1;
+		return 1 - Math.abs((x - width / 2) / (width / 2));
+	};
 
 	/**
 	 * @param {number} i
 	 */
 	function getRandomPoints(i) {
-		if (width === 0) return [];
-
 		/** @type {any[][]} */
 		const points = [];
 		const xStart = 0;
-		const xEnd = width;
+		const xEnd = width === 0 ? 1 : width;
 		const nrSteps = 8 + i;
+
+		// if (width === 0) return [range(nrSteps).map(() => [0, 0])];
+
 		const xArray = range(xStart, xEnd + (xEnd - xStart) / nrSteps, (xEnd - xStart) / nrSteps);
-		console.log('width', width);
 
 		xArray.forEach((/** @type {number} */ x) => {
 			const y = yStart + (Math.random() * 100 - 50) * getFanFactor(x) * 2; // add some randomness
@@ -34,21 +42,34 @@
 		return points;
 	}
 
-	let updatePathDataToggle = $state(false);
-	const updatePathData = () => {
-		updatePathDataToggle = !updatePathDataToggle;
-	};
+	const lineGenerator = line().curve(curveBasis);
 
-	const getPathData = () => {
-		updatePathDataToggle;
-		return range(5).map((/** @type {any} */ d, /** @type {number} */ i) => {
-			return { id: i, points: getRandomPoints(i) };
+	/**
+	 * @type {any[]}
+	 */
+	let pathData = $state([]);
+
+	onMount(() => {
+		pathData = range(5).map((/** @type {any} */ d, /** @type {number} */ i) => {
+			const points = getRandomPoints(i);
+			const pathStringInitial = lineGenerator(points);
+			const pathStringTween = new Tween(pathStringInitial, {
+				interpolate: interpolateString,
+				duration: 1000,
+				easing: cubicOut
+			});
+			return { id: i, pathStringTween };
+		});
+	});
+
+	// const pathData = $derived(getPathData());
+
+	const updatePathData = () => {
+		pathData.forEach((/** @type {any} */ pathDatum) => {
+			const points = getRandomPoints(pathDatum.id);
+			pathDatum.pathStringTween.target = lineGenerator(points);
 		});
 	};
-
-	const pathData = $derived(getPathData());
-
-	const lineGenerator = line().curve(curveBasis);
 </script>
 
 <section id="contact" class="center-col-container" bind:clientWidth={width}>
@@ -72,8 +93,7 @@
 			<div id="lines-svg-container">
 				<svg id="lines-svg" xmlns="http://www.w3.org/2000/svg" {width} {height}>
 					{#each pathData as pathDatum, i}
-						{@const lineString = lineGenerator(pathDatum.points)}
-						<path d={typeof lineString === 'string' ? lineString : ''} fill="none" stroke="white" />
+						<path d={pathDatum.pathStringTween.current} fill="none" stroke="white" />
 					{/each}
 				</svg>
 			</div>
