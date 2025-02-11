@@ -1,9 +1,10 @@
 <script>
 	import * as m from '$lib/paraglide/messages.js';
+	import { fade } from 'svelte/transition';
 </script>
 
 <!-- HERO -->
-<section id="hero" class="to-fade-in">
+<section id="hero" class="to-fade-in_outdated" in:fade>
 	<div id="hero-video-container">
 		<!-- <img src="assets/hero_img.png" alt="Title picture"> -->
 		<video loop autoplay muted playsinline id="hero-video" poster="/hero_video_poster.png">

@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import * as m from '$lib/paraglide/messages.js';
+	import { fade } from 'svelte/transition';
 
 	/**
 	 * @param {import("$lib/paraglide/runtime").AvailableLanguageTag} newLanguage
@@ -19,7 +20,7 @@
 	}
 </script>
 
-<div class="desktop-nav to-fade-in">
+<div class="desktop-nav to-fade-in_outdated" in:fade>
 	<div class="center-container">
 		<nav class="heading-nav slim-fit-container space-between-container">
 			<div>
@@ -43,7 +44,7 @@
 		</nav>
 	</div>
 </div>
-<nav class="hamburger-nav to-fade-in">
+<nav class="hamburger-nav to-fade-in_outdated" in:fade>
 	<div>
 		<a href="https://benediktmayer.com/" class="logo-link"
 			><span class="logo-text-content">Benedikt Mayer</span></a

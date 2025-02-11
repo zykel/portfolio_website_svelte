@@ -510,7 +510,7 @@ button.hamburger-icon {
 		opacity: 1;
 	}
 }
-.fadeIn {
+.to-fade-in_outdated {
 	animation: fadeIn 1s ease-in-out forwards;
 }
 

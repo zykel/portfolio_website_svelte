@@ -111,7 +111,7 @@ console.log('in script');
 // 	// document.querySelectorAll('#hero-video').load();
 
 // 	// Ensure that fade in happens only upon page load
-// 	Array.from(document.getElementsByClassName('to-fade-in')).forEach((node) =>
+// 	Array.from(document.getElementsByClassName('to-fade-in_outdated')).forEach((node) =>
 // 		node.classList.add('fadeIn')
 // 	);
 
