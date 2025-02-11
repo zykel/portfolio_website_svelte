@@ -1,6 +1,7 @@
 <script>
 	import * as m from '$lib/paraglide/messages.js';
-	import * as d3 from 'd3';
+	import { line, curveBasis } from 'd3-shape';
+	import { range } from 'd3';
 	import { get } from 'svelte/store';
 
 	let width = $state(0);
@@ -22,7 +23,7 @@
 		const xStart = 0;
 		const xEnd = width;
 		const nrSteps = 8 + i;
-		const xArray = d3.range(xStart, xEnd + (xEnd - xStart) / nrSteps, (xEnd - xStart) / nrSteps);
+		const xArray = range(xStart, xEnd + (xEnd - xStart) / nrSteps, (xEnd - xStart) / nrSteps);
 		console.log('width', width);
 
 		xArray.forEach((/** @type {number} */ x) => {
@@ -40,14 +41,14 @@
 
 	const getPathData = () => {
 		updatePathDataToggle;
-		return d3.range(5).map((/** @type {any} */ d, /** @type {number} */ i) => {
+		return range(5).map((/** @type {any} */ d, /** @type {number} */ i) => {
 			return { id: i, points: getRandomPoints(i) };
 		});
 	};
 
 	const pathData = $derived(getPathData());
 
-	const line = d3.line().curve(d3.curveBasis);
+	const lineGenerator = line().curve(curveBasis);
 </script>
 
 <section id="contact" class="center-col-container" bind:clientWidth={width}>
@@ -71,7 +72,8 @@
 			<div id="lines-svg-container">
 				<svg id="lines-svg" xmlns="http://www.w3.org/2000/svg" {width} {height}>
 					{#each pathData as pathDatum, i}
-						<path d={line(pathDatum.points)} fill="none" stroke="white" />
+						{@const lineString = lineGenerator(pathDatum.points)}
+						<path d={typeof lineString === 'string' ? lineString : ''} fill="none" stroke="white" />
 					{/each}
 				</svg>
 			</div>

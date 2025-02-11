@@ -75,8 +75,8 @@
 	</div>
 
 	<div id="projects-grid">
-		{#each projectInfos as projectInfo}
-			<ProjectCard {projectInfo} />
+		{#each projectInfos as projectInfo, idx}
+			<ProjectCard {projectInfo} isSectionTitleAnimationTrigger={idx === 0} />
 		{/each}
 	</div>
 </section>

@@ -2,13 +2,18 @@
 	import PlayButtonSVG from '$lib/components/PlayButtonSVG.svelte';
 	import TeaserVideo from '$lib/components/TeaserVideo.svelte';
 
-	let { projectInfo } = $props();
+	let { projectInfo, isSectionTitleAnimationTrigger } = $props();
 
 	/** @type {HTMLVideoElement | null} */
 	let videoElement = $state(null);
 </script>
 
-<div class="project-card video-parent project-animation-trigger" data-trigger-ref="projects">
+<div
+	class="project-card video-parent{isSectionTitleAnimationTrigger
+		? ' project-animation-trigger'
+		: ''}"
+	data-trigger-ref={isSectionTitleAnimationTrigger ? 'projects' : ''}
+>
 	<TeaserVideo {projectInfo} isProjectImg={true} bind:videoElement />
 
 	<div class="project-below-container">
