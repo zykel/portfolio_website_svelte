@@ -39,6 +39,9 @@ Und gucken, was bei 790px mit dem grid passiert
 	.hamburger-nav {
 		display: grid;
 	}
+	.nav-grid-middle {
+		justify-self: end; /* Align content to the right */
+	}
 	#hero {
 		justify-content: center;
 	}

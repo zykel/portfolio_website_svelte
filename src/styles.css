@@ -324,7 +324,7 @@ ALSO update the corresponding style info in the index.html
 /* Hamburger nav */
 
 .hamburger-nav {
-	grid-template-columns: 1fr auto 1fr; /* Three columns: left, middle (auto), right */
+	grid-template-columns: 2fr auto 1fr; /* Three columns: left, middle (auto), right */
 	align-items: start;
 	position: relative;
 	z-index: 999;
