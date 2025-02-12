@@ -38,9 +38,8 @@ Und gucken, was bei 790px mit dem grid passiert
 	}
 	.hamburger-nav {
 		display: grid;
-	}
-	.nav-grid-middle {
-		justify-self: end; /* Align content to the right */
+		grid-template-columns: 1fr auto 1fr;
+		align-items: start;
 	}
 	#hero {
 		justify-content: center;
@@ -76,6 +75,13 @@ Und gucken, was bei 790px mit dem grid passiert
 	#hero-video-container.de {
 		margin-top: -15vh;
 		margin-top: -15svh;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.hamburger-nav {
+		display: flex;
+		justify-content: space-between;
 	}
 }
 

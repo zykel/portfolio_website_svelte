@@ -324,8 +324,6 @@ ALSO update the corresponding style info in the index.html
 /* Hamburger nav */
 
 .hamburger-nav {
-	grid-template-columns: 2fr auto 1fr; /* Three columns: left, middle (auto), right */
-	align-items: start;
 	position: relative;
 	z-index: 999;
 	display: none;
@@ -341,6 +339,7 @@ ALSO update the corresponding style info in the index.html
 .hamburger-menu {
 	position: relative;
 	display: inline-block;
+	padding-top: 0.2rem;
 }
 
 .hamburger-icon {
