@@ -33,7 +33,7 @@
 			</div>
 
 			<div id="background-container">
-				<h2>MY BACKGROUND</h2>
+				<h2>{m['sec_about_background_history_title']()}</h2>
 				<div class="cv-row">
 					<div class="cv-time">{m.word_since()} 2024</div>
 					<div class="cv-occupation">
