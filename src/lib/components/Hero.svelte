@@ -5,7 +5,7 @@
 </script>
 
 <!-- HERO -->
-<section id="hero" class="to-fade-in_outdated">
+<section id="hero" class="to-fade-in">
 	<div id="hero-video-container" class={languageTag()}>
 		<!-- <img src="assets/hero_img.png" alt="Title picture"> -->
 		<video loop autoplay muted playsinline id="hero-video" poster="/hero_video_poster.png">

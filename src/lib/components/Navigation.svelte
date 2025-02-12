@@ -22,7 +22,7 @@
 	}
 </script>
 
-<div class="desktop-nav to-fade-in_outdated">
+<div class="desktop-nav to-fade-in">
 	<div class="center-container">
 		<nav class="heading-nav slim-fit-container space-between-container">
 			<div class="nav-grid-left">
@@ -38,16 +38,17 @@
 			<div class="nav-grid-right">
 				<ul class="nav-links gap-row-container">
 					<li>
-						<a href="#projects-title" class="page-link"><span>{m.title_projects_abbrev()}</span></a>
+						<a href="/#projects-title" class="page-link"><span>{m.title_projects_abbrev()}</span></a
+						>
 					</li>
-					<li><a href="#about-title" class="page-link"><span>{m.title_about()}</span></a></li>
-					<li><a href="#contact-title" class="page-link"><span>{m.title_contact()}</span></a></li>
+					<li><a href="/#about-title" class="page-link"><span>{m.title_about()}</span></a></li>
+					<li><a href="/#contact-title" class="page-link"><span>{m.title_contact()}</span></a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 </div>
-<nav class="hamburger-nav to-fade-in_outdated">
+<nav class="hamburger-nav to-fade-in">
 	<div class="nav-grid-left">
 		<a href="https://benediktmayer.com/" class="logo-link"
 			><span class="logo-text-content">Benedikt Mayer</span></a
@@ -81,9 +82,9 @@
 			<span></span>
 		</button>
 		<div class="menu-links{hamburgerMenuOpen ? ' open' : ''}">
-			<li><a href="#projects-title" class="func-toggle-menu">{m.title_projects_abbrev()}</a></li>
-			<li><a href="#about-title" class="func-toggle-menu">{m.title_about()}</a></li>
-			<li><a href="#contact-title" class="func-toggle-menu">{m.title_contact()}</a></li>
+			<li><a href="/#projects-title" class="func-toggle-menu">{m.title_projects_abbrev()}</a></li>
+			<li><a href="/#about-title" class="func-toggle-menu">{m.title_about()}</a></li>
+			<li><a href="/#contact-title" class="func-toggle-menu">{m.title_contact()}</a></li>
 		</div>
 	</div>
 </nav>

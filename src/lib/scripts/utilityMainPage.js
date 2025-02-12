@@ -34,9 +34,9 @@ export const setupPage = () => {
 	});
 
 	// Ensure that fade in happens only upon page load
-	Array.from(document.getElementsByClassName('to-fade-in')).forEach((node) =>
-		node.classList.add('fadeIn')
-	);
+	// Array.from(document.getElementsByClassName('to-fade-in')).forEach((node) =>
+	// 	node.classList.add('fadeIn')
+	// );
 
 	if (pageLoadAnimation) pageLoadAnimation.style.display = 'none';
 };
