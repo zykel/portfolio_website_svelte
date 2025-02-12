@@ -25,4 +25,6 @@
 {#if projectId === 'exex'}
 	{@render p(m.exex_description_paragraph_1())}
 	{@render p(m.exex_description_paragraph_2())}
+	{@render p(m.exex_description_paragraph_3())}
+	{@render p(m.exex_description_paragraph_4())}
 {/if}

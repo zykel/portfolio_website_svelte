@@ -15,9 +15,10 @@ export const infosUnilingual = {
 			'B. Mayer, M. Meuschke, J. Chen, B. P. Müller-Stich, M. Wagner, B. Preim, and S. Engelhardt. “Interactive visual exploration of surgical process data.” In: <span class="italics">International Journal of Computer Assisted Radiology and Surgery</span> 18.1 (2023), pp. 127–137. <a class="publication-doi" href="https://doi.org/10.1007/s11548-022-02758-1" target="_blank">doi: 10.1007/s11548-022-02758-1</a>.'
 	},
 	exex: {
-		projectURL: 'https://exex.de',
-		tech: 'dummy',
-		year: 'YYZZ',
-		publication: ''
+		projectURL: 'https://matchedwake.com/aid_ex/',
+		tech: 'JavaScript, React.js, D3.js, R',
+		year: '2024',
+		publication:
+			'Publication: B. Mayer, K. Donnay, K. Lawonn, B. Preim, and M. Meuschke. “Expert exploranation for communicating scientific methods - A case study in conflict research.” In: <span class="italics">Computers & Graphics</span> (2024). <a class="publication-doi" href="https://doi.org/10.1016/j.cag.2024.103937" target="_blank">doi: 10.1016/j.cag.2024.103937</a>'
 	}
 };

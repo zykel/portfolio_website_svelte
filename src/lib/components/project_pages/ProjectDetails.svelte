@@ -56,7 +56,10 @@
 	})}
 {/if}
 
-<!-- {#if projectId === 'exex'}
-	{@render p(m.exex_description_paragraph_1())}
-	{@render p(m.exex_description_paragraph_2())}
-{/if} -->
+{#if projectId === 'exex'}
+	{@render details({
+		type: m.tag_visual_data_story(),
+		roles: `${m.word_conceptualization()}, ${m.word_design()}, ${m.word_implementation()}`,
+		partners: `${m.pn_ovgu()}, ${m.pn_university_zurich()}`
+	})}
+{/if}

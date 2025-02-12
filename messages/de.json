@@ -53,12 +53,12 @@
 	"caption_characterization_sources": "Ein Vergleich der paarweisen Ähnlichkeiten zwischen verschiedenen Quellen von Geschichten, wie z. B. der New York Times (NYT)",
 	"caption_characterization_distribution": "Die Verteilung der paarweisen Ähnlichkeiten zwischen allen Geschichten",
 
-	"endovis_description_paragraph_1": "DE Integrated operating rooms provide rich and heterogeneous data about surgical procedures. This includes information about the different phases of a procedure, the instruments used, and the measurements of different devices. Such information is commonly time-dependent and complex to analyze in unison.",
-	"endovis_description_paragraph_2": "DE To allow such comprehensive analysis, we created a visualization system to inspect and filter the information side-by-side. Together with medical experts, we discussed which views of the data are relevant for them and which interactions they require for analyzing the data more deeply. As they were not always aware of the different options that exist for doing so, we tried to get a deeper understanding of the goals they had for the data, based on which we provided them with a selection of suitable options to choose from.",
-	"endovis_description_paragraph_3": "DE This prototyping-based iterative procedure led to a solution which allowed the experts to get a much more comprehensive understanding of the heterogeneous data.",
-	"caption_endovis_procedures": "DE A set of bar charts that can be re-arranged in synchrony",
-	"caption_endovis_align": "DE A temporal alignment point can be changed across multiple views in parallel",
-	"caption_endovis_expand": "DE Individual charts displaying device measurements over time can be enlarged for closer inspection",
+	"endovis_description_paragraph_1": "Integrierte Operationssäle liefern umfangreiche Daten über chirurgische Eingriffe. Dazu gehören Informationen über die verschiedenen Phasen eines Eingriffs, die eingesetzten Instrumente und die Messwerte unterschiedlicher Geräte. Solche Informationen sind häufig zeitabhängig und deren gesamtheitlich Analyse komplex.",
+	"endovis_description_paragraph_2": "Um eine solche umfassende Analyse zu ermöglichen, entwickelten wir ein Visualisierungssystem, mit dem die Informationen parallel zueinander inspiziert und gefiltert werden können. Hierfür erarbeiteten wir gemeinsam mit medizinischen Expert:innen die Ziele, welche sie mit den Daten verfolgen. Basierend auf den Zielen ermittelten wir, welche Ansichten der Daten relevant sind und welche Interaktionen benötigt werden, um die Daten in ausreichender Tiefe zu analysieren.",
+	"endovis_description_paragraph_3": "Eine Prototyping-basiertes, iteratives Entwicklungsverfahren führte zu einer Lösung, die den Expert:innen ein tiefgehendes Verständnis der heterogenen Prozessdaten ermöglichte.",
+	"caption_endovis_procedures": "Mehrere Balkendiagramme, welche synchron umsortiert werden können",
+	"caption_endovis_align": "Ein zeitlicher Ausrichtungspunkt kann über mehrere Ansichten hinweg parallel geändert werden",
+	"caption_endovis_expand": "Einzelne Diagramme, die Gerätemessungen über die Zeit anzeigen, können zur genaueren Betrachtung vergrößert werden",
 
 	"exex_description_paragraph_1": "DE EXEX better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
 	"exex_description_paragraph_2": "DE EXEX focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
@@ -74,7 +74,7 @@
 	"word_conceptualization": "Konzept",
 	"word_design": "Design",
 	"word_implementation": "Implementierung",
-	"word_impressions": "Impressionen",
+	"word_impressions": "Eindrücke",
 
 	"pn_ovgu": "Otto-von-Guericke-Universität Magdeburg",
 	"pn_uni_konstanz": "Universität Konstanz"
