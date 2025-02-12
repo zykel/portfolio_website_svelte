@@ -44,26 +44,24 @@
 
 	"btn_visit_project": "PROJEKT-WEBSEITE",
 
-	"characterization_description_paragraph_1": "DE To better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
-	"characterization_description_paragraph_2": "DE We focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
-	"characterization_description_paragraph_3": "DE We summarized the results in an interactive notebook which facilitates an easy combination of visualizations and textual explanations, while providing the option to inspect the underlying code for full transparency.",
+	"characterization_description_paragraph_1": "Um besser zu verstehen, wie visuelle Datenstories üblicherweise aufgebaut sind, haben wir 130 Online-Stories gesammelt und analysiert, welche Storytelling-Techniken sie verwenden.",
+	"characterization_description_paragraph_2": "Wir konzentierten uns auf Geschichten, deren Daten einen räumlichen und einen zeitlichen Bezug besitzen, da es bisher wenig systematische Analysen in diesem Bereich gab. Um die Geschichten anhand der verwendeten Storytelling-Techniken zu klassifizieren, führten wir drei bestehende Design-Spaces zusammen und passten sie an. Die Ergebnisse der Klassifikation analysierten wir, indem wir die insgesamte Verteilung untersuchten, Teilmengen verglichen, Trends identifizierten und fortgeschrittene Techniken wie multidimensionale Skalierung einsetzten.",
+	"characterization_description_paragraph_3": "Wir fassten die Ergebnisse in einem interaktiven Notebook zusammen, welches Visualisierungen mit textuellen Erklärungen kombiniert und die Option bietet, den zugrundeliegenden Code zur vollständigen Transparenz einzusehen.",
+	"caption_characterization_deviations": "Für eine Teilmenge der Geschichten veranschaulichen Balken, wie stark die Nutzung der Storytelling-Techniken vom Durchschnitt über aller Geschichten hinweg abweicht",
+	"caption_characterization_trends": "Die Trends der letzten fünf Jahre hinsichtlich der durchschnittlichen Häufigkeit der Nutzung verschiedener Storytelling-Techniken",
+	"caption_characterization_mds": "Das Ergebnis der multidimensionalen Skalierung: Jeder Kreis stellt eine Geschichte dar, und die Nähe der Kreise zeigt an, wie ähnlich sich die entsprechenden Geschichten sind",
+	"caption_characterization_sources": "Ein Vergleich der paarweisen Ähnlichkeiten zwischen verschiedenen Quellen von Geschichten, wie z. B. der New York Times (NYT)",
+	"caption_characterization_distribution": "Die Verteilung der paarweisen Ähnlichkeiten zwischen allen Geschichten",
 
 	"endovis_description_paragraph_1": "DE Integrated operating rooms provide rich and heterogeneous data about surgical procedures. This includes information about the different phases of a procedure, the instruments used, and the measurements of different devices. Such information is commonly time-dependent and complex to analyze in unison.",
 	"endovis_description_paragraph_2": "DE To allow such comprehensive analysis, we created a visualization system to inspect and filter the information side-by-side. Together with medical experts, we discussed which views of the data are relevant for them and which interactions they require for analyzing the data more deeply. As they were not always aware of the different options that exist for doing so, we tried to get a deeper understanding of the goals they had for the data, based on which we provided them with a selection of suitable options to choose from.",
 	"endovis_description_paragraph_3": "DE This prototyping-based iterative procedure led to a solution which allowed the experts to get a much more comprehensive understanding of the heterogeneous data.",
-
-	"exex_description_paragraph_1": "DE EXEX better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
-	"exex_description_paragraph_2": "DE EXEX focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
-
-	"caption_characterization_deviations": "DE For a subset of stories, bars depict how far the usage of the different storytelling techniques deviates from the average for that subset",
-	"caption_characterization_trends": "DE The trends over the past five years regarding the average usage frequency of different storytelling techniques",
-	"caption_characterization_mds": "DE The result of multidimensional scaling: Each circle represents one story, and the proximity of the circles represents how similar the corresponding stories are to each other",
-	"caption_characterization_sources": "DE A comparison of the pairwise similarities between different story sources, like The New York Times (NYT)",
-	"caption_characterization_distribution": "DE The distribution of the pairwise similarities between all stories",
-
 	"caption_endovis_procedures": "DE A set of bar charts that can be re-arranged in synchrony",
 	"caption_endovis_align": "DE A temporal alignment point can be changed across multiple views in parallel",
 	"caption_endovis_expand": "DE Individual charts displaying device measurements over time can be enlarged for closer inspection",
+
+	"exex_description_paragraph_1": "DE EXEX better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
+	"exex_description_paragraph_2": "DE EXEX focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
 
 	"word_since": "seit",
 	"word_project": "Projekt",
