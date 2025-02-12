@@ -1,6 +1,5 @@
 <script>
 	import {
-		openProjectURL,
 		startProjectVideoPlayback,
 		pauseProjectVideoPlayback
 	} from '$lib/scripts/utilityCrosspage.js';
@@ -8,21 +7,23 @@
 	let { projectInfo, isProjectImg = false, videoElement = $bindable() } = $props();
 </script>
 
-<video
-	bind:this={videoElement}
-	loop
-	muted
-	playsinline
-	class="teaser-video{isProjectImg ? ' project-img' : ''}"
-	data-video-id={projectInfo.video}
-	onclick={(e) => openProjectURL(projectInfo.url, e.currentTarget)}
-	onmouseenter={() => startProjectVideoPlayback(videoElement, projectInfo.video, isProjectImg)}
-	onmouseleave={() => pauseProjectVideoPlayback(videoElement, projectInfo.video, isProjectImg)}
->
-	<source src={projectInfo.videoSrc} type="video/mp4" />
-	<!-- <source src="movie.ogg" type="video/ogg"> -->
-	Your browser does not support the video tag.
-</video>
+<a href={projectInfo.url} target="_blank">
+	<video
+		bind:this={videoElement}
+		loop
+		muted
+		playsinline
+		class="teaser-video{isProjectImg ? ' project-img' : ''}"
+		data-video-id={projectInfo.video}
+		onclick={() => pauseProjectVideoPlayback(videoElement, projectInfo.video, isProjectImg)}
+		onmouseenter={() => startProjectVideoPlayback(videoElement, projectInfo.video, isProjectImg)}
+		onmouseleave={() => pauseProjectVideoPlayback(videoElement, projectInfo.video, isProjectImg)}
+	>
+		<source src={projectInfo.videoSrc} type="video/mp4" />
+		<!-- <source src="movie.ogg" type="video/ogg"> -->
+		Your browser does not support the video tag.
+	</video>
+</a>
 
 <!-- .on('mouseenter', (event, d) => {
     // If the video is also a project image on the main page, underline the corresponding project title

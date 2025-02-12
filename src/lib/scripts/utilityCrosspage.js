@@ -1,20 +1,3 @@
-/** Open URL in new tab and pause video on mobile
- * @param {string | URL | undefined} url
- * @param {HTMLElement} node
- */
-export const openProjectURL = function (url, node) {
-	// In case of mobile use, a mouseleave event is not fired on tapping, so the video playing in the teaser won't pause
-	// TODO: This could maybe be solved more elegantly using svelte
-	let event = new MouseEvent('mouseleave', {
-		view: window,
-		bubbles: true,
-		cancelable: true
-	});
-	node.dispatchEvent(event);
-
-	window.open(url, '_blank');
-};
-
 /**
  * @param {HTMLVideoElement | null} videoElement
  * @param {String} videoId
