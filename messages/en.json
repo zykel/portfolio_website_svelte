@@ -43,6 +43,16 @@
 
 	"btn_visit_project": "VISIT PROJECT WEBSITE",
 
+	"vehicle_description_paragraph_1": "In this project, the goal was to explore the results of a statistical conflict research method. The method was used to integrate several spatio-temporal conflict event data sets based on a set of assumptions. As the integration method produced unexpected results, we used visual exploration to better understand what was happening under the hood.",
+	"vehicle_description_paragraph_2": "To produce the corresponding visualization system, we developed a deeper understanding of how the integration method works to identify the aspects relevant for further exploration. We designed and tested various visualizations to identify the most suitable ways to represent the multi-faceted information contained in the integration results. The visualizations were linked, so they could be explored in synchrony via filtering and changing parameters. The development process took place in close collaboration with conflict research experts.",
+	"vehicle_description_paragraph_3": "With the final system, we could successfully identify multiple reasons for why the integration results looked the way they did.",
+	"vehicle_description_paragraph_4": "Disclaimer: As this was my first major project and all the calculations are performed client-side, the application takes some time for certain steps, depending on which device it is opened on.",
+	"caption_vehicle_all_events": "A view on the data using stacked bar charts. The use of four different color helps to distinguish the four different data sets that were integrated",
+	"caption_vehicle_bin_highlighting": "Hovering over a bin of the temporal histogram highlights all events that took place during the corresponding interval",
+	"caption_vehicle_paramultiples": "Different distributions can be compared, including indications for how similar they are to each other",
+	"caption_vehicle_drill_down": "The stacked bar charts can be drilled into",
+	"caption_vehicle_node_highlight": "When hovering over a node in a hierarchical graph view, the nodes further down in the hierarchy are highlighted, and the level of the hovered node in the hierarchy is indicated via a dashed line",
+
 	"characterization_description_paragraph_1": "To better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
 	"characterization_description_paragraph_2": "We focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
 	"characterization_description_paragraph_3": "We summarized the results in an interactive notebook which facilitates an easy combination of visualizations and textual explanations, while providing the option to inspect the underlying code for full transparency.",

@@ -44,6 +44,16 @@
 
 	"btn_visit_project": "PROJEKT-WEBSEITE",
 
+	"vehicle_description_paragraph_1": "Das Ziel des Projekts war es, die Ergebnisse einer statistischen Methode der Konfliktforschung zu untersuchen. Die Methode wird verwendet, um verschiedene raum- und zeitabhängige Konfliktereignis-Datensätze auf Basis bestimmter Annahmen zu einem Gesamtdatensatz zu integrieren. Allerdings lieferte die Integrationsmethode unserem Kooperationspartner aus der Konfliktforschung unerwartete Ergebnisse. Unser Ziel war es entsprechend, ihm dabei zu helfen, besser zu verstehen, wie diese Ergebnisse zustande kamen. Hierfür nutzen wir Techniken der explorative visuelle Datenanalyse.",
+	"vehicle_description_paragraph_2": "Um das entsprechende Visualisierungssystem zu entwickeln, erarbeiteten wir ein tiefgehendes Verständnis der Integrationsmethode, um die relevanten Aspekte für eine weitere Untersuchung zu identifizieren. Wir entwarfen und testeten verschiedene Visualisierungen, um die am besten geeigneten Darstellungsformen für die vielschichtigen Informationen in den Integrationsresultaten zu finden. Die Visualisierungen wurden miteinander verknüpft, sodass sie synchron durch Filterung und Anpassung von Parametern erkundet werden konnten. Der Entwicklungsprozess erfolgte in enger Zusammenarbeit mit Expert:innen der Konfliktforschung.",
+	"vehicle_description_paragraph_3": "Mithilfe des resultierenden Systems konnten wir erfolgreich identifizieren, warum die Datenintegration unerwartete Ergebnisse lieferte.",
+	"vehicle_description_paragraph_4": "Anmerkung: Da dies mein erstes größeres Projekt war und alle Berechnungen clientseitig anstatt auf einem Server durchgeführt werden, benötigt die Anwendung je nach Endgerät für Berechnungen längere Zeit.",
+	"caption_vehicle_all_events": "Eine Ansicht der Daten mit mehreren verknüpften Visualisierungen. Der Einsatz von vier verschiedenen Farben hilft dabei, die vier integrierten Datensätze zu unterscheiden",
+	"caption_vehicle_bin_highlighting": "Das Hovern über einem Abschnitt im zeitlichen Histogramm hebt alle Ereignisse hervor, die im entsprechenden Intervall stattgefunden haben",
+	"caption_vehicle_paramultiples": "Verschiedene Histogramme können verglichen werden, einschließlich Hinweisen darauf, wie ähnlich sie einander sind",
+	"caption_vehicle_drill_down": "Gestapelte Balkendiagramme können auf mehreren Ebenen erforscht werden",
+	"caption_vehicle_node_highlight": "Beim Hovern über einem Knoten in einer hierarchischen Graphansicht werden die Knoten hervorgehoben, die weiter unten in der Hierarchie liegen. Außerdem wird die Hierarchieebene des gewählten Knotens durch eine gestrichelte Linie angedeutet",
+
 	"characterization_description_paragraph_1": "Um besser zu verstehen, wie visuelle Datenstories üblicherweise aufgebaut sind, haben wir 130 Online-Stories gesammelt und analysiert, welche Storytelling-Techniken sie verwenden.",
 	"characterization_description_paragraph_2": "Wir konzentierten uns auf Geschichten, deren Daten einen räumlichen und einen zeitlichen Bezug besitzen, da es bisher wenig systematische Analysen in diesem Bereich gab. Um die Geschichten anhand der verwendeten Storytelling-Techniken zu klassifizieren, führten wir drei bestehende Design-Spaces zusammen und passten sie an. Die Ergebnisse der Klassifikation analysierten wir, indem wir die insgesamte Verteilung untersuchten, Teilmengen verglichen, Trends identifizierten und fortgeschrittene Techniken wie multidimensionale Skalierung einsetzten.",
 	"characterization_description_paragraph_3": "Wir fassten die Ergebnisse in einem interaktiven Notebook zusammen, welches Visualisierungen mit textuellen Erklärungen kombiniert und die Option bietet, den zugrundeliegenden Code zur vollständigen Transparenz einzusehen.",
@@ -82,5 +92,6 @@
 	"word_impressions": "Eindrücke",
 
 	"pn_ovgu": "Otto-von-Guericke-Universität Magdeburg",
-	"pn_uni_konstanz": "Universität Konstanz"
+	"pn_uni_konstanz": "Universität Konstanz",
+	"pn_university_zurich": "Universität Zürich"
 }

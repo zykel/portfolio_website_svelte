@@ -19,6 +19,42 @@ import * as m from '$lib/paraglide/messages.js';
  * @returns {ImpressionsParams}
  */
 export const getImpressionInfos = (projectId) => {
+	if (projectId === 'vehicle') {
+		return {
+			wide: [
+				{
+					src: '/projects/vehicle/all_events.jpg',
+					caption: m.caption_vehicle_all_events(),
+					videoId: null
+				}
+			],
+			small_left: [
+				{
+					src: '/projects/vehicle/bin_highlighting.mp4',
+					caption: m.caption_vehicle_bin_highlighting(),
+					videoId: 'bin_highlighting'
+				},
+				{
+					src: '/projects/vehicle/paramultiples.png',
+					caption: m.caption_vehicle_paramultiples(),
+					videoId: null
+				}
+			],
+			small_right: [
+				{
+					src: '/projects/vehicle/drill_down.mp4',
+					caption: m.caption_vehicle_drill_down(),
+					videoId: 'drill_down'
+				},
+				{
+					src: '/projects/vehicle/node_highlight.jpg',
+					caption: m.caption_vehicle_node_highlight(),
+					videoId: null
+				}
+			]
+		};
+	}
+
 	if (projectId === 'characterization') {
 		return {
 			wide: [
@@ -53,7 +89,9 @@ export const getImpressionInfos = (projectId) => {
 				}
 			]
 		};
-	} else if (projectId === 'endovis') {
+	}
+
+	if (projectId === 'endovis') {
 		return {
 			wide: [
 				{
@@ -77,7 +115,9 @@ export const getImpressionInfos = (projectId) => {
 				}
 			]
 		};
-	} else if (projectId === 'exex') {
+	}
+
+	if (projectId === 'exex') {
 		return {
 			wide: [
 				{
@@ -101,11 +141,11 @@ export const getImpressionInfos = (projectId) => {
 				}
 			]
 		};
-	} else {
-		return {
-			wide: [],
-			small_left: [],
-			small_right: []
-		};
 	}
+
+	return {
+		wide: [],
+		small_left: [],
+		small_right: []
+	};
 };

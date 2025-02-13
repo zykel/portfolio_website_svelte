@@ -1,5 +1,12 @@
 /** @type {{ [key: string]: { projectURL: string; tech: string; year: string; publication: string; } }} */
 export const infosUnilingual = {
+	vehicle: {
+		projectURL: 'https://www.meltt.net/',
+		tech: 'JavaScript, D3.js, R',
+		year: '2021',
+		publication:
+			'B. Mayer, K. Lawonn, K. Donnay, B. Preim, and M. Meuschke. “VEHICLE: Validation and Exploration of the Hierarchical Integration of Conflict Event Data.” In: <span class="italics">Computer Graphics Forum</span> 40.3 (2021), pp. 1–12. <a class="publication-doi" href="https://doi.org/10.1111/cgf.14284" target="_blank">doi: 10.1111/cgf.14284</a>.'
+	},
 	characterization: {
 		projectURL: 'https://observablehq.com/@zykel/characterization',
 		tech: 'JavaScript, D3.js, Observable notebooks',
@@ -19,6 +26,6 @@ export const infosUnilingual = {
 		tech: 'JavaScript, React.js, D3.js, R',
 		year: '2024',
 		publication:
-			'Publication: B. Mayer, K. Donnay, K. Lawonn, B. Preim, and M. Meuschke. “Expert exploranation for communicating scientific methods - A case study in conflict research.” In: <span class="italics">Computers & Graphics</span> (2024). <a class="publication-doi" href="https://doi.org/10.1016/j.cag.2024.103937" target="_blank">doi: 10.1016/j.cag.2024.103937</a>'
+			'B. Mayer, K. Donnay, K. Lawonn, B. Preim, and M. Meuschke. “Expert exploranation for communicating scientific methods - A case study in conflict research.” In: <span class="italics">Computers & Graphics</span> (2024). <a class="publication-doi" href="https://doi.org/10.1016/j.cag.2024.103937" target="_blank">doi: 10.1016/j.cag.2024.103937</a>'
 	}
 };

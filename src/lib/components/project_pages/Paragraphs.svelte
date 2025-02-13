@@ -10,6 +10,13 @@
 	</p>
 {/snippet}
 
+{#if projectId === 'vehicle'}
+	{@render p(m.vehicle_description_paragraph_1())}
+	{@render p(m.vehicle_description_paragraph_2())}
+	{@render p(m.vehicle_description_paragraph_3())}
+	{@render p(m.vehicle_description_paragraph_4())}
+{/if}
+
 {#if projectId === 'characterization'}
 	{@render p(m.characterization_description_paragraph_1())}
 	{@render p(m.characterization_description_paragraph_2())}

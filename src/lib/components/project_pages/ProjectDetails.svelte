@@ -40,6 +40,14 @@
 	</div>
 {/snippet}
 
+{#if projectId === 'vehicle'}
+	{@render details({
+		type: `${m.tag_visualization_system()}, Dashboard`,
+		roles: `${m.word_conceptualization()}, ${m.word_design()}, ${m.word_implementation()}`,
+		partners: `${m.pn_ovgu()}, ${m.pn_university_zurich()}`
+	})}
+{/if}
+
 {#if projectId === 'characterization'}
 	{@render details({
 		type: m.tag_interactive_notebook(),
