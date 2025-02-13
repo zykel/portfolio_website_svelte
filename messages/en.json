@@ -63,6 +63,9 @@
 	"exex_description_paragraph_2": "In the story, we introduce the different mechanics of the method step-by-step. Each view transitions directly into the next to facilitate consistency and comprehension. At the end of each section corresponding to one mechanic, the user has the option to interact with a visualization to deepen their understanding of the conveyed information.",
 	"exex_description_paragraph_3": "For creating the story, I had to dig deep into the related research papers to understand the method to a degree that I can explain it to other conflict researchers. I also collaborated closely with one of the developers of the method.",
 	"exex_description_paragraph_4": "We tested the story with several conflict researchers who found it to be an engaging and effective way of explaining such information.",
+	"caption_exex_s1": "Each view is accompanied by a textual description to its right. At the end of each scene, the user can interact with the view",
+	"caption_exex_s4": "The transitions between the views are animated smoothly",
+	"caption_exex_s3": "An interaction that allows users to better understand what happens when the size of a selected temporal window changes",
 
 	"word_since": "since",
 	"word_project": "Project",

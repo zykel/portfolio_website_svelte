@@ -60,8 +60,13 @@
 	"caption_endovis_align": "Ein zeitlicher Ausrichtungspunkt kann über mehrere Ansichten hinweg parallel geändert werden",
 	"caption_endovis_expand": "Einzelne Diagramme, die Gerätemessungen über die Zeit anzeigen, können zur genaueren Betrachtung vergrößert werden",
 
-	"exex_description_paragraph_1": "DE EXEX better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
-	"exex_description_paragraph_2": "DE EXEX focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
+	"exex_description_paragraph_1": "Um Konfliktforscher:innen die Funktionsweise einer wissenschaftlichen Methode zu erklären, entwickelten wir eine interaktive visuellen Datengeschichte.",
+	"exex_description_paragraph_2": "In der Geschichte führen wir schrittweise in die verschiedenen Mechaniken der Methode ein. Jede Ansicht geht fließend in die nächste über, um Konsistenz und Verständlichkeit zu fördern. Am Ende jedes Abschnitts, der eine Mechanik erklärt, hat der:die Nutzer:in die Möglichkeit, mit einer Visualisierung zu interagieren, um das vermittelte Wissen zu vertiefen.",
+	"exex_description_paragraph_3": "Für die Erstellung der Geschichte habe ich mich intensiv mit den zugehörigen Forschungsarbeiten auseinandergesetzt, um die Methode so gut zu verstehen, dass ich sie anderen Konfliktforscher:innen erklären kann. Zudem arbeitete ich eng mit einem der Entwickler der Methode zusammen.",
+	"exex_description_paragraph_4": "Wir testeten die Geschichte mit mehreren Konfliktforscher:innen, die sie als eine ansprechende und effektive Lösung zur Vermittlung solcher Informationen empfanden.",
+	"caption_exex_s1": "Jede Ansicht wird von einer textuellen Beschreibung auf der rechten Seite begleitet. Am Ende jeder Szene kann mit der finalen Ansicht der Szene interagiert werden",
+	"caption_exex_s4": "Die Übergänge zwischen den Ansichten werden fließend animiert",
+	"caption_exex_s3": "Eine Interaktion, die verdeutlicht, welchen Einfluss die Veränderung eines bestimmten Parameters auf das Ergebnis der Kausalitätsprüfung haben kann",
 
 	"word_since": "seit",
 	"word_project": "Projekt",

@@ -77,6 +77,30 @@ export const getImpressionInfos = (projectId) => {
 				}
 			]
 		};
+	} else if (projectId === 'exex') {
+		return {
+			wide: [
+				{
+					src: '/projects/exex/s1.mp4',
+					caption: m.caption_exex_s1(),
+					videoId: 's1'
+				}
+			],
+			small_left: [
+				{
+					src: '/projects/exex/s4.mp4',
+					caption: m.caption_exex_s4(),
+					videoId: 's4'
+				}
+			],
+			small_right: [
+				{
+					src: '/projects/exex/s3.mp4',
+					caption: m.caption_exex_s3(),
+					videoId: 's3'
+				}
+			]
+		};
 	} else {
 		return {
 			wide: [],
