@@ -1,38 +1,10 @@
-# sv
+# Portfolio website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## How to add a new project
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Determine a unqiue `<projectId>` to refer to the project with
+- Add assets like images and videos under _static/projects/\<projectId\>/_
+  - At least a file `title_pic.png` is required
+- Add a teaser video under _static/_
+- Walk trough the components used in _src/routes/projects/[projectId]/[+page.svelte](src/routes/projects/[projectId]/+page.svelte)_ and add the necessary information
+- To add the projects to the home page, add the corresponding information in _src/lib/components/main_page_sections/[SectionProjects.svelte](src/lib/components/main_page_sections/SectionProjects.svelte)_

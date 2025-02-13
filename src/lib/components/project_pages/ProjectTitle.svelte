@@ -12,6 +12,10 @@
 	{@render title(m.vehicle_project_title())}
 {/if}
 
+{#if projectId === 'methane'}
+	{@render title(m.methane_project_title())}
+{/if}
+
 {#if projectId === 'characterization'}
 	{@render title(m.characterization_project_title())}
 {/if}

@@ -55,6 +55,31 @@ export const getImpressionInfos = (projectId) => {
 		};
 	}
 
+	if (projectId === 'methane') {
+		return {
+			wide: [],
+			small_left: [
+				{
+					src: '/projects/methane/instructions.png',
+					caption: m.caption_methane_instructions(),
+					videoId: null
+				},
+				{
+					src: '/projects/methane/zoomout.mp4',
+					caption: m.caption_methane_zoomout(),
+					videoId: 'zoomout'
+				}
+			],
+			small_right: [
+				{
+					src: '/projects/methane/interaction.mp4',
+					caption: m.caption_methane_interaction(),
+					videoId: 'interaction'
+				}
+			]
+		};
+	}
+
 	if (projectId === 'characterization') {
 		return {
 			wide: [

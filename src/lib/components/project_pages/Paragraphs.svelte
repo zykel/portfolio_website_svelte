@@ -6,7 +6,7 @@
 
 {#snippet p(/** @type {string} */ text)}
 	<p class="project-page__paragraph">
-		{text}
+		{@html text}
 	</p>
 {/snippet}
 
@@ -15,6 +15,11 @@
 	{@render p(m.vehicle_description_paragraph_2())}
 	{@render p(m.vehicle_description_paragraph_3())}
 	{@render p(m.vehicle_description_paragraph_4())}
+{/if}
+
+{#if projectId === 'methane'}
+	{@render p(m.methane_description_paragraph_1())}
+	{@render p(m.methane_description_paragraph_2())}
 {/if}
 
 {#if projectId === 'characterization'}

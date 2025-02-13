@@ -48,6 +48,14 @@
 	})}
 {/if}
 
+{#if projectId === 'methane'}
+	{@render details({
+		type: `${m.tag_visual_data_story()}`,
+		roles: `${m.word_conceptualization()}, ${m.word_design()}, ${m.word_implementation()}`,
+		partners: `Data&Design`
+	})}
+{/if}
+
 {#if projectId === 'characterization'}
 	{@render details({
 		type: m.tag_interactive_notebook(),

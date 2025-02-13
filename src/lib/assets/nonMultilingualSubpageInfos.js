@@ -7,6 +7,12 @@ export const infosUnilingual = {
 		publication:
 			'B. Mayer, K. Lawonn, K. Donnay, B. Preim, and M. Meuschke. “VEHICLE: Validation and Exploration of the Hierarchical Integration of Conflict Event Data.” In: <span class="italics">Computer Graphics Forum</span> 40.3 (2021), pp. 1–12. <a class="publication-doi" href="https://doi.org/10.1111/cgf.14284" target="_blank">doi: 10.1111/cgf.14284</a>.'
 	},
+	methane: {
+		projectURL: 'https://experiment-methane-story.vercel.app/',
+		tech: 'Svelte, GSAP, D3.js',
+		year: '2024',
+		publication: ''
+	},
 	characterization: {
 		projectURL: 'https://observablehq.com/@zykel/characterization',
 		tech: 'JavaScript, D3.js, Observable notebooks',
