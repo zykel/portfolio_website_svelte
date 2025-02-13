@@ -9,8 +9,8 @@
 	"title_imprint": "imprint",
 	"title_privacy": "privacy",
 
-	"methane_project_title": "Overview of a methane data set",
 	"vehicle_project_title": "Exploration of a conflict research method",
+	"methane_project_title": "Overview of a methane data set",
 	"tutorials_project_title": "D3.js tutorials for students",
 	"teaching_tasks_project_title": "Programming tasks for students",
 	"characterization_project_title": "Analysis of spatio-temporal data stories",
@@ -19,6 +19,7 @@
 
 	"vehicle_project_description_short": "A visualization system to analyze the results of a statistical method for merging conflict event data sets.",
 	"tutorials_project_description_short": "Playful explanations for learning the basics of creating interactive data visualizations.",
+	"methane_project_description_short": "A short story introducing a data set about methane emissions providing exploration at the end.",
 	"teaching_tasks_project_description_short": "Exercise tasks for learning D3.js based on socially relevant data sets and questions.",
 	"characterization_project_description_short": "An interactive notebook to explain the results of an analysis of the storytelling techniques used across 130 data stories.",
 	"endovis_project_description_short": "An interactive web application to allow surgical experts to explore heterogeneous time-dependent surgical data.",

@@ -10,6 +10,7 @@
 	"title_privacy": "Datenschutz",
 
 	"vehicle_project_title": "Analyse einer Methode der Konfliktforschung",
+	"methane_project_title": "Übersicht über einen Methan-Datensatz",
 	"tutorials_project_title": "Interaktive Tutorials für Studierende",
 	"teaching_tasks_project_title": "Programmieraufgaben für Studierende",
 	"characterization_project_title": "Analyse von Datengeschichten",
@@ -53,6 +54,12 @@
 	"caption_vehicle_paramultiples": "Verschiedene Histogramme können verglichen werden, einschließlich Hinweisen darauf, wie ähnlich sie einander sind",
 	"caption_vehicle_drill_down": "Gestapelte Balkendiagramme können auf mehreren Ebenen erforscht werden",
 	"caption_vehicle_node_highlight": "Beim Hovern über einem Knoten in einer hierarchischen Graphansicht werden die Knoten hervorgehoben, die weiter unten in der Hierarchie liegen. Außerdem wird die Hierarchieebene des gewählten Knotens durch eine gestrichelte Linie angedeutet",
+
+	"methane_description_paragraph_1": "Während meiner freiberuflichen Arbeit für Data&Design habe ich gemeinsam mit Rudi O'Reilly Meehan eine visuelle Datengeschichte entwickelt, die einen Datensatz über Methanemissionen des International Methane Emissions Observatory vorstellt. Die Geschichte kann wie videobasierte Social-Media-Stories navigiert werden: Durch Tippen auf die linke oder rechte Seite des Bildschirms kann vor- oder zurückgesprungen werden, und durch Gedrückthalten wird die Wiedergabe pausiert.",
+	"methane_description_paragraph_2": "Die Geschichte selbst ist allerdings kein Video, sondern basiert auf animierten HTML-Elementen. Dies erlaubt die Interaktion mit den zugrundeliegenden Daten, um sie am Ende der Geschichte zu erforschen.",
+	"caption_methane_instructions": "Erklärungen zur Navigation zu Beginn der Geschichte",
+	"caption_methane_zoomout": "Datenpunkte werden durch Animation eingeführt, begeitet durch textuelle Erklärungen. Am oberen Ende der Ansicht wird der Fortschritt in der Geschichte dargestellt",
+	"caption_methane_interaction": "Durch Interaktion mit der Legende können die Daten basierend auf Sektor, Emissionsrate und Datum gefiltert werden",
 
 	"characterization_description_paragraph_1": "Um besser zu verstehen, wie visuelle Datenstories üblicherweise aufgebaut sind, haben wir 130 Online-Stories gesammelt und analysiert, welche Storytelling-Techniken sie verwenden.",
 	"characterization_description_paragraph_2": "Wir konzentierten uns auf Geschichten, deren Daten einen räumlichen und einen zeitlichen Bezug besitzen, da es bisher wenig systematische Analysen in diesem Bereich gab. Um die Geschichten anhand der verwendeten Storytelling-Techniken zu klassifizieren, führten wir drei bestehende Design-Spaces zusammen und passten sie an. Die Ergebnisse der Klassifikation analysierten wir, indem wir die insgesamte Verteilung untersuchten, Teilmengen verglichen, Trends identifizierten und fortgeschrittene Techniken wie multidimensionale Skalierung einsetzten.",

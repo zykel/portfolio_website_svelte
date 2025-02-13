@@ -24,13 +24,13 @@
 			videoSrc: '/teaser_d3_tutorial.mp4'
 		},
 		{
-			id: 'teaching_tasks',
-			title: m['teaching_tasks_project_title'](),
-			description: m['teaching_tasks_project_description_short'](),
-			type: m['tag_interactive_notebook'](),
-			video: 'tasks-teaser',
-			url: 'projects/teaching_tasks',
-			videoSrc: '/teaser_teaching_task.mp4'
+			id: 'methane',
+			title: m.methane_project_title(),
+			description: m['methane_project_description_short'](),
+			type: m.tag_visual_data_story(),
+			video: 'methane-teaser',
+			url: 'projects/methane',
+			videoSrc: '/teaser_methane.mp4'
 		},
 		{
 			id: 'characterization',
