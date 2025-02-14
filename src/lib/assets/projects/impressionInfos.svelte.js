@@ -75,6 +75,11 @@ export const getImpressionInfos = (projectId) => {
 					src: '/projects/methane/interaction.mp4',
 					caption: m.caption_methane_interaction(),
 					videoId: 'interaction'
+				},
+				{
+					src: '/projects/methane/zoom_pan.mp4',
+					caption: m.caption_methane_zoom_pan(),
+					videoId: 'zoom_pan'
 				}
 			]
 		};

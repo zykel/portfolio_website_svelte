@@ -19,6 +19,7 @@
 
 	"vehicle_project_description_short": "Ein Visualisierungssystem zur Analyse der Ergebnisse einer Integration von Konflikt-Ereignisdaten.",
 	"tutorials_project_description_short": "Spielerische Erklärungen zum Erlernen der Grundlagen der Erstellung interaktiver Datenvisualisierungen.",
+	"methane_project_description_short": "Eine kurze Datengeschichte, die einen Methan-Datensatz einführt und am Ende dessen Erforschung ermöglicht.",
 	"teaching_tasks_project_description_short": "Übungsaufgaben zum Erlernen von D3.js anhand gesellschaftlich relevanter Datensätze.",
 	"characterization_project_description_short": "Ein Notebook zur Erklärung, welche Storytelling-Techniken in einer Sammlung von Datengeschichten verwendet wurden.",
 	"endovis_project_description_short": "Eine interaktive Webanwendung zur Erforschung heterogener, zeitabhängiger chirurgischer Daten.",
@@ -30,7 +31,7 @@
 
 	"sec_about_greeting": "Hi, ich bin<br />Benedikt!",
 	"sec_about_work_history_title": "MEINE ARBEIT",
-	"sec_about_work_paragraphs": "<p class='paragraph'>Ich arbeite freiberuflich und liebe es, interaktive Datenvisualisierungen zu erschaffen.</p><p class='paragraph'>Während meiner Promotion habe ich mit Expert:innen aus der Konfliktforschung und Medizin zusammengearbeit. Dabei habe ich mich intensiv mit ihren fachlichen Herausforderungen auseinandergesetzt, um durch maßgeschneiderte Visualisierungslösungen echte Mehrwerte zu schaffen. Mein mathematischer Hintergrund hilft mir dabei, komplexe Probleme analytisch und strukturiert anzugehen.</p><p class='paragraph'>Meine individuell entwickelten Lösungen reichen von</p>",
+	"sec_about_work_paragraphs": "<p class='paragraph'>Ich arbeite freiberuflich und liebe es, interaktive Datenvisualisierungen wie Diagramme und Kartendarstellungen zu erschaffen.</p><p class='paragraph'>Während meiner Promotion habe ich mit Expert:innen aus der Konfliktforschung und Medizin zusammengearbeit. Dabei habe ich mich intensiv mit ihren fachlichen Herausforderungen auseinandergesetzt, um durch maßgeschneiderte Visualisierungslösungen echte Mehrwerte zu schaffen. Mein mathematischer Hintergrund hilft mir dabei, komplexe Probleme analytisch und strukturiert anzugehen.</p><p class='paragraph'>Meine individuell entwickelten Lösungen reichen von</p>",
 	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>Visualisierungssystemen</span> zur Datenanalyse und Entscheidungsfindung bis zu</li><li class='solutions-li'><span class='highlight'>Visuellen Datengeschichten</span> und <span class='highlight'>interaktiven Notebooks</span> um Erkenntnisse auf anschauliche und fesselnde Weise zu vermitteln.</li></ul>",
 
 	"sec_contact_question": "Möchten Sie erfahren, wie Datenvisualisierung Ihnen helfen kann, Ihre fachlichen Herausforderungen zu lösen?",
@@ -60,6 +61,7 @@
 	"caption_methane_instructions": "Erklärungen zur Navigation zu Beginn der Geschichte",
 	"caption_methane_zoomout": "Datenpunkte werden durch Animation eingeführt, begeitet durch textuelle Erklärungen. Am oberen Ende der Ansicht wird der Fortschritt in der Geschichte dargestellt",
 	"caption_methane_interaction": "Durch Interaktion mit der Legende können die Daten basierend auf Sektor, Emissionsrate und Datum gefiltert werden",
+	"caption_methane_zoom_pan": "Die Karte kann verschoben und herangezoomt werden",
 
 	"characterization_description_paragraph_1": "Um besser zu verstehen, wie visuelle Datenstories üblicherweise aufgebaut sind, haben wir 130 Online-Stories gesammelt und analysiert, welche Storytelling-Techniken sie verwenden.",
 	"characterization_description_paragraph_2": "Wir konzentierten uns auf Geschichten, deren Daten einen räumlichen und einen zeitlichen Bezug besitzen, da es bisher wenig systematische Analysen in diesem Bereich gab. Um die Geschichten anhand der verwendeten Storytelling-Techniken zu klassifizieren, führten wir drei bestehende Design-Spaces zusammen und passten sie an. Die Ergebnisse der Klassifikation analysierten wir, indem wir die insgesamte Verteilung untersuchten, Teilmengen verglichen, Trends identifizierten und fortgeschrittene Techniken wie multidimensionale Skalierung einsetzten.",

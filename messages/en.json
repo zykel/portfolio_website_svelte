@@ -31,7 +31,7 @@
 
 	"sec_about_greeting": "Hi, I'm<br />Benedikt!",
 	"sec_about_work_history_title": "MY WORK",
-	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating interactive data visualizations.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include anything from</p>",
+	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating interactive data visualizations such as charts and maps.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include anything from</p>",
 	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>visualization systems</span> for data analysis and decision-making to</li><li class='solutions-li'><span class='highlight'>visual data stories</span> and <span class='highlight'>notebooks</span> for communicating insights in an engaging way.</li></ul>",
 
 	"sec_contact_question": "Would you like to know how data visualization can help you solve your problems?",
@@ -58,8 +58,9 @@
 	"methane_description_paragraph_1": "During my freelance work for Data&Design, Rudi O'Reilly Meehan and I developed a visual data story to introduce a data set reporting on methane emissions by the International Methane Emissions Observatory. The story adapts the navigation popularized by video-based social media stories. Tapping the left or right side of the screen allows to navigate forwards or backwards, and pressing and holding the screen pauses the playback.",
 	"methane_description_paragraph_2": "The story itself, however, is not a video, but consists of animated HTML elements. This allows the viewer to interact directly with the underlying data to explore it at the end of the story.",
 	"caption_methane_instructions": "Navigation instructions at the beginning of the story",
-	"caption_methane_zoomout": "Data points are introduced via animation, accompanied by a textual narrative. At the top of the view, the story progress is visualized",
+	"caption_methane_zoomout": "During the story, data points are introduced via animation, accompanied by a textual narrative. At the top of the view, the story progress is visualized",
 	"caption_methane_interaction": "The data can be filtered based on sector, emission rate, or date by interacting with the legend",
+	"caption_methane_zoom_pan": "The map can be panned and zoomed into",
 
 	"characterization_description_paragraph_1": "To better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
 	"characterization_description_paragraph_2": "We focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",

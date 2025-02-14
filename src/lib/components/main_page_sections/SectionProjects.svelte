@@ -26,7 +26,7 @@
 		{
 			id: 'methane',
 			title: m.methane_project_title(),
-			description: m['methane_project_description_short'](),
+			description: m.methane_project_description_short(),
 			type: m.tag_visual_data_story(),
 			video: 'methane-teaser',
 			url: 'projects/methane',
