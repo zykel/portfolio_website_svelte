@@ -29,7 +29,7 @@
 	});
 	$inspect(heightsTitle.data);
 
-	const arrowWidth = 12;
+	const arrowWidth = 15;
 </script>
 
 {#snippet processEntry(
@@ -42,7 +42,7 @@
 		<ProcessArrowSvg
 			height={heightsTitle[id] + 20 + (expanded[id] ? heightsDescription[id] : 0)}
 			width={arrowWidth}
-			fill={expanded[id] ? '#5f5b83' : 'lightgray'}
+			fill={expanded[id] ? '#5f5b83' : 'hsl(0, 0%, 70%)'}
 		/>
 	</div>
 	<div class="process-grid-item process-text">
@@ -65,6 +65,7 @@
 {/snippet}
 
 <h2>MY PROCESS</h2>
+<!-- <hr style:margin-bottom="1rem" style:border-top="1px solid #ccc" /> -->
 
 <div class="process-grid" style:grid-template-columns="{arrowWidth}px auto">
 	<div class="process-grid-item process-arrow">
@@ -110,42 +111,54 @@
 		display: grid;
 		grid-template-rows: repeat(6, auto);
 		gap: 0px; /* Adjust the gap between grid items as needed */
+		padding: 0 0rem;
 	}
 
 	.process-arrow {
-		background-color: #f2f2f2; /* Adjust the background color as needed */
 		/* padding: 10px; */
 		/* border: 1px solid #ccc; */
 		text-align: end; /* Center the text */
+		z-index: 1;
 	}
 
 	.process-text {
-		background-color: #f2f2f2; /* Adjust the background color as needed */
-		padding: 10px; /* Adjust the padding as needed */
+		padding: 10px 0px; /* Adjust the padding as needed */
 		/* border: 1px solid #ccc */
 		text-align: start; /* Center the text */
 	}
 
 	.process-title {
 		font-size: 1rem;
-		background-color: none;
+		background-color: hsla(0, 0%, 92%, 0.8);
 		border: none;
-		padding: 8px 0;
+		/* border-top: lightgray 1px solid; */
+		/* border-radius: 5px; */
+		padding: 8px 10px;
 		cursor: pointer;
 		text-align: start;
 		margin: none;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		/* background: rgba(235, 235, 235, 0.8); */
+		/* backdrop-filter: blur(5px); */
+		/* box-shadow: 0px 0px 4px 4px rgba(235, 235, 235, 0.8); */
+		z-index: 0;
 	}
 
 	.process-description {
 		max-height: 0;
 		overflow: hidden;
+		padding-top: 0;
 		padding-bottom: 0;
-		/* transition: max-height 0.3s ease-out; */ /* Not animating with fit-content */
+		padding: 0 10px;
+		/* transition: max-height 0.3s ease-out; */
+		transition: padding 0.3s ease-out;
 	}
 
 	.process-description.expanded {
+		padding-top: 8px;
 		padding-bottom: 8px;
 		max-height: fit-content; /* Adjust the max-height as needed */
 	}

@@ -27,15 +27,12 @@
 			<p id="hi-text">{@html m['sec_about_greeting']()}</p>
 		</div>
 		<div id="work-and-background-container">
-			<div class="self-description">
+			<div class="self-description-and-background">
 				<h2>{m['sec_about_work_history_title']()}</h2>
 				{@html m['sec_about_work_paragraphs']()}
 				{@html m['sec_about_work_bulletlist']()}
-			</div>
 
-			<div id="background-container">
-				<MyProcess />
-				<h2>{m['sec_about_background_history_title']()}</h2>
+				<h2 style:margin-top="3rem">{m['sec_about_background_history_title']()}</h2>
 				<div class="cv-row">
 					<div class="cv-time">{m.word_since()} 2024</div>
 					<div class="cv-occupation">
@@ -64,6 +61,10 @@
 						<span class="cv-location">{m.pn_uni_konstanz()}</span>
 					</div>
 				</div>
+			</div>
+
+			<div id="background-container">
+				<MyProcess />
 			</div>
 		</div>
 	</div>
