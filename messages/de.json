@@ -30,19 +30,29 @@
 	"tag_visual_data_story": "Visuelle Datengeschichte",
 
 	"sec_about_greeting": "Hi, ich bin<br />Benedikt!",
-	"sec_about_work_history_title": "MEINE ARBEIT",
+	"sec_about_work_title": "MEINE ARBEIT",
 	"sec_about_work_paragraphs": "<p class='paragraph'>Ich arbeite freiberuflich und liebe es, interaktive Datenvisualisierungen wie Diagramme und Kartendarstellungen zu erschaffen.</p><p class='paragraph'>Während meiner Promotion habe ich mit Expert:innen aus der Konfliktforschung und Medizin zusammengearbeit. Dabei habe ich mich intensiv mit ihren fachlichen Herausforderungen auseinandergesetzt, um durch maßgeschneiderte Visualisierungslösungen echte Mehrwerte zu schaffen. Mein mathematischer Hintergrund hilft mir dabei, komplexe Probleme analytisch und strukturiert anzugehen.</p><p class='paragraph'>Meine individuell entwickelten Lösungen reichen von</p>",
 	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>Visualisierungssystemen</span> zur Datenanalyse und Entscheidungsfindung bis zu</li><li class='solutions-li'><span class='highlight'>Visuellen Datengeschichten</span> und <span class='highlight'>interaktiven Notebooks</span> um Erkenntnisse auf anschauliche und fesselnde Weise zu vermitteln.</li></ul>",
 
-	"sec_contact_question": "Möchten Sie erfahren, wie Datenvisualisierung Ihnen helfen kann, Ihre fachlichen Herausforderungen zu lösen?",
-	"sec_contact_invite": "Kontaktieren Sie mich gerne!",
-	"comment_sec_contact_invite": "Ich freue mich auf Ihre Nachricht!",
-
-	"sec_about_background_history_title": "MEIN HINTERGRUND",
+	"sec_about_background_title": "MEIN HINTERGRUND",
 	"jobname_freelance": "Freiberuflich",
 	"jobname_phd": "Dr.-Ing. Informatik",
 	"jobname_master": "M.Sc. Computervisualistik",
 	"jobname_bachelor": "B.Sc. Mathematik",
+
+	"sec_about_process_title": "MEIN VORGEHEN",
+	"process_goals_title": "<span style='font-weight: bold'>ZIELE</span> DEFINIEREN",
+	"process_data_title": "<span style='font-weight: bold'>DATEN</span> ERFASSEN",
+	"process_design_title": "<span style='font-weight: bold'>DESIGN</span> ENTWICKELN",
+	"process_solution_title": "<span style='font-weight: bold'>LÖSUNG</span> IMPLEMENTIEREN",
+	"process_goals_description": "Ich verschaffe mir ein Verständnis für Ihre Herausforderungen und gemeinsam definieren wir die Ziele der Visualisierung, z.B. bestimmte Muster in Ihren Daten zu analysieren oder einer Zielgruppe Zusammenhänge in den Daten zu erklären.",
+	"process_data_description": "Ich erfasse, welche Daten benötigt werden, um die Ziele zu erreichen, und stelle sicher, dass sie verfügbar sind.",
+	"process_design_description": "In einem iterativen Prozess, der auf Ihrem Feedback basiert, entwerfe ich Visualisierungen, um die definierten Ziele zu erreichen.",
+	"process_solution_description": "Für die Implementierung nutze ich funktionale Prototypen, um frühzeitig Ihr Feedback einzuholen. Ich überarbeite iterativ die Implementierung und, falls nötig, das Design, bis die finale Lösung produziert ist.",
+
+	"sec_contact_question": "Möchten Sie erfahren, wie Datenvisualisierung Ihnen helfen kann, Ihre fachlichen Herausforderungen zu lösen?",
+	"sec_contact_invite": "Kontaktieren Sie mich gerne!",
+	"comment_sec_contact_invite": "Ich freue mich auf Ihre Nachricht!",
 
 	"btn_visit_project": "PROJEKT-WEBSEITE",
 

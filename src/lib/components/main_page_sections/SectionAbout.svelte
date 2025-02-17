@@ -28,11 +28,11 @@
 		</div>
 		<div id="work-and-background-container">
 			<div class="self-description-and-background">
-				<h2>{m['sec_about_work_history_title']()}</h2>
+				<h2>{m['sec_about_work_title']()}</h2>
 				{@html m['sec_about_work_paragraphs']()}
 				{@html m['sec_about_work_bulletlist']()}
 
-				<h2 style:margin-top="3rem">{m['sec_about_background_history_title']()}</h2>
+				<h2 style:margin-top="3rem">{m['sec_about_background_title']()}</h2>
 				<div class="cv-row">
 					<div class="cv-time">{m.word_since()} 2024</div>
 					<div class="cv-occupation">

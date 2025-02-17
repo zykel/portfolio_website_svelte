@@ -30,18 +30,28 @@
 	"tag_visual_data_story": "Visual data story",
 
 	"sec_about_greeting": "Hi, I'm<br />Benedikt!",
-	"sec_about_work_history_title": "MY WORK",
+	"sec_about_work_title": "MY WORK",
 	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating interactive data visualizations such as charts and maps.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include anything from</p>",
 	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>visualization systems</span> for data analysis and decision-making to</li><li class='solutions-li'><span class='highlight'>visual data stories</span> and <span class='highlight'>notebooks</span> for communicating insights in an engaging way.</li></ul>",
 
-	"sec_contact_question": "Would you like to know how data visualization can help you solve your problems?",
-	"sec_contact_invite": "let's get in contact",
-
-	"sec_about_background_history_title": "MY BACKGROUND",
+	"sec_about_background_title": "MY BACKGROUND",
 	"jobname_freelance": "Freelancer",
 	"jobname_phd": "PhD Computer Science",
 	"jobname_master": "M.Sc. Computational Visualistics",
 	"jobname_bachelor": "B.Sc. Mathematics",
+
+	"sec_about_process_title": "MY PROCESS",
+	"process_goals_title": "DETERMINE <span style='font-weight: bold'>GOALS</span>",
+	"process_data_title": "ASSESS <span style='font-weight: bold'>DATA</span>",
+	"process_design_title": "DEVELOP <span style='font-weight: bold'>DESIGN</span>",
+	"process_solution_title": "IMPLEMENT <span style='font-weight: bold'>SOLUTION</span>",
+	"process_goals_description": "I create an understanding of your challenges and we determine the goals for the visualization, like searching for specific patterns in your data or exlpaining key findings to a target audience.",
+	"process_data_description": "I assess what data is needed to fulfill the goals and ensure its availability.",
+	"process_design_description": "In an iterative process that based on your feedback, I design visualizations to fulfill the determined goals.",
+	"process_solution_description": "To implement the solution, I use functional prototypes to gather your feedback early. I iterate on the implementation and, if necessary, on the design until the final solution is produced.",
+
+	"sec_contact_question": "Would you like to know how data visualization can help you solve your problems?",
+	"sec_contact_invite": "let's get in contact",
 
 	"btn_visit_project": "VISIT PROJECT WEBSITE",
 

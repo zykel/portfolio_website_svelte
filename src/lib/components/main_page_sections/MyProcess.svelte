@@ -1,4 +1,5 @@
 <script>
+	import * as m from '$lib/paraglide/messages.js';
 	import ProcessArrowSvg from './ProcessArrowSvg.svelte';
 	import ProcessExpandIcon from './ProcessExpandIcon.svelte';
 
@@ -63,7 +64,7 @@
 	</div>
 {/snippet}
 
-<h2>MY PROCESS</h2>
+<h2>{m.sec_about_process_title()}</h2>
 <!-- <hr style:margin-bottom="1rem" style:border-top="1px solid #ccc" /> -->
 
 <div class="process-grid" style:grid-template-columns="{arrowWidth}px auto">
@@ -75,25 +76,14 @@
 	<div class="process-grid-item process-text">
 		<div class="process-title">DETERMINE <span class="bold">GOALS</span></div>
 	</div> -->
-	{@render processEntry(
-		'goals',
-		'IDENTIFY <span style="font-weight: bold">GOALS</span>',
-		'I create an understanding of your challenges and we determine the goals for the visualization, like searching for specific patterns in your data or exlpaining key findings to a target audience.'
-	)}
-	{@render processEntry(
-		'data',
-		'ASSESS <span style="font-weight: bold">DATA</span>',
-		'I assess what data is needed to fulfill the goals and ensure its availability.'
-	)}
-	{@render processEntry(
-		'design',
-		'DEVELOP <span style="font-weight: bold">DESIGN</span>',
-		'In an iterative process that based on your feedback, I design the visualizations to fulfill the identified goals.'
-	)}
+	{@render processEntry('goals', m.process_goals_title(), m.process_goals_description())}
+	{@render processEntry('data', m.process_data_title(), m.process_data_description())}
+	{@render processEntry('design', m.process_design_title(), m.process_design_description())}
 	{@render processEntry(
 		'solution',
-		'IMPLEMENT <span style="font-weight: bold">SOLUTION</span>',
-		'To implement the solution, I use functioning prototypes to gather your feedback early. I iterate on the implementation and, if necessary, on the design until the final solution is produced to fulfill the identified goals.'
+		m.process_solution_title(),
+		m.process_solution_description()
+
 		// If we deem it necessary, this can also lead to refining the design. I iterate on design and implementation until the solution fulfills the goals
 	)}
 	<div class="process-grid-item process-arrow">
