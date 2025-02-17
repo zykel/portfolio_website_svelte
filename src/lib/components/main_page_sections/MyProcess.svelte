@@ -140,6 +140,7 @@
 		/* backdrop-filter: blur(5px); */
 		/* box-shadow: 0px 0px 4px 4px rgba(235, 235, 235, 0.8); */
 		z-index: 0;
+		color: black;
 	}
 
 	.process-description {
