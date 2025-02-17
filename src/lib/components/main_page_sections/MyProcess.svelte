@@ -8,6 +8,7 @@
 		description.classList.toggle('expanded');
 	};
 
+	/** @type {Record<string, boolean>} */
 	const expanded = $state({
 		goals: false,
 		data: false,
@@ -48,7 +49,15 @@
 	<div class="process-grid-item process-text">
 		<button
 			class="process-title"
-			onclick={() => (expanded[id] = !expanded[id])}
+			onclick={() => {
+				/** @type {keyof typeof expanded} */
+				// Object.keys(expanded).forEach((key) => {
+				// 	if (key !== id) {
+				// 		expanded[key] = false;
+				// 	}
+				// });
+				expanded[id] = !expanded[id];
+			}}
 			bind:clientHeight={heightsTitle[id]}
 		>
 			<span>{@html title}</span>
