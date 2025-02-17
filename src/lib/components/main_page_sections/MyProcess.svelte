@@ -34,8 +34,7 @@
 
 {#snippet processEntry(
 	/** @type {"goals" | "data" | "design" | "solution"} */ id,
-	/** @type {String} */ title1,
-	/** @type {String} */ title2,
+	/** @type {String} */ title,
 	/** @type {String} */ description
 )}
 	<div class="process-grid-item process-arrow">
@@ -51,7 +50,7 @@
 			onclick={() => (expanded[id] = !expanded[id])}
 			bind:clientHeight={heightsTitle[id]}
 		>
-			<span>{title1} <span class="bold">{title2}</span> </span>
+			<span>{@html title}</span>
 			<ProcessExpandIcon expanded={expanded[id]} />
 		</button>
 		<div
@@ -78,27 +77,24 @@
 	</div> -->
 	{@render processEntry(
 		'goals',
-		'DETERMINE',
-		'GOALS',
-		'I determine the goals of the project to ensure that the solution is aligned with the objectives.'
+		'IDENTIFY <span style="font-weight: bold">GOALS</span>',
+		'I create an understanding of your challenges and we determine the goals for the visualization, like searching for specific patterns in your data or exlpaining key findings to a target audience.'
 	)}
 	{@render processEntry(
 		'data',
-		'ASSESS',
-		'DATA',
-		'Data is the foundation of any project. I assess the data to understand the context and the possibilities.'
+		'ASSESS <span style="font-weight: bold">DATA</span>',
+		'I assess what data is needed to fulfill the goals and ensure its availability.'
 	)}
 	{@render processEntry(
 		'design',
-		'DEVELOP',
-		'DESIGN',
-		'I develop the design of the solution to ensure that it is user-friendly and visually appealing.'
+		'DEVELOP <span style="font-weight: bold">DESIGN</span>',
+		'In an iterative process that based on your feedback, I design the visualizations to fulfill the identified goals.'
 	)}
 	{@render processEntry(
 		'solution',
-		'IMPLEMENT',
-		'SOLUTION',
-		'I implement the solution to bring the project to life and achieve the desired outcomes.'
+		'IMPLEMENT <span style="font-weight: bold">SOLUTION</span>',
+		'To implement the solution, I use functioning prototypes to gather your feedback early. I iterate on the implementation and, if necessary, on the design until the final solution is produced to fulfill the identified goals.'
+		// If we deem it necessary, this can also lead to refining the design. I iterate on design and implementation until the solution fulfills the goals
 	)}
 	<div class="process-grid-item process-arrow">
 		<ProcessArrowSvg height={20} width={arrowWidth} fill="#ffd8af" type="last" />
@@ -161,9 +157,5 @@
 		padding-top: 8px;
 		padding-bottom: 8px;
 		max-height: fit-content; /* Adjust the max-height as needed */
-	}
-
-	.bold {
-		font-weight: bold;
 	}
 </style>
