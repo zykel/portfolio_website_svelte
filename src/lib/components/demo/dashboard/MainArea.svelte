@@ -49,7 +49,6 @@
 		grid-gap: 20px; /* Gap between columns */
 		padding: 20px; /* Padding around the main area */
 		background-color: #ecf0f1; /* Main area background color */
-		height: 100%; /* Full height of the container */
 		box-sizing: border-box; /* Include padding in the element's total width and height */
 		min-height: 0;
 		height: 100vh;
@@ -59,24 +58,25 @@
 	.left-part {
 		display: grid;
 		grid-template-rows: 1fr 3fr; /* Two equal rows */
-		grid-gap: 20px; /* Gap between rows */
+		grid-gap: 20px;
 		min-height: 0;
 	}
 
 	.section {
 		background-color: white; /* Section background color */
-		padding: 20px; /* Padding inside the sections */
+		padding: 20px;
 		border-radius: 10px; /* Rounded corners */
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
 		display: grid;
 		grid-template-rows: auto 1fr;
 		height: 100%;
 		min-height: 0;
+		box-sizing: border-box;
 	}
 
 	.right-part {
 		background-color: white; /* Section background color */
-		padding: 20px; /* Padding inside the section */
+		padding: 20px;
 		border-radius: 10px; /* Rounded corners */
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
 		min-height: 0;
@@ -93,5 +93,10 @@
 	.svg-container {
 		min-height: 0;
 		position: relative;
+		height: 100%;
+	}
+
+	h2 {
+		margin: 0;
 	}
 </style>
