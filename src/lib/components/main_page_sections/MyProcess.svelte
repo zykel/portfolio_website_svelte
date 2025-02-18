@@ -1,7 +1,7 @@
 <script>
 	import * as m from '$lib/paraglide/messages.js';
-	import ProcessArrowSvg from './ProcessArrowSvg.svelte';
-	import ProcessExpandIcon from './ProcessExpandIcon.svelte';
+	import ProcessArrowSvg from '$lib/components/main_page_sections/ProcessArrowSvg.svelte';
+	import ProcessExpandIcon from '$lib/components/main_page_sections/ProcessExpandIcon.svelte';
 
 	const toggleDescription = (/** @type {{ target: { nextElementSibling: any; }; }} */ event) => {
 		const description = event.target.nextElementSibling;
@@ -29,7 +29,6 @@
 		design: 0,
 		solution: 0
 	});
-	$inspect(heightsTitle.data);
 
 	const arrowWidth = 15;
 </script>
