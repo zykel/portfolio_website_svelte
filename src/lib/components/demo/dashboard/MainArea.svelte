@@ -49,7 +49,7 @@
 		grid-gap: 20px; /* Gap between columns */
 		padding: 20px; /* Padding around the main area */
 		background-color: #ecf0f1; /* Main area background color */
-		box-sizing: border-box; /* Include padding in the element's total width and height */
+		box-sizing: border-box;
 		min-height: 0;
 		height: 100vh;
 		height: 100svh;
@@ -83,20 +83,13 @@
 	}
 
 	.dashboard__section-title-container {
-		min-height: 0;
+		/* min-height: 0; */
 	}
 	.dashboard__section-content {
-		min-height: 0;
-		position: relative;
+		/* min-height: 0; */
 	}
 
 	.svg-container {
 		min-height: 0;
-		position: relative;
-		height: 100%;
-	}
-
-	h2 {
-		margin: 0;
 	}
 </style>
