@@ -1,7 +1,8 @@
 <script>
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import { max, rollups, sum } from 'd3-array';
 	import { scaleLinear, scaleBand } from 'd3-scale';
+	import LoadingCircle from './LoadingCircle.svelte';
 
 	/**
 	 * @typedef {Object.<string, string> & { date?: Date } & { month?: number }} DataEntry
@@ -41,7 +42,6 @@
 					return { name, records: recordsNamed };
 				}
 			);
-			console.log(binnedDataNamed);
 		} else if (timeUnit === 'hour of day') {
 			// Do something else
 		} else if (timeUnit === 'month of year') {
@@ -73,16 +73,16 @@
 			.range([height, 0])
 	);
 
-	$inspect({
-		domx: xScale.domain(),
-		ranx: xScale.range(),
-		domy: yScale.domain(),
-		rany: yScale.range()
-	});
-
 	$inspect(timeVizData);
+
+	let loaded = $state(false);
+
+	onMount(() => {
+		loaded = true;
+	});
 </script>
 
+<LoadingCircle {loaded} />
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
 	{#each timeVizData as datum}
 		<g>
