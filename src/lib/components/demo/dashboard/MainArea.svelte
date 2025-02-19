@@ -1,6 +1,7 @@
 <script>
 	import TimeViz from '$lib/components/demo/dashboard/TimeViz.svelte';
-	import { setContext } from 'svelte';
+	import { getContext, setContext } from 'svelte';
+	import { get } from 'svelte/store';
 
 	// You can add any necessary script here
 
@@ -16,14 +17,25 @@
 		left: 20
 	};
 	setContext('margin', margin);
+
+	let showIndividualSales = $state(false);
+	let selected = getContext('selected');
 </script>
 
 <div class="main-area">
 	<div class="left-part">
 		<div class="section">
-			<div class="dashboard__section-title-container">
+			<div class="dashboard__section-title-container flex-row-spread">
 				<h3>Sales over time</h3>
-				<!-- Toggle to "Show invidual sales" -->
+				<select id="timeUnitSelector" bind:value={selected.timeUnit}>
+					{#each getContext('timeUnits') as unit}
+						<option value={unit}>{unit}</option>
+					{/each}
+				</select>
+				<label>
+					<input type="checkbox" bind:checked={showIndividualSales} />
+					Show individual sales
+				</label>
 			</div>
 			<div
 				class="svg-container"
@@ -105,5 +117,11 @@
 
 	.svg-container {
 		min-height: 0;
+	}
+
+	.flex-row-spread {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 </style>

@@ -25,6 +25,21 @@ export const hoursOfDay = [
 	'24:00'
 ];
 
+export const monthsOfYear = [
+	'Jan',
+	'Feb',
+	'Mar',
+	'Apr',
+	'May',
+	'Jun',
+	'Jul',
+	'Aug',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dec'
+];
+
 /**
  * @param {DataEntry[]} data
  * @param {string} timeUnit
@@ -58,7 +73,7 @@ export const getTimeVizData = (data, timeUnit, type) => {
 			}
 		);
 	} else if (timeUnit === 'hour of day') {
-		// Group data by type, then by minute of day
+		// Group data by type, then by hour of day
 		const binnedData = rollups(
 			data,
 			(/** @type {DataEntry[]}*/ v) =>
@@ -88,7 +103,28 @@ export const getTimeVizData = (data, timeUnit, type) => {
 			}
 		);
 	} else if (timeUnit === 'month of year') {
-		// Do something else
+		// Group data by type, then by months of year
+		const binnedData = rollups(
+			data,
+			(/** @type {DataEntry[]}*/ v) =>
+				sum(v, (/** @type {{ quantity: string | number; }} */ d) => +d.quantity),
+			(/** @type {DataEntry}*/ d) => d[type],
+			(/** @type {DataEntry}*/ d) =>
+				monthsOfYear[typeof d.date !== 'undefined' ? d.date.getMonth() : 0]
+		);
+
+		binnedDataNamed = binnedData.map(
+			(/** @type {[string, Array<[string, number]>]} */ itemInfo) => {
+				const [name, records] = itemInfo;
+				const recordsNamed = records
+					.map((/** @type {[string, number]} */ recordInfo) => {
+						const [unit, count] = recordInfo;
+						return { unit, count };
+					})
+					.sort((a, b) => monthsOfYear.indexOf(a.unit) - monthsOfYear.indexOf(b.unit));
+				return { name, records: recordsNamed };
+			}
+		);
 	}
 	return binnedDataNamed;
 };
