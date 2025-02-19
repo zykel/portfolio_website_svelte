@@ -1,5 +1,6 @@
 <script>
 	import TimeViz from '$lib/components/demo/dashboard/TimeViz.svelte';
+	import { setContext } from 'svelte';
 
 	// You can add any necessary script here
 
@@ -7,13 +8,22 @@
 		timeVizHeight: 0,
 		timeVizWidth: 0
 	});
+
+	const margin = {
+		top: 20,
+		right: 20,
+		bottom: 20,
+		left: 20
+	};
+	setContext('margin', margin);
 </script>
 
 <div class="main-area">
 	<div class="left-part">
 		<div class="section">
 			<div class="dashboard__section-title-container">
-				<h2>Sales over time</h2>
+				<h3>Sales over time</h3>
+				<!-- Toggle to "Show invidual sales" -->
 			</div>
 			<div
 				class="svg-container"
@@ -25,7 +35,7 @@
 		</div>
 		<div class="section">
 			<div class="dashboard__section-title-container">
-				<h2>Bottom Left</h2>
+				<h3>Bottom Left</h3>
 			</div>
 			<div class="dashboard__section-content">
 				<p>Content for the bottom left part...</p>
@@ -34,7 +44,11 @@
 	</div>
 	<div class="right-part section">
 		<div class="dashboard__section-title-container">
-			<h2>Right Part</h2>
+			<h3>Ingredients</h3>
+			<p>
+				The chart shows how many times each ingredient has been used for the selected pizzas during
+				the selected time period.
+			</p>
 		</div>
 		<div class="dashboard__section-content">
 			<p>Content for the bottom left part...</p>
@@ -57,7 +71,7 @@
 
 	.left-part {
 		display: grid;
-		grid-template-rows: 1fr 3fr; /* Two equal rows */
+		grid-template-rows: 1fr 2fr; /* Two equal rows */
 		grid-gap: 20px;
 		min-height: 0;
 	}

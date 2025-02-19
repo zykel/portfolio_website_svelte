@@ -24,7 +24,7 @@
 	const pizzaNames = [...new Set(csvData.map((d) => d.pizza_name))];
 	const pizzaCategories = ['Classic', 'Veggie', 'Supreme', 'Chicken'];
 	const selected = $state({
-		timeUnit: timeUnits[0],
+		timeUnit: timeUnits[1],
 		type: types[0],
 		pizzaNames: [...pizzaNames],
 		pizzaCategories: [...pizzaCategories]

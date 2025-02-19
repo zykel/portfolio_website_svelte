@@ -1,14 +1,14 @@
 <script>
-	import { getContext, onMount } from 'svelte';
+	import { getContext, onMount, setContext } from 'svelte';
 	import { max, rollups, sum } from 'd3-array';
 	import { scaleLinear, scaleBand } from 'd3-scale';
-	import LoadingCircle from './LoadingCircle.svelte';
-
-	/**
-	 * @typedef {Object.<string, string> & { date?: Date } & { month?: number }} DataEntry
-	 */
+	import LoadingCircle from '$lib/components/demo/dashboard/LoadingCircle.svelte';
+	import { daysOfWeek, hoursOfDay, getTimeVizData } from '$lib/scripts/utilityDashboard.svelte';
+	import Line from '$lib/components/demo/dashboard/Line.svelte';
+	import AxisX from '$lib/components/demo/dashboard/AxisX.svelte';
 
 	let { width, height } = $props();
+	const margin = getContext('margin');
 
 	// $inspect({ width, height });
 
@@ -16,51 +16,16 @@
 	const timeUnit = $derived(getContext('selected').timeUnit);
 	const selected = getContext('selected');
 
-	/**
-	 * @param {Record<string, string>[]} data
-	 * @param {string} timeUnit
-	 */
-	const getTimeVizData = (data, timeUnit) => {
-		let binnedDataNamed = [];
-
-		if (timeUnit === 'day of week') {
-			// Bin data, first by selected.type, then by day of week
-			const binnedData = rollups(
-				data,
-				(/** @type {DataEntry}*/ v) =>
-					sum(v, (/** @type {{ quantity: string | number; }} */ d) => +d.quantity),
-				(/** @type {DataEntry}*/ d) => d[selected.type],
-				(/** @type {DataEntry}*/ d) => d.day
-			);
-			binnedDataNamed = binnedData.map(
-				(/** @type {[string, Array<[string, number]>]} */ itemInfo) => {
-					const [name, records] = itemInfo;
-					const recordsNamed = records.map((/** @type {[string, number]} */ recordInfo) => {
-						const [unit, count] = recordInfo;
-						return { unit, count };
-					});
-					return { name, records: recordsNamed };
-				}
-			);
-		} else if (timeUnit === 'hour of day') {
-			// Do something else
-		} else if (timeUnit === 'month of year') {
-			// Do something else
-		}
-
-		return binnedDataNamed;
-	};
-
-	const timeVizData = $derived(getTimeVizData(data, timeUnit));
+	const timeVizData = $derived(getTimeVizData(data, timeUnit, selected.type));
 
 	const xScale = $derived(
 		scaleBand()
-			.domain(timeUnit === 'day of week' ? ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'] : [])
-			.range([0, width])
+			.domain(
+				timeUnit === 'day of week' ? daysOfWeek : timeUnit === 'hour of day' ? hoursOfDay : []
+			)
+			.range([margin.left, width - margin.right])
+		// .paddingOuter(0.25)
 	);
-	// $effect(() => {
-	// 	xScale
-	// });
 
 	const yScale = $derived(
 		scaleLinear()
@@ -70,10 +35,10 @@
 					max(d.records, (/** @type {{ count: any; }} */ e) => e.count)
 				)
 			])
-			.range([height, 0])
+			.range([height - margin.bottom, margin.top])
 	);
 
-	$inspect(timeVizData);
+	$inspect({ range: yScale.range(), width, height });
 
 	let loaded = $state(false);
 
@@ -84,22 +49,12 @@
 
 <LoadingCircle {loaded} />
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-	{#each timeVizData as datum}
-		<g>
-			{#each datum.records as { unit, count }}
-				<rect
-					x={xScale(unit)}
-					y={yScale(count)}
-					width={xScale.bandwidth()}
-					height={height - yScale(count)}
-					fill="steelblue"
-					opacity={1 / 32}
-				/>
-			{/each}
-		</g>
-	{/each}
-	<circle cx="0" cy="0" r="20" stroke="black" stroke-width="3" fill="red" />
-	<circle cx={width} cy={height} r="20" stroke="black" stroke-width="3" fill="red" />
+	<g class="lines">
+		{#each timeVizData as item}
+			<Line {item} {xScale} {yScale} />
+		{/each}
+	</g>
+	<AxisX {xScale} {yScale} tickLabelsAll={xScale.domain()} />
 </svg>
 
 <style>
