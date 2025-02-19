@@ -2,6 +2,10 @@
  * In this file, the data is loaded from the server.
  */
 
+/**
+ * @typedef {Object.<string, string> & { date?: Date } & { month?: number }} DataEntry
+ */
+
 export const load = async ({ fetch }) => {
 	// Create responses
 	const responseCsvData = await fetch('../../pizza_sales.csv');
@@ -27,18 +31,18 @@ function toArrayOfObjects(text) {
 
 	const lines = text.split(/\r?\n/);
 	const headers = [
-		'order_date',
 		'order_details_id',
 		'order_id',
-		'order_time',
-		'pizza_category',
 		'pizza_id',
-		'pizza_ingredients',
-		'pizza_name',
-		'pizza_size',
 		'quantity',
+		'order_date',
+		'order_time',
+		'unit_price',
 		'total_price',
-		'unit_price'
+		'pizza_size',
+		'pizza_category',
+		'pizza_ingredients',
+		'pizza_name'
 	];
 	const rows = lines
 		.slice(1)
@@ -46,11 +50,11 @@ function toArrayOfObjects(text) {
 		.filter((row) => row.length === headers.length);
 
 	/**
-	 * @type {Record<string, string>[]}
+	 * @type {Array<DataEntry>}
 	 */
 	const outArr = [];
 	rows.forEach((row) => {
-		/** @type {Record<string, string>} */
+		/** @type {DataEntry} */
 		const rowObj = {
 			order_date: '',
 			order_details_id: '',
@@ -66,9 +70,7 @@ function toArrayOfObjects(text) {
 			unit_price: ''
 		};
 		headers.forEach((header, i) => {
-			if (header in Object.keys(rowObj)) {
-				rowObj[header] = row[i];
-			}
+			rowObj[header] = row[i];
 		});
 		outArr.push(rowObj);
 	});

@@ -6,19 +6,34 @@
 
 	let { data } = $props();
 
-	// Define the type of data.csvData
-	let csvData = data.csvData;
+	let csvData = data.csvData.map((d) => {
+		// Parse order_date and order_time into javascript date, with order_date being formated as e.g. 24.08.2015 and order_time as e.g. 20:58:08
+		const date = d.order_date.split('.');
+		const time = d.order_time.split(':');
+		d.date = new Date(+date[2], +date[1] - 1, +date[0], +time[0], +time[1], +time[2]);
+		// Add day of week
+		d.day = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][d.date.getDay()];
+		// Add month of year
+		d.month = d.date.getMonth();
 
+		return d;
+	});
+
+	const timeUnits = ['day of week', 'hour of day', 'month of year'];
+	const types = ['pizza_name', 'pizza_category'];
 	const pizzaNames = [...new Set(csvData.map((d) => d.pizza_name))];
 	const pizzaCategories = ['Classic', 'Veggie', 'Supreme', 'Chicken'];
 	const selected = $state({
-		type: 'pizzaNames',
+		timeUnit: timeUnits[0],
+		type: types[0],
 		pizzaNames: [...pizzaNames],
 		pizzaCategories: [...pizzaCategories]
 	});
 
 	setContext('data', data.csvData);
 	setContext('dataFiltered', data.csvData);
+	setContext('timeUnits', timeUnits);
+	setContext('types', types);
 	setContext('pizzaNames', pizzaNames);
 	setContext('pizzaCategories', pizzaCategories);
 	setContext('selected', selected);
