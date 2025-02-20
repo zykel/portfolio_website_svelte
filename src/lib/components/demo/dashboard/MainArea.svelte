@@ -1,5 +1,6 @@
 <script>
 	import TimeViz from '$lib/components/demo/dashboard/TimeViz.svelte';
+	import PizzaCharts from '$lib/components/demo/dashboard/PizzaCharts.svelte';
 	import { getContext, setContext } from 'svelte';
 	import { get } from 'svelte/store';
 
@@ -7,16 +8,23 @@
 
 	const extents = $state({
 		timeVizHeight: 0,
-		timeVizWidth: 0
+		timeVizWidth: 0,
+		pizzaChartsHeight: 0,
+		pizzaChartsWidth: 0
 	});
 
 	const margin = {
 		top: 20,
-		right: 20,
+		right: 5,
 		bottom: 20,
-		left: 20
+		left: 5
 	};
+	const fontsize = {
+		axis: 12
+	};
+
 	setContext('margin', margin);
+	setContext('fontsize', fontsize);
 
 	let showIndividualSales = $state(false);
 	let selected = getContext('selected');
@@ -47,10 +55,14 @@
 		</div>
 		<div class="section">
 			<div class="dashboard__section-title-container">
-				<h3>Bottom Left</h3>
+				<h3>Total Price and Sales</h3>
 			</div>
-			<div class="dashboard__section-content">
-				<p>Content for the bottom left part...</p>
+			<div
+				class="svg-container"
+				bind:clientHeight={extents.pizzaChartsHeight}
+				bind:clientWidth={extents.pizzaChartsWidth}
+			>
+				<PizzaCharts width={extents.pizzaChartsWidth} height={extents.pizzaChartsHeight} />
 			</div>
 		</div>
 	</div>

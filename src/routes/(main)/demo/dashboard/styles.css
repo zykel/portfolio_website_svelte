@@ -34,3 +34,18 @@ h3 {
 	font-weight: 600;
 	margin: 0 0 0.25rem 0;
 }
+
+.axis-label {
+	font-size: 0.75rem;
+	fill: gray;
+}
+
+.axis-x > .axis-label {
+	transform: translateY(1rem);
+}
+.barchart-labels > .axis-label {
+	transform: translateY(0.25rem);
+}
+.barchart-reorder-title {
+	font-weight: 600;
+}

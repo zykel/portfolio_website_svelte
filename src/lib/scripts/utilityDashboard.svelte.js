@@ -168,3 +168,29 @@ export const getTimeVizData = (data, timeUnit, type) => {
 	}
 	return binnedDataNamed;
 };
+
+/**
+ * @param {DataEntry[]} data
+ * @param {string} type
+ */
+export const getPizzaBarchartData = (data, type) => {
+	const barchartData = rollups(
+		data,
+		(/** @type {DataEntry[]}*/ v) => {
+			// debugger;
+			const countTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.quantity);
+			const priceTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.total_price);
+			return { countTotal, priceTotal };
+		},
+		(/** @type {DataEntry}*/ d) => d[type]
+	);
+
+	const barchartDataNamed = barchartData.map(
+		(/** @type {[string, Object.<string, number>]} */ itemInfo) => {
+			const [name, countAndPrice] = itemInfo;
+			return { name, countTotal: countAndPrice.countTotal, priceTotal: countAndPrice.priceTotal };
+		}
+	);
+
+	return barchartDataNamed;
+};
