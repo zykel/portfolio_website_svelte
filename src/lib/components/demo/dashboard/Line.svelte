@@ -15,3 +15,13 @@
 	stroke-width="2"
 	opacity={1 / 3}
 />
+
+{#each item.records as record}
+	<circle
+		cx={xScale(record.unit) + xScale.bandwidth() / 2}
+		cy={yScale(record.count)}
+		r="3"
+		fill="steelblue"
+		opacity={1 / 3}
+	/>
+{/each}

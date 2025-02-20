@@ -1,4 +1,4 @@
-import { max, rollups, sum } from 'd3-array';
+import { max, rollups, sum, mean, groups } from 'd3-array';
 /**
  * @typedef {Object.<string, string> & { date?: Date } & { month?: number } & { quantity: string }} DataEntry
  */
@@ -6,7 +6,6 @@ import { max, rollups, sum } from 'd3-array';
 export const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
 export const hoursOfDay = [
-	'08:00',
 	'09:00',
 	'10:00',
 	'11:00',
@@ -21,8 +20,7 @@ export const hoursOfDay = [
 	'20:00',
 	'21:00',
 	'22:00',
-	'23:00',
-	'24:00'
+	'23:00'
 ];
 
 export const monthsOfYear = [
@@ -41,6 +39,24 @@ export const monthsOfYear = [
 ];
 
 /**
+ * Gets the ISO week number of a date.
+ * @param {Date} date - The date to get the week number for.
+ * @returns {number} - The ISO week number.
+ */
+function getWeekNumber(date) {
+	const tempDate = new Date(date.getTime());
+	tempDate.setHours(0, 0, 0, 0);
+	// Set to nearest Thursday: current date + 4 - current day number
+	// Make Sunday's day number 7
+	tempDate.setDate(tempDate.getDate() + 4 - (tempDate.getDay() || 7));
+	// Get first day of year
+	const yearStart = new Date(tempDate.getFullYear(), 0, 1);
+	// Calculate full weeks to nearest Thursday
+	const weekNo = Math.ceil(((tempDate.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+	return weekNo;
+}
+
+/**
  * @param {DataEntry[]} data
  * @param {string} timeUnit
  * @param {string} type
@@ -51,12 +67,32 @@ export const getTimeVizData = (data, timeUnit, type) => {
 	 */
 	let binnedDataNamed = [];
 
+	const nrUniqueOrderDates = [...new Set(data.map((d) => d.order_date))].length;
+	const nrWeeks = 52;
+
 	if (timeUnit === 'day of week') {
+		const mue = groups(
+			data,
+			(/** @type {DataEntry}*/ d) => d[type],
+			(/** @type {DataEntry}*/ d) => d.day
+		);
+		// debugger;
 		// Bin data, first by type, then by day of week
 		const binnedData = rollups(
 			data,
-			(/** @type {DataEntry[]}*/ v) =>
-				sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity),
+			(/** @type {DataEntry[]}*/ v) => {
+				// debugger;
+				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) / nrWeeks;
+				// const uniqueEntries = [
+				// 	...new Set(
+				// 		v.map((d) => (d.date ? getWeekNumber(d.date) + '_' + d.date.getFullYear() : 0))
+				// 	)
+				// ];
+				// debugger;
+				// return (
+				// 	sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) / uniqueEntries.length
+				// );
+			},
 			(/** @type {DataEntry}*/ d) => d[type],
 			(/** @type {DataEntry}*/ d) => d.day
 		);
@@ -76,8 +112,10 @@ export const getTimeVizData = (data, timeUnit, type) => {
 		// Group data by type, then by hour of day
 		const binnedData = rollups(
 			data,
-			(/** @type {DataEntry[]}*/ v) =>
-				sum(v, (/** @type {{ quantity: string | number; }} */ d) => +d.quantity),
+			(/** @type {DataEntry[]}*/ v) => {
+				// debugger;
+				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) / nrUniqueOrderDates;
+			},
 			(/** @type {DataEntry}*/ d) => d[type],
 			(/** @type {DataEntry}*/ d) => d.date?.getHours().toString().padStart(2, '0') + ':00'
 		);
@@ -102,12 +140,14 @@ export const getTimeVizData = (data, timeUnit, type) => {
 				return { name, records: recordsNamed };
 			}
 		);
+		console.log(binnedDataNamed);
 	} else if (timeUnit === 'month of year') {
 		// Group data by type, then by months of year
 		const binnedData = rollups(
 			data,
 			(/** @type {DataEntry[]}*/ v) =>
-				sum(v, (/** @type {{ quantity: string | number; }} */ d) => +d.quantity),
+				sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) /
+				[...new Set(v.map((d) => d.date?.getFullYear))].length,
 			(/** @type {DataEntry}*/ d) => d[type],
 			(/** @type {DataEntry}*/ d) =>
 				monthsOfYear[typeof d.date !== 'undefined' ? d.date.getMonth() : 0]

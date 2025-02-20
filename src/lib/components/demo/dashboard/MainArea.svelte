@@ -26,7 +26,7 @@
 	<div class="left-part">
 		<div class="section">
 			<div class="dashboard__section-title-container flex-row-spread">
-				<h3>Sales over time</h3>
+				<h3>Sales [?per X (?on average)]</h3>
 				<select id="timeUnitSelector" bind:value={selected.timeUnit}>
 					{#each getContext('timeUnits') as unit}
 						<option value={unit}>{unit}</option>

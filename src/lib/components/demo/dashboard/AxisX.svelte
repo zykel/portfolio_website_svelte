@@ -5,13 +5,11 @@
 	const xTicks = $derived(
 		tickLabelsAll.filter((/** @type {any} */ d, /** @type {number} */ i) => i % 2 === 0)
 	);
-	$inspect(tickLabelsAll);
-	// .filter((/** @type {any} */ d, /** @type {number} */ i) => i % 2 === 0);
 </script>
 
 <line
-	x1={xScale(tickLabelsAll[0]) + xScale.bandwidth() / 2}
-	x2={xScale(tickLabelsAll[tickLabelsAll.length - 1]) + xScale.bandwidth() / 2}
+	x1={xScale.range()[0]}
+	x2={xScale.range()[1]}
 	y1={yScale(0)}
 	y2={yScale(0)}
 	stroke="black"
