@@ -183,7 +183,7 @@
 						onclick={() => {
 							sortingOrder.value = { key: 'priceTotal', order: 'asc' };
 							sortBarcharts();
-						}}>&uarr;</button
+						}}>↑</button
 					>
 					<button
 						onclick={() => {

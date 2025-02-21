@@ -177,7 +177,6 @@ export const getPizzaBarchartData = (data, type) => {
 	const barchartData = rollups(
 		data,
 		(/** @type {DataEntry[]}*/ v) => {
-			// debugger;
 			const countTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.quantity);
 			const priceTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.total_price);
 			return { countTotal, priceTotal };
@@ -196,8 +195,83 @@ export const getPizzaBarchartData = (data, type) => {
 };
 
 /**
- * @param {DataEntry[]} data
+ * Counts the occurrences of each unique string in an array.
+ * @param {any[]} array - The array of strings.
+ * @returns {Object.<string, number>} - An object with the unique strings as keys and their counts as values.
  */
-export const getIngredientsChartData = (data) => {
-	return data;
+function countOccurrences(array) {
+	return array.reduce((acc, value) => {
+		acc[value] = (acc[value] || 0) + 1;
+		return acc;
+	}, {});
+}
+
+/**
+ * @param {DataEntry[]} data
+ * @param {string} type
+ */
+export const getIngredientsChartData = (data, type) => {
+	const ingredientOccurrenceObj = countOccurrences(
+		data.map((d) => d.pizza_ingredients.split('; ')).flat()
+	);
+	// Transform obj into arr
+	const ingredientOccurrenceArr = Object.entries(ingredientOccurrenceObj)
+		.map(([ingredient, count]) => ({
+			ingredient,
+			count
+		}))
+		.sort((a, b) => b.count - a.count);
+
+	return ingredientOccurrenceArr;
 };
+
+export function dodge(data, { radius = (d) => d, x = (d) => d } = {}) {
+	const radius2 = (d, i, data) => radius(d, i, data) ** 2;
+	const circles = data
+		.map((d, i, data) => ({
+			x: +x(d, i, data),
+			r: +radius(d, i, data),
+			r2: +radius2(d, i, data),
+			data: d
+		}))
+		.sort((a, b) => a.x - b.x);
+	const epsilon = 1e-3;
+	let head = null,
+		tail = null;
+
+	// Returns true if circle ⟨x,y⟩ intersects with any circle in the queue.
+	function intersects(x, y, r2) {
+		let a = head;
+		while (a) {
+			if ((Math.sqrt(r2) + Math.sqrt(a.r2)) ** 2 - epsilon > (a.x - x) ** 2 + (a.y - y) ** 2) {
+				return true;
+			}
+			a = a.next;
+		}
+		return false;
+	}
+
+	// Place each circle sequentially.
+	for (const b of circles) {
+		// Remove circles from the queue that can’t intersect the new circle b.
+		while (head && head.x < b.x - b.r2) head = head.next;
+
+		// Choose the minimum non-intersecting tangent.
+		if (intersects(b.x, (b.y = 0), b.r2)) {
+			let a = head;
+			b.y = Infinity;
+			do {
+				let y = a.y + Math.sqrt((Math.sqrt(a.r2) + Math.sqrt(b.r2)) ** 2 - (a.x - b.x) ** 2);
+				if (y < b.y && !intersects(b.x, y, b.r2)) b.y = y;
+				a = a.next;
+			} while (a);
+		}
+
+		// Add b to the queue.
+		b.next = null;
+		if (head === null) head = tail = b;
+		else tail = tail.next = b;
+	}
+
+	return circles;
+}

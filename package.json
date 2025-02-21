@@ -26,6 +26,8 @@
 	},
 	"dependencies": {
 		"@inlang/paraglide-sveltekit": "^0.15.5",
+		"@observablehq/plot": "^0.6.17",
+		"accurate-beeswarm-plot": "^1.0.12",
 		"d3": "^7.9.0"
 	}
 }
