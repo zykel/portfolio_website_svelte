@@ -77,6 +77,57 @@
 	const beeswarmChartData = $derived(getBeeswarmChartData(/**@type {DataEntry[]} data*/ chartData));
 	$inspect(beeswarmChartData);
 
+	/**
+	 * Checks if the bounding rectangle of a given element overlaps with any of the bounding rectangles from an array of elements.
+	 * @param {SVGTextElement} element - The element to check for overlaps.
+	 * @param {(SVGTextElement | null)[]} elementsArray - The array of elements to check against.
+	 * @returns {boolean} - True if there is an overlap, false otherwise.
+	 */
+	function isOverlapping(element, elementsArray) {
+		const rect1 = element.getBoundingClientRect();
+
+		return elementsArray.some((el) => {
+			if (el === null) {
+				return false;
+			}
+			const rect2 = el.getBoundingClientRect();
+
+			return !(
+				rect1.right < rect2.left ||
+				rect1.left > rect2.right ||
+				rect1.bottom < rect2.top ||
+				rect1.top > rect2.bottom
+			);
+		});
+	}
+
+	//  Entries will look like this: { ingredient: string, element: SVGTextElement, overlap: boolean }
+	/**
+	 * @type {Array<{ ingredient: string, element: SVGTextElement | null, overlap: boolean }>}
+	 */
+	const labelOverlapInfo = $state(
+		chartData
+			.map((d) => d.ingredient)
+			.map((ingredient) => ({ ingredient, element: null, overlap: false }))
+	);
+
+	// TODO: Could do this onMount instead
+	const getOverlapInfo = (/** @type {string} */ ingredient) => {
+		const index = chartData.findIndex((d) => d.ingredient === ingredient);
+		const element = labelOverlapInfo[index].element;
+		if (element === null) {
+			return 0;
+		}
+		const elementsArray = labelOverlapInfo
+			.filter((d) => d.ingredient !== ingredient)
+			.map((d) => d.element);
+		const overlap = isOverlapping(element, elementsArray);
+		labelOverlapInfo[index].overlap = overlap;
+		return overlap ? 0 : 1;
+	};
+
+	$inspect({ labelOverlapInfo });
+
 	// const dotPlot = $derived(
 	// 	height > 0 && height > 0
 	// 		? plot({
@@ -153,6 +204,8 @@
 						y={yScale(item.ingredient) + 5}
 						fill={'gray'}
 						font-size="0.7em"
+						bind:this={labelOverlapInfo[i].element}
+						opacity={getOverlapInfo(item.ingredient)}
 					>
 						{item.ingredient}
 					</text>
