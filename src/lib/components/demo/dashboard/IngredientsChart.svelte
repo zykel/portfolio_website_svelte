@@ -28,7 +28,10 @@
 			.interpolate(interpolate)
 	);
 
+	const minRadius = 4;
 	const maxRadius = 10;
+
+	const lolliMinLineHeight = 12;
 
 	const xScale = $derived(
 		scaleLinear()
@@ -38,7 +41,7 @@
 	const yScale = $derived(
 		scaleBand()
 			.domain(chartData.map((d) => d.ingredient))
-			.range([margin.top, height - margin.bottom])
+			.range([margin.top, Math.max(height, chartData.length * lolliMinLineHeight) - margin.bottom])
 			.padding(0.1)
 	);
 
@@ -50,7 +53,7 @@
 	const rScaleBeeswarm = $derived(
 		scaleLinear()
 			.domain([0, Math.max(...chartData.map((d) => d.count))])
-			.range([2, maxRadius])
+			.range([minRadius, maxRadius])
 	);
 
 	const getBeeswarmChartData = (/** @type {{ ingredient: string; count: number; }[]} */ data) => {
@@ -114,42 +117,50 @@
 		loaded = true;
 	});
 
-	const showLolli = true;
+	const showLolli = false;
 </script>
 
 <LoadingCircle {loaded} />
 {#if width > 0}
 	{#if showLolli}
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-			{#each chartData as item, i}
-				<line
-					class="ingredients-lollipop-line"
-					x1={xScale(0)}
-					y1={yScale(item.ingredient)}
-					x2={xScale(item.count)}
-					y2={yScale(item.ingredient)}
-					stroke={colorScale(item.count)}
-				/>
-				<circle
-					class="ingredients-lollipop-dot"
-					cx={xScale(item.count)}
-					cy={yScale(item.ingredient)}
-					r="4"
-					fill={colorScale(item.count)}
-				/>
-				<text
-					class="ingredients-lollipop-label"
-					x={xScale(item.count) + 5}
-					y={yScale(item.ingredient) + 5}
-					fill={'lightgray'}
-					font-size="0.7em"
-				>
-					{item.ingredient}
-				</text>
-			{/each}
-		</svg>
+		<div
+			class="lolli-svg-container"
+			style="overflow: {height < chartData.length * lolliMinLineHeight ? 'auto' : 'hidden'};"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 {width} {Math.max(height, chartData.length * lolliMinLineHeight)}"
+			>
+				{#each chartData as item, i}
+					<line
+						class="ingredients-lollipop-line"
+						x1={xScale(0)}
+						y1={yScale(item.ingredient)}
+						x2={xScale(item.count)}
+						y2={yScale(item.ingredient)}
+						stroke={colorScale(item.count)}
+					/>
+					<circle
+						class="ingredients-lollipop-dot"
+						cx={xScale(item.count)}
+						cy={yScale(item.ingredient)}
+						r="4"
+						fill={colorScale(item.count)}
+					/>
+					<text
+						class="ingredients-lollipop-label"
+						x={xScale(item.count) + 5}
+						y={yScale(item.ingredient) + 5}
+						fill={'gray'}
+						font-size="0.7em"
+					>
+						{item.ingredient}
+					</text>
+				{/each}
+			</svg>
+		</div>
 	{:else}
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
+		<svg class="beeswarm-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
 			{#each beeswarmChartData as item, i}
 				<text
 					class="ingredients-lollipop-label"
@@ -178,10 +189,38 @@
 {/if}
 
 <style>
-	svg {
+	.beeswarm-svg {
 		width: 100%;
 		height: 100%;
 		/* background-color: rgb(213, 213, 213); */
+	}
+
+	/* Style the scrollbar for WebKit browsers (Chrome, Safari) */
+	.lolli-svg-container::-webkit-scrollbar {
+		width: 12px; /* Width of the vertical scrollbar */
+		height: 12px; /* Height of the horizontal scrollbar */
+	}
+
+	.lolli-svg-container::-webkit-scrollbar-track {
+		background: transparent; /* Transparent background for the track */
+		border-radius: 10px; /* Rounded edges for the track */
+	}
+
+	.lolli-svg-container::-webkit-scrollbar-track:hover {
+		background: rgba(100, 100, 100, 0.1); /* Transparent background for the track */
+		border-radius: 10px; /* Rounded edges for the track */
+	}
+
+	.lolli-svg-container::-webkit-scrollbar-thumb {
+		background-color: rgba(100, 100, 100, 0.4); /* Semi-transparent thumb color */
+		border-radius: 10px; /* Rounded edges for the thumb */
+		border: 3px solid transparent; /* Add some space around the thumb */
+		background-clip: content-box; /* Clip the background to the content box */
+	}
+
+	.lolli-svg-container {
+		width: 100%;
+		height: 100%;
 	}
 
 	.plot-container {

@@ -71,10 +71,7 @@
 	<div class="right-part section">
 		<div class="dashboard__section-title-container">
 			<h3>Ingredients</h3>
-			<!-- <p>
-				The chart shows how many times each ingredient has been used for the selected pizzas during
-				the selected time period.
-			</p> -->
+			<p>[] Sort alphabetically.</p>
 		</div>
 		<div
 			class="svg-container"
