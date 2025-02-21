@@ -1,8 +1,8 @@
 <script>
+	import { getContext, setContext } from 'svelte';
 	import TimeViz from '$lib/components/demo/dashboard/TimeViz.svelte';
 	import PizzaCharts from '$lib/components/demo/dashboard/PizzaCharts.svelte';
-	import { getContext, setContext } from 'svelte';
-	import { get } from 'svelte/store';
+	import IngredientsChart from '$lib/components/demo/dashboard/IngredientsChart.svelte';
 
 	// You can add any necessary script here
 
@@ -10,7 +10,9 @@
 		timeVizHeight: 0,
 		timeVizWidth: 0,
 		pizzaChartsHeight: 0,
-		pizzaChartsWidth: 0
+		pizzaChartsWidth: 0,
+		ingredientsChartHeight: 0,
+		ingredientsChartWidth: 0
 	});
 
 	const margin = {
@@ -74,8 +76,15 @@
 				the selected time period.
 			</p>
 		</div>
-		<div class="dashboard__section-content">
-			<p>Content for the bottom left part...</p>
+		<div
+			class="svg-container"
+			bind:clientHeight={extents.ingredientsChartHeight}
+			bind:clientWidth={extents.ingredientsChartWidth}
+		>
+			<IngredientsChart
+				width={extents.ingredientsChartWidth}
+				height={extents.ingredientsChartHeight}
+			/>
 		</div>
 	</div>
 </div>

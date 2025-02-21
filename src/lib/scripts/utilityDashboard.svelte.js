@@ -194,3 +194,10 @@ export const getPizzaBarchartData = (data, type) => {
 
 	return barchartDataNamed;
 };
+
+/**
+ * @param {DataEntry[]} data
+ */
+export const getIngredientsChartData = (data) => {
+	return data;
+};
