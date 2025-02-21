@@ -103,15 +103,12 @@
 
 	//  Entries will look like this: { ingredient: string, element: SVGTextElement, overlap: boolean }
 	/**
-	 * @type {Array<{ ingredient: string, element: SVGTextElement | null, overlap: boolean }>}
+	 * @type {Array<{ ingredient: string, element: SVGTextElement | null }>}
 	 */
-	const labelOverlapInfo = $state(
-		chartData
-			.map((d) => d.ingredient)
-			.map((ingredient) => ({ ingredient, element: null, overlap: false }))
+	const labelOverlapInfo = $derived(
+		chartData.map((d) => d.ingredient).map((ingredient) => ({ ingredient, element: null }))
 	);
 
-	// TODO: Could do this onMount instead
 	const getOverlapInfo = (/** @type {string} */ ingredient) => {
 		const index = chartData.findIndex((d) => d.ingredient === ingredient);
 		const element = labelOverlapInfo[index].element;
@@ -122,9 +119,9 @@
 			.filter((d) => d.ingredient !== ingredient)
 			.map((d) => d.element);
 		const overlap = isOverlapping(element, elementsArray);
-		labelOverlapInfo[index].overlap = overlap;
 		return overlap ? 0 : 1;
 	};
+	// TODO: Müsste glaube oben nur ein array an label references erstellen und dann hier erst die overlap infos deriven indem ich eine zusaätzliche methode schreibe, die für alle ingredients die overlap info berechnet - könnte das dann als ein obj returnen, auf das ich im markup zugreife
 
 	$inspect({ labelOverlapInfo });
 
@@ -204,8 +201,6 @@
 						y={yScale(item.ingredient) + 5}
 						fill={'gray'}
 						font-size="0.7em"
-						bind:this={labelOverlapInfo[i].element}
-						opacity={getOverlapInfo(item.ingredient)}
 					>
 						{item.ingredient}
 					</text>
@@ -222,7 +217,8 @@
 					fill={'gray'}
 					text-anchor="end"
 					font-size="0.7em"
-					opacity={(item.r - 2) / 8}
+					bind:this={labelOverlapInfo[i].element}
+					opacity={getOverlapInfo(item.datum.ingredient)}
 				>
 					{item.datum.ingredient}
 				</text>
