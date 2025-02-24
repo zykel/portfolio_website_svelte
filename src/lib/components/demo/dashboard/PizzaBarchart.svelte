@@ -8,6 +8,8 @@
 
 	const margin = getContext('margin');
 	const hoveredPizzaName = getContext('hoveredPizzaName');
+	const focusedItems = getContext('focusedItems');
+	const areItemsFocused = $derived(focusedItems.value.length > 0);
 
 	const valueMax = $derived(Math.max(...data.map((/** @type {any} */ d) => d[valueAccessor])));
 
@@ -29,6 +31,7 @@
 
 <defs>
 	{#each data as item, i}
+		{@const desaturate = areItemsFocused && !focusedItems.value.includes(item.name)}
 		<linearGradient
 			id="gradient-{i}"
 			x1="0%"
@@ -36,8 +39,11 @@
 			x2="{(100 * valueMax) / item[valueAccessor]}%"
 			y2="0%"
 		>
-			<stop offset="0%" stop-color="#bcd1e8" />
-			<stop offset="{(100 * valueMax) / item[valueAccessor]}%" stop-color="#bf9bc7" />
+			<stop offset="0%" stop-color="hsl(211, {desaturate ? '0%' : '49%'}, 82%)" />
+			<stop
+				offset="{(100 * valueMax) / item[valueAccessor]}%"
+				stop-color="hsl(289, {desaturate ? '0%' : '28%'}, 69%)"
+			/>
 		</linearGradient>
 	{/each}
 </defs>

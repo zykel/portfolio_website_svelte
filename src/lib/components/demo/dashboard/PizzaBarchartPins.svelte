@@ -49,7 +49,7 @@
 			height={yScale.step() + pinHeadRadius * 2}
 			cursor="pointer"
 		>
-			<title>Focus this item.</title>
+			<title>Focus item</title>
 		</rect>
 	{/each}
 </g>
