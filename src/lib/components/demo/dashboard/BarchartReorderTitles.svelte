@@ -1,5 +1,10 @@
 <script>
+	import { clearFocusedItems } from '$lib/scripts/utilityDashboard.svelte';
+	import { getContext } from 'svelte';
+
 	let { x0s, widths, margin, reorderButtonAreaHeight, sortingOrder, sortBarcharts } = $props();
+
+	const focusedItems = getContext('focusedItems');
 </script>
 
 {#snippet reorderButton(/** @type string */ key, /** @type string */ order)}
@@ -16,6 +21,21 @@
 {/snippet}
 
 <g class="barchart-reorder-titles">
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<text
+		onclick={() => clearFocusedItems(focusedItems)}
+		x={x0s.pins + widths.pins * 0.3}
+		y={reorderButtonAreaHeight / 2 + margin.top - 12}
+		text-anchor="middle"
+		dominant-baseline="middle"
+		fill="gray"
+		style:display={focusedItems.value.length > 0 ? 'block' : 'none'}
+		cursor="pointer"
+	>
+		{@html 'x'}
+		<title>Clear focus selection</title>
+	</text>
 	<foreignObject
 		x={x0s.labels}
 		y={reorderButtonAreaHeight + margin.top - 30}
@@ -35,7 +55,7 @@
 		height="30"
 	>
 		<div class="barchart-reorder-title">
-			Counts
+			#Sales
 			{@render reorderButton('countTotal', 'asc')}
 			{@render reorderButton('countTotal', 'desc')}
 		</div>
@@ -47,7 +67,7 @@
 		height="30"
 	>
 		<div class="barchart-reorder-title">
-			Prices
+			Revenue
 			{@render reorderButton('priceTotal', 'asc')}
 			{@render reorderButton('priceTotal', 'desc')}
 		</div>

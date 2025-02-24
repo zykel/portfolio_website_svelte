@@ -27,6 +27,8 @@
 	);
 
 	const xTicks = $derived(xScale.ticks(3));
+
+	const yAxisLabels = yScale.range()[0] - 5;
 </script>
 
 <defs>
@@ -134,20 +136,13 @@
 		stroke-width="1"
 		stroke-opacity={1}
 	/>
-	<text class="axis-label axis-x" x={xScale(xTicks[0])} y={yScale.range()[1]} text-anchor="middle">
-		0
-	</text>
-	<text class="axis-label axis-x" x={xScale(xTicks[1])} y={yScale.range()[1]} text-anchor="middle">
+	<text class="axis-label" x={xScale(xTicks[0])} y={yAxisLabels} text-anchor="middle"> 0 </text>
+	<text class="axis-label" x={xScale(xTicks[1])} y={yAxisLabels} text-anchor="middle">
 		{formatNumber(xTicks[1])}
 	</text>
 
 	{#if xTicks.length === 3}
-		<text
-			class="axis-label axis-x"
-			x={xScale(xTicks[2])}
-			y={yScale.range()[1]}
-			text-anchor="middle"
-		>
+		<text class="axis-label" x={xScale(xTicks[2])} y={yAxisLabels} text-anchor="middle">
 			{formatNumber(xTicks[2])}
 		</text>
 	{/if}

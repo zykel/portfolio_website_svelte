@@ -22,6 +22,7 @@
 	const labelAreaWidth = 140;
 	const gapLeftToChart = 20;
 	const reorderButtonAreaHeight = 10;
+	const axisHeight = 15;
 	const tableLineHeight = 16;
 
 	const widths = $derived({
@@ -86,6 +87,7 @@
 	const fullScrollHeight = $derived(
 		margin.top +
 			reorderButtonAreaHeight +
+			axisHeight +
 			tableLineHeight * barchartDataSorted.length +
 			margin.bottom
 	);
@@ -93,7 +95,7 @@
 	const yScale = $derived(
 		scaleBand()
 			.domain(barchartDataSorted.map((/** @type {{ name: any; }} */ d) => d.name))
-			.range([margin.top + reorderButtonAreaHeight, fullScrollHeight - margin.bottom])
+			.range([margin.top + reorderButtonAreaHeight + axisHeight, fullScrollHeight - margin.bottom])
 			.padding(0.3)
 	);
 
@@ -168,7 +170,7 @@
 					/>
 				{/each}
 			</g>
-			<PizzaBarchartPins {x0s} {yScale} />
+			<PizzaBarchartPins {x0s} {widths} {yScale} />
 			<BarchartReorderTitles
 				{x0s}
 				{widths}

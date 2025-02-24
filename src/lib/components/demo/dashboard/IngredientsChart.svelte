@@ -7,6 +7,7 @@
 	import { rollups, sum } from 'd3-array';
 	import { scaleLinear, scaleBand } from 'd3-scale';
 	import { interpolate } from 'd3-interpolate';
+	import { max } from 'd3-array';
 	import { plot, dot, dodgeX, axisY, gridY } from '@observablehq/plot';
 	import LoadingCircle from '$lib/components/demo/dashboard/LoadingCircle.svelte';
 	import { getIngredientsChartData, dodge } from '$lib/scripts/utilityDashboard.svelte';
@@ -31,7 +32,7 @@
 
 	const colorScale = $derived(
 		scaleLinear()
-			.domain([0, 30000])
+			.domain([0, max(chartDataFiltered, (/** @type {{ count: any; }} */ d) => d.count)])
 			.range(['#bcd1e8', '#bf9bc7']) // Less vibrant blueish tone to more vibrant purple-ish/pink tone
 			.interpolate(interpolate)
 	);
@@ -45,7 +46,7 @@
 
 	const xScale = $derived(
 		scaleLinear()
-			.domain([0, Math.max(...chartData.map((d) => d.count))])
+			.domain([0, Math.max(...chartDataFiltered.map((d) => d.count))])
 			.range([margin.left, (width - margin.right) / 2])
 	);
 	const yScale = $derived(

@@ -58,7 +58,7 @@
 		</div>
 		<div class="section">
 			<div class="dashboard__section-title-container">
-				<h3>Total Price and Sales</h3>
+				<h3>Total Number of Sales and Revenue</h3>
 			</div>
 			<div
 				class="svg-container"

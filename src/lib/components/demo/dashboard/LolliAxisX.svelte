@@ -15,7 +15,7 @@
 	x1={xScale(0)}
 	y1={yScale.range()[0] - tickOffset}
 	x2={xScale(0)}
-	y2={yScale.range()[1]}
+	y2={yScale.range()[1] - yScale.bandwidth()}
 	stroke={'lightgray'}
 	stroke-width={1}
 />
@@ -44,7 +44,7 @@
 
 <text
 	class="lolli-axis-x-tick-label"
-	x={xScale.range()[1]}
+	x={xScale.range()[1] + 10}
 	y={yScale.range()[0] - tickOffset - tickHeight - labelOffset}
 	font-size="0.7em"
 	fill={'gray'}

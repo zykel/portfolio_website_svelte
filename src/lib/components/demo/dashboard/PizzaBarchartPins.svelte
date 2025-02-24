@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import { toggleFocusedItem } from '$lib/scripts/utilityDashboard.svelte';
 
-	let { x0s, yScale } = $props();
+	let { x0s, widths, yScale } = $props();
 
 	const hoveredPizzaName = getContext('hoveredPizzaName');
 	const updateHoveredPizzaName = getContext('updateHoveredPizzaName');
@@ -11,6 +11,7 @@
 
 	const pinHeadRadius = 3;
 	const pinLineLength = 8;
+	const x = $derived(x0s.pins + widths.pins * 0.3);
 </script>
 
 <g class="barchart-pins">
@@ -18,18 +19,12 @@
 		{@const isHoveringRow = hoveredPizzaName.value === name}
 		{@const isPinned = focusedItems.value.includes(name)}
 		{@const color = isPinned ? 'black' : isHoveringRow ? 'gray' : 'transparent'}
-		<circle
-			class="barchart-pin-head"
-			cx={x0s.pins}
-			cy={yScale(name)}
-			r={pinHeadRadius}
-			fill={color}
-		/>
+		<circle class="barchart-pin-head" cx={x} cy={yScale(name)} r={pinHeadRadius} fill={color} />
 		<line
 			class="barchart-pin-line"
-			x1={x0s.pins}
+			x1={x}
 			y1={yScale(name)}
-			x2={x0s.pins}
+			x2={x}
 			y2={yScale(name) + pinLineLength}
 			stroke={color}
 			stroke-width={1}
@@ -43,9 +38,9 @@
 			onclick={() => toggleFocusedItem(focusedItems, name)}
 			onpointerover={() => updateHoveredPizzaName(name)}
 			onpointerleave={() => updateHoveredPizzaName(null)}
-			x={x0s.pins - pinHeadRadius * 2}
+			x={x0s.pins}
 			y={yScale(name) - pinHeadRadius * 2}
-			width={x0s.labels - x0s.pins + pinHeadRadius * 2}
+			width={widths.pins}
 			height={yScale.step() + pinHeadRadius * 2}
 			cursor="pointer"
 		>
