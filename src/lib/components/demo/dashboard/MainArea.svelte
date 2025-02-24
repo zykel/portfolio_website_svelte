@@ -30,6 +30,7 @@
 
 	let showIndividualSales = $state(false);
 	let selected = getContext('selected');
+	let ingredientsFilterString = $state('');
 </script>
 
 <div class="main-area">
@@ -71,7 +72,18 @@
 	<div class="right-part section">
 		<div class="dashboard__section-title-container">
 			<h3>Ingredients</h3>
-			<p>[] Sort alphabetically.</p>
+			<div class="ingredient-filter-container">
+				<label for="#ingredient-filter">Filter:</label>
+				<input
+					id="ingredient-filter"
+					type="text"
+					placeholder="Ingredient"
+					bind:value={ingredientsFilterString}
+				/>
+				<button title="Clear Filter" onclick={() => (ingredientsFilterString = '')}
+					>{@html '&#10005;'}</button
+				>
+			</div>
 		</div>
 		<div
 			class="svg-container"
@@ -81,6 +93,7 @@
 			<IngredientsChart
 				width={extents.ingredientsChartWidth}
 				height={extents.ingredientsChartHeight}
+				{ingredientsFilterString}
 			/>
 		</div>
 	</div>
@@ -141,5 +154,42 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+	.ingredient-filter-container {
+		display: flex;
+		align-items: center;
+		padding-bottom: 0.5rem;
+	}
+
+	.ingredient-filter-container label {
+		margin-right: 10px;
+	}
+
+	.ingredient-filter-container input {
+		width: 80px;
+		margin-right: 10px;
+		font-family: inherit;
+		border-radius: 1rem;
+		border: 1px solid gray;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
+	.ingredient-filter-container button {
+		border-radius: 50%; /* Make the button round */
+		width: 20px;
+		height: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		background: none;
+		border: 1px solid gray;
+		color: gray;
+		cursor: pointer;
+	}
+	.ingredient-filter-container button:hover {
+		border: 1px solid black;
+		color: black;
 	}
 </style>

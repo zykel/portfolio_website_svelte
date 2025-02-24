@@ -2,6 +2,7 @@
 	import { scaleLinear } from 'd3-scale';
 	import { getContext } from 'svelte';
 	import { interpolate } from 'd3-interpolate';
+	import { formatNumber } from '$lib/scripts/utilityDashboard.svelte';
 
 	let { data, x0, width, yScale, valueAccessor } = $props();
 
@@ -25,22 +26,6 @@
 	);
 
 	const xTicks = $derived(xScale.ticks(3));
-
-	/**
-	 * Formats a number into a more readable string with suffixes like 'k' for thousands.
-	 * @param {number} num - The number to format.
-	 * @param {number} nrDigits - How many digits behind the comma.
-	 * @returns {string} - The formatted number.
-	 */
-	function formatNumber(num, nrDigits = 0) {
-		if (num >= 1e6) {
-			return (num / 1e6).toFixed(nrDigits) + 'M';
-		} else if (num >= 1e3) {
-			return (num / 1e3).toFixed(nrDigits) + 'k';
-		} else {
-			return num.toString();
-		}
-	}
 </script>
 
 <defs>

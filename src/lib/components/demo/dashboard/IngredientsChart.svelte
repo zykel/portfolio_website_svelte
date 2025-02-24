@@ -10,8 +10,10 @@
 	import { plot, dot, dodgeX, axisY, gridY } from '@observablehq/plot';
 	import LoadingCircle from '$lib/components/demo/dashboard/LoadingCircle.svelte';
 	import { getIngredientsChartData, dodge } from '$lib/scripts/utilityDashboard.svelte';
+	import LolliElements from '$lib/components/demo/dashboard/LolliElements.svelte';
+	import LolliAxisX from '$lib/components/demo/dashboard/LolliAxisX.svelte';
 
-	let { width, height } = $props();
+	let { width, height, ingredientsFilterString } = $props();
 	const margin = getContext('margin');
 
 	const data = getContext('data');
@@ -20,6 +22,11 @@
 	// TODO: Theoretically first apply time filter on data
 
 	const chartData = $derived(getIngredientsChartData(data, selected.type));
+	const chartDataFiltered = $derived(
+		chartData.filter((d) =>
+			d.ingredient.toLowerCase().includes(ingredientsFilterString.toLowerCase())
+		)
+	);
 
 	const colorScale = $derived(
 		scaleLinear()
@@ -31,7 +38,9 @@
 	const minRadius = 4;
 	const maxRadius = 10;
 
-	const lolliMinLineHeight = 12;
+	const axisHeight = 20;
+
+	const lolliMinLineHeight = 16;
 
 	const xScale = $derived(
 		scaleLinear()
@@ -40,10 +49,16 @@
 	);
 	const yScale = $derived(
 		scaleBand()
-			.domain(chartData.map((d) => d.ingredient))
-			.range([margin.top, Math.max(height, chartData.length * lolliMinLineHeight) - margin.bottom])
+			.domain(chartDataFiltered.map((d) => d.ingredient))
+			.range([
+				margin.top + axisHeight,
+				margin.top + axisHeight + chartDataFiltered.length * lolliMinLineHeight
+			])
 			.padding(0.1)
 	);
+
+	/** @type {string | null}*/
+	let hoveredIngredient = $state(null);
 
 	const yScaleBeeswarm = $derived(
 		scaleLinear()
@@ -165,7 +180,7 @@
 		loaded = true;
 	});
 
-	const showLolli = false;
+	const showLolli = true;
 </script>
 
 <LoadingCircle {loaded} />
@@ -177,33 +192,11 @@
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 {width} {Math.max(height, chartData.length * lolliMinLineHeight)}"
+				viewBox="0 0 {width} {axisHeight + (chartDataFiltered.length + 2) * lolliMinLineHeight}"
 			>
-				{#each chartData as item, i}
-					<line
-						class="ingredients-lollipop-line"
-						x1={xScale(0)}
-						y1={yScale(item.ingredient)}
-						x2={xScale(item.count)}
-						y2={yScale(item.ingredient)}
-						stroke={colorScale(item.count)}
-					/>
-					<circle
-						class="ingredients-lollipop-dot"
-						cx={xScale(item.count)}
-						cy={yScale(item.ingredient)}
-						r="4"
-						fill={colorScale(item.count)}
-					/>
-					<text
-						class="ingredients-lollipop-label"
-						x={xScale(item.count) + 5}
-						y={yScale(item.ingredient) + 5}
-						fill={'gray'}
-						font-size="0.7em"
-					>
-						{item.ingredient}
-					</text>
+				<LolliAxisX {xScale} {yScale} {axisHeight} />
+				{#each chartDataFiltered.slice().reverse() as item, i}
+					<LolliElements {item} {xScale} {yScale} {colorScale} {width} bind:hoveredIngredient />
 				{/each}
 			</svg>
 		</div>

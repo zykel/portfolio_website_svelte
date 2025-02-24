@@ -275,3 +275,19 @@ export function dodge(data, { radius = (d) => d, x = (d) => d } = {}) {
 
 	return circles;
 }
+
+/**
+ * Formats a number into a more readable string with suffixes like 'k' for thousands.
+ * @param {number} num - The number to format.
+ * @param {number} nrDigits - How many digits behind the comma.
+ * @returns {string} - The formatted number.
+ */
+export function formatNumber(num, nrDigits = 0) {
+	if (num >= 1e6) {
+		return (num / 1e6).toFixed(nrDigits) + 'M';
+	} else if (num >= 1e3) {
+		return (num / 1e3).toFixed(nrDigits) + 'k';
+	} else {
+		return num.toString();
+	}
+}
