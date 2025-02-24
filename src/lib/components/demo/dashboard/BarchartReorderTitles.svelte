@@ -2,7 +2,32 @@
 	let { x0s, widths, margin, reorderButtonAreaHeight, sortingOrder, sortBarcharts } = $props();
 </script>
 
+{#snippet reorderButton(/** @type string */ key, /** @type string */ order)}
+	<button
+		class="barcharts-reorder-button{sortingOrder.value.key === key &&
+		sortingOrder.value.order === order
+			? ' order-selected'
+			: ''}"
+		onclick={(e) => {
+			sortingOrder.value = { key, order };
+			sortBarcharts();
+		}}>{@html order === 'asc' ? '&uarr;' : '&darr;'}</button
+	>
+{/snippet}
+
 <g class="barchart-reorder-titles">
+	<foreignObject
+		x={x0s.labels}
+		y={reorderButtonAreaHeight + margin.top - 30}
+		width={widths.labels}
+		height="30"
+	>
+		<div class="barchart-reorder-title">
+			Name
+			{@render reorderButton('name', 'asc')}
+			{@render reorderButton('name', 'desc')}
+		</div>
+	</foreignObject>
 	<foreignObject
 		x={x0s.chartCounts}
 		y={reorderButtonAreaHeight + margin.top - 30}
@@ -11,26 +36,8 @@
 	>
 		<div class="barchart-reorder-title">
 			Counts
-			<button
-				class="barcharts-reorder-button{sortingOrder.value.key === 'countTotal' &&
-				sortingOrder.value.order === 'asc'
-					? ' order-selected'
-					: ''}"
-				onclick={(e) => {
-					sortingOrder.value = { key: 'countTotal', order: 'asc' };
-					sortBarcharts();
-				}}>&uarr;</button
-			>
-			<button
-				class="barcharts-reorder-button{sortingOrder.value.key === 'countTotal' &&
-				sortingOrder.value.order === 'desc'
-					? ' order-selected'
-					: ''}"
-				onclick={() => {
-					sortingOrder.value = { key: 'countTotal', order: 'desc' };
-					sortBarcharts();
-				}}>&darr;</button
-			>
+			{@render reorderButton('countTotal', 'asc')}
+			{@render reorderButton('countTotal', 'desc')}
 		</div>
 	</foreignObject>
 	<foreignObject
@@ -41,37 +48,13 @@
 	>
 		<div class="barchart-reorder-title">
 			Prices
-			<button
-				class="barcharts-reorder-button{sortingOrder.value.key === 'priceTotal' &&
-				sortingOrder.value.order === 'asc'
-					? ' order-selected'
-					: ''}"
-				onclick={() => {
-					sortingOrder.value = { key: 'priceTotal', order: 'asc' };
-					sortBarcharts();
-				}}>↑</button
-			>
-			<button
-				class="barcharts-reorder-button{sortingOrder.value.key === 'priceTotal' &&
-				sortingOrder.value.order === 'desc'
-					? ' order-selected'
-					: ''}"
-				onclick={() => {
-					sortingOrder.value = { key: 'priceTotal', order: 'desc' };
-					sortBarcharts();
-				}}>&darr;</button
-			>
+			{@render reorderButton('priceTotal', 'asc')}
+			{@render reorderButton('priceTotal', 'desc')}
 		</div>
 	</foreignObject>
 </g>
 
 <style>
-	svg {
-		width: 100%;
-		height: 100%;
-		/* background-color: rgb(213, 213, 213); */
-	}
-
 	.barcharts-reorder-button {
 		background-color: transparent;
 		border: none;
