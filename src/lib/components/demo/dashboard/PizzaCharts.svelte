@@ -6,16 +6,17 @@
 	import { getContext, onMount, setContext } from 'svelte';
 	import { rollups, sum } from 'd3-array';
 	import { scaleLinear, scaleBand } from 'd3-scale';
+	import { getPizzaBarchartData } from '$lib/scripts/utilityDashboard.svelte';
 	import LoadingCircle from '$lib/components/demo/dashboard/LoadingCircle.svelte';
 	import PizzaBarchart from '$lib/components/demo/dashboard/PizzaBarchart.svelte';
-	import { getPizzaBarchartData } from '$lib/scripts/utilityDashboard.svelte';
+	import BarchartReorderTitles from '$lib/components/demo/dashboard/BarchartReorderTitles.svelte';
 
 	let { width, height } = $props();
 	const margin = getContext('margin');
 
 	// $inspect({ width, height });
 
-	const labelAreaWidth = 210;
+	const labelAreaWidth = 140;
 	const gapLeftToChart = 20;
 	const reorderButtonAreaHeight = 10;
 
@@ -93,107 +94,70 @@
 <LoadingCircle {loaded} />
 {#if width > 0}
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-		<g class="barchart-hover-out-g" onpointerleave={() => updateHoveredPizzaName(null)}>
-			<rect
-				class="barchart-hover-out-rect"
-				x="x0s.labels"
-				y={yScale.range()[0]}
-				width={x0s.chartPrices + widths.chartPrices - x0s.labels}
-				height={yScale.range()[1] - yScale.range()[0]}
-				fill="transparent"
-			/>
-			<g class="barchart-horizontal-helperlines">
-				{#each yScale.domain() as name, i}
-					<line
-						onpointerover={() => updateHoveredPizzaName(name)}
-						x1={x0s.labels + widths.labels + gapLeftToChart / 2}
-						x2={x0s.chartPrices + widths.chartPrices}
-						y1={yScale(name) + yScale.bandwidth() / 2}
-						y2={yScale(name) + yScale.bandwidth() / 2}
-						stroke={hoveredPizzaName.value === name ? 'rgb(32, 32, 32)' : 'gray'}
-						stroke-width={hoveredPizzaName.value === name ? 2 : 1}
-						stroke-opacity={hoveredPizzaName.value === name ? 1 : 1 / 3}
-					/>
-				{/each}
-			</g>
-			<g class="barchart-counts">
-				<PizzaBarchart
-					data={barchartDataSorted}
-					x0={x0s.chartCounts}
-					width={widths.chartCounts}
-					{yScale}
-					valueAccessor={'countTotal'}
+		<g class="barchart-horizontal-helperlines">
+			{#each yScale.domain() as name, i}
+				<line
+					x1={x0s.labels + widths.labels + gapLeftToChart / 2}
+					x2={x0s.chartPrices + widths.chartPrices}
+					y1={yScale(name) + yScale.bandwidth() / 2}
+					y2={yScale(name) + yScale.bandwidth() / 2}
+					stroke={hoveredPizzaName.value === name ? 'rgb(32, 32, 32)' : 'gray'}
+					stroke-width={hoveredPizzaName.value === name ? 2 : 1}
+					stroke-opacity={hoveredPizzaName.value === name ? 1 : 1 / 3}
 				/>
-			</g>
-			<g class="barchart-prices">
-				<PizzaBarchart
-					data={barchartDataSorted}
-					x0={x0s.chartPrices}
-					width={widths.chartPrices}
-					{yScale}
-					valueAccessor={'priceTotal'}
-				/>
-			</g>
-			<g class="barchart-labels">
-				{#each yScale.domain() as name, i}
-					<text
-						onpointerover={() => updateHoveredPizzaName(name)}
-						class="axis-label-small{hoveredPizzaName.value === name ? ' hovered' : ''}"
-						x={x0s.labels + widths.labels}
-						y={yScale(name) + yScale.bandwidth() / 2}
-						text-anchor="end"
-					>
-						{name.replace(' Pizza', ' ')}
-					</text>
-				{/each}
-			</g>
+			{/each}
 		</g>
-		<g class="barchart-reorder-titles">
-			<foreignObject
-				x={x0s.chartCounts}
-				y={reorderButtonAreaHeight + margin.top - 30}
+		<g class="barchart-counts">
+			<PizzaBarchart
+				data={barchartDataSorted}
+				x0={x0s.chartCounts}
 				width={widths.chartCounts}
-				height="30"
-			>
-				<div class="barchart-reorder-title">
-					Counts
-					<button
-						onclick={() => {
-							sortingOrder.value = { key: 'countTotal', order: 'asc' };
-							sortBarcharts();
-						}}>&uarr;</button
-					>
-					<button
-						onclick={() => {
-							sortingOrder.value = { key: 'countTotal', order: 'desc' };
-							sortBarcharts();
-						}}>&darr;</button
-					>
-				</div>
-			</foreignObject>
-			<foreignObject
-				x={x0s.chartPrices}
-				y={reorderButtonAreaHeight + margin.top - 30}
-				width={widths.chartPrices}
-				height="30"
-			>
-				<div class="barchart-reorder-title">
-					Prices
-					<button
-						onclick={() => {
-							sortingOrder.value = { key: 'priceTotal', order: 'asc' };
-							sortBarcharts();
-						}}>↑</button
-					>
-					<button
-						onclick={() => {
-							sortingOrder.value = { key: 'priceTotal', order: 'desc' };
-							sortBarcharts();
-						}}>&darr;</button
-					>
-				</div>
-			</foreignObject>
+				{yScale}
+				valueAccessor={'countTotal'}
+			/>
 		</g>
+		<g class="barchart-prices">
+			<PizzaBarchart
+				data={barchartDataSorted}
+				x0={x0s.chartPrices}
+				width={widths.chartPrices}
+				{yScale}
+				valueAccessor={'priceTotal'}
+			/>
+		</g>
+		<g class="barchart-labels">
+			{#each yScale.domain() as name, i}
+				<text
+					class="axis-label-small{hoveredPizzaName.value === name ? ' hovered' : ''}"
+					x={x0s.labels}
+					y={yScale(name) + yScale.bandwidth() / 2}
+					text-anchor="start"
+				>
+					{name.replace(' Pizza', ' ').replace('The ', '')}
+				</text>
+			{/each}
+		</g>
+		<g class="barchart-overarching-hover-rects">
+			{#each barchartDataSorted as item, i}
+				<rect
+					onpointerover={() => updateHoveredPizzaName(item.name)}
+					onpointerleave={() => updateHoveredPizzaName(null)}
+					x={x0s.labels}
+					y={yScale(item.name)}
+					width={widths.labels + widths.chartCounts + widths.chartPrices + gapLeftToChart * 2}
+					height={yScale.step()}
+					fill="transparent"
+				/>
+			{/each}
+		</g>
+		<BarchartReorderTitles
+			{x0s}
+			{widths}
+			{margin}
+			{reorderButtonAreaHeight}
+			{sortingOrder}
+			{sortBarcharts}
+		/>
 	</svg>
 {/if}
 

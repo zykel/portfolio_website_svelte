@@ -8,7 +8,6 @@
 
 	const margin = getContext('margin');
 	const hoveredPizzaName = getContext('hoveredPizzaName');
-	const updateHoveredPizzaName = getContext('updateHoveredPizzaName');
 
 	const valueMax = $derived(Math.max(...data.map((/** @type {any} */ d) => d[valueAccessor])));
 
@@ -46,7 +45,6 @@
 <g class="pizza-barcharts-bars">
 	{#each data as item, i}
 		<rect
-			onpointerover={() => updateHoveredPizzaName(item.name)}
 			class="reference-bar"
 			x={xScale(0)}
 			y={yScale(item.name)}
@@ -86,7 +84,6 @@
 
 	{#each data as item, i}
 		<rect
-			onpointerover={() => updateHoveredPizzaName(item.name)}
 			class="main-bar"
 			x={xScale(0)}
 			y={yScale(item.name)}
