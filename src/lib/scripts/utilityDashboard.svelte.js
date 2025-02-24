@@ -210,10 +210,18 @@ function countOccurrences(array) {
 /**
  * @param {DataEntry[]} data
  * @param {string} type
+ * @param {{value: string[]}} focusedItems
  */
-export const getIngredientsChartData = (data, type) => {
+export const getIngredientsChartData = (data, type, focusedItems) => {
+	const areItemsFocused = focusedItems.value.length > 0;
+
+	// debugger;
+
 	const ingredientOccurrenceObj = countOccurrences(
-		data.map((d) => d.pizza_ingredients.split('; ')).flat()
+		data
+			.filter((d) => !areItemsFocused || focusedItems.value.includes(d[type]))
+			.map((d) => d.pizza_ingredients.split('; '))
+			.flat()
 	);
 	// Transform obj into arr
 	const ingredientOccurrenceArr = Object.entries(ingredientOccurrenceObj)

@@ -18,10 +18,11 @@
 
 	const data = getContext('data');
 	const selected = getContext('selected');
+	const focusedItems = getContext('focusedItems');
 
 	// TODO: Theoretically first apply time filter on data
 
-	const chartData = $derived(getIngredientsChartData(data, selected.type));
+	const chartData = $derived(getIngredientsChartData(data, selected.type, focusedItems));
 	const chartDataFiltered = $derived(
 		chartData.filter((d) =>
 			d.ingredient.toLowerCase().includes(ingredientsFilterString.toLowerCase())
