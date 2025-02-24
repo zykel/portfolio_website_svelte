@@ -1,4 +1,5 @@
 import { max, rollups, sum, mean, groups } from 'd3-array';
+import { getContext } from 'svelte';
 /**
  * @typedef {Object.<string, string> & { date?: Date } & { month?: number } & { quantity: string }} DataEntry
  */
@@ -291,3 +292,29 @@ export function formatNumber(num, nrDigits = 0) {
 		return num.toString();
 	}
 }
+
+export const addFocusedItem = (
+	/** @type {{value: string[]}} */ focusedItems,
+	/** @type {string} */ item
+) => {
+	focusedItems.value.push(item);
+};
+export const clearFocusedItem = (
+	/** @type {{value: string[]}} */ focusedItems,
+	/** @type {string} */ item
+) => {
+	focusedItems.value = focusedItems.value.filter((/** @type {string} */ d) => d !== item);
+};
+export const toggleFocusedItem = (
+	/** @type {{value: string[]}} */ focusedItems,
+	/** @type {string} */ item
+) => {
+	if (focusedItems.value.includes(item)) {
+		clearFocusedItem(focusedItems, item);
+	} else {
+		addFocusedItem(focusedItems, item);
+	}
+};
+export const clearFocusedItems = (/** @type {{value: string[]}} */ focusedItems) => {
+	focusedItems.value = [];
+};

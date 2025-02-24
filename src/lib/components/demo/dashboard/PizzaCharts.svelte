@@ -10,27 +10,40 @@
 	import LoadingCircle from '$lib/components/demo/dashboard/LoadingCircle.svelte';
 	import PizzaBarchart from '$lib/components/demo/dashboard/PizzaBarchart.svelte';
 	import BarchartReorderTitles from '$lib/components/demo/dashboard/BarchartReorderTitles.svelte';
+	import PizzaBarchartLabels from '$lib/components/demo/dashboard/PizzaBarchartLabels.svelte';
+	import PizzaBarchartPins from '$lib/components/demo/dashboard/PizzaBarchartPins.svelte';
 
 	let { width, height } = $props();
 	const margin = getContext('margin');
 
 	// $inspect({ width, height });
 
+	const pinAreaWidth = 20;
 	const labelAreaWidth = 140;
 	const gapLeftToChart = 20;
 	const reorderButtonAreaHeight = 10;
 	const tableLineHeight = 16;
 
 	const widths = $derived({
+		pins: pinAreaWidth,
 		labels: labelAreaWidth,
-		chartCounts: (width - margin.left - margin.right - labelAreaWidth) / 2 - gapLeftToChart,
-		chartPrices: (width - margin.left - margin.right - labelAreaWidth) / 2 - gapLeftToChart
+		chartCounts:
+			(width - margin.left - margin.right - labelAreaWidth - pinAreaWidth) / 2 - gapLeftToChart,
+		chartPrices:
+			(width - margin.left - margin.right - labelAreaWidth - pinAreaWidth) / 2 - gapLeftToChart
 	});
 
 	const x0s = $derived({
-		labels: margin.left,
-		chartCounts: margin.left + widths.labels + gapLeftToChart,
-		chartPrices: margin.left + widths.labels + gapLeftToChart + widths.chartCounts + gapLeftToChart
+		pins: margin.left,
+		labels: margin.left + widths.pins,
+		chartCounts: margin.left + widths.labels + widths.pins + gapLeftToChart,
+		chartPrices:
+			margin.left +
+			widths.labels +
+			widths.pins +
+			gapLeftToChart +
+			widths.chartCounts +
+			gapLeftToChart
 	});
 
 	const data = getContext('data');
@@ -137,31 +150,25 @@
 					valueAccessor={'priceTotal'}
 				/>
 			</g>
-			<g class="barchart-labels">
-				{#each yScale.domain() as name, i}
-					<text
-						class="axis-label-small{hoveredPizzaName.value === name ? ' hovered' : ''}"
-						x={x0s.labels}
-						y={yScale(name) + yScale.bandwidth() / 2}
-						text-anchor="start"
-					>
-						{name.replace(' Pizza', ' ').replace('The ', '')}
-					</text>
-				{/each}
-			</g>
+			<PizzaBarchartLabels {x0s} {yScale} />
 			<g class="barchart-overarching-hover-rects">
 				{#each barchartDataSorted as item, i}
 					<rect
 						onpointerover={() => updateHoveredPizzaName(item.name)}
 						onpointerleave={() => updateHoveredPizzaName(null)}
-						x={x0s.labels}
+						x={x0s.pins}
 						y={yScale(item.name)}
-						width={widths.labels + widths.chartCounts + widths.chartPrices + gapLeftToChart * 2}
+						width={widths.pins +
+							widths.labels +
+							widths.chartCounts +
+							widths.chartPrices +
+							gapLeftToChart * 2}
 						height={yScale.step()}
 						fill="transparent"
 					/>
 				{/each}
 			</g>
+			<PizzaBarchartPins {x0s} {yScale} />
 			<BarchartReorderTitles
 				{x0s}
 				{widths}

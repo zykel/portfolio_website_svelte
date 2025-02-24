@@ -3,6 +3,7 @@
 
 	import { setContext } from 'svelte';
 	import MainArea from '$lib/components/demo/dashboard/MainArea.svelte';
+	import { valueof } from '@observablehq/plot';
 
 	let { data } = $props();
 
@@ -29,6 +30,7 @@
 		pizzaNames: [...pizzaNames],
 		pizzaCategories: [...pizzaCategories]
 	});
+	const focusedItems = $state({ value: /** @type {string[]} */ ([]) });
 
 	setContext('data', data.csvData);
 	setContext('dataFiltered', data.csvData);
@@ -37,6 +39,7 @@
 	setContext('pizzaNames', pizzaNames);
 	setContext('pizzaCategories', pizzaCategories);
 	setContext('selected', selected);
+	setContext('focusedItems', focusedItems);
 </script>
 
 <div class="dashboard-container">
