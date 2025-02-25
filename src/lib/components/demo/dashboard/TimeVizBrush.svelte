@@ -38,23 +38,12 @@
 		timeFilterRange.idxRight = idxRight;
 	};
 
-	$inspect({ timeFilterRange, idxLeft, idxRight });
-
 	const idxsDifferFromStoredIdxs = $derived(
 		idxLeft !== timeFilterRange.idxLeft || idxRight !== timeFilterRange.idxRight
 	);
 
-	// const getSnappedValue = (/** @type {number} */ val) => {
-	// 	// Make the value snap between the bins of xScale
-
-	// 	return getIdx(val) * bandwidth + xMin;
-	// };
-
 	const xLeftSnapped = $derived(idxLeft * bandwidth + xMin);
 	const xRightSnapped = $derived(idxRight * bandwidth + xMin);
-
-	// const xLeftIdx = $derived(xScale.invert(xLeftSnapped));
-	// const xRightIdx = $derived(xScale.invert(xRightSnapped));
 </script>
 
 <svelte:window

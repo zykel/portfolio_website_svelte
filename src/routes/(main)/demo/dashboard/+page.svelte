@@ -45,6 +45,8 @@
 	/** @type {{idxLeft: number, idxRight: number}} */
 	const timeFilterRange = $state({ idxLeft: 0, idxRight: getFullRange().length });
 
+	const showAverage = $state({ value: false });
+
 	const resetTimeFilterRange = () => {
 		timeFilterRange.idxLeft = 0;
 		timeFilterRange.idxRight = getFullRange().length;
@@ -86,6 +88,9 @@
 	setContext('focusedItems', focusedItems);
 	setContext('timeFilterRange', timeFilterRange);
 	setContext('resetTimeFilterRange', resetTimeFilterRange);
+	setContext('showAverage', showAverage);
+
+	$inspect(showAverage.value);
 </script>
 
 <div class="dashboard-container">
@@ -102,6 +107,26 @@
 				<option value={type}>{type}</option>
 			{/each}
 		</select>
+
+		<!-- Radio button group -->
+		<div>
+			Show
+			<!-- <label>
+				<input type="radio" bind:group={showAverage.value} value={true} />
+				average
+			</label>
+			<label>
+				<input type="radio" bind:group={showAverage.value} value={false} />
+				aggregate
+			</label> -->
+			<div class="select-wrapper">
+				<select id="avg-aggregate-selector" bind:value={showAverage.value}>
+					<option value={true}>average</option>
+					<option value={false}>aggregate</option>
+				</select>
+			</div>
+			across selected time range.
+		</div>
 	</div>
 	<MainArea />
 </div>
@@ -198,5 +223,33 @@
 		background-color: #2c3e50; /* Sidebar background color */
 		color: white; /* Sidebar text color */
 		padding: 20px;
+	}
+
+	.select-wrapper {
+		position: relative;
+		display: inline-block;
+	}
+	.select-wrapper::after {
+		content: 'v'; /* Unicode character for downward arrow */
+		position: absolute;
+		right: 0.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+		pointer-events: none; /* Ensure the arrow does not block clicks */
+		color: white; /* Arrow color */
+	}
+	select {
+		appearance: none; /* Remove default styles */
+		background: none; /* Remove default background */
+		border: 1px solid white; /* Remove default border */
+		border-radius: 10px;
+		color: inherit; /* Inherit text color */
+		font: inherit; /* Inherit font styles */
+		padding: 0 1.5rem 0 0.5rem; /* Remove default padding */
+		margin: 0; /* Remove default margin */
+	}
+
+	select option {
+		color: black; /* Set the font color of the options to black */
 	}
 </style>

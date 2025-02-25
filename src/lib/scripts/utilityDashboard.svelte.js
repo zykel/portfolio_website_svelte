@@ -59,6 +59,28 @@ function getWeekNumber(date) {
 
 /**
  * @param {{value: DataEntry[]}} data
+ */
+const getNormalizationFactor = (data) => {
+	const showAverage = getContext('showAverage').value;
+	if (!showAverage) return 1;
+
+	const timeUnit = getContext('selected').timeUnit;
+
+	const nrUniqueOrderDates = [...new Set(data.value.map((d) => d.order_date))].length;
+	const nrYears = 1;
+	const nrWeeks = 52;
+	const normalizationFactor =
+		timeUnit === 'day of week'
+			? 1 / nrWeeks
+			: timeUnit === 'hour of day'
+				? 1 / nrUniqueOrderDates
+				: 1 / nrYears;
+
+	return normalizationFactor;
+};
+
+/**
+ * @param {{value: DataEntry[]}} data
  * @param {string} timeUnit
  * @param {string} type
  */
@@ -68,8 +90,7 @@ export const getTimeVizData = (data, timeUnit, type) => {
 	 */
 	let binnedDataNamed = [];
 
-	const nrUniqueOrderDates = [...new Set(data.value.map((d) => d.order_date))].length;
-	const nrWeeks = 52;
+	const normalizationFactor = getNormalizationFactor(data);
 
 	if (timeUnit === 'day of week') {
 		const mue = groups(
@@ -83,7 +104,7 @@ export const getTimeVizData = (data, timeUnit, type) => {
 			data.value,
 			(/** @type {DataEntry[]}*/ v) => {
 				// debugger;
-				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) / nrWeeks;
+				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) * normalizationFactor;
 				// const uniqueEntries = [
 				// 	...new Set(
 				// 		v.map((d) => (d.date ? getWeekNumber(d.date) + '_' + d.date.getFullYear() : 0))
@@ -115,7 +136,7 @@ export const getTimeVizData = (data, timeUnit, type) => {
 			data.value,
 			(/** @type {DataEntry[]}*/ v) => {
 				// debugger;
-				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) / nrUniqueOrderDates;
+				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) * normalizationFactor;
 			},
 			(/** @type {DataEntry}*/ d) => d[type],
 			(/** @type {DataEntry}*/ d) => d.date?.getHours().toString().padStart(2, '0') + ':00'
@@ -146,8 +167,7 @@ export const getTimeVizData = (data, timeUnit, type) => {
 		const binnedData = rollups(
 			data.value,
 			(/** @type {DataEntry[]}*/ v) =>
-				sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) /
-				[...new Set(v.map((d) => d.date?.getFullYear))].length,
+				sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) * normalizationFactor,
 			(/** @type {DataEntry}*/ d) => d[type],
 			(/** @type {DataEntry}*/ d) =>
 				monthsOfYear[typeof d.date !== 'undefined' ? d.date.getMonth() : 0]
@@ -174,11 +194,14 @@ export const getTimeVizData = (data, timeUnit, type) => {
  * @param {string} type
  */
 export const getPizzaBarchartData = (data, type) => {
+	const normalizationFactor = getNormalizationFactor(data);
+
 	const barchartData = rollups(
 		data.value,
 		(/** @type {DataEntry[]}*/ v) => {
-			const countTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.quantity);
-			const priceTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.total_price);
+			const countTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.quantity) * normalizationFactor;
+			const priceTotal =
+				sum(v, (/** @type {DataEntry}*/ d) => +d.total_price) * normalizationFactor;
 			return { countTotal, priceTotal };
 		},
 		(/** @type {DataEntry}*/ d) => d[type]
@@ -213,6 +236,7 @@ function countOccurrences(array) {
  */
 export const getIngredientsChartData = (data, type, focusedItems) => {
 	const areItemsFocused = focusedItems.value.length > 0;
+	const normalizationFactor = getNormalizationFactor(data);
 
 	// debugger;
 
@@ -226,7 +250,7 @@ export const getIngredientsChartData = (data, type, focusedItems) => {
 	const ingredientOccurrenceArr = Object.entries(ingredientOccurrenceObj)
 		.map(([ingredient, count]) => ({
 			ingredient,
-			count
+			count: count * normalizationFactor
 		}))
 		.sort((a, b) => b.count - a.count);
 
@@ -296,7 +320,7 @@ export function formatNumber(num, nrDigits = 0) {
 	} else if (num >= 1e3) {
 		return (num / 1e3).toFixed(nrDigits) + 'k';
 	} else {
-		return num.toString();
+		return num.toFixed(nrDigits);
 	}
 }
 

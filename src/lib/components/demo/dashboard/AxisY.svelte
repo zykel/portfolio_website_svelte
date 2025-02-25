@@ -1,4 +1,6 @@
 <script>
+	import { formatNumber } from '$lib/scripts/utilityDashboard.svelte';
+
 	let { xScale, yScale, yAxisLabelWidth, tickLabelsAll } = $props();
 
 	// Calculate ticks for the x-axis
@@ -20,7 +22,7 @@
 		{/if}
 
 		<text class="axis-label y-axis" x={xScale.range()[0] - yAxisLabelWidth} y={yScale(tick) - 5}>
-			{tick}
+			{formatNumber(tick)}
 			{i === ticks.length - 1 ? 'sales' : ''}
 		</text>
 	{/each}
