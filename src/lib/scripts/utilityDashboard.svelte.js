@@ -141,7 +141,6 @@ export const getTimeVizData = (data, timeUnit, type) => {
 				return { name, records: recordsNamed };
 			}
 		);
-		console.log(binnedDataNamed);
 	} else if (timeUnit === 'month of year') {
 		// Group data by type, then by months of year
 		const binnedData = rollups(

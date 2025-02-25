@@ -92,7 +92,6 @@
 	};
 
 	const beeswarmChartData = $derived(getBeeswarmChartData(/**@type {DataEntry[]} data*/ chartData));
-	$inspect(beeswarmChartData);
 
 	/**
 	 * Checks if the bounding rectangle of a given element overlaps with any of the bounding rectangles from an array of elements.
@@ -139,8 +138,6 @@
 		return overlap ? 0 : 1;
 	};
 	// TODO: Müsste glaube oben nur ein array an label references erstellen und dann hier erst die overlap infos deriven indem ich eine zusaätzliche methode schreibe, die für alle ingredients die overlap info berechnet - könnte das dann als ein obj returnen, auf das ich im markup zugreife
-
-	$inspect({ labelOverlapInfo });
 
 	// const dotPlot = $derived(
 	// 	height > 0 && height > 0

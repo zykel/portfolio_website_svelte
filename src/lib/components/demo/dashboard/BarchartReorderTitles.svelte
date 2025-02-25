@@ -2,7 +2,7 @@
 	import { clearFocusedItems } from '$lib/scripts/utilityDashboard.svelte';
 	import { getContext } from 'svelte';
 
-	let { x0s, widths, margin, reorderButtonAreaHeight, sortingOrder, sortBarcharts } = $props();
+	let { x0s, widths, margin, reorderButtonAreaHeight, sortingOrder } = $props();
 
 	const focusedItems = getContext('focusedItems');
 </script>
@@ -15,7 +15,7 @@
 			: ''}"
 		onclick={(e) => {
 			sortingOrder.value = { key, order };
-			sortBarcharts();
+			// sortBarcharts();
 		}}>{@html order === 'asc' ? '&uarr;' : '&darr;'}</button
 	>
 {/snippet}

@@ -7,7 +7,6 @@
 	const hoveredPizzaName = getContext('hoveredPizzaName');
 	const updateHoveredPizzaName = getContext('updateHoveredPizzaName');
 	const focusedItems = getContext('focusedItems');
-	$inspect({ focusedItems });
 
 	const pinHeadRadius = 3;
 	const pinLineLength = 8;

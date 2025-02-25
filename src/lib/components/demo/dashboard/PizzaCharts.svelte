@@ -53,14 +53,12 @@
 	// TODO: Theoretically first apply time filter on data
 
 	const barchartData = $derived(getPizzaBarchartData(data, selected.type));
-	let sortingOrder = $state({ value: { key: 'countTotal', order: 'desc' } });
-	let barchartDataSorted = $state(barchartData.slice());
 
-	const sortBarcharts = () => {
-		if (barchartDataSorted.length === 0) {
-			barchartDataSorted = barchartData.slice();
-		}
-		barchartDataSorted = barchartDataSorted
+	// TODO: If I actually want to keep track of sorting history, could just add a valuePrevious here and initialize it as the same order as for value
+	let sortingOrder = $state({ value: { key: 'countTotal', order: 'desc' } });
+
+	const getSortedBarchartData = () => {
+		const barchartDataSorted = barchartData
 			.slice()
 			.sort(
 				(
@@ -78,9 +76,11 @@
 					}
 				}
 			);
+
+		return barchartDataSorted;
 	};
 
-	sortBarcharts();
+	const barchartDataSorted = $derived(getSortedBarchartData());
 
 	$inspect({ barchartData, barchartDataSorted });
 
@@ -171,14 +171,7 @@
 				{/each}
 			</g>
 			<PizzaBarchartPins {x0s} {widths} {yScale} />
-			<BarchartReorderTitles
-				{x0s}
-				{widths}
-				{margin}
-				{reorderButtonAreaHeight}
-				{sortingOrder}
-				{sortBarcharts}
-			/>
+			<BarchartReorderTitles {x0s} {widths} {margin} {reorderButtonAreaHeight} {sortingOrder} />
 		</svg>
 	</div>
 {/if}

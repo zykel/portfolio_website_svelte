@@ -26,7 +26,7 @@
 	const pizzaCategories = ['Classic', 'Veggie', 'Supreme', 'Chicken'];
 	const selected = $state({
 		timeUnit: timeUnits[0],
-		type: types[0],
+		type: types[1],
 		pizzaNames: [...pizzaNames],
 		pizzaCategories: [...pizzaCategories]
 	});
@@ -51,6 +51,11 @@
 			<li><a href="#link3">Link 3</a></li>
 			<li><a href="#link4">Link 4</a></li>
 		</ul>
+		<select id="type-selector" bind:value={selected.type}>
+			{#each types as type}
+				<option value={type}>{type}</option>
+			{/each}
+		</select>
 	</div>
 	<MainArea />
 </div>
