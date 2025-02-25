@@ -1,5 +1,5 @@
 <script>
-	let { xScale, yScale, tickLabelsAll } = $props();
+	let { xScale, yScale, yAxisLabelWidth, tickLabelsAll } = $props();
 
 	// Calculate ticks for the x-axis
 	const ticks = $derived(tickLabelsAll);
@@ -10,7 +10,7 @@
 	{#each ticks as tick, i}
 		{#if i !== 0}
 			<line
-				x1={xScale.range()[0]}
+				x1={xScale.range()[0] - yAxisLabelWidth}
 				x2={xScale.range()[1]}
 				y1={yScale(tick)}
 				y2={yScale(tick)}
@@ -19,7 +19,7 @@
 			/>
 		{/if}
 
-		<text class="axis-label y-axis" x={xScale.range()[0]} y={yScale(tick) - 5}>
+		<text class="axis-label y-axis" x={xScale.range()[0] - yAxisLabelWidth} y={yScale(tick) - 5}>
 			{tick}
 			{i === ticks.length - 1 ? 'sales' : ''}
 		</text>

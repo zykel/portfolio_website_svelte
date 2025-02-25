@@ -11,7 +11,8 @@
 	} from '$lib/scripts/utilityDashboard.svelte';
 	import Line from '$lib/components/demo/dashboard/Line.svelte';
 	import AxisX from '$lib/components/demo/dashboard/AxisX.svelte';
-	import AxisY from './AxisY.svelte';
+	import AxisY from '$lib/components/demo/dashboard/AxisY.svelte';
+	import TimeVizBrush from '$lib/components/demo/dashboard/TimeVizBrush.svelte';
 
 	let { width, height } = $props();
 	const margin = getContext('margin');
@@ -22,6 +23,8 @@
 	const selected = getContext('selected');
 
 	const timeVizData = $derived(getTimeVizData(data, selected.timeUnit, selected.type));
+
+	const yAxisLabelWidth = 40;
 
 	/**
 	 * @param {string} timeUnit
@@ -37,9 +40,9 @@
 					: monthsOfYear;
 		const scale = scaleBand()
 			.domain(domain)
-			.range([margin.left, width - margin.right])
-			.paddingOuter((domain.length / 7) * 0.25)
-			.align(1);
+			.range([margin.left + yAxisLabelWidth, width - margin.right]);
+		// .paddingOuter((domain.length / 7) * 0.25);
+		// .align(1);
 
 		return scale;
 	};
@@ -52,7 +55,7 @@
 				0,
 				max(timeVizData, (/** @type {{ records: any; }} */ d) =>
 					max(d.records, (/** @type {{ count: any; }} */ e) => e.count)
-				)
+				) * 1.1
 			])
 			.range([height - margin.bottom, margin.top])
 	);
@@ -65,15 +68,18 @@
 </script>
 
 <LoadingCircle {loaded} />
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-	<AxisX {xScale} {yScale} tickLabelsAll={xScale.domain()} />
-	<AxisY {xScale} {yScale} tickLabelsAll={yScale.ticks(3)} />
-	<g class="lines">
-		{#each timeVizData as item}
-			<Line {item} {xScale} {yScale} />
-		{/each}
-	</g>
-</svg>
+{#if width > 0}
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
+		<AxisX {xScale} {yScale} {yAxisLabelWidth} tickLabelsAll={xScale.domain()} />
+		<AxisY {xScale} {yScale} {yAxisLabelWidth} tickLabelsAll={yScale.ticks(3)} />
+		<g class="lines">
+			{#each timeVizData as item}
+				<Line {item} {xScale} {yScale} />
+			{/each}
+		</g>
+		<TimeVizBrush {xScale} {yScale} />
+	</svg>
+{/if}
 
 <style>
 	svg {

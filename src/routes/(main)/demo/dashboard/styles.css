@@ -38,6 +38,7 @@ h3 {
 .axis-label,
 .axis-label-small {
 	fill: gray;
+	user-select: none;
 }
 .axis-label {
 	font-size: 0.75rem;

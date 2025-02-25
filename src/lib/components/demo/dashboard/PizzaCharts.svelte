@@ -15,6 +15,8 @@
 
 	let { width, height } = $props();
 	const margin = getContext('margin');
+	const data = getContext('data');
+	const selected = getContext('selected');
 
 	// $inspect({ width, height });
 
@@ -23,7 +25,7 @@
 	const gapLeftToChart = 20;
 	const reorderButtonAreaHeight = 10;
 	const axisHeight = 15;
-	const tableLineHeight = 16;
+	const tableLineHeight = $derived(selected.type === 'pizza_name' ? 16 : 32);
 
 	const widths = $derived({
 		pins: pinAreaWidth,
@@ -46,9 +48,6 @@
 			widths.chartCounts +
 			gapLeftToChart
 	});
-
-	const data = getContext('data');
-	const selected = getContext('selected');
 
 	// TODO: Theoretically first apply time filter on data
 

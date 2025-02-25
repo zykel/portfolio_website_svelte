@@ -1,5 +1,5 @@
 <script>
-	let { xScale, yScale, tickLabelsAll } = $props();
+	let { xScale, yScale, yAxisLabelWidth, tickLabelsAll } = $props();
 
 	// Calculate ticks for the x-axis
 	const xTicks = $derived(
@@ -9,7 +9,7 @@
 
 <g class="axis-x">
 	<line
-		x1={xScale.range()[0]}
+		x1={xScale.range()[0] - yAxisLabelWidth}
 		x2={xScale.range()[1]}
 		y1={yScale(0)}
 		y2={yScale(0)}
