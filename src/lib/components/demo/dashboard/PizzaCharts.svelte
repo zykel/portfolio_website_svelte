@@ -81,8 +81,6 @@
 
 	const barchartDataSorted = $derived(getSortedBarchartData());
 
-	$inspect({ barchartData, barchartDataSorted });
-
 	const fullScrollHeight = $derived(
 		margin.top +
 			reorderButtonAreaHeight +

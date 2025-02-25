@@ -1,9 +1,12 @@
 <script>
-	// You can add any necessary script here
+	/**
+	 * @typedef {Object.<string, string> & { date?: Date } & { month?: number }} DataEntry
+	 */
 
 	import { setContext } from 'svelte';
 	import MainArea from '$lib/components/demo/dashboard/MainArea.svelte';
 	import { valueof } from '@observablehq/plot';
+	import { daysOfWeek, hoursOfDay, monthsOfYear } from '$lib/scripts/utilityDashboard.svelte.js';
 
 	let { data } = $props();
 
@@ -32,7 +35,48 @@
 	});
 	const focusedItems = $state({ value: /** @type {string[]} */ ([]) });
 
-	setContext('data', data.csvData);
+	const getFullRange = () => {
+		return selected.timeUnit === 'day of week'
+			? daysOfWeek
+			: selected.timeUnit === 'hour of day'
+				? hoursOfDay
+				: monthsOfYear;
+	};
+	/** @type {{idxLeft: number, idxRight: number}} */
+	const timeFilterRange = $state({ idxLeft: 0, idxRight: getFullRange().length });
+
+	const resetTimeFilterRange = () => {
+		timeFilterRange.idxLeft = 0;
+		timeFilterRange.idxRight = getFullRange().length;
+	};
+
+	const getFilteredData = () => {
+		if (timeFilterRange.idxLeft === 0 && timeFilterRange.idxRight === getFullRange().length) {
+			return data.csvData;
+		}
+		const fullRange = getFullRange();
+		const accessCompareValue =
+			selected.timeUnit === 'day of week'
+				? (/** @type {DataEntry} */ d) => d.day
+				: selected.timeUnit === 'hour of day'
+					? (/** @type {DataEntry} */ d) => d.date?.getHours().toString().padStart(2, '0') + ':00'
+					: (/** @type {DataEntry} */ d) =>
+							monthsOfYear[typeof d.date !== 'undefined' ? d.date.getMonth() : 0];
+
+		const filteredRange = fullRange.slice(timeFilterRange.idxLeft, timeFilterRange.idxRight);
+
+		// return data.csvData;
+
+		return data.csvData.filter((d) => filteredRange.includes(accessCompareValue(d)));
+	};
+
+	const dataFiltered = $state({ value: /** @type {DataEntry[]} */ (data.csvData) });
+
+	$effect(() => {
+		dataFiltered.value = getFilteredData();
+	});
+
+	setContext('data', dataFiltered);
 	setContext('dataFiltered', data.csvData);
 	setContext('timeUnits', timeUnits);
 	setContext('types', types);
@@ -40,6 +84,8 @@
 	setContext('pizzaCategories', pizzaCategories);
 	setContext('selected', selected);
 	setContext('focusedItems', focusedItems);
+	setContext('timeFilterRange', timeFilterRange);
+	setContext('resetTimeFilterRange', resetTimeFilterRange);
 </script>
 
 <div class="dashboard-container">

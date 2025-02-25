@@ -31,6 +31,7 @@
 	let showIndividualSales = $state(false);
 	let selected = getContext('selected');
 	let ingredientsFilterString = $state('');
+	const resetTimeFilterRange = getContext('resetTimeFilterRange');
 </script>
 
 <div class="main-area">
@@ -38,7 +39,11 @@
 		<div class="section">
 			<div class="dashboard__section-title-container flex-row-spread">
 				<h3>Sales [?per X (?on average)]</h3>
-				<select id="timeUnitSelector" bind:value={selected.timeUnit}>
+				<select
+					id="timeUnitSelector"
+					bind:value={selected.timeUnit}
+					onchange={() => resetTimeFilterRange()}
+				>
 					{#each getContext('timeUnits') as unit}
 						<option value={unit}>{unit}</option>
 					{/each}

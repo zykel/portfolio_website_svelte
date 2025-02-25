@@ -62,36 +62,36 @@
 	/** @type {string | null}*/
 	let hoveredIngredient = $state(null);
 
-	const yScaleBeeswarm = $derived(
-		scaleLinear()
-			.domain([0, Math.max(...chartData.map((d) => d.count))])
-			.range([height - margin.bottom, margin.top])
-	);
-	const rScaleBeeswarm = $derived(
-		scaleLinear()
-			.domain([0, Math.max(...chartData.map((d) => d.count))])
-			.range([minRadius, maxRadius])
-	);
+	// const yScaleBeeswarm = $derived(
+	// 	scaleLinear()
+	// 		.domain([0, Math.max(...chartData.map((d) => d.count))])
+	// 		.range([height - margin.bottom, margin.top])
+	// );
+	// const rScaleBeeswarm = $derived(
+	// 	scaleLinear()
+	// 		.domain([0, Math.max(...chartData.map((d) => d.count))])
+	// 		.range([minRadius, maxRadius])
+	// );
 
-	const getBeeswarmChartData = (/** @type {{ ingredient: string; count: number; }[]} */ data) => {
-		const beeswarmChartDataFlipped = dodge(data, {
-			radius: (d) => rScaleBeeswarm(d.count),
-			x: (d) => yScaleBeeswarm(d.count)
-		});
+	// const getBeeswarmChartData = (/** @type {{ ingredient: string; count: number; }[]} */ data) => {
+	// 	const beeswarmChartDataFlipped = dodge(data, {
+	// 		radius: (d) => rScaleBeeswarm(d.count),
+	// 		x: (d) => yScaleBeeswarm(d.count)
+	// 	});
 
-		const beeswarmChartData = beeswarmChartDataFlipped.map(
-			(/** @type {{ y: any; x: any; r: any; data: any; }} */ d) => ({
-				cx: width - d.y - maxRadius,
-				cy: d.x,
-				r: d.r,
-				datum: d.data
-			})
-		);
+	// 	const beeswarmChartData = beeswarmChartDataFlipped.map(
+	// 		(/** @type {{ y: any; x: any; r: any; data: any; }} */ d) => ({
+	// 			cx: width - d.y - maxRadius,
+	// 			cy: d.x,
+	// 			r: d.r,
+	// 			datum: d.data
+	// 		})
+	// 	);
 
-		return beeswarmChartData;
-	};
+	// 	return beeswarmChartData;
+	// };
 
-	const beeswarmChartData = $derived(getBeeswarmChartData(/**@type {DataEntry[]} data*/ chartData));
+	// const beeswarmChartData = $derived(getBeeswarmChartData(/**@type {DataEntry[]} data*/ chartData));
 
 	/**
 	 * Checks if the bounding rectangle of a given element overlaps with any of the bounding rectangles from an array of elements.
@@ -200,7 +200,7 @@
 			</svg>
 		</div>
 	{:else}
-		<svg class="beeswarm-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
+		<!-- <svg class="beeswarm-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
 			{#each beeswarmChartData as item, i}
 				<text
 					class="ingredients-lollipop-label"
@@ -224,7 +224,7 @@
 					fill={colorScale(item.datum.count)}
 				/>
 			{/each}
-		</svg>
+		</svg> -->
 	{/if}
 	<!-- <div class="plot-container" bind:this={plotContainer}></div> -->
 {/if}

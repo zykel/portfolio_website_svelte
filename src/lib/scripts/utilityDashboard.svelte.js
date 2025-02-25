@@ -58,7 +58,7 @@ function getWeekNumber(date) {
 }
 
 /**
- * @param {DataEntry[]} data
+ * @param {{value: DataEntry[]}} data
  * @param {string} timeUnit
  * @param {string} type
  */
@@ -68,19 +68,19 @@ export const getTimeVizData = (data, timeUnit, type) => {
 	 */
 	let binnedDataNamed = [];
 
-	const nrUniqueOrderDates = [...new Set(data.map((d) => d.order_date))].length;
+	const nrUniqueOrderDates = [...new Set(data.value.map((d) => d.order_date))].length;
 	const nrWeeks = 52;
 
 	if (timeUnit === 'day of week') {
 		const mue = groups(
-			data,
+			data.value,
 			(/** @type {DataEntry}*/ d) => d[type],
 			(/** @type {DataEntry}*/ d) => d.day
 		);
 		// debugger;
 		// Bin data, first by type, then by day of week
 		const binnedData = rollups(
-			data,
+			data.value,
 			(/** @type {DataEntry[]}*/ v) => {
 				// debugger;
 				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) / nrWeeks;
@@ -112,7 +112,7 @@ export const getTimeVizData = (data, timeUnit, type) => {
 	} else if (timeUnit === 'hour of day') {
 		// Group data by type, then by hour of day
 		const binnedData = rollups(
-			data,
+			data.value,
 			(/** @type {DataEntry[]}*/ v) => {
 				// debugger;
 				return sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) / nrUniqueOrderDates;
@@ -144,7 +144,7 @@ export const getTimeVizData = (data, timeUnit, type) => {
 	} else if (timeUnit === 'month of year') {
 		// Group data by type, then by months of year
 		const binnedData = rollups(
-			data,
+			data.value,
 			(/** @type {DataEntry[]}*/ v) =>
 				sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity) /
 				[...new Set(v.map((d) => d.date?.getFullYear))].length,
@@ -170,12 +170,12 @@ export const getTimeVizData = (data, timeUnit, type) => {
 };
 
 /**
- * @param {DataEntry[]} data
+ * @param {{value: DataEntry[]}} data
  * @param {string} type
  */
 export const getPizzaBarchartData = (data, type) => {
 	const barchartData = rollups(
-		data,
+		data.value,
 		(/** @type {DataEntry[]}*/ v) => {
 			const countTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.quantity);
 			const priceTotal = sum(v, (/** @type {DataEntry}*/ d) => +d.total_price);
@@ -207,7 +207,7 @@ function countOccurrences(array) {
 }
 
 /**
- * @param {DataEntry[]} data
+ * @param {{value: DataEntry[]}} data
  * @param {string} type
  * @param {{value: string[]}} focusedItems
  */
@@ -217,7 +217,7 @@ export const getIngredientsChartData = (data, type, focusedItems) => {
 	// debugger;
 
 	const ingredientOccurrenceObj = countOccurrences(
-		data
+		data.value
 			.filter((d) => !areItemsFocused || focusedItems.value.includes(d[type]))
 			.map((d) => d.pizza_ingredients.split('; '))
 			.flat()
@@ -235,7 +235,7 @@ export const getIngredientsChartData = (data, type, focusedItems) => {
 
 export function dodge(data, { radius = (d) => d, x = (d) => d } = {}) {
 	const radius2 = (d, i, data) => radius(d, i, data) ** 2;
-	const circles = data
+	const circles = data.value
 		.map((d, i, data) => ({
 			x: +x(d, i, data),
 			r: +radius(d, i, data),

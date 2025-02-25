@@ -24,7 +24,9 @@
 
 	const timeVizData = $derived(getTimeVizData(data, selected.timeUnit, selected.type));
 
-	const yAxisLabelWidth = 40;
+	$inspect(timeVizData);
+
+	const yAxisLabelWidth = 70;
 
 	/**
 	 * @param {string} timeUnit
@@ -40,7 +42,7 @@
 					: monthsOfYear;
 		const scale = scaleBand()
 			.domain(domain)
-			.range([margin.left + yAxisLabelWidth, width - margin.right]);
+			.range([margin.left + yAxisLabelWidth, width - margin.right - 2]); // Magix 3 to have the handle in
 		// .paddingOuter((domain.length / 7) * 0.25);
 		// .align(1);
 
@@ -60,6 +62,8 @@
 			.range([height - margin.bottom, margin.top])
 	);
 
+	let svgTimeViz = $state();
+
 	let loaded = $state(false);
 
 	onMount(() => {
@@ -69,7 +73,7 @@
 
 <LoadingCircle {loaded} />
 {#if width > 0}
-	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" bind:this={svgTimeViz}>
 		<AxisX {xScale} {yScale} {yAxisLabelWidth} tickLabelsAll={xScale.domain()} />
 		<AxisY {xScale} {yScale} {yAxisLabelWidth} tickLabelsAll={yScale.ticks(3)} />
 		<g class="lines">
@@ -77,7 +81,7 @@
 				<Line {item} {xScale} {yScale} />
 			{/each}
 		</g>
-		<TimeVizBrush {xScale} {yScale} />
+		<TimeVizBrush {xScale} {yScale} {svgTimeViz} />
 	</svg>
 {/if}
 
