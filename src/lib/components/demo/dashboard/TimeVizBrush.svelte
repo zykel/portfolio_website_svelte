@@ -23,6 +23,9 @@
 
 	let xLeft = $state(xMin);
 	let xRight = $state(xMax);
+	// Need this to catch when window is resized
+	// Maybe more ideal would be to just have one big function "getIdx" that is based on values which get updated onpointermove
+	const xRightResizeAware = $derived(Math.min(xRight, xMax));
 
 	const bandwidth = $derived(xScale.bandwidth());
 
@@ -31,7 +34,7 @@
 	};
 
 	const idxLeft = $derived(getIdx(xLeft));
-	const idxRight = $derived(getIdx(xRight));
+	const idxRight = $derived(getIdx(xRightResizeAware));
 
 	const updateTimeFilterRange = () => {
 		timeFilterRange.idxLeft = idxLeft;
@@ -44,6 +47,8 @@
 
 	const xLeftSnapped = $derived(idxLeft * bandwidth + xMin);
 	const xRightSnapped = $derived(idxRight * bandwidth + xMin);
+
+	$inspect(xRight);
 </script>
 
 <svelte:window
@@ -55,8 +60,12 @@
 			}
 		}
 		if (pointerdownHandleRight) {
-			if (xNew - bandwidth > xLeft && xNew <= xMax) {
-				xRight = xNew;
+			if (xNew - bandwidth > xLeft) {
+				if (xNew <= xMax) {
+					xRight = xNew;
+				} else {
+					xRight = xMax; // I think not necessary
+				}
 			}
 		}
 	}}
