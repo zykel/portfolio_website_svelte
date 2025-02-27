@@ -90,4 +90,8 @@
 	.barcharts-reorder-button.order-selected {
 		color: black;
 	}
+
+	.barchart-reorder-title {
+		color: rgb(40, 40, 40);
+	}
 </style>

@@ -75,7 +75,7 @@
 
 {#if yScale.range()[0] > yScale.range()[1]}
 	<rect
-		class="time-viz-brush"
+		class="time-viz-brush-range-rect"
 		x={xLeftSnapped}
 		y={yScale.range()[1]}
 		width={xRightSnapped - xLeftSnapped}
@@ -175,5 +175,9 @@
 
 	.time-viz-brush-apply-button:hover {
 		background-color: rgba(255, 255, 255, 0.75);
+	}
+
+	.time-viz-brush-range-rect {
+		pointer-events: none;
 	}
 </style>

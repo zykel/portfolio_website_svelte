@@ -41,7 +41,11 @@
 	>
 		<div class="section">
 			<div class="dashboard__section-title-container">
-				<h3>Total Number of Sales and Revenue</h3>
+				<h3>
+					Number of sales and revenue per pizza {selected.type === 'pizza_category'
+						? 'category'
+						: ''}
+				</h3>
 			</div>
 			<div
 				class="svg-container"
@@ -67,10 +71,10 @@
 						</select>
 					</div>
 				</h3>
-				<label>
+				<!-- <label>
 					<input type="checkbox" bind:checked={showIndividualSales} />
 					Show individual sales
-				</label>
+				</label> -->
 			</div>
 			<div
 				class="svg-container"
@@ -151,9 +155,11 @@
 		min-height: 0;
 	}
 
-	.dashboard__section-title-container {
-		/* min-height: 0; */
+	h3 {
+		margin-bottom: 0.5rem;
+		color: rgb(40, 40, 40);
 	}
+
 	.dashboard__section-content {
 		/* min-height: 0; */
 	}
@@ -170,7 +176,7 @@
 	.ingredient-filter-container {
 		display: flex;
 		align-items: center;
-		padding-bottom: 0.5rem;
+		padding: 0.5rem 0;
 	}
 
 	.ingredient-filter-container label {
@@ -230,6 +236,6 @@
 	}
 
 	#timeUnitSelector option {
-		color: black; /* Set the font color of the options to black */
+		color: rgb(40, 40, 40);
 	}
 </style>

@@ -9,6 +9,7 @@
 		.y((/** @type {{ count: any; }} */ d) => yScale(d.count));
 
 	const hoveredPizzaName = getContext('hoveredPizzaName');
+	// const updateHoveredPizzaName = getContext('updateHoveredPizzaName');
 	const focusedItems = getContext('focusedItems');
 	const areItemsFocused = $derived(focusedItems.value.length > 0);
 
@@ -24,8 +25,6 @@
 	);
 
 	const itemNameForHTMLId = $derived(item.name.replace(/[^a-zA-Z0-9]/g, '-'));
-
-	$inspect(item);
 </script>
 
 <path

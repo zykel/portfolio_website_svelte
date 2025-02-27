@@ -101,38 +101,43 @@
 
 <div class="dashboard-container">
 	<div class="sidebar">
-		<h2>Sidebar</h2>
-		<ul>
-			<li><a href="#link1">Link 1</a></li>
-			<li><a href="#link2">Link 2</a></li>
-			<li><a href="#link3">Link 3</a></li>
-			<li><a href="#link4">Link 4</a></li>
-		</ul>
-		<select id="type-selector" bind:value={selected.type}>
-			{#each types as type}
-				<option value={type}>{type}</option>
-			{/each}
-		</select>
+		<h2>Pizza Dashboard</h2>
+		<hr />
+		<p class="font-size-smaller">
+			This dashboard provides an overview of the pizza sales from a synthetic data set.
+		</p>
+
+		<hr />
+		<div class="display-options-container">
+			<h3>Display Options:</h3>
+			<ul class="font-size-smaller">
+				<li>
+					<div>
+						Display values for
+						<div class="select-wrapper">
+							<select id="type-selector" bind:value={selected.type}>
+								<option value={'pizza_category'}>pizza categories</option>
+								<option value={'pizza_name'}>individual pizzas</option>
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						Show
+						<div class="select-wrapper">
+							<select id="avg-aggregate-selector" bind:value={showAverage.value}>
+								<option value={false}>aggregate</option>
+								<option value={true}>average</option>
+							</select>
+						</div>
+						values across selected time range
+					</div>
+				</li>
+			</ul>
+		</div>
 
 		<!-- Radio button group -->
-		<div>
-			Show
-			<!-- <label>
-				<input type="radio" bind:group={showAverage.value} value={true} />
-				average
-			</label>
-			<label>
-				<input type="radio" bind:group={showAverage.value} value={false} />
-				aggregate
-			</label> -->
-			<div class="select-wrapper">
-				<select id="avg-aggregate-selector" bind:value={showAverage.value}>
-					<option value={true}>average</option>
-					<option value={false}>aggregate</option>
-				</select>
-			</div>
-			across selected time range.
-		</div>
 	</div>
 	<MainArea />
 </div>
@@ -226,7 +231,7 @@
 	}
 
 	.sidebar {
-		background-color: #2c3e50; /* Sidebar background color */
+		background-color: hsl(210, 13%, 37%); /* Sidebar background color #2c3e50*/
 		color: white; /* Sidebar text color */
 		padding: 20px;
 	}
@@ -257,5 +262,22 @@
 
 	select option {
 		color: black; /* Set the font color of the options to black */
+	}
+
+	.display-options-container {
+		/* margin-top: 30px; */
+	}
+	ul {
+		padding-left: 20px;
+	}
+	li {
+		margin-bottom: 20px;
+	}
+	hr {
+		margin-top: 2.5rem;
+		opacity: 0.5;
+	}
+	.font-size-smaller {
+		font-size: 1rem;
 	}
 </style>

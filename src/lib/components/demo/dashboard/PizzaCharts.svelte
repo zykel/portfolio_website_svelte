@@ -20,7 +20,7 @@
 
 	// $inspect({ width, height });
 
-	const pinAreaWidth = 20;
+	const pinAreaWidth = 18;
 	const labelAreaWidth = 140;
 	const gapLeftToChart = 20;
 	const reorderButtonAreaHeight = 10;
