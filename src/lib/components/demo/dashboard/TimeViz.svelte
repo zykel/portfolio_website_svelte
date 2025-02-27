@@ -13,6 +13,7 @@
 	import AxisX from '$lib/components/demo/dashboard/AxisX.svelte';
 	import AxisY from '$lib/components/demo/dashboard/AxisY.svelte';
 	import TimeVizBrush from '$lib/components/demo/dashboard/TimeVizBrush.svelte';
+	import TimeVizGradient from '$lib/components/demo/dashboard/TimeVizGradient.svelte';
 
 	let { width, height } = $props();
 	const margin = getContext('margin');
@@ -24,9 +25,14 @@
 
 	const timeVizData = $derived(getTimeVizData(data, selected.timeUnit, selected.type));
 
-	$inspect(timeVizData);
+	const hoveredPizzaName = getContext('hoveredPizzaName');
+	const timeVizDataHoverOrdered = $derived([
+		...timeVizData.filter((d) => d.name !== hoveredPizzaName.value),
+		...timeVizData.filter((d) => d.name === hoveredPizzaName.value)
+	]);
 
 	const yAxisLabelWidth = 70;
+	const yScaleTopPaddingFactor = 1.1;
 
 	/**
 	 * @param {string} timeUnit
@@ -57,7 +63,7 @@
 				0,
 				max(timeVizData, (/** @type {{ records: any; }} */ d) =>
 					max(d.records, (/** @type {{ count: any; }} */ e) => e.count)
-				) * 1.1
+				) * yScaleTopPaddingFactor
 			])
 			.range([height - margin.bottom, margin.top])
 	);
@@ -76,9 +82,10 @@
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" bind:this={svgTimeViz}>
 		<AxisX {xScale} {yScale} {yAxisLabelWidth} tickLabelsAll={xScale.domain()} />
 		<AxisY {xScale} {yScale} {yAxisLabelWidth} tickLabelsAll={yScale.ticks(3)} />
+		<TimeVizGradient {yScale} {height} />
 		<g class="lines">
-			{#each timeVizData as item}
-				<Line {item} {xScale} {yScale} />
+			{#each timeVizDataHoverOrdered as item}
+				<Line {item} {xScale} {yScale} {yScaleTopPaddingFactor} />
 			{/each}
 		</g>
 		<TimeVizBrush {xScale} {yScale} {svgTimeViz} />

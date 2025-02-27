@@ -35,19 +35,38 @@
 </script>
 
 <div class="main-area">
-	<div class="left-part">
+	<div
+		class="left-part"
+		style:grid-template-rows={selected.type === 'pizza_name' ? '3fr 2fr' : '2fr 3fr'}
+	>
+		<div class="section">
+			<div class="dashboard__section-title-container">
+				<h3>Total Number of Sales and Revenue</h3>
+			</div>
+			<div
+				class="svg-container"
+				bind:clientHeight={extents.pizzaChartsHeight}
+				bind:clientWidth={extents.pizzaChartsWidth}
+			>
+				<PizzaCharts width={extents.pizzaChartsWidth} height={extents.pizzaChartsHeight} />
+			</div>
+		</div>
 		<div class="section">
 			<div class="dashboard__section-title-container flex-row-spread">
-				<h3>Sales [?per X (?on average)]</h3>
-				<select
-					id="timeUnitSelector"
-					bind:value={selected.timeUnit}
-					onchange={() => resetTimeFilterRange()}
-				>
-					{#each getContext('timeUnits') as unit}
-						<option value={unit}>{unit}</option>
-					{/each}
-				</select>
+				<h3>
+					Sales per
+					<div class="select-wrapper">
+						<select
+							id="timeUnitSelector"
+							bind:value={selected.timeUnit}
+							onchange={() => resetTimeFilterRange()}
+						>
+							{#each getContext('timeUnits') as unit}
+								<option value={unit}>{unit}</option>
+							{/each}
+						</select>
+					</div>
+				</h3>
 				<label>
 					<input type="checkbox" bind:checked={showIndividualSales} />
 					Show individual sales
@@ -59,18 +78,6 @@
 				bind:clientWidth={extents.timeVizWidth}
 			>
 				<TimeViz width={extents.timeVizWidth} height={extents.timeVizHeight} />
-			</div>
-		</div>
-		<div class="section">
-			<div class="dashboard__section-title-container">
-				<h3>Total Number of Sales and Revenue</h3>
-			</div>
-			<div
-				class="svg-container"
-				bind:clientHeight={extents.pizzaChartsHeight}
-				bind:clientWidth={extents.pizzaChartsWidth}
-			>
-				<PizzaCharts width={extents.pizzaChartsWidth} height={extents.pizzaChartsHeight} />
 			</div>
 		</div>
 	</div>
@@ -119,7 +126,7 @@
 
 	.left-part {
 		display: grid;
-		grid-template-rows: 1fr 2fr; /* Two equal rows */
+		/*grid-template-rows: 3fr 2fr; /* Done dynamically in markdown */
 		grid-gap: 20px;
 		min-height: 0;
 	}
@@ -196,5 +203,33 @@
 	.ingredient-filter-container button:hover {
 		border: 1px solid black;
 		color: black;
+	}
+
+	.select-wrapper {
+		position: relative;
+		display: inline-block;
+	}
+	.select-wrapper::after {
+		content: '▾'; /* Unicode character for downward arrow */
+		position: absolute;
+		right: 0.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+		pointer-events: none; /* Ensure the arrow does not block clicks */
+		color: rgb(0, 0, 0); /* Arrow color */
+	}
+	#timeUnitSelector {
+		appearance: none; /* Remove default styles */
+		background: none; /* Remove default background */
+		border: 1px solid rgb(0, 0, 0); /* Remove default border */
+		border-radius: 10px;
+		color: inherit; /* Inherit text color */
+		font: inherit; /* Inherit font styles */
+		padding: 0 1.5rem 0 0.5rem; /* Remove default padding */
+		margin: 0; /* Remove default margin */
+	}
+
+	#timeUnitSelector option {
+		color: black; /* Set the font color of the options to black */
 	}
 </style>

@@ -47,8 +47,6 @@
 
 	const xLeftSnapped = $derived(idxLeft * bandwidth + xMin);
 	const xRightSnapped = $derived(idxRight * bandwidth + xMin);
-
-	$inspect(xRight);
 </script>
 
 <svelte:window

@@ -96,13 +96,13 @@
 			.padding(0.3)
 	);
 
-	/** @type {{value: null | string}} */
-	let hoveredPizzaName = $state({ value: null });
-	const updateHoveredPizzaName = (/** @type {string | null} */ name) => {
-		hoveredPizzaName.value = name;
-	};
-	setContext('hoveredPizzaName', hoveredPizzaName);
-	setContext('updateHoveredPizzaName', updateHoveredPizzaName);
+	// /** @type {{value: null | string}} */
+	// let hoveredPizzaName = $state({ value: null });
+	// const updateHoveredPizzaName = (/** @type {string | null} */ name) => {
+	// 	hoveredPizzaName.value = name;
+	// };
+	const hoveredPizzaName = getContext('hoveredPizzaName');
+	const updateHoveredPizzaName = getContext('updateHoveredPizzaName');
 
 	let loaded = $state(false);
 

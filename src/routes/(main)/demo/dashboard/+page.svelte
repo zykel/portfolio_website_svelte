@@ -23,7 +23,7 @@
 		return d;
 	});
 
-	const timeUnits = ['day of week', 'hour of day', 'month of year'];
+	const timeUnits = ['hour of day', 'day of week', 'month of year'];
 	const types = ['pizza_name', 'pizza_category'];
 	const pizzaNames = [...new Set(csvData.map((d) => d.pizza_name))];
 	const pizzaCategories = ['Classic', 'Veggie', 'Supreme', 'Chicken'];
@@ -34,6 +34,12 @@
 		pizzaCategories: [...pizzaCategories]
 	});
 	const focusedItems = $state({ value: /** @type {string[]} */ ([]) });
+
+	/** @type {{value: null | string}} */
+	let hoveredPizzaName = $state({ value: null });
+	const updateHoveredPizzaName = (/** @type {string | null} */ name) => {
+		hoveredPizzaName.value = name;
+	};
 
 	const getFullRange = () => {
 		return selected.timeUnit === 'day of week'
@@ -89,8 +95,8 @@
 	setContext('timeFilterRange', timeFilterRange);
 	setContext('resetTimeFilterRange', resetTimeFilterRange);
 	setContext('showAverage', showAverage);
-
-	$inspect(showAverage.value);
+	setContext('hoveredPizzaName', hoveredPizzaName);
+	setContext('updateHoveredPizzaName', updateHoveredPizzaName);
 </script>
 
 <div class="dashboard-container">
@@ -230,7 +236,7 @@
 		display: inline-block;
 	}
 	.select-wrapper::after {
-		content: 'v'; /* Unicode character for downward arrow */
+		content: '▾'; /* Unicode character for downward arrow */
 		position: absolute;
 		right: 0.5rem;
 		top: 50%;
