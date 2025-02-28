@@ -1,0 +1,62 @@
+/* Or Lora */
+@font-face {
+	font-family: 'Lora';
+	src: url('/fonts/Lora/Lora-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lora';
+	src: url('/fonts/Lora/Lora-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lora';
+	src: url('/fonts/Lora/Lora-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lora';
+	src: url('/fonts/Lora/Lora-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Lora', serif;
+	/* font-family: sans-serif; */
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.report-container {
+	max-width: 900px;
+}
+
+.interaction-text {
+	font-style: italic;
+}
+
+h1 {
+	font-size: 2rem;
+	font-weight: 900;
+}
+.insight-text {
+	padding-left: 1rem; /* Indent the text */
+	border-left: 4px solid gray; /* Vertical line on the left side */
+	margin: 1rem 0; /* Optional: Add some vertical margin */
+}
+.limit-width {
+	max-width: 600px;
+}
