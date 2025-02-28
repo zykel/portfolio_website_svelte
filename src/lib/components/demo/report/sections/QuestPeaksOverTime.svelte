@@ -6,6 +6,7 @@
 </script>
 
 <section id={sectionId}>
+	<hr />
 	<h2 id="{sectionId}-header" class="section-header limit-width">
 		{question}
 	</h2>

@@ -1,5 +1,5 @@
 import { scaleOrdinal } from 'd3-scale';
-import { schemeCategory10 } from 'd3-scale-chromatic';
+import { schemeObservable10 } from 'd3-scale-chromatic';
 import { scaleLinear, scaleBand } from 'd3-scale';
 import { max, rollups, sum } from 'd3-array';
 /**
@@ -8,12 +8,11 @@ import { max, rollups, sum } from 'd3-array';
 
 export const pizzaCategories = ['Classic', 'Chicken', 'Supreme', 'Veggie'];
 
-export const categoryColorScale = scaleOrdinal().domain(pizzaCategories).range(schemeCategory10);
+export const categoryColorScale = scaleOrdinal().domain(pizzaCategories).range(schemeObservable10);
 
 /**
  * @param {DataEntry[]} data
  * @returns {{ name: string, nrSales: number, category: string }[]}
-
  */
 export const getDataGrouped = (data) => {
 	return rollups(

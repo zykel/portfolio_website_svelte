@@ -1,4 +1,4 @@
-/* Or Lora */
+/* Or Poppins */
 @font-face {
 	font-family: 'Lora';
 	src: url('/fonts/Lora/Lora-Regular.ttf') format('truetype');
@@ -10,6 +10,13 @@
 	font-family: 'Lora';
 	src: url('/fonts/Lora/Lora-SemiBold.ttf') format('truetype');
 	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lora';
+	src: url('/fonts/Lora/Lora-Bold.ttf') format('truetype');
+	font-weight: 700;
 	font-style: normal;
 }
 
@@ -27,6 +34,34 @@
 	font-style: italic;
 }
 
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -39,24 +74,78 @@ body {
 	flex-direction: column;
 	align-items: center;
 }
+.chart-svg,
+.legend {
+	font-family: 'Poppins', sans-serif;
+}
 
 .report-container {
-	max-width: 900px;
+	width: calc(min(900px, 95vw));
 }
 
 .interaction-text {
 	font-style: italic;
 }
 
+section {
+	margin: 2.5rem 0;
+}
+hr {
+	margin: 0;
+}
+.chart {
+	margin: 2rem 0;
+}
+
 h1 {
 	font-size: 2rem;
-	font-weight: 900;
+	font-weight: 700;
+	color: #333333;
 }
+h2 {
+	color: #333333;
+}
+/* .insight-text {
+	padding-left: 1rem; 
+	border-left: 4px solid gray;
+	margin: 1rem 0; 
+} */
 .insight-text {
-	padding-left: 1rem; /* Indent the text */
-	border-left: 4px solid gray; /* Vertical line on the left side */
-	margin: 1rem 0; /* Optional: Add some vertical margin */
+	padding: 1rem;
+	border: 3px solid rgb(224, 198, 0);
+	border-radius: 1rem;
 }
 .limit-width {
-	max-width: 600px;
+	width: calc(min(600px, 95vw));
+}
+.axis-x,
+.axis-y,
+.label-small {
+	font-size: 0.8rem;
+}
+
+.pizza-category-classic-text,
+.pizza-category-chicken-text,
+.pizza-category-supreme-text,
+.pizza-category-veggie-text {
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-thickness: 3px;
+	color: #333333;
+	/* padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 5px; */
+}
+
+.pizza-category-classic-text {
+	text-decoration-color: #4269d0;
+}
+.pizza-category-chicken-text {
+	text-decoration-color: #efb118;
+}
+.pizza-category-supreme-text {
+	text-decoration-color: #ff725c;
+}
+.pizza-category-veggie-text {
+	text-decoration-color: #6cc5b0;
 }
