@@ -12,6 +12,7 @@
 	import QuestIngredientsUsedMost from '$lib/components/demo/report/sections/QuestIngredientsUsedMost.svelte';
 	import QuestImproveBusiness from '$lib/components/demo/report/sections/QuestImproveBusiness.svelte';
 	import TableOfContents from '$lib/components/demo/report/sections/TableOfContents.svelte';
+	import HoverInfo from '$lib/components/demo/report/charts/HoverInfo.svelte';
 
 	let { data } = $props();
 
@@ -36,7 +37,11 @@
 	];
 
 	const extents = $state({ width: 0, widthLimited: 0 });
+	const showHoverInfo = $state({ value: () => {} });
+	const hideHoverInfo = $state({ value: () => {} });
 	setContext('extents', extents);
+	setContext('showHoverInfo', showHoverInfo);
+	setContext('hideHoverInfo', hideHoverInfo);
 
 	const getSectionHeadersInitial = () => {
 		/**@type {{ [key: string]: string }}*/
@@ -77,7 +82,11 @@
 		bind:sectionHeader={sectionHeaders[sectionIds[3]]}
 		data={csvData}
 	/>
+	<HoverInfo />
 </main>
 
 <style>
+	:global(body) {
+		position: relative;
+	}
 </style>

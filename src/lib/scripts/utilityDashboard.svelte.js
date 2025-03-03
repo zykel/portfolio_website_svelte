@@ -93,12 +93,6 @@ export const getTimeVizData = (data, timeUnit, type) => {
 	const normalizationFactor = getNormalizationFactor(data);
 
 	if (timeUnit === 'day of week') {
-		const mue = groups(
-			data.value,
-			(/** @type {DataEntry}*/ d) => d[type],
-			(/** @type {DataEntry}*/ d) => d.day
-		);
-		// debugger;
 		// Bin data, first by type, then by day of week
 		const binnedData = rollups(
 			data.value,

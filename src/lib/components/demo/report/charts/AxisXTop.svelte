@@ -11,7 +11,7 @@
 	<text
 		x={xScale.range()[1]}
 		y={margin.top - ticklineHeight - axisTitleOffset}
-		dy="-0.5em"
+		dy="-0.5rem"
 		text-anchor="end"
 		class="axis-title"
 	>
