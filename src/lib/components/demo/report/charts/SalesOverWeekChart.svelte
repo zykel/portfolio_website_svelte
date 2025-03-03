@@ -2,11 +2,12 @@
 	import { getContext } from 'svelte';
 	import { scaleLinear, scaleBand } from 'd3-scale';
 	import { max } from 'd3-array';
-	import { daysOfWeek, defaultColor } from '$lib/scripts/utilityReport.js';
+	import { daysOfWeek, daysOfWeekFullMap, defaultColor } from '$lib/scripts/utilityReport.js';
+	import PointerAnnotation from './PointerAnnotation.svelte';
 
 	let { dataWeek } = $props();
 
-	const margin = { top: 20, right: 10, bottom: 30, left: 40 };
+	const margin = { top: 60, right: 0, bottom: 30, left: 40 };
 
 	const extents = getContext('extents');
 	const showHoverInfo = $derived(getContext('showHoverInfo').value);
@@ -65,7 +66,7 @@
 						stroke-width="1"
 					/>
 				{/each}
-				<text x={0} y={yScale.range()[1]} class="axis-title">↑ Number of sales </text>
+				<text x={0} y={yScale.range()[1]} class="axis-title">↑ Average number of sales </text>
 			</g>
 			<g class="bars">
 				{#each dataWeek as { day, nrSalesAvg }, i}
@@ -92,6 +93,14 @@
 					/>
 				{/each}
 			</g>
+
+			<PointerAnnotation
+				x={xScale('Fr') + xScale.bandwidth() / 2}
+				y={yScale(dataWeek[4].nrSalesAvg)}
+				placement={'topright'}
+				text={'Fridays, the most pizzas are sold on average, namely 159.'}
+				width={150}
+			/>
 			<g class="ghost-hover-bars">
 				{#each dataWeek as { day, nrSalesAvg }, i}
 					{@const handlePointerOver = (/** @type {PointerEvent} */ event) => {
@@ -99,7 +108,7 @@
 						showHoverInfo({
 							event,
 							infoText: [
-								{ title: 'Day: ', value: day },
+								{ title: 'Day: ', value: daysOfWeekFullMap.get(day) },
 								{
 									title: 'Average number of sales: ',
 									value: yScale.tickFormat(nrYAxisTicks)(nrSalesAvg)

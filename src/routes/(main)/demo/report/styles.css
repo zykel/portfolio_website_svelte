@@ -111,10 +111,23 @@ h2 {
 	margin: 1rem 0; 
 } */
 .insight-text {
+	position: relative;
 	padding: 1rem;
-	border: 3px solid rgb(224, 198, 0);
+	padding-left: 3rem;
+	/* border: 3px solid rgb(224, 198, 0); */
+	background-color: rgba(255, 225, 0, 0.137);
 	border-radius: 1rem;
+	box-sizing: border-box;
 }
+.insight-text::before {
+	content: '💡'; /* Insert the symbol */
+	position: absolute;
+	left: 0; /* Position the symbol inside the left padding */
+	top: 0;
+	/* transform: translateY(-50%); */
+	font-size: 2rem; /* Adjust the size of the symbol */
+}
+
 .limit-width {
 	width: calc(min(600px, 95vw));
 }
