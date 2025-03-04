@@ -14,9 +14,7 @@
 	const width = $derived(extents.widthLimited);
 	const height = 500;
 
-	const margin = { top: 20, right: 30, bottom: 65, left: 40 };
-
-	$inspect(dataDays);
+	const margin = { top: 20, right: 30, bottom: 80, left: 40 };
 
 	const xScale = $derived(
 		scaleBand()
@@ -49,7 +47,6 @@
 		return { day, dayIdx, time, frequency };
 	};
 	const maxFrequencyInfo = $derived(getMaxFrequencyInfo());
-	$inspect(maxFrequencyInfo);
 
 	const heightSingleChart = $derived((height - margin.bottom - margin.top) / 7);
 
@@ -102,7 +99,7 @@
 						<text
 							class="x-axis-text label-small"
 							x={xScale(time) + xScale.bandwidth() / 2}
-							y={height - margin.bottom + 20}
+							y={height - margin.bottom + 40}
 							text-anchor="middle"
 							dominant-baseline="hanging"
 						>
@@ -113,7 +110,7 @@
 				<text
 					class="x-axis-text label-small"
 					x={(xScale.range()[1] + xScale.range()[0]) / 2}
-					y={height - margin.bottom + 55}
+					y={height - margin.bottom + 75}
 					text-anchor="middle"
 				>
 					Time of day →
@@ -128,7 +125,7 @@
 				{/each}
 			</defs>
 			{#each dataDays as { day, frequencyInfoArray }, i}
-				<g class="daytime-path-g" transform="translate(0, {i * heightSingleChart})">
+				<g class="daytime-path-g" transform="translate(0, {i * heightSingleChart + margin.top})">
 					<path
 						d={lineGenerator(frequencyInfoArray)}
 						fill="url(#gradient-{i})"
@@ -141,7 +138,7 @@
 				{#each dataDays as { day, frequencyInfoArray }, i}
 					<text
 						x={margin.left - 5}
-						y={i * heightSingleChart + yScale(0)}
+						y={i * heightSingleChart + margin.top + yScale(0)}
 						class="y-axis-text label-small"
 						text-anchor="end"
 					>
@@ -151,7 +148,9 @@
 			</g>
 			<PointerAnnotation
 				x={xScale(maxFrequencyInfo.time)}
-				y={yScale(maxFrequencyInfo.frequency) + maxFrequencyInfo.dayIdx * heightSingleChart}
+				y={yScale(maxFrequencyInfo.frequency) +
+					maxFrequencyInfo.dayIdx * heightSingleChart +
+					margin.top}
 				widthArrow={xScale(maxFrequencyInfo.time) - xScale('11:00')}
 				heightArrow={10}
 				placement={'topleft'}
@@ -163,20 +162,33 @@
 			{#if hoverTime !== ''}
 				<g class="hover-info-g">
 					<!-- svelte-ignore component_name_lowercase -->
-					<line
-						x1={xScale(hoverTime)}
-						y1={margin.top}
-						x2={xScale(hoverTime)}
-						y2={margin.top + 7 * heightSingleChart + 10}
+					<path
+						d="M {xScale(hoverTime) +
+							(xScale(hoverTime) > width / 2 ? -200 : 200)} {margin.top} L {xScale(
+							hoverTime
+						)} {margin.top} L {xScale(hoverTime)} {margin.top + 6 * heightSingleChart + yScale(0)}"
 						stroke="black"
+						fill="none"
 					/>
+					<text
+						class="daytime-hover-label label-small"
+						x={xScale(hoverTime) + (xScale(hoverTime) > width / 2 ? -5 : +5)}
+						y={margin.top - 10}
+						dominant-baseline="middle"
+						text-anchor={xScale(hoverTime) > width / 2 ? 'end' : 'start'}
+					>
+						Sales between {hoverTime} and {timeOfDayDomain[timeOfDayDomain.indexOf(hoverTime) + 1]}
+					</text>
 					{#each dataDays as { day, frequencyInfoArray }, i}
 						{@const frequency = frequencyInfoArray.find(
 							(/** @type {any} */ d) => d.time === hoverTime
 						).frequency}
 						{@const x = xScale(hoverTime)}
 						{@const y = yScale(frequency)}
-						<g class="daytime-hover-circle-g" transform="translate(0, {i * heightSingleChart})">
+						<g
+							class="daytime-hover-circle-g"
+							transform="translate(0, {i * heightSingleChart + margin.top})"
+						>
 							<circle cx={x} cy={y} r="5" fill="none" stroke="black" stroke-width="2" />
 							<text
 								class="daytime-hover-label label-small"
@@ -185,9 +197,7 @@
 								dominant-baseline="middle"
 								text-anchor={x > width / 2 ? 'end' : 'start'}
 							>
-								{Math.round(frequency * 100) / 100} sales between {hoverTime} and {timeOfDayDomain[
-									timeOfDayDomain.indexOf(hoverTime) + 1
-								]}
+								{Math.round(frequency * 100) / 100} sales
 							</text></g
 						>
 					{/each}

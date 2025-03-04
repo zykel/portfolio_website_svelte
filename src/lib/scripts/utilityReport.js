@@ -169,3 +169,35 @@ export const getDayChartData = (data) => {
 
 	return binnedData;
 };
+
+/**
+ * Counts the occurrences of each unique string in an array.
+ * @param {any[]} array - The array of strings.
+ * @returns {Object.<string, number>} - An object with the unique strings as keys and their counts as values.
+ */
+function countOccurrences(array) {
+	return array.reduce((acc, value) => {
+		acc[value] = (acc[value] || 0) + 1;
+		return acc;
+	}, {});
+}
+
+/**
+ * @param {DataEntry[]} data
+ */
+export const getIngredientsData = (data) => {
+	// debugger;
+
+	const ingredientOccurrenceObj = countOccurrences(
+		data.map((d) => d.pizza_ingredients.split('; ')).flat()
+	);
+	// Transform obj into arr
+	const ingredientOccurrenceArr = Object.entries(ingredientOccurrenceObj)
+		.map(([ingredient, count]) => ({
+			ingredient,
+			count: count
+		}))
+		.sort((a, b) => b.count - a.count);
+
+	return ingredientOccurrenceArr;
+};
