@@ -15,12 +15,12 @@
 
 	let { dataGrouped, nrTopPizzas, nrBottomPizzas } = $props();
 
-	const margin = { top: 55, right: 80, bottom: 5, left: 150 };
+	const margin = { top: 55, right: 80, bottom: 5, left: 130 };
 
 	const extents = getContext('extents');
 	const showHoverInfo = $derived(getContext('showHoverInfo').value);
 	const hideHoverInfo = $derived(getContext('hideHoverInfo').value);
-	const width = $derived(extents.width);
+	const width = $derived(extents.widthLimited);
 
 	const rowHeight = 20;
 	const nrXAxisTicks = 4;
@@ -78,13 +78,27 @@
 				{/each}
 			</g>
 			<g class="axis-y">
+				<defs>
+					<linearGradient
+						gradientUnits="userSpaceOnUse"
+						x1="0"
+						x2={margin.left}
+						y1="0"
+						y2="0"
+						id="pizzas-truncateText"
+					>
+						<stop offset="90%" stop-opacity="1" />
+						<stop offset="100%" stop-opacity="0" />
+					</linearGradient>
+				</defs>
 				{#each dataGrouped as { name, nrSales, category }, i}
 					<text
-						x={margin.left - 5}
+						x={1}
 						y={yScale(name) + yScale.bandwidth() / 2}
 						dominant-baseline="middle"
-						text-anchor="end"
+						text-anchor="beginning"
 						style:font-weight={hoveredName === name ? 'bold' : 'normal'}
+						fill="url(#pizzas-truncateText)"
 					>
 						{name.replace('The ', '').replace(' Pizza', '')}
 					</text>

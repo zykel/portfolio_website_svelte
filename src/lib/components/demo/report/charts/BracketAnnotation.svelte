@@ -27,8 +27,16 @@
 	/>
 
 	{#if text}
-		<foreignObject x={xText} y={(topleft.y + bottomleft.y) / 2 - height / 2} {width} {height}>
-			<div class="annotation-text-container label-small">
+		<foreignObject
+			x={xText}
+			y={(topleft.y + bottomleft.y) / 2 - height / 2}
+			width={width - (xText - topleft.x)}
+			{height}
+		>
+			<div
+				class="annotation-text-container label-small"
+				style:width="{width - (xText - topleft.x)}px"
+			>
 				{text}
 			</div>
 		</foreignObject>
@@ -43,7 +51,6 @@
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		width: 100%;
 		height: 100%;
 		font-weight: 600;
 		color: #333333;

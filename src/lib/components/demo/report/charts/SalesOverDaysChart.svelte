@@ -14,7 +14,7 @@
 	const width = $derived(extents.widthLimited);
 	const height = 500;
 
-	const margin = { top: 20, right: 30, bottom: 80, left: 40 };
+	const margin = { top: 20, right: 30, bottom: 80, left: 30 };
 
 	const xScale = $derived(
 		scaleBand()
@@ -137,10 +137,10 @@
 			<g class="y-axis-g">
 				{#each dataDays as { day, frequencyInfoArray }, i}
 					<text
-						x={margin.left - 5}
+						x={1}
 						y={i * heightSingleChart + margin.top + yScale(0)}
 						class="y-axis-text label-small"
-						text-anchor="end"
+						text-anchor="beginning"
 					>
 						{day}
 					</text>
