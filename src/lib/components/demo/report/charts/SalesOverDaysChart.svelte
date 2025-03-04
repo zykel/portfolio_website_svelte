@@ -156,8 +156,8 @@
 				heightArrow={10}
 				placement={'topleft'}
 				text={'The hightest sales peak is on Thursday between 12:45 and 13:00, with 6.98.'}
-				width={80}
-				height={170}
+				width={(xScale('11:00') - xScale.range()[0]) * 0.8}
+				height={270}
 				baseline="top"
 			/>
 			{#if hoverTime !== ''}
