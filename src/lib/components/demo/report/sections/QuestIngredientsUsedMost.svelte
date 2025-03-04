@@ -20,7 +20,7 @@
 		This is some default explanations regarding the content of the dashboard.
 	</p>
 	<p class="interaction-text limit-width">
-		Interaction: Here I describe how the interaction takes place.
+		➤ Interaction: Here I describe how the interaction takes place.
 	</p>
 	<IngredientsChart data={ingredientsData} />
 	<p class="insight-text limit-width">

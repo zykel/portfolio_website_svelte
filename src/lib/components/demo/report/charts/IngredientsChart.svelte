@@ -3,19 +3,20 @@
 	import { max } from 'd3-array';
 	import { getContext } from 'svelte';
 	import { defaultColor } from '$lib/scripts/utilityReport.js';
+	import AxisXTop from './AxisXTop.svelte';
 
 	let { data } = $props();
 
 	const extents = getContext('extents');
 	const width = $derived(extents.widthLimited);
 
-	const margin = { top: 20, right: 30, bottom: 30, left: 130 };
+	const margin = { top: 55, right: 30, bottom: 30, left: 130 };
 
-	const topN = 20;
+	let topN = $state(10);
 	const dataTopN = $derived(data.slice(0, topN));
 
 	const barHeight = 20;
-	const height = topN * barHeight + margin.top + margin.bottom;
+	const height = $derived(topN * barHeight + margin.top + margin.bottom);
 
 	const maxCount = $derived(max(dataTopN, (/** @type {any} */ d) => d.count));
 	const ingredients = $derived(dataTopN.map((/** @type {any} */ d) => d.ingredient));
@@ -30,13 +31,38 @@
 		scaleBand()
 			.domain(ingredients)
 			.range([margin.top, height - margin.bottom])
-			.padding(0.1)
+			.padding(0.2)
 	);
+
+	const nrXAxisTicks = 4;
 </script>
 
 <div class="chart">
+	<!-- radio selection of 3 options bound to the value to topN -->
+	<div class="radio-selection legend">
+		Show top
+		<span class="ingredients-radio-selection-options">
+			<label>
+				<input type="radio" bind:group={topN} value={10} />10
+			</label>
+			<label>
+				<input type="radio" bind:group={topN} value={20} />20
+			</label>
+			<label>
+				<input type="radio" bind:group={topN} value={data.length} />all
+			</label>
+		</span>
+		ingredients.
+	</div>
 	<svg class="chart-svg" {width} {height}>
 		{#if width > 0}
+			<AxisXTop
+				{xScale}
+				{yScale}
+				{margin}
+				nrTicks={nrXAxisTicks}
+				axisTitle={'Number of times used'}
+			/>
 			<g class="ingredients-clip-bars">
 				<defs>
 					{#each dataTopN as { ingredient, count }, i}
@@ -80,3 +106,17 @@
 		{/if}
 	</svg>
 </div>
+
+<style>
+	.ingredients-radio-selection-options {
+		margin: 0 8px;
+	}
+	label {
+		text-decoration: underline;
+		margin: 0 3px;
+	}
+	input,
+	label {
+		cursor: pointer;
+	}
+</style>
