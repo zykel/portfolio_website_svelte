@@ -10,8 +10,6 @@
 	let { dataDays } = $props();
 
 	const extents = getContext('extents');
-	const showHoverInfo = $derived(getContext('showHoverInfo').value);
-	const hideHoverInfo = $derived(getContext('hideHoverInfo').value);
 	const width = $derived(extents.widthLimited);
 	const height = 500;
 
@@ -49,6 +47,23 @@
 			.y1((/** @type {any} */ d) => yScale(d.frequency))
 			.curve(curveCardinal)
 	);
+
+	let hoverTime = $state('');
+
+	const showHoverInfo = (
+		/** @type {PointerEvent & { currentTarget: EventTarget & SVGRectElement; }} */ event
+	) => {
+		// Determine the element from the xScale domain to which the hovered x position corresponds
+		const x = event.clientX - event.currentTarget.getBoundingClientRect().left;
+		const timeIndex = Math.floor(x / xScale.step());
+		if (timeIndex < 0 || timeIndex >= timeOfDayDomain.length) return;
+		const time = timeOfDayDomain[timeIndex];
+		hoverTime = time;
+	};
+
+	const hideHoverInfo = () => {
+		hoverTime = '';
+	};
 </script>
 
 <div class="chart">
@@ -65,10 +80,10 @@
 				{#each timeOfDayDomain as time, i}
 					{#if time.includes(':00') && +time.split(':')[0] % 4 === 2}
 						<text
+							class="x-axis-text label-small"
 							x={xScale(time) + xScale.bandwidth() / 2}
 							y={height - margin.bottom + 30}
-							class="x-axis-text label-small"
-							text-anchor="end"
+							text-anchor="middle"
 							dominant-baseline="hanging"
 						>
 							{time}
@@ -76,9 +91,9 @@
 					{/if}
 				{/each}
 				<text
+					class="x-axis-text label-small"
 					x={(xScale.range()[1] + xScale.range()[0]) / 2}
 					y={height - margin.bottom + 65}
-					class="x-axis-text label-small"
 					text-anchor="middle"
 				>
 					Time of day →
@@ -114,6 +129,62 @@
 					</text>
 				{/each}
 			</g>
+			{#if hoverTime !== ''}
+				<g class="hover-info-g">
+					<!-- svelte-ignore component_name_lowercase -->
+					<line
+						x1={xScale(hoverTime)}
+						y1={margin.top}
+						x2={xScale(hoverTime)}
+						y2={margin.top + 7 * heightSingleChart + 10}
+						stroke="black"
+					/>
+					{#each dataDays as { day, frequencyInfoArray }, i}
+						{@const frequency = frequencyInfoArray.find(
+							(/** @type {any} */ d) => d.time === hoverTime
+						).frequency}
+						{@const x = xScale(hoverTime)}
+						{@const y = yScale(frequency)}
+						<g class="daytime-hover-circle-g" transform="translate(0, {i * heightSingleChart})">
+							<circle cx={x} cy={y} r="5" fill="none" stroke="black" stroke-width="2" />
+							<text
+								class="daytime-hover-label label-small"
+								x={x + (x > width / 2 ? -10 : +10)}
+								{y}
+								dominant-baseline="middle"
+								text-anchor={x > width / 2 ? 'end' : 'start'}
+							>
+								{Math.round(frequency * 100) / 100} sales between {hoverTime} and {timeOfDayDomain[
+									timeOfDayDomain.indexOf(hoverTime) + 1
+								]}
+							</text></g
+						>
+					{/each}
+				</g>
+			{/if}
+			<rect
+				class="hover-overlay"
+				x={margin.left}
+				y={0}
+				width={width - margin.left - margin.right - xScale.step() - 5}
+				{height}
+				fill="transparent"
+				pointer-events="all"
+				onpointerover={showHoverInfo}
+				onpointermove={showHoverInfo}
+				onpointerleave={hideHoverInfo}
+			/>
 		{/if}
 	</svg>
 </div>
+
+<style>
+	.daytime-hover-label {
+		font-weight: bold;
+		text-shadow:
+			-1px -1px 0 #fff,
+			1px -1px 0 #fff,
+			-1px 1px 0 #fff,
+			1px 1px 0 #fff; /* Create a white border around the text */
+	}
+</style>

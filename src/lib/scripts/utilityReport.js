@@ -17,7 +17,7 @@ export const daysOfWeekFullMap = new Map([
 	['Sa', 'Saturday'],
 	['Su', 'Sunday']
 ]);
-export const timeOfDayDomain = range(8, 24, 1)
+export const timeOfDayDomain = range(7, 24, 1)
 	.map((d) => {
 		const hours = d.toString().padStart(2, '0');
 		return [hours + ':00', hours + ':15', hours + ':30', hours + ':45'];
@@ -25,7 +25,7 @@ export const timeOfDayDomain = range(8, 24, 1)
 	.flat();
 
 export const categoryColorScale = scaleOrdinal().domain(pizzaCategories).range(schemeObservable10);
-export const defaultColor = 'hsl(249, 80%, 67%)'; //'#87CEEB';
+export const defaultColor = 'hsl(249, 80%, 72%)'; //'#87CEEB';
 
 export const timeBinningWidthMinutes = 15;
 
