@@ -6,6 +6,7 @@
 	import { getContext } from 'svelte';
 	import { timeOfDayDomain, timeBinningWidthMinutes } from '$lib/scripts/utilityReport.js';
 	import ContinuousColorLegend from '$lib/components/demo/report/charts/ContinuousColorLegend.svelte';
+	import PointerAnnotation from '$lib/components/demo/report/charts/PointerAnnotation.svelte';
 
 	let { dataDays } = $props();
 
@@ -13,7 +14,7 @@
 	const width = $derived(extents.widthLimited);
 	const height = 500;
 
-	const margin = { top: 20, right: 30, bottom: 70, left: 40 };
+	const margin = { top: 20, right: 30, bottom: 65, left: 40 };
 
 	$inspect(dataDays);
 
@@ -29,7 +30,26 @@
 			Math.max(...d.frequencyInfoArray.map((/** @type {any} */ e) => e.frequency))
 		)
 	);
-	$inspect(maxFrequency);
+	const getMaxFrequencyInfo = () => {
+		let day;
+		let dayIdx = 0;
+		let time;
+		let frequency;
+		dataDays.forEach((/** @type {any} */ d, /** @type {Number} */ i) =>
+			d.frequencyInfoArray.forEach((/** @type {any} */ e) => {
+				if (e.frequency === maxFrequency) {
+					day = d.day;
+					dayIdx = i;
+					time = e.time;
+					frequency = e.frequency;
+				}
+			})
+		);
+
+		return { day, dayIdx, time, frequency };
+	};
+	const maxFrequencyInfo = $derived(getMaxFrequencyInfo());
+	$inspect(maxFrequencyInfo);
 
 	const heightSingleChart = $derived((height - margin.bottom - margin.top) / 7);
 
@@ -82,7 +102,7 @@
 						<text
 							class="x-axis-text label-small"
 							x={xScale(time) + xScale.bandwidth() / 2}
-							y={height - margin.bottom + 30}
+							y={height - margin.bottom + 20}
 							text-anchor="middle"
 							dominant-baseline="hanging"
 						>
@@ -93,7 +113,7 @@
 				<text
 					class="x-axis-text label-small"
 					x={(xScale.range()[1] + xScale.range()[0]) / 2}
-					y={height - margin.bottom + 65}
+					y={height - margin.bottom + 55}
 					text-anchor="middle"
 				>
 					Time of day →
@@ -129,6 +149,17 @@
 					</text>
 				{/each}
 			</g>
+			<PointerAnnotation
+				x={xScale(maxFrequencyInfo.time)}
+				y={yScale(maxFrequencyInfo.frequency) + maxFrequencyInfo.dayIdx * heightSingleChart}
+				widthArrow={xScale(maxFrequencyInfo.time) - xScale('11:00')}
+				heightArrow={10}
+				placement={'topleft'}
+				text={'The hightest sales peak is on Thursday between 12:45 and 13:00, with 6.98.'}
+				width={80}
+				height={170}
+				baseline="top"
+			/>
 			{#if hoverTime !== ''}
 				<g class="hover-info-g">
 					<!-- svelte-ignore component_name_lowercase -->
@@ -182,9 +213,9 @@
 	.daytime-hover-label {
 		font-weight: bold;
 		text-shadow:
-			-1px -1px 0 #fff,
-			1px -1px 0 #fff,
-			-1px 1px 0 #fff,
-			1px 1px 0 #fff; /* Create a white border around the text */
+			-1px -1px 0 rgba(255, 255, 255, 0.5),
+			1px -1px 0 rgba(255, 255, 255, 0.5),
+			-1px 1px 0 rgba(255, 255, 255, 0.5),
+			1px 1px 0 rgba(255, 255, 255, 0.5); /* Create a white border around the text */
 	}
 </style>

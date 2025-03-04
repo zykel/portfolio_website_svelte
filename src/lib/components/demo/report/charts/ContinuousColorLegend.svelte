@@ -37,5 +37,6 @@
 		width: 100px;
 		height: 1rem;
 		border-radius: 10px;
+		border: 1px solid lightgray;
 	}
 </style>

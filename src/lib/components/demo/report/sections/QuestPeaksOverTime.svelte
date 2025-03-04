@@ -6,7 +6,7 @@
 	let { sectionId, data, sectionHeader = $bindable() } = $props();
 
 	const question =
-		'How are the sales distributed over the course of an average day/an average week?';
+		'How are the sales distributed over the course of an average week/an average day?';
 	sectionHeader = question;
 	const dataWeek = $derived(getWeekChartData(data));
 	const dataDays = $derived(getDayChartData(data));
@@ -35,7 +35,16 @@
 		We now look at how the sales are distributed over an average day. To see whether the behavior
 		differs between different days of the week, we distiguish the analysis by the day of the week.
 	</p>
-	<p class="interaction-text limit-width">➤ Interaction: You may .</p>
+	<p class="interaction-text limit-width">
+		➤ Interaction: You may hover over the chart to see the precise number of sales for each day and
+		time.
+	</p>
 	<SalesOverDaysChart {dataDays} />
-	<p class="insight-text limit-width">... This pattern is quite similar between the days.</p>
+	<p class="insight-text limit-width">
+		While Friday is the busiest day overall, the <span style:font-weight="bold">peak</span> in sales
+		occurs on <span style:font-weight="bold">Thursday between 12:45 and 13:00</span>. In general,
+		the patterns are quite similar between the days, with
+		<span style:font-weight="bold">most sales happing around noon</span>, and another
+		<span style:font-weight="bold">smaller peak in the evening</span>.
+	</p>
 </section>

@@ -1,7 +1,7 @@
 <script>
 	let { sectionId, data, sectionHeader = $bindable() } = $props();
 
-	const question = 'which ingredients should always be on stash?';
+	const question = 'Which ingredients are used the most and should always be in stock?';
 	sectionHeader = question;
 </script>
 

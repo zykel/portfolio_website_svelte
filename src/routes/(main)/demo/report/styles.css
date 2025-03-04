@@ -84,8 +84,17 @@ body {
 	width: calc(min(900px, 95vw));
 }
 
+/* .interaction-text::before {
+	content: '➤';
+	position: absolute;
+	left: 0;
+	top: 0;
+} */
 .interaction-text {
+	/* position: relative; */
+	/* padding-left: 1.5rem; */
 	font-style: italic;
+	/* box-sizing: border-box; */
 }
 
 section {

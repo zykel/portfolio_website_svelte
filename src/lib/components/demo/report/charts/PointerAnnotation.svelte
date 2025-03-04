@@ -1,22 +1,33 @@
 <script>
-	let { x, y, placement, text, width = 100, height = 100 } = $props();
+	let {
+		x,
+		y,
+		widthArrow = 20,
+		heightArrow = 20,
+		placement,
+		text,
+		width = 100,
+		height = 100,
+		baseline = 'bottom'
+	} = $props();
 
-	const widthArrow = 20;
-	const heightArrow = 20;
 	const marginArrow = 5;
 	const markerHeight = 4;
 
+	const xPlacementFactor = $derived(placement.includes('right') ? 1 : -1);
+	const yPlacementFactor = $derived(placement.includes('top') ? 1 : -1);
+
 	// Define the start and end points of the arrow
-	const startX = $derived(x + widthArrow);
-	const startY = $derived(y - heightArrow - marginArrow - markerHeight * 2);
+	const startX = $derived(x + xPlacementFactor * widthArrow);
+	const startY = $derived(y - yPlacementFactor * (heightArrow + marginArrow + markerHeight * 2));
 	const endX = $derived(x);
-	const endY = $derived(y - marginArrow - markerHeight * 2);
+	const endY = $derived(y - yPlacementFactor * (marginArrow + markerHeight * 2));
 
 	// Define the control points for the Bezier curve
-	const controlX1 = $derived(startX - widthArrow * 0.75);
+	const controlX1 = $derived(startX - xPlacementFactor * widthArrow * 1);
 	const controlY1 = $derived(startY);
 	const controlX2 = $derived(endX);
-	const controlY2 = $derived(endY - heightArrow * 0.75);
+	const controlY2 = $derived(endY - yPlacementFactor * heightArrow * 1);
 </script>
 
 <defs>
@@ -34,8 +45,13 @@
 />
 
 {#if text}
-	<foreignObject x={x + widthArrow + marginArrow} y={y - heightArrow - height} {width} {height}>
-		<div class="annotation-text-container label-small">
+	<foreignObject
+		x={x + xPlacementFactor * (widthArrow + marginArrow) - (xPlacementFactor === -1 ? width : 0)}
+		y={baseline === 'top' ? startY - height * 0.2 : startY + height * 0.2 - height}
+		{width}
+		{height}
+	>
+		<div class="annotation-text-container label-small placement-{placement}">
 			{text}
 		</div>
 	</foreignObject>
@@ -44,12 +60,14 @@
 <style>
 	.annotation-text-container {
 		display: flex;
-		justify-content: flex-start;
-		align-items: flex-end;
 		width: 100%;
 		height: 100%;
 		font-weight: 600;
 		color: #333333;
 		/* background-color: rgb(59, 156, 72); */
+	}
+	.placement-topright {
+		justify-content: flex-start;
+		align-items: flex-end;
 	}
 </style>
