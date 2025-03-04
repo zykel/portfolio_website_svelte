@@ -32,7 +32,7 @@
 	};
 </script>
 
-<div class="hover-info legend" style:left="{xCurr}px" style:top="{yCurr + 10}px" style:display>
+<div class="hover-info legend" style:left="{xCurr}px" style:top="{yCurr - 20}px" style:display>
 	{#each infoTextArray as { title, value }}
 		<p class="hover-info-text"><span class="hover-info-title">{@html title}</span> {@html value}</p>
 	{/each}
@@ -41,7 +41,7 @@
 <style>
 	.hover-info {
 		position: absolute;
-		transform: translateX(-50%);
+		transform: translate(-50%, -100%);
 		background-color: white;
 		/* border: 1px solid black; */
 		border-radius: 0.5rem;
@@ -51,17 +51,17 @@
 		box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 	}
 
-	.hover-info::before {
+	.hover-info::after {
 		content: '';
 		position: absolute;
-		top: -10px; /* Adjust this value to position the triangle */
+		top: 99%; /* Adjust this value to position the triangle */
 		left: 50%;
-		transform: translateX(-50%);
+		transform: translate(-50%, 0%);
 		width: 0;
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-bottom: 10px solid white;
+		border-top: 20px solid white;
 	}
 
 	.hover-info-text {
