@@ -37,4 +37,5 @@
 	</p>
 	<p class="interaction-text limit-width">➤ Interaction: You may .</p>
 	<SalesOverDaysChart {dataDays} />
+	<p class="insight-text limit-width">... This pattern is quite similar between the days.</p>
 </section>

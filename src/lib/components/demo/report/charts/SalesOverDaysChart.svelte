@@ -4,7 +4,8 @@
 	import { curveCardinal, line, area } from 'd3-shape';
 	import { select } from 'd3-selection';
 	import { getContext } from 'svelte';
-	import { timeOfDayDomain } from '$lib/scripts/utilityReport.js';
+	import { timeOfDayDomain, timeBinningWidthMinutes } from '$lib/scripts/utilityReport.js';
+	import ContinuousColorLegend from '$lib/components/demo/report/charts/ContinuousColorLegend.svelte';
 
 	let { dataDays } = $props();
 
@@ -14,7 +15,7 @@
 	const width = $derived(extents.widthLimited);
 	const height = 500;
 
-	const margin = { top: 20, right: 30, bottom: 30, left: 40 };
+	const margin = { top: 20, right: 30, bottom: 70, left: 40 };
 
 	$inspect(dataDays);
 
@@ -51,13 +52,43 @@
 </script>
 
 <div class="chart">
+	<ContinuousColorLegend
+		title="Number of sales per {timeBinningWidthMinutes} minutes"
+		minVal="0 sales"
+		maxVal="{Math.round(maxFrequency * 10) / 10} sales"
+		minColor="hsl(249, 80%, 90%)"
+		maxColor="hsl(249, 80%, 67%)"
+	/>
 	<svg class="chart-svg" {width} {height}>
 		{#if width > 0}
+			<g class="x-axis-g">
+				{#each timeOfDayDomain as time, i}
+					{#if time.includes(':00') && +time.split(':')[0] % 4 === 2}
+						<text
+							x={xScale(time) + xScale.bandwidth() / 2}
+							y={height - margin.bottom + 30}
+							class="x-axis-text label-small"
+							text-anchor="end"
+							dominant-baseline="hanging"
+						>
+							{time}
+						</text>
+					{/if}
+				{/each}
+				<text
+					x={(xScale.range()[1] + xScale.range()[0]) / 2}
+					y={height - margin.bottom + 65}
+					class="x-axis-text label-small"
+					text-anchor="middle"
+				>
+					Time of day →
+				</text>
+			</g>
 			<defs>
 				{#each dataDays as { day }, i}
 					<linearGradient id="gradient-{i}" x1="0" x2="0" y1="1" y2="0">
-						<stop offset="0%" stop-color="hsla(249, 80%, 67%, 0.3)" />
-						<stop offset="100%" stop-color="hsla(249, 80%, 67%, 0.9)" />
+						<stop offset="0%" stop-color="hsl(249, 80%, 90%)" />
+						<stop offset="100%" stop-color="hsl(249, 80%, 67%)" />
 					</linearGradient>
 				{/each}
 			</defs>
@@ -71,6 +102,18 @@
 					/>
 				</g>
 			{/each}
+			<g class="y-axis-g">
+				{#each dataDays as { day, frequencyInfoArray }, i}
+					<text
+						x={margin.left - 5}
+						y={i * heightSingleChart + yScale(0)}
+						class="y-axis-text label-small"
+						text-anchor="end"
+					>
+						{day}
+					</text>
+				{/each}
+			</g>
 		{/if}
 	</svg>
 </div>

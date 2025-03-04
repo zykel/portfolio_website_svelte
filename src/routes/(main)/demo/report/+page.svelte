@@ -55,11 +55,13 @@
 </script>
 
 <main class="report-container" bind:clientWidth={extents.width}>
-	<h1 class="limit-width" bind:clientWidth={extents.widthLimited}>Pizza Report</h1>
-	<p class="default-text limit-width">
-		This report summarizes the findings from analyzing the pizza data set to answer questions. The
-		report is structured in sections based on the inital questions.
-	</p>
+	<section>
+		<h1 class="limit-width" bind:clientWidth={extents.widthLimited}>Pizza Report</h1>
+		<p class="default-text limit-width">
+			This report summarizes the findings from analyzing the pizza data set to answer questions. The
+			report is structured in sections based on the inital questions.
+		</p>
+	</section>
 	<TableOfContents {sectionIds} {sectionHeaders} />
 
 	<QuestPizzasSoldMost
