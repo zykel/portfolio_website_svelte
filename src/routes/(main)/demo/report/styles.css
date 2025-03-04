@@ -78,6 +78,7 @@ body {
 .chart-svg,
 .legend {
 	font-family: 'Poppins', sans-serif;
+	user-select: none;
 }
 
 .report-container {

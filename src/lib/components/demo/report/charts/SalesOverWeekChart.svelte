@@ -41,10 +41,10 @@
 				{#each daysOfWeek as day}
 					<text
 						x={xScale(day) + xScale.bandwidth() / 2}
-						y={height - margin.bottom + 10}
+						y={height - margin.bottom + 7}
 						text-anchor="middle"
 						class="tick"
-						dy="+0.5rem"
+						dominant-baseline="hanging"
 						style:font-weight={hoveredDay === day ? 'bold' : 'normal'}
 					>
 						{day}
