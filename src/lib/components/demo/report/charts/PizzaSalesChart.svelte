@@ -166,7 +166,7 @@
 						}}
 						x={0}
 						y={yScale(name)}
-						width={xScale(nrSales)}
+						{width}
 						height={yScale.step()}
 						fill="transparent"
 						cursor="pointer"

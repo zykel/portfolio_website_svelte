@@ -149,6 +149,7 @@
 			<g class="ghost-hover-bars">
 				{#each dataTopN as { ingredient, count }, i}
 					{@const handlePointerOver = (/** @type {PointerEvent} */ event) => {
+						event.preventDefault();
 						hoveredIngredient = ingredient;
 						showHoverInfo({
 							event,

@@ -22,7 +22,7 @@
 		The chart below shows the number of sales for each pizza type, irrespective of the pizza size.
 	</p>
 	<p class="interaction-text limit-width">
-		Interaction: Here I describe how the interaction takes place.
+		➤ Interaction: You may hover over the bars to display the exact number of sales for each pizza.
 	</p>
 	<PizzaSalesChart {dataGrouped} {nrTopPizzas} {nrBottomPizzas} />
 	<p class="insight-text limit-width">
@@ -71,7 +71,8 @@
 				class="category-color-legend-color"
 				style="background-color: {categoryColorScale('Supreme')};"
 			></span>
-		</span>.
+		</span>. If offering the pizza comes with an increased cost, it might be worth considering to
+		remove it from the menu.
 	</p>
 </section>
 
