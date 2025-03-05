@@ -129,6 +129,9 @@ h2 {
 	margin-bottom: 1rem;
 	font-size: 1.75rem;
 }
+ul {
+	box-sizing: border-box;
+}
 /* .insight-text {
 	padding-left: 1rem; 
 	border-left: 4px solid gray;

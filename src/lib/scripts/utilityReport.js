@@ -24,7 +24,55 @@ export const timeOfDayDomain = range(7, 24, 1)
 	})
 	.flat();
 
-export const categoryColorScale = scaleOrdinal().domain(pizzaCategories).range(schemeObservable10);
+/**
+ * @param {string} col
+ * @param {number} amt
+ */
+export function lightenDarkenHexColor(col, amt) {
+	var usePound = false;
+	if (col[0] == '#') {
+		col = col.slice(1);
+		usePound = true;
+	}
+
+	var num = parseInt(col, 16);
+
+	var r = (num >> 16) + amt;
+
+	if (r > 255) r = 255;
+	else if (r < 0) r = 0;
+
+	var b = ((num >> 8) & 0x00ff) + amt;
+
+	if (b > 255) b = 255;
+	else if (b < 0) b = 0;
+
+	var g = (num & 0x0000ff) + amt;
+
+	if (g > 255) g = 255;
+	else if (g < 0) g = 0;
+
+	return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
+}
+
+export const schemeObservable10Light = [
+	'#7b96de',
+	'#f4c85d',
+	'#ff9c8d',
+	'#98d6c8',
+	'#77c385',
+	'#ffadcd',
+	'#bf92f6',
+	'#b6cff8',
+	'#ba9783',
+	'#b4b7bc'
+];
+
+export const categoryColorScale = scaleOrdinal()
+	.domain(pizzaCategories)
+	// .range(schemeObservable10);
+	.range(schemeObservable10Light);
+
 export const defaultColor = 'hsl(249, 80%, 72%)'; //'#87CEEB';
 
 export const timeBinningWidthMinutes = 15;
@@ -189,6 +237,7 @@ export const getIngredientsData = (data) => {
 	// debugger;
 
 	const ingredientOccurrenceObj = countOccurrences(
+		// TODO: Would actually need to take times the quantity
 		data.map((d) => d.pizza_ingredients.split('; ')).flat()
 	);
 	// Transform obj into arr
@@ -200,4 +249,21 @@ export const getIngredientsData = (data) => {
 		.sort((a, b) => b.count - a.count);
 
 	return ingredientOccurrenceArr;
+};
+
+/**
+ * @param {DataEntry[]} data
+ */
+export const getSizeData = (data) => {
+	return rollups(
+		data,
+		(/** @type {DataEntry[]}*/ v) => {
+			return {
+				nrSales: sum(v, (/** @type {{ quantity: string }} */ d) => +d.quantity)
+			};
+		},
+		(/** @type {DataEntry}*/ d) => d.pizza_size
+	)
+		.map((/** @type {[string, { nrSales: number }]}*/ [size, { nrSales }]) => ({ size, nrSales }))
+		.sort((a, b) => (b.size > a.size ? 1 : b.size < a.size ? -1 : 0));
 };

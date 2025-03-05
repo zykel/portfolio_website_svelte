@@ -13,7 +13,7 @@
 	const hideHoverInfo = $derived(getContext('hideHoverInfo').value);
 	const width = $derived(extents.widthLimited);
 
-	const margin = { top: 50, right: 110, bottom: 30, left: 130 };
+	const margin = { top: 50, right: 110, bottom: 5, left: 130 };
 
 	let topN = $state(10);
 	const dataTopN = $derived(data.slice(0, topN));

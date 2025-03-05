@@ -64,7 +64,7 @@
 			></span>
 		</span>.
 	</p>
-	<p class="insight-text limit-width">
+	<p id="insight-remove-brie-carre" class="insight-text limit-width">
 		The least sold pizza is by far the
 		<span class="pizza-category-text">
 			Brie Carre <span

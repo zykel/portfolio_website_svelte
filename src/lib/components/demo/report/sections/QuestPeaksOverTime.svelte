@@ -26,7 +26,7 @@
 		➤ Interaction: You may hover over a bar to see the exact number of sales.
 	</p>
 	<SalesOverWeekChart {dataWeek} />
-	<p class="insight-text limit-width">
+	<p id="insight-allocate-staff" class="insight-text limit-width">
 		Over the week, sales increase, peaking on <span style:font-weight="bold">Friday</span>. After
 		that, sales decrease again, with Sunday being the least busy day. The staff should be allocated
 		accordingly.
@@ -48,7 +48,7 @@
 		<span style:font-weight="bold">most sales happing around noon</span>, and another
 		<span style:font-weight="bold">smaller peak in the evening</span>.
 	</p>
-	<p class="insight-text limit-width">
+	<p id="insight-open-at-11" class="insight-text limit-width">
 		The restaurant currently opens at 10:00. However, the chart shows that before 11:00, there are
 		essentially no customers. To save money, the restaurant could consider <span
 			style:font-weight="bold">opening at 11:00</span
