@@ -1,14 +1,29 @@
 <script>
-	import { getSizeData, categoryColorScale } from '$lib/scripts/utilityReport.js';
+	import {
+		getSizeData,
+		categoryColorScale,
+		getIngredientCombinationData,
+		getRecipes
+	} from '$lib/scripts/utilityReport.js';
+	import IngredientCombinationsChart from '../charts/IngredientCombinationsChart.svelte';
 	import SizesChart from '../charts/SizesChart.svelte';
 
-	let { sectionId, data, sectionHeader = $bindable() } = $props();
+	let { sectionId, data, ingredientsData, sectionHeader = $bindable() } = $props();
 
 	const question = 'How can the business be improved?';
 	sectionHeader = question;
 
 	const dataSizes = $derived(getSizeData(data));
-	$inspect(dataSizes);
+
+	const mostUsedIngredients = $derived(
+		ingredientsData.slice(0, 10).map((/** @type {{ ingredient: any; }} */ d) => d.ingredient)
+	);
+	const recipes = $derived(getRecipes(data));
+	const dataIngredientCombinations = $derived(
+		getIngredientCombinationData(data, mostUsedIngredients, recipes)
+	);
+
+	$inspect(dataIngredientCombinations);
 </script>
 
 <section id={sectionId}>
@@ -31,11 +46,24 @@
 	</p>
 	<SizesChart data={dataSizes} />
 	<p class="insight-text limit-width">
-		Pizzas of size XXL make up only 0.1% of all sales. If offering XXL pizzas comes with increased
-		costs, e.g., due to extra large kitchen utensils, it might be worth considering to <span
+		Pizzas of size XXL make up only 0.06% of all sales. If offering XXL pizzas comes with increased
+		costs, e.g., due to requiring extra large kitchen utensils, it might be worth considering to <span
 			style:font-weight="bold">remove pizzas of size XXL</span
 		> from the menu.
 	</p>
+	<!--  -->
+	<p class="default-text limit-width">
+		We already saw <a href="#ingredients-most-used-header"
+			>to which extent the different ingredients are used</a
+		>. Further analysis showed that even among the most popular ingredients, there exist
+		combinations of ingredients that have not been used on any pizza so far. The combinations are
+		listed below.
+	</p>
+	<IngredientCombinationsChart
+		{ingredientsData}
+		{dataIngredientCombinations}
+		{mostUsedIngredients}
+	/>
 	<p class="default-text limit-width">The suggestions include</p>
 	<ul class="default-text limit-width">
 		<li>

@@ -79,7 +79,7 @@
 				},
 				{
 					title: 'Share of all sales: ',
-					value: Math.round((nrSales / salesTotal) * 1000) / 10 + '%'
+					value: Math.round((nrSales / salesTotal) * 10000) / 100 + '%'
 				}
 			]
 		});
@@ -88,7 +88,7 @@
 
 <div class="chart">
 	<svg class="chart-svg" {width} {height}>
-		{#if width > 0}
+		{#if width > 0 && height > 0}
 			<g class="sizes-pie-g" transform={`translate(${gTranslate})`}>
 				{#each dataPie as datumPie, i}
 					{@const pathPoints = getLabelLinePathPoints(datumPie, dataPie.length)}

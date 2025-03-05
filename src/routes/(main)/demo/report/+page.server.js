@@ -3,7 +3,7 @@
  */
 
 /**
- * @typedef {Object.<string, string> & { date?: Date } & { month?: number }} DataEntry
+ * @typedef {Object.<string, string> & { date?: Date } & { month?: number } & { quantity: string }} DataEntry
  */
 
 export const load = async ({ fetch }) => {

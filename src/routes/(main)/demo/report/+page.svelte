@@ -13,6 +13,7 @@
 	import QuestImproveBusiness from '$lib/components/demo/report/sections/QuestImproveBusiness.svelte';
 	import TableOfContents from '$lib/components/demo/report/sections/TableOfContents.svelte';
 	import HoverInfo from '$lib/components/demo/report/charts/HoverInfo.svelte';
+	import { getIngredientsData } from '$lib/scripts/utilityReport.js';
 
 	let { data } = $props();
 
@@ -28,6 +29,8 @@
 
 		return d;
 	});
+
+	const ingredientsData = $derived(getIngredientsData(csvData));
 
 	const sectionIds = [
 		'pizzas-sold-most',
@@ -77,12 +80,13 @@
 	<QuestIngredientsUsedMost
 		sectionId={sectionIds[2]}
 		bind:sectionHeader={sectionHeaders[sectionIds[2]]}
-		data={csvData}
+		{ingredientsData}
 	/>
 	<QuestImproveBusiness
 		sectionId={sectionIds[3]}
 		bind:sectionHeader={sectionHeaders[sectionIds[3]]}
 		data={csvData}
+		{ingredientsData}
 	/>
 	<HoverInfo />
 </main>

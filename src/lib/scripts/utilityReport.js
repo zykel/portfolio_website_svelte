@@ -267,3 +267,66 @@ export const getSizeData = (data) => {
 		.map((/** @type {[string, { nrSales: number }]}*/ [size, { nrSales }]) => ({ size, nrSales }))
 		.sort((a, b) => (b.size > a.size ? 1 : b.size < a.size ? -1 : 0));
 };
+
+/**
+ * @param {any[]} array
+ * @param {number} k
+ */
+function getAllPossibleTuplesFromArray(array, k) {
+	/**
+	 * @param {number} start
+	 * @param {any[]} path
+	 */
+	function combine(start, path) {
+		if (path.length === k) {
+			result.push([...path]);
+			return;
+		}
+		for (let i = start; i < array.length; i++) {
+			path.push(array[i]);
+			combine(i + 1, path);
+			path.pop();
+		}
+	}
+
+	/** @type {any[]} */
+	let result = [];
+	combine(0, []);
+
+	return result;
+}
+
+/**
+ * @param {DataEntry[]} data
+ */
+export const getRecipes = (data) => {
+	const recipes = [...new Set(data.map((d) => d.pizza_ingredients))].map((ingredientsString) =>
+		ingredientsString.split('; ')
+	);
+	return recipes;
+};
+
+/**
+ * @param {DataEntry[]} data
+ * @param {string[]} mostUsedIngredients
+ */
+export const getIngredientCombinationData = (data, mostUsedIngredients, recipes) => {
+	const tupleSize = 2;
+
+	/** @type {any[]} */
+	const unusedIngredientCombinations = [];
+
+	const ingredientTuples = getAllPossibleTuplesFromArray(mostUsedIngredients, tupleSize);
+	ingredientTuples.forEach((ingredientTuple) => {
+		const recipesUsingAllIngredients = recipes.filter((recipe) =>
+			ingredientTuple.reduce((/** @type {string} */ a, /** @type {string} */ b) => {
+				return a && recipe.includes(b);
+			}, true)
+		);
+		if (recipesUsingAllIngredients.length === 0) {
+			unusedIngredientCombinations.push(ingredientTuple);
+		}
+	});
+
+	return unusedIngredientCombinations;
+};

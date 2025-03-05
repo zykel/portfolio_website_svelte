@@ -1,13 +1,11 @@
 <script>
-	import { getIngredientsData } from '$lib/scripts/utilityReport.js';
 	import IngredientsChart from '$lib/components/demo/report/charts/IngredientsChart.svelte';
 
-	let { sectionId, data, sectionHeader = $bindable() } = $props();
+	let { sectionId, ingredientsData, sectionHeader = $bindable() } = $props();
 
 	const question = 'Which ingredients are used the most?';
 	sectionHeader = question;
 
-	const ingredientsData = $derived(getIngredientsData(data));
 	$inspect(ingredientsData);
 </script>
 
