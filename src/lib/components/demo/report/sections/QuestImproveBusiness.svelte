@@ -55,7 +55,7 @@
 	<p class="default-text limit-width">
 		We already saw <a href="#ingredients-most-used-header"
 			>to which extent the different ingredients are used</a
-		>. Further analysis showed that even among the most popular ingredients, there exist
+		>. Further analysis showed that even among the ten most used ingredients, there exist several
 		combinations of ingredients that have not been used on any pizza so far. The combinations are
 		listed below.
 	</p>

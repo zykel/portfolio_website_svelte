@@ -3,7 +3,16 @@
 	import { scaleBand, scaleLinear } from 'd3-scale';
 	import { max } from 'd3-array';
 
-	let { width, height, ingredientsData, nrIngredients, combination, hoveredIngredient } = $props();
+	let {
+		width,
+		height,
+		ingredientsData,
+		nrIngredients,
+		combination,
+		hoveredIngredient,
+		handlePointerOver,
+		handlePointerOut
+	} = $props();
 
 	const mostUsedIngredientsData = $derived(ingredientsData.slice(0, nrIngredients));
 	const mostUsedIngredients = $derived(
@@ -53,5 +62,17 @@
 				? 2
 				: 0}
 		/>
+		{#if combination.includes(ingredientDatum.ingredient)}
+			<rect
+				class="ghost-hover-rect"
+				x={xScale(ingredientDatum.ingredient)}
+				y={yScale.range()[1]}
+				width={xScale.bandwidth()}
+				height={yScale.range()[0] - yScale.range()[1]}
+				fill="transparent"
+				onpointerover={() => handlePointerOver(ingredientDatum.ingredient)}
+				onpointerout={handlePointerOut}
+			/>
+		{/if}
 	{/each}
 </svg>

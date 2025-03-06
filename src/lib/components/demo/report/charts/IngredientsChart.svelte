@@ -11,7 +11,7 @@
 	const extents = getContext('extents');
 	const showHoverInfo = $derived(getContext('showHoverInfo').value);
 	const hideHoverInfo = $derived(getContext('hideHoverInfo').value);
-	const width = $derived(extents.widthLimited);
+	const width = $derived(extents.widthLimited - extents.chartPadding * 2);
 
 	const margin = { top: 50, right: 110, bottom: 5, left: 130 };
 

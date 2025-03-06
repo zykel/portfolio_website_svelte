@@ -39,7 +39,7 @@
 		'improve-business'
 	];
 
-	const extents = $state({ width: 0, widthLimited: 0 });
+	const extents = $state({ width: 0, widthLimited: 0, chartPadding: 16 });
 	const showHoverInfo = $state({ value: () => {} });
 	const hideHoverInfo = $state({ value: () => {} });
 	setContext('extents', extents);

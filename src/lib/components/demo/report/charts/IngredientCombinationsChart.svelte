@@ -1,5 +1,6 @@
 <script>
 	import MiniIngredientChart from './MiniIngredientChart.svelte';
+	import PointerAnnotation from './PointerAnnotation.svelte';
 	let { ingredientsData, dataIngredientCombinations, mostUsedIngredients } = $props();
 
 	const nrIngredients = $derived(mostUsedIngredients.length);
@@ -12,11 +13,28 @@
 	const handlePointerOver = (/** @type {string} */ ingredient) => {
 		hoveredIngredient = ingredient;
 	};
+	const handlePointerOut = () => {
+		hoveredIngredient = '';
+	};
+
+	let tableWdith = $state(0);
 </script>
 
 <div class="chart center-content poppins">
 	<h3 class="chart-title">Ingredients that have not been used together so far</h3>
-	<div class="table-grid">
+	<svg width={tableWdith} height="40">
+		<PointerAnnotation
+			x={5}
+			y={40}
+			widthArrow={20}
+			heightArrow={15}
+			placement="topright"
+			text="The most used ingredient, garlic"
+			width={250}
+			height={40}
+		/>
+	</svg>
+	<div class="table-grid" bind:clientWidth={tableWdith}>
 		{#each dataIngredientCombinations as combination, i}
 			<div class="table-grid-cell" style:min-width="100px" bind:clientWidth={chartWidth}>
 				<MiniIngredientChart
@@ -26,6 +44,8 @@
 					{nrIngredients}
 					{combination}
 					{hoveredIngredient}
+					{handlePointerOver}
+					{handlePointerOut}
 				/>
 			</div>
 			<div class="table-grid-cell">
@@ -33,8 +53,12 @@
 					class="ingredient label-small"
 					onpointerover={(event) => handlePointerOver(combination[0])}
 					onpointermove={(event) => handlePointerOver(combination[0])}
-					onpointerout={() => (hoveredIngredient = '')}
-					style:font-weight={hoveredIngredient === combination[0] ? 'bold' : 'normal'}
+					onpointerout={handlePointerOut}
+					style:background-color={hoveredIngredient === combination[0]
+						? 'hsl(0, 0%, 90%)'
+						: 'white'}
+					style:border={hoveredIngredient === combination[0] ? 'solid 1px black' : 'solid 1px gray'}
+					style:color={hoveredIngredient === combination[0] ? 'black' : '#333333'}
 				>
 					{combination[0]}
 				</span>
@@ -43,8 +67,12 @@
 					class="ingredient label-small"
 					onpointerover={(event) => handlePointerOver(combination[1])}
 					onpointermove={(event) => handlePointerOver(combination[1])}
-					onpointerout={() => (hoveredIngredient = '')}
-					style:font-weight={hoveredIngredient === combination[1] ? 'bold' : 'normal'}
+					onpointerout={handlePointerOut}
+					style:background-color={hoveredIngredient === combination[1]
+						? 'hsl(0, 0%, 90%)'
+						: 'white'}
+					style:border={hoveredIngredient === combination[1] ? 'solid 1px black' : 'solid 1px gray'}
+					style:color={hoveredIngredient === combination[1] ? 'black' : '#333333'}
 				>
 					{combination[1]}
 				</span>

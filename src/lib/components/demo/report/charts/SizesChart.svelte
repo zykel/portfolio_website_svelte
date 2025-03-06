@@ -7,7 +7,7 @@
 	let { data } = $props();
 
 	const extents = getContext('extents');
-	const width = $derived(extents.widthLimited);
+	const width = $derived(extents.widthLimited - extents.chartPadding * 2);
 
 	const margin = { top: 30, right: 120, bottom: 30, left: 110 };
 

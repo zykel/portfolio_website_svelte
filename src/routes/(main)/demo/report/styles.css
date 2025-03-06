@@ -64,6 +64,7 @@
 
 html {
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 body {
@@ -115,9 +116,10 @@ p {
 }
 .chart {
 	margin: 1rem 0;
-	padding: 1rem;
+	padding: 16px;
 	box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); /* Optional: Add a subtle shadow */
 	border-radius: 1rem;
+	/* box-sizing: content-box; */
 }
 
 h1 {

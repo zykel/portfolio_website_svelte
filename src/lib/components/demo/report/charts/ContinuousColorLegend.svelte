@@ -8,7 +8,7 @@
 	const heightGradient = 20;
 </script>
 
-<div class="continuous-color-legend limit-width">
+<div class="continuous-color-legend">
 	<div class="continuous-color-legend-title">{title}:</div>
 	<div class="continuous-color-legend">
 		{minVal}

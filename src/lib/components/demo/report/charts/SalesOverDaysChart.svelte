@@ -11,7 +11,7 @@
 	let { dataDays } = $props();
 
 	const extents = getContext('extents');
-	const width = $derived(extents.widthLimited);
+	const width = $derived(extents.widthLimited - extents.chartPadding * 2);
 	const height = 500;
 
 	const margin = { top: 20, right: 30, bottom: 80, left: 30 };
