@@ -102,12 +102,12 @@
 <div class="dashboard-container">
 	<div class="sidebar">
 		<h2>Pizza Dashboard</h2>
-		<hr />
+		<hr class="limit-width" />
 		<p class="font-size-smaller">
 			This dashboard provides an overview of the pizza sales from a synthetic data set.
 		</p>
 
-		<hr />
+		<hr class="limit-width" />
 		<div class="display-options-container">
 			<h3>Display Options:</h3>
 			<ul class="font-size-smaller">

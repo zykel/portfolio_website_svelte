@@ -14,7 +14,7 @@
 </script>
 
 <section id={sectionId}>
-	<hr />
+	<hr class="limit-width" />
 	<h2 id="{sectionId}-header" class="section-header limit-width">
 		{question}
 	</h2>
@@ -64,7 +64,7 @@
 			></span>
 		</span>.
 	</p>
-	<p id="insight-remove-brie-carre" class="insight-text limit-width">
+	<p class="insight-text limit-width">
 		The least sold pizza is by far the
 		<span class="pizza-category-text">
 			Brie Carre <span

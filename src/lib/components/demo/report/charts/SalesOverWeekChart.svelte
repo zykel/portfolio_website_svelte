@@ -34,7 +34,8 @@
 	const nrYAxisTicks = 4;
 </script>
 
-<div class="chart">
+<div id="insight-allocate-staff" class="chart">
+	<h3 class="chart-title">Number of sales per weekday</h3>
 	<svg class="chart-svg" {width} {height}>
 		{#if width > 0}
 			<g class="axis-x">
@@ -94,13 +95,48 @@
 				{/each}
 			</g>
 
-			<PointerAnnotation
-				x={xScale('Fr') + xScale.bandwidth() / 2}
-				y={yScale(dataWeek[4].nrSalesAvg)}
-				placement={'topright'}
-				text={'Fridays, the most pizzas are sold on average, namely 159.'}
-				width={150}
-			/>
+			{#if width < 550}
+				<!-- Fallback if width too small -->
+				<text
+					x={xScale('Fr') + xScale.bandwidth() / 2}
+					y={20}
+					class="label-small"
+					text-anchor="middle"
+					font-weight="bold"
+				>
+					Fridays, the most pizzas are
+				</text>
+				<text
+					x={xScale('Fr') + xScale.bandwidth() / 2}
+					y={40}
+					class="label-small"
+					text-anchor="middle"
+					font-weight="bold"
+				>
+					sold on average, namely 159.
+				</text>
+				<defs>
+					<marker id="arrowhead" markerWidth="5" markerHeight="4" refX="0" refY="2" orient="auto">
+						<polygon points="0 0, 5 2, 0 4" />
+					</marker>
+				</defs>
+
+				<path
+					d={`M${xScale('Fr') + xScale.bandwidth() / 2},${48} ${xScale('Fr') + xScale.bandwidth() / 2},${yScale(dataWeek[4].nrSalesAvg) - 12}`}
+					stroke="black"
+					fill="transparent"
+					stroke-width="2"
+					marker-end="url(#arrowhead)"
+				/>
+			{:else}
+				<PointerAnnotation
+					x={xScale('Fr') + xScale.bandwidth() / 2}
+					y={yScale(dataWeek[4].nrSalesAvg)}
+					placement={'topright'}
+					text={'Fridays, the most pizzas are sold on average, namely 159.'}
+					width={150}
+				/>
+			{/if}
 			<g class="ghost-hover-bars">
 				{#each dataWeek as { day, nrSalesAvg }, i}
 					{@const handlePointerOver = (/** @type {PointerEvent} */ event) => {
@@ -130,7 +166,7 @@
 						width={xScale.step()}
 						height={height - yScale(nrSalesAvg)}
 						fill="transparent"
-						cursor="pointer"
+						cursor="default"
 					/>
 				{/each}
 			</g>

@@ -3,6 +3,7 @@
 </script>
 
 <section class="table-of-contents">
+	<hr class="limit-width" />
 	<h2 class="table-of-contents-text limit-width">Content:</h2>
 
 	<p class="default-text limit-width">In this report, the following questions are answered:</p>

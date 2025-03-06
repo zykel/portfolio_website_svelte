@@ -100,7 +100,7 @@ body {
 }
 
 section {
-	margin: 2rem 0;
+	margin: 1rem 0 0 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -110,35 +110,60 @@ section:first-of-type {
 }
 hr {
 	margin: 0;
+	margin-bottom: 2rem;
+	/* width: 600px; */
 }
 p {
 	margin: 0.5rem 0;
 }
 .chart {
-	margin: 1rem 0;
+	font-family: Poppins, sans-serif;
+	margin: 1.5rem 0 1.5rem 0;
 	padding: 16px;
-	box-shadow: 0 0 12px rgba(0, 0, 0, 0.3); /* Optional: Add a subtle shadow */
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
 	border-radius: 1rem;
 	/* box-sizing: content-box; */
 }
 
 h1 {
 	font-size: 3rem;
-	font-weight: 700;
+	font-weight: 600;
 	color: #333333;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+	/* font-weight: normal; */
+	margin-top: 3rem;
+	margin-bottom: 2rem;
+	/* text-align: center; */
+	/* border: solid 3px #333333; */
+	/* border-radius: 1rem; */
+	/* padding: 0 1rem 0.5rem 1rem; */
+	/* background-color: hsl(249, 80%, 72%); */
+	box-sizing: border-box;
+	/* text-transform: uppercase; */
 }
 h2 {
 	color: #333333;
 	margin-bottom: 1rem;
 	font-size: 1.75rem;
 }
+h3 {
+	color: #333333;
+}
 ul {
 	box-sizing: border-box;
 }
+a {
+	text-decoration: none; /* Remove the default underline */
+	color: #007bff; /* Set a custom color */
+}
+a:hover {
+	color: #0056b3; /* Change color on hover */
+	text-decoration: underline; /* Optionally add underline on hover */
+}
+
 .chart-title {
 	margin-top: 0;
+	text-align: center;
+	color: #333333;
 }
 /* .insight-text {
 	padding-left: 1rem; 
@@ -164,7 +189,7 @@ ul {
 }
 
 .limit-width {
-	width: calc(min(600px, 95vw));
+	width: calc(min(700px, 95vw));
 }
 .axis-x,
 .axis-y,

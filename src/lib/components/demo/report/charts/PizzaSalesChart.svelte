@@ -23,7 +23,7 @@
 	const width = $derived(extents.widthLimited - extents.chartPadding * 2);
 
 	const rowHeight = 20;
-	const nrXAxisTicks = 4;
+	const nrXAxisTicks = $derived(width < 500 ? 2 : 4);
 
 	const pizzaNames = $derived(dataGrouped.map((/**@type DataGroupedEntry */ d) => d.name));
 	const maxSales = $derived(max(dataGrouped, (/** @type {{ nrSales: number; }} */ d) => d.nrSales));
@@ -46,7 +46,9 @@
 	let hoveredName = $state('');
 </script>
 
-<div class="chart">
+<div id="insight-remove-brie-carre" class="chart">
+	<h3 class="chart-title">Number of sales per pizza</h3>
+
 	<CategoryColorLegend />
 
 	<svg class="chart-svg" {width} {height}>
@@ -117,6 +119,7 @@
 				}}
 				directionOpen={'left'}
 				text={'The most sold pizzas'}
+				width={width < 500 ? 70 : 100}
 			/>
 			<BracketAnnotation
 				topleft={{
@@ -166,10 +169,10 @@
 						}}
 						x={0}
 						y={yScale(name)}
-						{width}
+						width={xScale.range()[1]}
 						height={yScale.step()}
 						fill="transparent"
-						cursor="pointer"
+						cursor="default"
 					/>
 				{/each}
 			</g>

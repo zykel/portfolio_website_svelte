@@ -10,7 +10,7 @@
 </script>
 
 <section id={sectionId}>
-	<hr />
+	<hr class="limit-width" />
 	<h2 id="{sectionId}-header" class="section-header limit-width">
 		{question}
 	</h2>

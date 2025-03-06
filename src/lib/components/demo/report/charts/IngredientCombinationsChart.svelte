@@ -20,9 +20,9 @@
 	let tableWdith = $state(0);
 </script>
 
-<div class="chart center-content poppins">
+<div id="insight-explore-new-combinations" class="chart center-content poppins">
 	<h3 class="chart-title">Ingredients that have not been used together so far</h3>
-	<svg width={tableWdith} height="40">
+	<svg width={tableWdith - 1} height="40">
 		<PointerAnnotation
 			x={5}
 			y={40}
@@ -116,11 +116,15 @@
 
 	.ingredient {
 		display: inline-block;
+		white-space: normal;
 		padding: 0.25rem 0.75rem;
 		border-radius: 1rem;
 		color: rgb(0, 0, 0);
 		/* background-color: rgb(244, 244, 244); */
 		border: solid 1px gray;
-		cursor: pointer;
+		cursor: default;
+		text-align: center;
+		width: fit-content;
+		box-sizing: border-box;
 	}
 </style>

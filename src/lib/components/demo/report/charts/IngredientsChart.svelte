@@ -37,12 +37,13 @@
 			.padding(0.2)
 	);
 
-	const nrXAxisTicks = 4;
+	const nrXAxisTicks = $derived(width < 400 ? 1 : width < 550 ? 2 : 4);
 
 	let hoveredIngredient = $state('');
 </script>
 
 <div class="chart">
+	<h3 class="chart-title">Most used ingredients</h3>
 	<!-- radio selection of 3 options bound to the value to topN -->
 	<div class="radio-selection legend label-small">
 		Show top
@@ -173,7 +174,6 @@
 						{width}
 						height={yScale.step()}
 						fill="transparent"
-						cursor="pointer"
 					/>
 				{/each}
 			</g>

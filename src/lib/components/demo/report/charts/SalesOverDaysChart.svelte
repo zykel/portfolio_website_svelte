@@ -14,7 +14,7 @@
 	const width = $derived(extents.widthLimited - extents.chartPadding * 2);
 	const height = 500;
 
-	const margin = { top: 20, right: 30, bottom: 80, left: 30 };
+	const margin = { top: 20, right: 0, bottom: 80, left: 30 };
 
 	const xScale = $derived(
 		scaleBand()
@@ -83,7 +83,8 @@
 	};
 </script>
 
-<div class="chart">
+<div id="insight-open-at-11" class="chart">
+	<h3 class="chart-title">Number of sales across days of week</h3>
 	<ContinuousColorLegend
 		title="Number of sales per {timeBinningWidthMinutes} minutes"
 		minVal="0 sales"

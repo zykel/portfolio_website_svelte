@@ -59,9 +59,13 @@
 
 <main class="report-container" bind:clientWidth={extents.width}>
 	<section>
-		<h1 class="limit-width" bind:clientWidth={extents.widthLimited}>Pizza Report</h1>
+		<!-- <hr class="limit-width" style:margin-top="1rem" /> -->
+		<h1 class="limit-width" bind:clientWidth={extents.widthLimited}>
+			Analytical Report: Pizza Sales
+		</h1>
 		<p class="default-text limit-width">
-			This report summarizes the findings from analyzing the pizza data set to answer questions. The
+			This report summarizes the findings from analyzing a synthetic pizza sales data set to answer
+			a list of questions. It also summarizes key insights that could help improve the business. The
 			report is structured in sections based on the inital questions.
 		</p>
 	</section>
