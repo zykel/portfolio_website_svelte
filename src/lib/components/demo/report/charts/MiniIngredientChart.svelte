@@ -48,31 +48,33 @@
 	};
 </script>
 
-<svg class="chart-svg" {width} {height}>
-	{#each mostUsedIngredientsData as ingredientDatum, i}
-		<rect
-			x={xScale(ingredientDatum.ingredient)}
-			y={yScale(ingredientDatum.count)}
-			width={xScale.bandwidth()}
-			height={yScale(0) - yScale(ingredientDatum.count)}
-			fill={getColor(ingredientDatum.ingredient)}
-			stroke="black"
-			stroke-width={hoveredIngredient === ingredientDatum.ingredient &&
-			combination.includes(ingredientDatum.ingredient)
-				? 2
-				: 0}
-		/>
-		{#if combination.includes(ingredientDatum.ingredient)}
+{#if width > 0 && height > 0}
+	<svg class="chart-svg" {width} {height}>
+		{#each mostUsedIngredientsData as ingredientDatum, i}
 			<rect
-				class="ghost-hover-rect"
 				x={xScale(ingredientDatum.ingredient)}
-				y={yScale.range()[1]}
+				y={yScale(ingredientDatum.count)}
 				width={xScale.bandwidth()}
-				height={yScale.range()[0] - yScale.range()[1]}
-				fill="transparent"
-				onpointerover={() => handlePointerOver(ingredientDatum.ingredient)}
-				onpointerout={handlePointerOut}
+				height={yScale(0) - yScale(ingredientDatum.count)}
+				fill={getColor(ingredientDatum.ingredient)}
+				stroke="black"
+				stroke-width={hoveredIngredient === ingredientDatum.ingredient &&
+				combination.includes(ingredientDatum.ingredient)
+					? 2
+					: 0}
 			/>
-		{/if}
-	{/each}
-</svg>
+			{#if combination.includes(ingredientDatum.ingredient)}
+				<rect
+					class="ghost-hover-rect"
+					x={xScale(ingredientDatum.ingredient)}
+					y={yScale.range()[1]}
+					width={xScale.bandwidth()}
+					height={yScale.range()[0] - yScale.range()[1]}
+					fill="transparent"
+					onpointerover={() => handlePointerOver(ingredientDatum.ingredient)}
+					onpointerout={handlePointerOut}
+				/>
+			{/if}
+		{/each}
+	</svg>
+{/if}

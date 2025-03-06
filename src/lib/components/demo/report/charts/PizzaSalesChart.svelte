@@ -51,8 +51,8 @@
 
 	<CategoryColorLegend />
 
-	<svg class="chart-svg" {width} {height}>
-		{#if width > 0}
+	{#if width > 0}
+		<svg class="chart-svg" {width} {height}>
 			<AxisXTop {xScale} {yScale} {margin} nrTicks={nrXAxisTicks} axisTitle={'Number of sales'} />
 			<g class="bars">
 				{#each dataGrouped as { name, nrSales, category }, i}
@@ -176,6 +176,6 @@
 					/>
 				{/each}
 			</g>
-		{/if}
-	</svg>
+		</svg>
+	{/if}
 </div>

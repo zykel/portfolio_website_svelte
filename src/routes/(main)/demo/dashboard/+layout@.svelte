@@ -1,5 +1,5 @@
 <script>
-	import './styles.css';
+	import './dashboard_styles.css';
 	let { children } = $props();
 </script>
 

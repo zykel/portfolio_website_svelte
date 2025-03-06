@@ -3,7 +3,7 @@
 	 * @typedef {Object.<string, string> & { date?: Date } & { month?: number }} DataEntry
 	 */
 
-	import { setContext } from 'svelte';
+	import { onMount, setContext } from 'svelte';
 	import MainArea from '$lib/components/demo/dashboard/MainArea.svelte';
 	import { valueof } from '@observablehq/plot';
 	import { daysOfWeek, hoursOfDay, monthsOfYear } from '$lib/scripts/utilityDashboard.svelte.js';
@@ -55,6 +55,12 @@
 	};
 
 	const sectionHeaders = $state(getSectionHeadersInitial());
+
+	let loaded = $state(false);
+
+	onMount(() => {
+		loaded = true;
+	});
 </script>
 
 <main class="report-container" bind:clientWidth={extents.width}>
@@ -69,34 +75,72 @@
 			report is structured in sections based on the inital questions.
 		</p>
 	</section>
-	<TableOfContents {sectionIds} {sectionHeaders} />
+	{#if !loaded}
+		<section>
+			<p class="default-text limit-width">Calculating<span class="dots">...</span></p>
+		</section>
+	{:else}
+		<TableOfContents {sectionIds} {sectionHeaders} />
 
-	<QuestPizzasSoldMost
-		sectionId={sectionIds[0]}
-		bind:sectionHeader={sectionHeaders[sectionIds[0]]}
-		data={csvData}
-	/>
-	<QuestPeaksOverTime
-		sectionId={sectionIds[1]}
-		bind:sectionHeader={sectionHeaders[sectionIds[1]]}
-		data={csvData}
-	/>
-	<QuestIngredientsUsedMost
-		sectionId={sectionIds[2]}
-		bind:sectionHeader={sectionHeaders[sectionIds[2]]}
-		{ingredientsData}
-	/>
-	<QuestImproveBusiness
-		sectionId={sectionIds[3]}
-		bind:sectionHeader={sectionHeaders[sectionIds[3]]}
-		data={csvData}
-		{ingredientsData}
-	/>
-	<HoverInfo />
+		<QuestPizzasSoldMost
+			sectionId={sectionIds[0]}
+			bind:sectionHeader={sectionHeaders[sectionIds[0]]}
+			data={csvData}
+		/>
+		<QuestPeaksOverTime
+			sectionId={sectionIds[1]}
+			bind:sectionHeader={sectionHeaders[sectionIds[1]]}
+			data={csvData}
+		/>
+		<QuestIngredientsUsedMost
+			sectionId={sectionIds[2]}
+			bind:sectionHeader={sectionHeaders[sectionIds[2]]}
+			{ingredientsData}
+		/>
+		<QuestImproveBusiness
+			sectionId={sectionIds[3]}
+			bind:sectionHeader={sectionHeaders[sectionIds[3]]}
+			data={csvData}
+			{ingredientsData}
+		/>
+		<HoverInfo />
+	{/if}
 </main>
 
 <style>
 	:global(body) {
 		position: relative;
+	}
+
+	.dots {
+		display: inline-block;
+		animation: dots 1s steps(5, end) infinite;
+	}
+
+	@keyframes dots {
+		0%,
+		20% {
+			color: rgba(0, 0, 0, 0);
+			text-shadow:
+				0.25em 0 0 rgba(0, 0, 0, 0),
+				0.5em 0 0 rgba(0, 0, 0, 0);
+		}
+		40% {
+			color: black;
+			text-shadow:
+				0.25em 0 0 rgba(0, 0, 0, 0),
+				0.5em 0 0 rgba(0, 0, 0, 0);
+		}
+		60% {
+			text-shadow:
+				0.25em 0 0 black,
+				0.5em 0 0 rgba(0, 0, 0, 0);
+		}
+		80%,
+		100% {
+			text-shadow:
+				0.25em 0 0 black,
+				0.5em 0 0 black;
+		}
 	}
 </style>

@@ -60,8 +60,8 @@
 		</span>
 		ingredients.
 	</div>
-	<svg class="chart-svg" {width} {height}>
-		{#if width > 0}
+	{#if width > 0}
+		<svg class="chart-svg" {width} {height}>
 			<AxisXTop
 				{xScale}
 				{yScale}
@@ -177,8 +177,8 @@
 					/>
 				{/each}
 			</g>
-		{/if}
-	</svg>
+		</svg>
+	{/if}
 </div>
 
 <style>

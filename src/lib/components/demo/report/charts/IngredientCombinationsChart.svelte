@@ -22,18 +22,20 @@
 
 <div id="insight-explore-new-combinations" class="chart center-content poppins">
 	<h3 class="chart-title">Ingredients that have not been used together so far</h3>
-	<svg width={tableWdith - 1} height="40">
-		<PointerAnnotation
-			x={5}
-			y={40}
-			widthArrow={20}
-			heightArrow={15}
-			placement="topright"
-			text="The most used ingredient, garlic"
-			width={250}
-			height={40}
-		/>
-	</svg>
+	{#if tableWdith > 0}
+		<svg width={tableWdith - 1} height="40">
+			<PointerAnnotation
+				x={5}
+				y={40}
+				widthArrow={20}
+				heightArrow={15}
+				placement="topright"
+				text="The most used ingredient, garlic"
+				width={250}
+				height={40}
+			/>
+		</svg>
+	{/if}
 	<div class="table-grid" bind:clientWidth={tableWdith}>
 		{#each dataIngredientCombinations as combination, i}
 			<div class="table-grid-cell" style:min-width="100px" bind:clientWidth={chartWidth}>

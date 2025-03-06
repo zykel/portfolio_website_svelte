@@ -88,8 +88,8 @@
 
 <div id="insight-remove-xxl" class="chart">
 	<h3 class="chart-title">Number of sales by pizza size</h3>
-	<svg class="chart-svg" {width} {height}>
-		{#if width > 0 && height > 0}
+	{#if width > 0 && height > 0}
+		<svg class="chart-svg" {width} {height}>
 			<g class="sizes-pie-g" transform={`translate(${gTranslate})`}>
 				{#each dataPie as datumPie, i}
 					{@const pathPoints = getLabelLinePathPoints(datumPie, dataPie.length)}
@@ -147,8 +147,8 @@
 					</text>
 				{/each}
 			</g>
-		{/if}
-	</svg>
+		</svg>
+	{/if}
 </div>
 
 <style>

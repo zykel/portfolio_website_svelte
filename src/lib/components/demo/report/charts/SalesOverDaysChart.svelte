@@ -92,8 +92,8 @@
 		minColor="hsl(249, 80%, 90%)"
 		maxColor="hsl(249, 80%, 67%)"
 	/>
-	<svg class="chart-svg" {width} {height}>
-		{#if width > 0}
+	{#if width > 0}
+		<svg class="chart-svg" {width} {height}>
 			<g class="x-axis-g">
 				{#each timeOfDayDomain as time, i}
 					{#if time.includes(':00') && +time.split(':')[0] % 4 === 2}
@@ -216,8 +216,8 @@
 				onpointermove={showHoverInfo}
 				onpointerleave={hideHoverInfo}
 			/>
-		{/if}
-	</svg>
+		</svg>
+	{/if}
 </div>
 
 <style>

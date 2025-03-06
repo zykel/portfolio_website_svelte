@@ -36,8 +36,8 @@
 
 <div id="insight-allocate-staff" class="chart">
 	<h3 class="chart-title">Number of sales per weekday</h3>
-	<svg class="chart-svg" {width} {height}>
-		{#if width > 0}
+	{#if width > 0}
+		<svg class="chart-svg" {width} {height}>
 			<g class="axis-x">
 				{#each daysOfWeek as day}
 					<text
@@ -170,6 +170,6 @@
 					/>
 				{/each}
 			</g>
-		{/if}
-	</svg>
+		</svg>
+	{/if}
 </div>
