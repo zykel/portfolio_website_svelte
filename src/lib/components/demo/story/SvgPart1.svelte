@@ -70,19 +70,70 @@
 
 	const dataPie = $derived(getPizzaPieData(categoryData));
 
-	const getToppingsData = (datumPie) => {
+	const getToppingCirclePosition = (datumPie, anglePerc, r) => {
 		const start = datumPie.startAngle;
 		const end = datumPie.endAngle;
-		const angle1 = start + 0 * (end - start);
-		const x1 = Math.cos(angle1) * radius * 0.6;
-		const y1 = Math.sin(angle1) * radius * 0.6;
-		const angle2 = start + 0.4 * (end - start);
-		const x2 = Math.cos(angle2) * radius * 0.6;
-		const y2 = Math.sin(angle2) * radius * 0.6;
-		return [
-			{ x: x1, y: y1 },
-			{ x: x2, y: y2 }
-		];
+		const angle = start + anglePerc * (end - start) - Math.PI / 2;
+		const x = Math.cos(angle) * r;
+		const y = Math.sin(angle) * r;
+		return { x, y, type: 'circle' };
+	};
+	const getToppingBezierPosition = (datumPie, anglePerc, r, length, rotation) => {
+		const start = datumPie.startAngle;
+		const end = datumPie.endAngle;
+		const angle = start + anglePerc * (end - start) - Math.PI / 2;
+		const x = Math.cos(angle) * r;
+		const y = Math.sin(angle) * r;
+
+		// Create a bezier curve as follows: It is a line consisting of three points with a slight bend. The line length should be length. The middle point of the line should be at x, y. The line should be rotate according to rotation
+		const p1 = [x - length / 2, y + length / 4];
+		const p2 = [x, y];
+		const p3 = [x + length / 2, y + length / 4];
+
+		return { p1, p2, p3, rotation, type: 'bezier' };
+	};
+
+	const bezierLength = $derived(radius * 0.2);
+
+	const getToppingsData = (datumPie) => {
+		if (datumPie.index === 0) {
+			return [
+				getToppingCirclePosition(datumPie, 0.25, radius * 0.8),
+				getToppingCirclePosition(datumPie, 0.4, radius * 0.4),
+				getToppingCirclePosition(datumPie, 0.7, radius * 0.8),
+				getToppingBezierPosition(datumPie, 0.8, radius * 0.6, bezierLength, 10),
+				getToppingBezierPosition(datumPie, 0.51, radius * 0.8, bezierLength, 150)
+			];
+		}
+		if (datumPie.index === 1) {
+			return [
+				getToppingCirclePosition(datumPie, 0.25, radius * 0.8),
+				getToppingCirclePosition(datumPie, 0.6, radius * 0.5),
+				getToppingCirclePosition(datumPie, 0.8, radius * 0.8),
+				getToppingBezierPosition(datumPie, 0.21, radius * 0.4, bezierLength, 30),
+				getToppingBezierPosition(datumPie, 0.51, radius * 0.8, bezierLength, 130)
+			];
+		}
+		if (datumPie.index === 2) {
+			return [
+				getToppingCirclePosition(datumPie, 0.22, radius * 0.5),
+				getToppingCirclePosition(datumPie, 0.47, radius * 0.75),
+				getToppingCirclePosition(datumPie, 0.77, radius * 0.65),
+				getToppingBezierPosition(datumPie, 0.12, radius * 0.78, bezierLength, 80),
+				getToppingBezierPosition(datumPie, 0.52, radius * 0.28, bezierLength, 180),
+				getToppingBezierPosition(datumPie, 0.72, radius * 0.92, bezierLength, -90)
+			];
+		}
+		if (datumPie.index === 3) {
+			return [
+				getToppingCirclePosition(datumPie, 0.2, radius * 0.76),
+				getToppingCirclePosition(datumPie, 0.6, radius * 0.6),
+				getToppingBezierPosition(datumPie, 0.62, radius * 0.32, bezierLength, 20),
+				getToppingBezierPosition(datumPie, 0.72, radius * 0.8, bezierLength, 170)
+			];
+		} else {
+			return [];
+		}
 	};
 
 	const dataTweened = $derived(
@@ -119,7 +170,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
 	<defs>
 		<filter id="drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
-			<feDropShadow dx="0" dy="5" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
+			<feDropShadow dx="0" dy="5" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.3)" />
 		</filter>
 	</defs>
 	<g class="sizes-pie-g" transform={`translate(${gTranslate})`}>
@@ -136,8 +187,26 @@
 			<path class="pizza-background" d={dWide} opacity={opacityFull.current} fill="white" />
 			<path class="pizza-rim" d={dRim} opacity={opacityFull.current} {fill} />
 			<path class="pizza-inner" d={dSmall} opacity={opacityLight.current} {fill} />
-			{#each toppingsData as { x, y }, i}
-				<circle cx={x} cy={y} r="7" {fill} />
+			{#each toppingsData as toppingsDatum, i}
+				{#if toppingsDatum.type === 'circle'}
+					<circle
+						cx={toppingsDatum.x}
+						cy={toppingsDatum.y}
+						r={radius * 0.12}
+						{fill}
+						opacity={opacityFull.current}
+					/>
+				{:else if toppingsDatum.type === 'bezier'}
+					<path
+						d={`M ${toppingsDatum.p1[0]} ${toppingsDatum.p1[1]} Q ${toppingsDatum.p2[0]} ${toppingsDatum.p2[1]} ${toppingsDatum.p3[0]} ${toppingsDatum.p3[1]}`}
+						fill="none"
+						stroke={fill}
+						stroke-width="5"
+						opacity={opacityFull.current}
+						stroke-linecap="round"
+						transform={`rotate(${toppingsDatum.rotation} ${toppingsDatum.p2[0]} ${toppingsDatum.p2[1]})`}
+					/>
+				{/if}
 			{/each}
 		{/each}
 	</g>

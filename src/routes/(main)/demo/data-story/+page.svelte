@@ -112,7 +112,7 @@
 	.step {
 		height: 40vh;
 		margin: 30vh 0;
-		background-color: aquamarine;
+		background-color: rgba(127, 255, 212, 0.212);
 		display: flex;
 		justify-content: center;
 		place-items: center;
@@ -122,7 +122,7 @@
 	}
 
 	.step.active {
-		background-color: tomato;
+		background-color: rgba(255, 99, 71, 0.193);
 	}
 
 	.steps {
