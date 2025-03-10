@@ -128,5 +128,6 @@
 		text-align: center;
 		width: fit-content;
 		box-sizing: border-box;
+		user-select: none;
 	}
 </style>

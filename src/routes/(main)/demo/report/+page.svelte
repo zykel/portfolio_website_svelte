@@ -30,6 +30,7 @@
 		return d;
 	});
 
+	$inspect(csvData);
 	const ingredientsData = $derived(getIngredientsData(csvData));
 
 	const sectionIds = [

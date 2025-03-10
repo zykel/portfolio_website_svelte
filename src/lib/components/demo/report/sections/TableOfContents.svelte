@@ -7,11 +7,13 @@
 	<h2 class="table-of-contents-text limit-width">Content:</h2>
 
 	<p class="default-text limit-width">In this report, the following questions are answered:</p>
-	<ol>
+	<ol class="limit-width">
 		{#each sectionIds as sectionId}
-			<a href={`#${sectionId}`} class="table-of-contents-link limit-width"
-				><li class="limit-width">{sectionHeaders[sectionId]}</li></a
-			>
+			<li>
+				<a href={`#${sectionId}`} class="table-of-contents-link limit-width"
+					>{sectionHeaders[sectionId]}</a
+				>
+			</li>
 		{/each}
 	</ol>
 </section>

@@ -151,6 +151,9 @@ h3 {
 ul {
 	box-sizing: border-box;
 }
+ol {
+	box-sizing: border-box;
+}
 a {
 	text-decoration: none; /* Remove the default underline */
 	color: #007bff; /* Set a custom color */
