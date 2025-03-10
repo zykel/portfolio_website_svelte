@@ -3,19 +3,39 @@
 	import { max } from 'd3-array';
 	import { Tween } from 'svelte/motion';
 	import Scrolly from '$lib/components/demo/story/Scrolly.svelte';
+	import SvgPart1 from '$lib/components/demo/story/SvgPart1.svelte';
+	import SvgPart2 from '$lib/components/demo/story/SvgPart2.svelte';
+	import { get } from 'svelte/store';
+
+	/**
+	 * @typedef {Object} PizzaDataEntry
+	 * @property {string} category - The category of the pizza (e.g., "Classic").
+	 * @property {number} count - The number of times this pizza was sold.
+	 * @property {string} name - The name of the pizza (e.g., "The Hawaiian Pizza").
+	 * @property {number} price - The price of the pizza.
+	 */
 
 	let { data } = $props();
 
-	$inspect(data);
+	/** @type {PizzaDataEntry[]} */
+	const dataPizzas = $derived(data.pizzaData);
+	const dataTime = $derived(data.timeData);
+
+	$inspect(dataPizzas);
+	$inspect(dataTime);
 
 	let width = $state(0);
 	let height = $state(0);
 
 	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
-	const dataStepped = $derived([0, 1, 2]);
-
-	$inspect(dataStepped);
+	const dataStepText = $derived([
+		'Here at Pizza Bianca we offer four types of pizzas.',
+		'9 Supreme pizzas',
+		'9 Veggie pizzas',
+		'8 Classic pizzas',
+		'6 Chicken pizzas'
+	]);
 
 	let stepNr = $state(0);
 
@@ -25,67 +45,47 @@
 
 	const dataTweened = $derived([]);
 
-	$effect(() => {
-		dataTweened.forEach((d, i) => {
-			d.y.target = i <= stepNr ? yScale(d.score) : 0;
-			d.height.target = i <= stepNr ? height - yScale(d.score) - margin.bottom : 0;
-		});
-	});
+	let selectedPizza = $state('');
 </script>
 
-<div class="main-div">
+<div class="part-container">
 	<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
 		{#if width > 0 && height > 0}
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-				{#each dataTweened as datum, i}
-					<rect
-						x={datum.x}
-						y={datum.y.current}
-						width={datum.width}
-						height={datum.height.current}
-						fill="steelblue"
-					/>
-				{/each}
-			</svg>
+			<SvgPart1 data={dataPizzas} {width} {height} {stepNr} />
 		{/if}
 	</div>
 	<div class="steps">
 		<Scrolly bind:value={stepNr}>
-			{#each dataStepped as _, i}
-				<div class="step" class:active={stepNr === i}>
-					<p>Hi there</p>
+			{#each dataStepText as text, i}
+				<div
+					class="step {i === dataStepText.length - 1 ? 'last-step' : ''}"
+					class:active={stepNr === i}
+				>
+					<p>{text}</p>
 				</div>
 			{/each}
 		</Scrolly>
 	</div>
 </div>
 
-<div class="main-div">
-	<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
-		{#if width > 0 && height > 0}
-			<svg class="svgtwo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
-				{#each dataTweened as datum, i}
-					<rect
-						x={datum.x}
-						y={datum.y.current}
-						width={datum.width}
-						height={datum.height.current}
-						fill="steelblue"
-					/>
+{#if selectedPizza !== ''}
+	<div class="part-container">
+		<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
+			{#if width > 0 && height > 0}
+				<SvgPart2 {dataTweened} {width} {height} />
+			{/if}
+		</div>
+		<div class="steps">
+			<Scrolly bind:value={stepNr}>
+				{#each dataStepText as _, i}
+					<div class="step" class:active={stepNr === i}>
+						<p>Hi there</p>
+					</div>
 				{/each}
-			</svg>
-		{/if}
+			</Scrolly>
+		</div>
 	</div>
-	<div class="steps">
-		<Scrolly bind:value={stepNr}>
-			{#each dataStepped as _, i}
-				<div class="step" class:active={stepNr === i}>
-					<p>Hi there</p>
-				</div>
-			{/each}
-		</Scrolly>
-	</div>
-</div>
+{/if}
 
 <style>
 	:global(body) {
@@ -93,7 +93,7 @@
 		padding: 0;
 	}
 
-	.main-div {
+	.part-container {
 		position: relative;
 		width: 100%;
 		display: flex;
@@ -109,13 +109,6 @@
 		margin: 10vh 0;
 	}
 
-	svg {
-		background-color: #f0f0f0;
-	}
-	.svgtwo {
-		background-color: rgb(195, 249, 231);
-	}
-
 	.step {
 		height: 40vh;
 		margin: 30vh 0;
@@ -123,6 +116,9 @@
 		display: flex;
 		justify-content: center;
 		place-items: center;
+	}
+	.last-step {
+		margin-bottom: 100vh;
 	}
 
 	.step.active {
