@@ -17,7 +17,13 @@
 	 * @property {number} price - The price of the pizza.
 	 */
 
-	let { /** @type {PizzaDataEntry[]} */ data, width, height, stepNr } = $props();
+	let {
+		/** @type {PizzaDataEntry[]} */ data,
+		width,
+		height,
+		stepNr,
+		categorySelected = $bindable()
+	} = $props();
 
 	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
@@ -46,7 +52,7 @@
 		return pieData;
 	};
 
-	const radius = 170;
+	const radius = $derived(width / 5);
 
 	const arcScale = $derived(arc().innerRadius(0).outerRadius(radius).cornerRadius(3));
 	const arcScaleWide = $derived(
@@ -97,6 +103,7 @@
 			(
 				/** @type {{ data: { stepReveal: any; }; opacityLight: { target: number; }; opacityFull: { target: number; }; }} */ datumTweened
 			) => {
+				// CONTINUE stepHide hinzufügen - und generell den steps Ids geben und zwischen den stepNrs und stepIds mappen ermöglichen
 				const stepReveal = pizzaStartStep + datumTweened.data.stepReveal;
 				datumTweened.opacityLight.target = stepReveal <= stepNr ? 0.4 : 0;
 				datumTweened.opacityFull.target = stepReveal <= stepNr ? 1 : 0;
@@ -104,10 +111,17 @@
 		);
 	});
 
-	$inspect(stepNr);
+	$inspect({ categorySelected });
 
 	let categoryFocused = $state('');
-	let categorySelected = $state('');
+
+	const interactionStepReached = $derived(
+		stepNr >
+			pizzaStartStep +
+				Math.max(
+					...dataPie.map((/** @type {{ data: { stepReveal: any; }; }} */ d) => d.data.stepReveal)
+				)
+	);
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -116,7 +130,7 @@
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 {width} {height}"
 	onclick={(event) => {
-		categorySelected = '';
+		// categorySelected = '';
 	}}
 >
 	<defs>
@@ -157,12 +171,14 @@
 			<g
 				class="pizza-slice"
 				onclick={(event) => {
-					event.stopPropagation();
-					categorySelected = data.category;
+					if (interactionStepReached) categorySelected = data.category;
 				}}
-				onpointerover={() => (categoryFocused = data.category)}
+				onpointermove={() => {
+					if (interactionStepReached) categoryFocused = data.category;
+				}}
 				onpointerout={() => (categoryFocused = '')}
 				transform={[categoryFocused, categorySelected].includes(data.category) ? 'scale(1.1)' : ''}
+				style:cursor={interactionStepReached ? 'pointer' : 'default'}
 			>
 				<path class="pizza-background" d={dSmall} opacity={opacityFull.current} fill="white" />
 				<path class="pizza-rim" d={dRim} opacity={opacityFull.current} {fill} />
@@ -196,6 +212,7 @@
 					{fill}
 					opacity={opacityFull.current}
 					pointer-events="none"
+					style:text-decoration={categorySelected === data.category ? 'underline' : 'none'}
 				>
 					{data.category} ({data.nrPizzas})
 				</text>
@@ -203,6 +220,11 @@
 		{/each}
 	</g>
 </svg>
+{#if interactionStepReached && categorySelected}
+	<div class="continue-button-container">
+		<a href="#step-text-container-6" class="continue-button">Continue</a>
+	</div>
+{/if}
 
 <style>
 	svg {
@@ -211,11 +233,34 @@
 	}
 
 	.pizza-slice {
-		cursor: pointer;
 	}
 
 	.pizza-slice-label {
 		font-size: 2rem;
 		font-weight: bold;
+	}
+
+	.continue-button-container {
+		position: absolute;
+		bottom: 1rem;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.continue-button {
+		font-family: SourGummy, sans-serif;
+		background-color: #ffffff;
+		border: 2px solid #000000;
+		border-radius: 3rem;
+		padding: 0.5rem 1rem;
+		font-size: 1.5rem;
+		cursor: pointer;
+		color: #000000;
+		text-decoration: none;
+	}
+	.continue-button:hover {
+		background-color: #333333;
+		border: 2px solid #333333;
+		color: #ffffff;
 	}
 </style>

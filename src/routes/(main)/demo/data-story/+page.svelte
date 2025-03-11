@@ -29,14 +29,16 @@
 
 	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
-	const dataStepText = $derived([
+	const dataStepTextPart1_1 = $derived([
 		'Here at Pizza Bianca we offer four types of pizzas.',
-		'We offer 9 types of "Supreme" pizzas',
-		'9 types of "Veggie" pizzas',
-		'8 types of "Classic" pizzas',
+		'We offer 9 types of "Supreme" pizzas...',
+		'9 types of "Veggie" pizzas...',
+		'8 types of "Classic" pizzas...',
 		'and 6 types of "Chicken" pizzas.',
 		'Select a category to explore the pizzas in that category.'
 	]);
+
+	const dataStepTextPart1_2 = $derived(['This is the beginning of part 2.']);
 
 	let stepNr = $state(0);
 
@@ -46,21 +48,35 @@
 
 	const dataTweened = $derived([]);
 
-	let selectedPizza = $state('');
+	let categorySelected = $state('');
+
+	$inspect({ categorySelected });
 </script>
 
 <div class="part-container">
 	<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
 		{#if width > 0 && height > 0}
-			<SvgPart1 data={dataPizzas} {width} {height} {stepNr} />
+			<SvgPart1 data={dataPizzas} {width} {height} {stepNr} bind:categorySelected />
 		{/if}
 	</div>
 	<div class="steps">
 		<Scrolly bind:value={stepNr}>
-			{#each dataStepText as text, i}
+			{#each dataStepTextPart1_1 as text, i}
 				<div
-					class="step {i === dataStepText.length - 1 ? 'last-step' : ''}"
+					class="step {i === dataStepTextPart1_1.length - 1 ? 'last-step' : ''}"
 					class:active={stepNr === i}
+				>
+					<p class="step-p">{text}</p>
+				</div>
+			{/each}
+			{#each dataStepTextPart1_2 as text, i}
+				{@const stepNrThis = i + dataStepTextPart1_1.length}
+				<div
+					id="step-text-container-{stepNrThis}"
+					class="step {i === dataStepTextPart1_2.length - 1
+						? 'last-step'
+						: ''} {categorySelected === '' ? 'hidden' : ''}"
+					class:active={stepNr === stepNrThis}
 				>
 					<p class="step-p">{text}</p>
 				</div>
@@ -69,7 +85,7 @@
 	</div>
 </div>
 
-{#if selectedPizza !== ''}
+{#if false}
 	<div class="part-container">
 		<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
 			{#if width > 0 && height > 0}
@@ -78,7 +94,7 @@
 		</div>
 		<div class="steps">
 			<Scrolly bind:value={stepNr}>
-				{#each dataStepText as _, i}
+				{#each dataStepTextPart1_1 as _, i}
 					<div class="step" class:active={stepNr === i}>
 						<p>Hi there</p>
 					</div>
@@ -104,7 +120,7 @@
 	}
 	.svg-div {
 		position: sticky;
-		width: 900px;
+		width: calc(min(900px, 100vw));
 		height: 80vh;
 		top: 10vh;
 		margin: 10vh 0;
@@ -123,6 +139,9 @@
 	}
 	.last-step {
 		margin-bottom: 70vh;
+	}
+	.hidden {
+		display: none;
 	}
 
 	.step-p {
