@@ -31,10 +31,11 @@
 
 	const dataStepText = $derived([
 		'Here at Pizza Bianca we offer four types of pizzas.',
-		'9 Supreme pizzas',
-		'9 Veggie pizzas',
-		'8 Classic pizzas',
-		'6 Chicken pizzas'
+		'We offer 9 types of "Supreme" pizzas',
+		'9 types of "Veggie" pizzas',
+		'8 types of "Classic" pizzas',
+		'and 6 types of "Chicken" pizzas.',
+		'Select a category to explore the pizzas in that category.'
 	]);
 
 	let stepNr = $state(0);
@@ -61,7 +62,7 @@
 					class="step {i === dataStepText.length - 1 ? 'last-step' : ''}"
 					class:active={stepNr === i}
 				>
-					<p>{text}</p>
+					<p class="step-p">{text}</p>
 				</div>
 			{/each}
 		</Scrolly>
@@ -112,17 +113,29 @@
 	.step {
 		height: 40vh;
 		margin: 30vh 0;
-		background-color: rgba(127, 255, 212, 0.212);
+		padding: 1vh;
+		/* background-color: rgba(201, 144, 144, 0.411); */
 		display: flex;
 		justify-content: center;
 		place-items: center;
+		color: gray;
+		font-size: 1.5rem;
 	}
 	.last-step {
-		margin-bottom: 100vh;
+		margin-bottom: 70vh;
+	}
+
+	.step-p {
+		width: 300px;
+		padding: 1rem;
+		background-color: rgb(253, 244, 231);
+		border-radius: 1rem;
+		text-align: center;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	}
 
 	.step.active {
-		background-color: rgba(255, 99, 71, 0.193);
+		color: black;
 	}
 
 	.steps {

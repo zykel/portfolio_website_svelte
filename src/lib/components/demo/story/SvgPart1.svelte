@@ -6,6 +6,7 @@
 		getToppingsData
 	} from '$lib/scripts/utilityStory.js';
 	import { pie, arc } from 'd3-shape';
+	import { stopPropagation } from 'svelte/legacy';
 	import { Tween } from 'svelte/motion';
 
 	/**
@@ -45,7 +46,7 @@
 		return pieData;
 	};
 
-	const radius = 70;
+	const radius = 170;
 
 	const arcScale = $derived(arc().innerRadius(0).outerRadius(radius).cornerRadius(3));
 	const arcScaleWide = $derived(
@@ -75,7 +76,17 @@
 			const opacityFull = new Tween(0);
 
 			const toppingsData = getToppingsData(datumPie, radius, bezierLength);
-			return { ...datumPie, dSmall, dWide, dRim, opacityLight, opacityFull, fill, toppingsData };
+			return {
+				datumPie,
+				...datumPie,
+				dSmall,
+				dWide,
+				dRim,
+				opacityLight,
+				opacityFull,
+				fill,
+				toppingsData
+			};
 		})
 	);
 
@@ -93,41 +104,67 @@
 		);
 	});
 
-	$inspect({ dataTweened });
+	$inspect(stepNr);
 
 	let categoryFocused = $state('');
-	$inspect(categoryFocused);
+	let categorySelected = $state('');
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 {width} {height}"
+	onclick={(event) => {
+		categorySelected = '';
+	}}
+>
 	<defs>
 		<filter id="drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
-			<feDropShadow dx="0" dy="5" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.3)" />
+			<feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.3)" />
+		</filter>
+		<filter id="drop-shadow-heavy" x="-50%" y="-50%" width="200%" height="200%">
+			<feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
 		</filter>
 	</defs>
 	<g class="sizes-pie-g" transform={`translate(${gTranslate})`}>
-		{#each dataTweened as { data, dSmall, dWide, opacityFull, fill }, i}
+		{#each dataTweened as { data, dSmall, dWide, dRim, opacityFull, fill }, i}
 			<g
 				class="pizza-slice-background"
-				transform={categoryFocused === data.category ? 'scale(1.1)' : ''}
+				transform={[categoryFocused, categorySelected].includes(data.category)
+					? 'scale(1.09)'
+					: 'scale(0.99)'}
 			>
 				<path
 					class="pizza-background-shadow"
-					d={dWide}
+					d={dSmall}
 					opacity={opacityFull.current}
 					fill="white"
-					filter="url(#drop-shadow)"
+					filter="url(#drop-shadow{categorySelected === data.category ? '-heavy' : ''})"
+				/>
+				<path
+					class="pizza-background-shadow"
+					d={dRim}
+					opacity={opacityFull.current}
+					fill="white"
+					filter="url(#drop-shadow{categorySelected === data.category ? '-heavy' : ''})"
 				/>
 			</g>
 		{/each}
-		{#each dataTweened as { data, dSmall, dRim, dWide, opacityLight, opacityFull, fill, toppingsData }, i}
+		{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, fill, toppingsData }, i}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<g
 				class="pizza-slice"
+				onclick={(event) => {
+					event.stopPropagation();
+					categorySelected = data.category;
+				}}
 				onpointerover={() => (categoryFocused = data.category)}
 				onpointerout={() => (categoryFocused = '')}
-				transform={categoryFocused === data.category ? 'scale(1.1)' : ''}
+				transform={[categoryFocused, categorySelected].includes(data.category) ? 'scale(1.1)' : ''}
 			>
-				<path class="pizza-background" d={dWide} opacity={opacityFull.current} fill="white" />
+				<path class="pizza-background" d={dSmall} opacity={opacityFull.current} fill="white" />
 				<path class="pizza-rim" d={dRim} opacity={opacityFull.current} {fill} />
 				<path class="pizza-inner" d={dSmall} opacity={opacityLight.current} {fill} />
 				{#each toppingsData as toppingsDatum, i}
@@ -151,6 +188,17 @@
 						/>
 					{/if}
 				{/each}
+				<text
+					class="pizza-slice-label"
+					x={arcScale.centroid(datumPie)[0] * 2.6}
+					y={arcScale.centroid(datumPie)[1] * 2.6}
+					text-anchor={arcScale.centroid(datumPie)[0] > 0 ? 'start' : 'end'}
+					{fill}
+					opacity={opacityFull.current}
+					pointer-events="none"
+				>
+					{data.category} ({data.nrPizzas})
+				</text>
 			</g>
 		{/each}
 	</g>
@@ -160,5 +208,14 @@
 	svg {
 		/* background-color: #f0f0f0; */
 		border: 1px solid #ccc;
+	}
+
+	.pizza-slice {
+		cursor: pointer;
+	}
+
+	.pizza-slice-label {
+		font-size: 2rem;
+		font-weight: bold;
 	}
 </style>

@@ -1,65 +1,44 @@
 /* Or Poppins */
-/* @font-face {
-	font-family: 'Lora';
-	src: url('/fonts/Lora/Lora-Regular.ttf') format('truetype');
+@font-face {
+	font-family: 'SourGummy';
+	src: url('/fonts/SourGummy/SourGummy-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Lora';
-	src: url('/fonts/Lora/Lora-SemiBold.ttf') format('truetype');
+	font-family: 'SourGummy';
+	src: url('/fonts/SourGummy/SourGummy-SemiBold.ttf') format('truetype');
 	font-weight: 600;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Lora';
-	src: url('/fonts/Lora/Lora-Bold.ttf') format('truetype');
+	font-family: 'SourGummy';
+	src: url('/fonts/SourGummy/SourGummy-Bold.ttf') format('truetype');
 	font-weight: 700;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Lora';
-	src: url('/fonts/Lora/Lora-Light.ttf') format('truetype');
+	font-family: 'SourGummy';
+	src: url('/fonts/SourGummy/SourGummy-Light.ttf') format('truetype');
 	font-weight: 300;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Lora';
-	src: url('/fonts/Lora/Lora-Italic.ttf') format('truetype');
+	font-family: 'SourGummy';
+	src: url('/fonts/SourGummy/SourGummy-Italic.ttf') format('truetype');
 	font-weight: normal;
 	font-style: italic;
 }
 
 @font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+	font-family: 'Chewy';
+	src: url('/fonts/Chewy/Chewy-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
-	font-weight: 600;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-Light.ttf') format('truetype');
-	font-weight: 300;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Poppins';
-	src: url('/fonts/Poppins-Italic.ttf') format('truetype');
-	font-weight: normal;
-	font-style: italic;
 }
 
 html {
@@ -67,10 +46,10 @@ html {
 }
 
 body {
-	font-family: 'Lora', serif;
+	font-family: 'SourGummy', sans-serif;
 	margin: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	line-height: 1.5;
-} */
+}
