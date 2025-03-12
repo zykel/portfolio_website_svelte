@@ -168,6 +168,10 @@
 	function scrollToElement(id) {
 		const element = document.getElementById(id);
 		if (element) {
+			// debugger;
+			element.parentElement?.classList.remove('hidden');
+			// element.classList.remove('hidden');
+			// element.style.display = 'flex';
 			element.scrollIntoView({ behavior: 'smooth' });
 		}
 	}
