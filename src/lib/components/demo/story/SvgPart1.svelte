@@ -85,6 +85,7 @@
 			const transform = new Tween('scale(1.0)', {
 				interpolate: interpolateTransformSvg
 			});
+			const rotate = new Tween(0);
 
 			const toppingsData = getToppingsData(datumPie, radius, bezierLength);
 			return {
@@ -95,6 +96,7 @@
 				dRim,
 				opacityLight,
 				opacityFull,
+				rotate,
 				transform,
 				fill,
 				toppingsData,
@@ -110,7 +112,7 @@
 	$effect(() => {
 		dataTweened.forEach(
 			(
-				/** @type {{ data: { stepReveal: any; category: string }; opacityLight: { target: number; }; opacityFull: { target: number; }; transform: { target: string }; startAngle: number; endAngle: number }} */ datumTweened
+				/** @type {{ data: { stepReveal: any; category: string }; opacityLight: { target: number; }; opacityFull: { target: number; }; rotate: { target: number; }; transform: { target: string }; startAngle: number; endAngle: number }} */ datumTweened
 			) => {
 				// CONTINUE stepHide hinzufügen - und generell den steps Ids geben und zwischen den stepNrs und stepIds mappen ermöglichen
 
@@ -132,6 +134,10 @@
 					stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
 						? `rotate(${rotationAfter1_2})`
 						: '';
+				datumTweened.rotate.target =
+					stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
+						? rotationAfter1_2
+						: 0;
 				// datumTweened.transform.target =
 				// 	stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
 				// 		? 'rotate(180)'
@@ -170,35 +176,45 @@
 		<filter id="drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
 			<feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.3)" />
 		</filter>
+		<filter id="drop-shadow-flipped" x="-50%" y="-50%" width="200%" height="200%">
+			<feDropShadow dx="0" dy="-6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.3)" />
+		</filter>
 		<filter id="drop-shadow-heavy" x="-50%" y="-50%" width="200%" height="200%">
 			<feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
 		</filter>
+		<filter id="drop-shadow-heavy-flipped" x="-50%" y="-50%" width="200%" height="200%">
+			<feDropShadow dx="0" dy="-6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
+		</filter>
 	</defs>
 	<g class="sizes-pie-g" transform={`translate(${gTranslate})`}>
-		{#each dataTweened as { data, dSmall, dWide, dRim, opacityFull, transform, fill }, i}
+		{#each dataTweened as { data, dSmall, dWide, dRim, opacityFull, transform, rotate, fill }, i}
 			{@const highlight =
 				[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
-			<g class="pizza-slice-background" transform={highlight ? 'scale(1.09)' : transform.current}>
+			<g
+				class="pizza-slice-background"
+				transform={(highlight ? 'scale(1.09)' : '') + ` rotate(${rotate.current})`}
+			>
 				<path
 					class="pizza-background-shadow"
 					d={dSmall}
 					opacity={opacityFull.current}
 					fill="white"
-					filter="url(#drop-shadow{categorySelected === data.category ? '-heavy' : ''})"
+					filter="url(#drop-shadow{(categorySelected === data.category ? '-heavy' : '') +
+						(rotate.current < -90 && rotate.current > -270 ? '-flipped' : '')})"
 				/>
 				<path
 					class="pizza-background-shadow"
 					d={dRim}
 					opacity={opacityFull.current}
 					fill="white"
-					filter="url(#drop-shadow{categorySelected === data.category ? '-heavy' : ''})"
+					filter="url(#drop-shadow{(categorySelected === data.category ? '-heavy' : '') +
+						(rotate.current < -90 && rotate.current > -270 ? '-flipped' : '')})"
 				/>
 			</g>
 		{/each}
-		{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, transform, fill, toppingsData }, i}
+		{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, rotate, transform, fill, toppingsData }, i}
 			{@const highlight =
 				[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
-			{@const rotate = stepNr >= startStep1_2 && categorySelected === data.category}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<g
@@ -210,7 +226,7 @@
 					if (interactionStepReached) categoryFocused = data.category;
 				}}
 				onpointerout={() => (categoryFocused = '')}
-				transform={highlight ? 'scale(1.1)' : transform.current}
+				transform={(highlight ? 'scale(1.1)' : '') + ` rotate(${rotate.current})`}
 				style:cursor={interactionStepReached ? 'pointer' : 'default'}
 			>
 				<path class="pizza-background" d={dSmall} opacity={opacityFull.current} fill="white" />
@@ -237,14 +253,25 @@
 						/>
 					{/if}
 				{/each}
+				<!-- text-anchor={rotate.current !== 0
+						? 'middle'
+						: arcScale.centroid(datumPie)[0] > 0
+							? 'start'
+							: 'end'} -->
 				<text
 					class="pizza-slice-label"
 					x={arcScale.centroid(datumPie)[0] * 2.6}
 					y={arcScale.centroid(datumPie)[1] * 2.6}
-					text-anchor={arcScale.centroid(datumPie)[0] > 0 ? 'start' : 'end'}
+					text-anchor={rotate.current !== 0
+						? 'middle'
+						: arcScale.centroid(datumPie)[0] > 0
+							? 'start'
+							: 'end'}
 					{fill}
 					opacity={opacityFull.current}
 					pointer-events="none"
+					transform="rotate({-rotate.current}, {arcScale.centroid(datumPie)[0] *
+						2.6}, {arcScale.centroid(datumPie)[1] * 2.6})"
 					style:text-decoration={categorySelected === data.category ? 'underline' : 'none'}
 				>
 					{data.category} ({data.nrPizzas})
