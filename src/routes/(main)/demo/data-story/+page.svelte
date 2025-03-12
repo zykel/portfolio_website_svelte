@@ -38,7 +38,7 @@
 		'Select a category to explore the pizzas in that category.'
 	]);
 
-	const dataStepTextPart1_2 = $derived(['This is the beginning of part 2.']);
+	const dataStepTextPart1_2 = $derived(['This is the beginning of part 2 →.']);
 
 	let stepNr = $state(0);
 

@@ -5,11 +5,16 @@
 		categoryColorScale,
 		getToppingsData
 	} from '$lib/scripts/utilityStory.js';
+	import { scaleLinear } from 'd3-scale';
+	import { forceSimulation, forceX, forceY, forceCollide } from 'd3-force';
 	import { transform } from '@observablehq/plot';
 	import { interpolateTransformSvg } from 'd3-interpolate';
 	import { pie, arc } from 'd3-shape';
 	import { stopPropagation } from 'svelte/legacy';
 	import { Tween } from 'svelte/motion';
+	import { elasticOut } from 'svelte/easing';
+	import PizzaPie from './charts/PizzaPie.svelte';
+	import PizzaBubbles from './charts/PizzaBubbles.svelte';
 
 	/**
 	 * @typedef {Object} PizzaDataEntry
@@ -27,158 +32,14 @@
 		categorySelected = $bindable()
 	} = $props();
 
-	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+	const margin = { top: 200, right: 20, bottom: 200, left: 20 };
 
 	const startStep1_1 = 1;
 	const startStep1_2 = 6;
 
-	const gTranslate = $derived([
-		(margin.left + (width - margin.right)) / 2,
-		(margin.top + (height - margin.bottom)) / 2
-	]);
-	const gTranslateInitial = $derived([
-		(margin.left + (width - margin.right)) / 2,
-		(margin.top + (height - margin.bottom)) / 2
-	]);
+	const interactionStepReached = $derived(stepNr === startStep1_2 - 1);
 
-	const getGTransform = () => {
-		const x = (margin.left + (width - margin.right)) / 2;
-		const y = (margin.top + (height - margin.bottom)) / (stepNr >= startStep1_2 ? 4 : 2);
-		const scale = stepNr >= startStep1_2 ? 0.5 : 1;
-		const gTransform = `translate(${x}, ${y}) scale(${scale})`;
-		return gTransform;
-	};
-	const gTransform = new Tween(getGTransform(), {
-		interpolate: interpolateTransformSvg
-	});
-	$effect(() => {
-		gTransform.target = getGTransform();
-	});
-
-	const categoryData = $derived(getCategoryDataStepped(data));
-
-	const getPizzaPieData = (
-		/** @type {{ category: string; nrPizzas: number; stepReveal: number; }[]} */ categoryData
-	) => {
-		const pieScale = pie().value((/** @type {{ nrPizzas: number; }} */ d) => d.nrPizzas);
-
-		const pieData = pieScale(categoryData).map(
-			(
-				/** @type {{ data: { stepReveal: number; }; index: string | number; }} */ datumPie,
-				/** @type {any} */ i
-			) => {
-				datumPie.data.stepReveal = +datumPie.index;
-				return datumPie;
-			}
-		);
-
-		return pieData;
-	};
-
-	const radius = $derived(width / 5);
-
-	const arcScale = $derived(arc().innerRadius(0).outerRadius(radius).cornerRadius(3));
-	const arcScaleWide = $derived(
-		arc()
-			.innerRadius(0)
-			.outerRadius(radius * 1.1)
-			.cornerRadius(3)
-	);
-	const arcScaleRim = $derived(
-		arc()
-			.innerRadius(radius)
-			.outerRadius(radius * 1.1)
-			.cornerRadius(3)
-	);
-
-	const dataPie = $derived(getPizzaPieData(categoryData));
-
-	const bezierLength = $derived(radius * 0.2);
-
-	const dataTweened = $derived(
-		dataPie.map((/** @type {any} */ datumPie) => {
-			const dSmall = arcScale(datumPie);
-			const dWide = arcScaleWide(datumPie);
-			const dRim = arcScaleRim(datumPie);
-			const fill = categoryColorScale(datumPie.data.category);
-			const opacityLight = new Tween(0);
-			const opacityFull = new Tween(0);
-			const transform = new Tween('scale(1.0)', {
-				interpolate: interpolateTransformSvg
-			});
-			const rotate = new Tween(0);
-
-			const toppingsData = getToppingsData(datumPie, radius, bezierLength);
-			return {
-				datumPie,
-				...datumPie,
-				dSmall,
-				dWide,
-				dRim,
-				opacityLight,
-				opacityFull,
-				rotate,
-				transform,
-				fill,
-				toppingsData,
-				startAngle: datumPie.startAngle,
-				endAngle: datumPie.endAngle
-			};
-		})
-	);
-
-	$effect(() => {
-		dataTweened.forEach(
-			(
-				/** @type {{ data: { stepReveal: any; category: string }; opacityLight: { target: number; }; opacityFull: { target: number; }; rotate: { target: number; }; transform: { target: string }; startAngle: number; endAngle: number }} */ datumTweened
-			) => {
-				// CONTINUE stepHide hinzufügen - und generell den steps Ids geben und zwischen den stepNrs und stepIds mappen ermöglichen
-
-				// const datumPieCentered = {
-				// 	...datumPie,
-				// 	startAngle: -angleRange / 2,
-				// 	endAngle: angleRange / 2
-				// };
-				// const dRim = arcScaleRim(datumPieCentered);
-
-				const angleRange = datumTweened.endAngle - datumTweened.startAngle;
-				const rotationAfter1_2 =
-					(-(datumTweened.startAngle + angleRange / 2) / (2 * Math.PI)) * 360;
-
-				const stepReveal = startStep1_1 + datumTweened.data.stepReveal;
-				datumTweened.opacityLight.target = stepReveal <= stepNr ? 0.4 : 0;
-				datumTweened.opacityFull.target = stepReveal <= stepNr ? 1 : 0;
-				datumTweened.transform.target =
-					stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
-						? `rotate(${rotationAfter1_2})`
-						: '';
-				datumTweened.rotate.target =
-					stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
-						? rotationAfter1_2
-						: 0;
-				// datumTweened.transform.target =
-				// 	stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
-				// 		? 'rotate(180)'
-				// 		: 'scale(1.0)';
-
-				if (stepNr >= startStep1_2 && categorySelected !== datumTweened.data.category) {
-					datumTweened.opacityLight.target = 0;
-					datumTweened.opacityFull.target = 0;
-				}
-			}
-		);
-	});
-
-	$inspect(dataTweened);
-
-	let categoryFocused = $state('');
-
-	const interactionStepReached = $derived(
-		stepNr === startStep1_2 - 1
-		// Math.max(
-		// 	...dataPie.map((/** @type {{ data: { stepReveal: any; }; }} */ d) => d.data.stepReveal)
-		// )
-	);
+	let pizzaNameHovered = $state('');
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -186,136 +47,45 @@
 <svg
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 {width} {height}"
-	onclick={(event) => {
-		// categorySelected = '';
+	onpointerdown={(event) => {
+		pizzaNameHovered = 'name';
 	}}
 >
-	<defs>
-		<filter id="drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
-			<feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.3)" />
-		</filter>
-		<filter id="drop-shadow-flipped" x="-50%" y="-50%" width="200%" height="200%">
-			<feDropShadow dx="0" dy="-6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.3)" />
-		</filter>
-		<filter id="drop-shadow-heavy" x="-50%" y="-50%" width="200%" height="200%">
-			<feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
-		</filter>
-		<filter id="drop-shadow-heavy-flipped" x="-50%" y="-50%" width="200%" height="200%">
-			<feDropShadow dx="0" dy="-6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
-		</filter>
-	</defs>
-	<g class="sizes-pie-g" transform={gTransform.current}>
-		{#each dataTweened as { data, dSmall, dWide, dRim, opacityFull, transform, rotate, fill }, i}
-			{@const highlight =
-				[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
-			<g
-				class="pizza-slice-background"
-				transform={(highlight ? 'scale(1.09)' : '') + ` rotate(${rotate.current})`}
-			>
-				<path
-					class="pizza-background-shadow"
-					d={dSmall}
-					opacity={opacityFull.current}
-					fill="white"
-					filter="url(#drop-shadow{(categorySelected === data.category ? '-heavy' : '') +
-						(rotate.current < -90 && rotate.current > -270 ? '-flipped' : '')})"
-				/>
-				<path
-					class="pizza-background-shadow"
-					d={dRim}
-					opacity={opacityFull.current}
-					fill="white"
-					filter="url(#drop-shadow{(categorySelected === data.category ? '-heavy' : '') +
-						(rotate.current < -90 && rotate.current > -270 ? '-flipped' : '')})"
-				/>
-			</g>
-		{/each}
-		{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, rotate, transform, fill, toppingsData }, i}
-			{@const highlight =
-				[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g
-				class="pizza-slice"
-				onclick={(event) => {
-					if (interactionStepReached) categorySelected = data.category;
-				}}
-				onpointermove={() => {
-					if (interactionStepReached) categoryFocused = data.category;
-				}}
-				onpointerout={() => (categoryFocused = '')}
-				transform={(highlight ? 'scale(1.1)' : '') + ` rotate(${rotate.current})`}
-				style:cursor={interactionStepReached ? 'pointer' : 'default'}
-			>
-				<path class="pizza-background" d={dSmall} opacity={opacityFull.current} fill="white" />
-				<path class="pizza-rim" d={dRim} opacity={opacityFull.current} {fill} />
-				<path class="pizza-inner" d={dSmall} opacity={opacityLight.current} {fill} />
-				{#each toppingsData as toppingsDatum, i}
-					{#if toppingsDatum.type === 'circle'}
-						<circle
-							cx={toppingsDatum.x}
-							cy={toppingsDatum.y}
-							r={radius * 0.12}
-							{fill}
-							opacity={opacityFull.current}
-						/>
-					{:else if toppingsDatum.type === 'bezier'}
-						<path
-							d={`M ${toppingsDatum.p1[0]} ${toppingsDatum.p1[1]} Q ${toppingsDatum.p2[0]} ${toppingsDatum.p2[1]} ${toppingsDatum.p3[0]} ${toppingsDatum.p3[1]}`}
-							fill="none"
-							stroke={fill}
-							stroke-width={radius * 0.05}
-							opacity={opacityFull.current}
-							stroke-linecap="round"
-							transform={`rotate(${toppingsDatum.rotation} ${toppingsDatum.p2[0]} ${toppingsDatum.p2[1]})`}
-						/>
-					{/if}
-				{/each}
-				<!-- text-anchor={rotate.current !== 0
-						? 'middle'
-						: arcScale.centroid(datumPie)[0] > 0
-							? 'start'
-							: 'end'} -->
-				<text
-					class="pizza-slice-label"
-					x={arcScale.centroid(datumPie)[0] * 2.6}
-					y={arcScale.centroid(datumPie)[1] * 2.6}
-					text-anchor={rotate.current !== 0
-						? 'middle'
-						: arcScale.centroid(datumPie)[0] > 0
-							? 'start'
-							: 'end'}
-					{fill}
-					opacity={opacityFull.current}
-					pointer-events="none"
-					transform="rotate({-rotate.current}, {arcScale.centroid(datumPie)[0] *
-						2.6}, {arcScale.centroid(datumPie)[1] * 2.6})"
-					style:text-decoration={categorySelected === data.category ? 'underline' : 'none'}
-				>
-					{data.category} ({data.nrPizzas})
-				</text>
-			</g>
-		{/each}
-	</g>
+	<PizzaPie
+		{data}
+		{width}
+		{height}
+		{stepNr}
+		{margin}
+		{startStep1_1}
+		{startStep1_2}
+		{interactionStepReached}
+		bind:categorySelected
+	/>
+	{#if stepNr >= startStep1_2 - 1}
+		<PizzaBubbles
+			{data}
+			{width}
+			{height}
+			{margin}
+			{startStep1_2}
+			{stepNr}
+			{categorySelected}
+			bind:pizzaNameHovered
+		/>
+	{/if}
 </svg>
-{#if interactionStepReached && categorySelected && stepNr === startStep1_2 - 1}
+
+<!-- {#if interactionStepReached && categorySelected && stepNr === startStep1_2 - 1}
 	<div class="continue-button-container">
 		<a href="#step-text-6" class="continue-button">Continue</a>
 	</div>
-{/if}
+{/if} -->
 
 <style>
 	svg {
 		/* background-color: #f0f0f0; */
 		border: 1px solid #ccc;
-	}
-
-	.pizza-slice {
-	}
-
-	.pizza-slice-label {
-		font-size: 2rem;
-		font-weight: bold;
 	}
 
 	.continue-button-container {
