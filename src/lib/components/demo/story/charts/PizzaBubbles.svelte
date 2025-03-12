@@ -26,6 +26,12 @@
 
 	const circleRadius = 25;
 
+	const axisTitleOffset = $derived(width / 10);
+	const axisTitleY = new Tween(-height / 2, { easing: elasticOut, duration: 2000 });
+	$effect(() => {
+		axisTitleY.target = stepNr >= startStep1_2 ? height / 2 : -height / 2;
+	});
+
 	const xPrice = $derived(width / 4);
 	const xCount = $derived((width / 4) * 3);
 
@@ -42,11 +48,15 @@
 			.range([height - margin.bottom, margin.top])
 	);
 
+	const maxCount = $derived(
+		Math.max(...pizzaDataSelected.map((/** @type {{ count: any; }} */ d) => d.count))
+	);
+
 	const yScaleCount = $derived(
 		scaleLinear()
 			.domain([
 				Math.min(...pizzaDataSelected.map((/** @type {{ count: any; }} */ d) => d.count)),
-				Math.max(...pizzaDataSelected.map((/** @type {{ count: any; }} */ d) => d.count))
+				maxCount
 			])
 			.range([height - margin.bottom, margin.top])
 	);
@@ -121,11 +131,33 @@
 		});
 	});
 
-	// $inspect(pizzaDataSelected.find((d) => d.name === pizzaNameHovered));
+	const pizzaNameHoveredWordArray = $derived(pizzaNameHovered.split(' '));
 </script>
 
+<text
+	class="bubble-axis-title"
+	x={axisTitleOffset}
+	y={axisTitleY.current}
+	transform={`rotate(-90, ${axisTitleOffset}, ${axisTitleY.current})`}
+	text-anchor="middle"
+>
+	Price →
+</text>
+<text
+	class="bubble-axis-title"
+	x={width - axisTitleOffset}
+	y={axisTitleY.current - height / 4}
+	text-anchor="middle"
+>
+	{#each '↑ POPULARITY'.split('') as char}
+		<tspan dy="0.8em" x={width - axisTitleOffset} rotate="0">{char}</tspan>
+	{/each}
+</text>
 <g class="price-circles">
 	{#each pizzaDataTweened as { xPrice, yPrice, xCount, yCount, r, category, name, price, count }, i}
+		{@const fill = ['', name].includes(pizzaNameHovered)
+			? categoryColorScale(category)
+			: 'lightgray'}
 		<circle
 			onpointerdown={(event) => {
 				event.stopPropagation();
@@ -137,7 +169,7 @@
 			cx={xPrice.current}
 			cy={yPrice.current}
 			r={r.current}
-			fill={categoryColorScale(category)}
+			{fill}
 			cursor="pointer"
 		/>
 		<circle
@@ -151,8 +183,67 @@
 			cx={xCount.current}
 			cy={yCount.current}
 			r={r.current}
-			fill={categoryColorScale(category)}
+			{fill}
 			cursor="pointer"
 		/>
+		{#if pizzaNameHovered === name}
+			<text
+				x={xPrice.current}
+				y={yPrice.current}
+				text-anchor="middle"
+				font-size="1.5rem"
+				fill="black"
+				dominant-baseline="middle">{price} $</text
+			>
+			<text
+				x={xCount.current}
+				y={yCount.current}
+				text-anchor="middle"
+				font-size="1.5rem"
+				fill="black"
+				dominant-baseline="middle">{Math.round((count / maxCount) * 100)} %</text
+			>
+		{/if}
 	{/each}
 </g>
+
+{#if stepNr >= startStep1_2}
+	{#each pizzaNameHoveredWordArray as word, i}
+		<text
+			onpointerdown={(event) => {
+				event.stopPropagation();
+			}}
+			x={width / 2}
+			y={axisTitleY.current +
+				(pizzaNameHoveredWordArray.length / 2) * 30 -
+				(pizzaNameHoveredWordArray.length - i) * 30}
+			text-anchor="middle"
+			font-size="2rem"
+			font-weight="bold"
+			fill={categoryColorScale(categorySelected)}
+		>
+			{word}
+		</text>
+	{/each}
+{/if}
+
+<!-- <text
+	x={width / 2}
+	y={height * 0.9}
+	text-anchor="middle"
+	font-size="2rem"
+	font-weight="bold"
+	fill={categoryColorScale(categorySelected)}
+>
+	{pizzaNameHovered}
+</text> -->
+
+<style>
+	.bubble-axis-title {
+		font-size: 2rem;
+		font-weight: bold;
+		fill: lightgray;
+		/* stroke: black;
+		stroke-width: 2px; */
+	}
+</style>
