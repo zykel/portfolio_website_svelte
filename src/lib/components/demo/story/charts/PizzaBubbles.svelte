@@ -248,25 +248,25 @@
 			height={(pizzaNameHoveredWordArray.length + 0.3) * 30}
 			fill="white"
 		/>
-	{/if}
 
-	{#each pizzaNameHoveredWordArray as word, i}
-		<text
-			onpointerdown={(event) => {
-				event.stopPropagation();
-			}}
-			x={width / 2}
-			y={axisTitleY.current +
-				(pizzaNameHoveredWordArray.length / 2) * 30 -
-				(pizzaNameHoveredWordArray.length - i) * 30}
-			text-anchor="middle"
-			font-size="2rem"
-			font-weight="bold"
-			fill={categoryColorScale(categorySelected)}
-		>
-			{word}
-		</text>
-	{/each}
+		{#each pizzaNameHoveredWordArray as word, i}
+			<text
+				onpointerdown={(event) => {
+					event.stopPropagation();
+				}}
+				x={width / 2}
+				y={axisTitleY.current +
+					(pizzaNameHoveredWordArray.length / 2) * 30 -
+					(pizzaNameHoveredWordArray.length - i) * 30}
+				text-anchor="middle"
+				font-size="2rem"
+				font-weight="bold"
+				fill={categoryColorScale(categorySelected)}
+			>
+				{word}
+			</text>
+		{/each}
+	{/if}
 {/if}
 
 <!-- <text
