@@ -29,10 +29,31 @@
 
 	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
+	const startStep1_1 = 1;
+	const startStep1_2 = 6;
+
 	const gTranslate = $derived([
 		(margin.left + (width - margin.right)) / 2,
 		(margin.top + (height - margin.bottom)) / 2
 	]);
+	const gTranslateInitial = $derived([
+		(margin.left + (width - margin.right)) / 2,
+		(margin.top + (height - margin.bottom)) / 2
+	]);
+
+	const getGTransform = () => {
+		const x = (margin.left + (width - margin.right)) / 2;
+		const y = (margin.top + (height - margin.bottom)) / (stepNr >= startStep1_2 ? 4 : 2);
+		const scale = stepNr >= startStep1_2 ? 0.5 : 1;
+		const gTransform = `translate(${x}, ${y}) scale(${scale})`;
+		return gTransform;
+	};
+	const gTransform = new Tween(getGTransform(), {
+		interpolate: interpolateTransformSvg
+	});
+	$effect(() => {
+		gTransform.target = getGTransform();
+	});
 
 	const categoryData = $derived(getCategoryDataStepped(data));
 
@@ -105,9 +126,6 @@
 			};
 		})
 	);
-
-	const startStep1_1 = 1;
-	const startStep1_2 = 6;
 
 	$effect(() => {
 		dataTweened.forEach(
@@ -186,7 +204,7 @@
 			<feDropShadow dx="0" dy="-6" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
 		</filter>
 	</defs>
-	<g class="sizes-pie-g" transform={`translate(${gTranslate})`}>
+	<g class="sizes-pie-g" transform={gTransform.current}>
 		{#each dataTweened as { data, dSmall, dWide, dRim, opacityFull, transform, rotate, fill }, i}
 			{@const highlight =
 				[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
