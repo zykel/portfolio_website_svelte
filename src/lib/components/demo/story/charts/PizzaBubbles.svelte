@@ -146,13 +146,33 @@
 <text
 	class="bubble-axis-title"
 	x={width - axisTitleOffset}
+	y={axisTitleY.current}
+	transform={`rotate(90, ${width - axisTitleOffset}, ${axisTitleY.current})`}
+	text-anchor="middle"
+>
+	← Popularity
+</text>
+
+<!-- <text
+	class="bubble-axis-title"
+	x={axisTitleOffset}
+	y={axisTitleY.current - height / 4}
+	text-anchor="middle"
+>
+	{#each '↑ PRICE'.split('') as char}
+		<tspan dy="0.8em" x={axisTitleOffset}>{char}</tspan>
+	{/each}
+</text>
+<text
+	class="bubble-axis-title"
+	x={width - axisTitleOffset}
 	y={axisTitleY.current - height / 4}
 	text-anchor="middle"
 >
 	{#each '↑ POPULARITY'.split('') as char}
-		<tspan dy="0.8em" x={width - axisTitleOffset} rotate="0">{char}</tspan>
+		<tspan dy="0.8em" x={width - axisTitleOffset}>{char}</tspan>
 	{/each}
-</text>
+</text> -->
 <g class="price-circles">
 	{#each pizzaDataTweened as { xPrice, yPrice, xCount, yCount, r, category, name, price, count }, i}
 		{@const fill = ['', name].includes(pizzaNameHovered)
@@ -207,7 +227,29 @@
 	{/each}
 </g>
 
+<!-- <defs>
+	<filter id="pizza-bubbles-drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
+		<feMorphology operator="dilate" radius="5" in="SourceAlpha" result="dilated" />
+		<feFlood flood-color="white" result="whiteFill" />
+		<feComposite in="whiteFill" in2="dilated" operator="in" result="whiteOutline" />
+		<feMerge>
+			<feMergeNode in="whiteOutline" />
+			<feMergeNode in="SourceGraphic" />
+		</feMerge>
+	</filter>
+</defs> -->
 {#if stepNr >= startStep1_2}
+	{#if pizzaNameHovered !== ''}
+		<rect
+			class="pizza-bubbles-name-background"
+			x={width / 2 - 10}
+			y={axisTitleY.current - (pizzaNameHoveredWordArray.length / 2 + 1) * 30}
+			width={20}
+			height={(pizzaNameHoveredWordArray.length + 0.3) * 30}
+			fill="white"
+		/>
+	{/if}
+
 	{#each pizzaNameHoveredWordArray as word, i}
 		<text
 			onpointerdown={(event) => {
@@ -242,7 +284,7 @@
 	.bubble-axis-title {
 		font-size: 2rem;
 		font-weight: bold;
-		fill: lightgray;
+		fill: rgb(157, 157, 157);
 		/* stroke: black;
 		stroke-width: 2px; */
 	}

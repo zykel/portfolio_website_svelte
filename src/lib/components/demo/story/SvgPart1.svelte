@@ -51,6 +51,18 @@
 		pizzaNameHovered = '';
 	}}
 >
+	<line
+		class="pizza-bubbles-seperator"
+		x1={width / 2}
+		x2={width / 2}
+		y1={margin.top / 2}
+		y2={height - margin.bottom / 2}
+		stroke="lightgray"
+		stroke-width="2"
+		stroke-dasharray="5 5"
+		style:opacity={stepNr >= startStep1_2 ? 1 : 0}
+		style:transition="opacity 1s"
+	/>
 	<PizzaPie
 		{data}
 		{width}

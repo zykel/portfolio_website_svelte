@@ -284,7 +284,7 @@
 				pointer-events="none"
 				transform="rotate({-rotate.current}, {arcScale.centroid(datumPie)[0] *
 					2.6}, {arcScale.centroid(datumPie)[1] * 2.6})"
-				style:text-decoration={categorySelected === data.category ? 'underline' : 'none'}
+				style:text-decoration={false && categorySelected === data.category ? 'underline' : 'none'}
 			>
 				{data.category} ({data.nrPizzas})
 			</text>
