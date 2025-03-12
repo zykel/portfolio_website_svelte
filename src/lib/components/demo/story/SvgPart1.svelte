@@ -5,6 +5,8 @@
 		categoryColorScale,
 		getToppingsData
 	} from '$lib/scripts/utilityStory.js';
+	import { transform } from '@observablehq/plot';
+	import { interpolateTransformSvg } from 'd3-interpolate';
 	import { pie, arc } from 'd3-shape';
 	import { stopPropagation } from 'svelte/legacy';
 	import { Tween } from 'svelte/motion';
@@ -80,6 +82,9 @@
 			const fill = categoryColorScale(datumPie.data.category);
 			const opacityLight = new Tween(0);
 			const opacityFull = new Tween(0);
+			const transform = new Tween('scale(1.0)', {
+				interpolate: interpolateTransformSvg
+			});
 
 			const toppingsData = getToppingsData(datumPie, radius, bezierLength);
 			return {
@@ -90,37 +95,65 @@
 				dRim,
 				opacityLight,
 				opacityFull,
+				transform,
 				fill,
-				toppingsData
+				toppingsData,
+				startAngle: datumPie.startAngle,
+				endAngle: datumPie.endAngle
 			};
 		})
 	);
 
-	const pizzaStartStep = 1;
+	const startStep1_1 = 1;
+	const startStep1_2 = 6;
 
 	$effect(() => {
 		dataTweened.forEach(
 			(
-				/** @type {{ data: { stepReveal: any; }; opacityLight: { target: number; }; opacityFull: { target: number; }; }} */ datumTweened
+				/** @type {{ data: { stepReveal: any; category: string }; opacityLight: { target: number; }; opacityFull: { target: number; }; transform: { target: string }; startAngle: number; endAngle: number }} */ datumTweened
 			) => {
 				// CONTINUE stepHide hinzufügen - und generell den steps Ids geben und zwischen den stepNrs und stepIds mappen ermöglichen
-				const stepReveal = pizzaStartStep + datumTweened.data.stepReveal;
+
+				// const datumPieCentered = {
+				// 	...datumPie,
+				// 	startAngle: -angleRange / 2,
+				// 	endAngle: angleRange / 2
+				// };
+				// const dRim = arcScaleRim(datumPieCentered);
+
+				const angleRange = datumTweened.endAngle - datumTweened.startAngle;
+				const rotationAfter1_2 =
+					(-(datumTweened.startAngle + angleRange / 2) / (2 * Math.PI)) * 360;
+
+				const stepReveal = startStep1_1 + datumTweened.data.stepReveal;
 				datumTweened.opacityLight.target = stepReveal <= stepNr ? 0.4 : 0;
 				datumTweened.opacityFull.target = stepReveal <= stepNr ? 1 : 0;
+				datumTweened.transform.target =
+					stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
+						? `rotate(${rotationAfter1_2})`
+						: '';
+				// datumTweened.transform.target =
+				// 	stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
+				// 		? 'rotate(180)'
+				// 		: 'scale(1.0)';
+
+				if (stepNr >= startStep1_2 && categorySelected !== datumTweened.data.category) {
+					datumTweened.opacityLight.target = 0;
+					datumTweened.opacityFull.target = 0;
+				}
 			}
 		);
 	});
 
-	$inspect({ categorySelected });
+	$inspect(dataTweened);
 
 	let categoryFocused = $state('');
 
 	const interactionStepReached = $derived(
-		stepNr >
-			pizzaStartStep +
-				Math.max(
-					...dataPie.map((/** @type {{ data: { stepReveal: any; }; }} */ d) => d.data.stepReveal)
-				)
+		stepNr === startStep1_2 - 1
+		// Math.max(
+		// 	...dataPie.map((/** @type {{ data: { stepReveal: any; }; }} */ d) => d.data.stepReveal)
+		// )
 	);
 </script>
 
@@ -142,13 +175,10 @@
 		</filter>
 	</defs>
 	<g class="sizes-pie-g" transform={`translate(${gTranslate})`}>
-		{#each dataTweened as { data, dSmall, dWide, dRim, opacityFull, fill }, i}
-			<g
-				class="pizza-slice-background"
-				transform={[categoryFocused, categorySelected].includes(data.category)
-					? 'scale(1.09)'
-					: 'scale(0.99)'}
-			>
+		{#each dataTweened as { data, dSmall, dWide, dRim, opacityFull, transform, fill }, i}
+			{@const highlight =
+				[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
+			<g class="pizza-slice-background" transform={highlight ? 'scale(1.09)' : transform.current}>
 				<path
 					class="pizza-background-shadow"
 					d={dSmall}
@@ -165,7 +195,10 @@
 				/>
 			</g>
 		{/each}
-		{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, fill, toppingsData }, i}
+		{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, transform, fill, toppingsData }, i}
+			{@const highlight =
+				[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
+			{@const rotate = stepNr >= startStep1_2 && categorySelected === data.category}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<g
@@ -177,7 +210,7 @@
 					if (interactionStepReached) categoryFocused = data.category;
 				}}
 				onpointerout={() => (categoryFocused = '')}
-				transform={[categoryFocused, categorySelected].includes(data.category) ? 'scale(1.1)' : ''}
+				transform={highlight ? 'scale(1.1)' : transform.current}
 				style:cursor={interactionStepReached ? 'pointer' : 'default'}
 			>
 				<path class="pizza-background" d={dSmall} opacity={opacityFull.current} fill="white" />
@@ -220,9 +253,9 @@
 		{/each}
 	</g>
 </svg>
-{#if interactionStepReached && categorySelected}
+{#if interactionStepReached && categorySelected && stepNr === startStep1_2 - 1}
 	<div class="continue-button-container">
-		<a href="#step-text-container-6" class="continue-button">Continue</a>
+		<a href="#step-text-6" class="continue-button">Continue</a>
 	</div>
 {/if}
 

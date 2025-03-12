@@ -72,13 +72,12 @@
 			{#each dataStepTextPart1_2 as text, i}
 				{@const stepNrThis = i + dataStepTextPart1_1.length}
 				<div
-					id="step-text-container-{stepNrThis}"
 					class="step {i === dataStepTextPart1_2.length - 1
 						? 'last-step'
 						: ''} {categorySelected === '' ? 'hidden' : ''}"
 					class:active={stepNr === stepNrThis}
 				>
-					<p class="step-p">{text}</p>
+					<p id="step-text-{stepNrThis}" class="step-p">{text}</p>
 				</div>
 			{/each}
 		</Scrolly>
