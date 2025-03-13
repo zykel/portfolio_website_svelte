@@ -43,14 +43,14 @@
 
 	let pizzaNameHovered = $state('');
 
-	const getIdFromStepNr = getContext('getIdFromStepNr');
+	const getIdFromStepNrPart1 = getContext('getIdFromStepNrPart1');
 	const getStepNrFromId = getContext('getStepNrFromId');
 	$effect(() => {
 		if (stepNr === getStepNrFromId('show_example_pizza_price') - 1) pizzaNameHovered = '';
 
 		if (
 			['show_example_pizza_price', 'show_example_pizza_popularity'].includes(
-				getIdFromStepNr(stepNr)
+				getIdFromStepNrPart1(stepNr)
 			)
 		) {
 			pizzaNameHovered = data.find(

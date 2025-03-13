@@ -84,11 +84,11 @@
 
 	const allStepTexts = $derived([...dataStepTextPart1_1, ...dataStepTextPart1_2]);
 
-	const getIdFromStepNr = (/** @type {number} */ stepNrPart1) => allStepTexts[stepNrPart1]?.id;
+	const getIdFromStepNrPart1 = (/** @type {number} */ stepNrPart1) => allStepTexts[stepNrPart1]?.id;
 	const getStepNrFromId = (/** @type {string} */ id) =>
 		allStepTexts.findIndex((/** @type {{ id: string; }} */ d) => d.id === id);
 
-	setContext('getIdFromStepNr', getIdFromStepNr);
+	setContext('getIdFromStepNrPart1', getIdFromStepNrPart1);
 	setContext('getStepNrFromId', getStepNrFromId);
 
 	$inspect({ categorySelected });
