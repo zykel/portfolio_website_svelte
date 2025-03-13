@@ -30,7 +30,8 @@
 
 	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
-	let stepNr = $state(0);
+	let stepNrPart1 = $state(0);
+	let stepNrPart2 = $state(0);
 
 	const xScale = $derived(scaleBand());
 
@@ -83,7 +84,7 @@
 
 	const allStepTexts = $derived([...dataStepTextPart1_1, ...dataStepTextPart1_2]);
 
-	const getIdFromStepNr = (/** @type {number} */ stepNr) => allStepTexts[stepNr]?.id;
+	const getIdFromStepNr = (/** @type {number} */ stepNrPart1) => allStepTexts[stepNrPart1]?.id;
 	const getStepNrFromId = (/** @type {string} */ id) =>
 		allStepTexts.findIndex((/** @type {{ id: string; }} */ d) => d.id === id);
 
@@ -95,22 +96,22 @@
 
 <div class="part-container">
 	<div
-		class="svg-div {allStepTexts[stepNr]?.type === 'interaction-instructions'
+		class="svg-div {allStepTexts[stepNrPart1]?.type === 'interaction-instructions'
 			? 'indicate-interaction'
 			: ''}"
 		bind:clientWidth={width}
 		bind:clientHeight={height}
 	>
 		{#if width > 0 && height > 0}
-			<SvgPart1 data={dataPizzas} {width} {height} {stepNr} bind:categorySelected />
+			<SvgPart1 data={dataPizzas} {width} {height} stepNr={stepNrPart1} bind:categorySelected />
 		{/if}
 	</div>
 	<div class="steps">
-		<Scrolly bind:value={stepNr}>
+		<Scrolly bind:value={stepNrPart1}>
 			{#each dataStepTextPart1_1 as { id, text, type }, i}
 				<div
 					class="step {i === dataStepTextPart1_1.length - 1 ? 'last-step' : ''}"
-					class:active={stepNr === i}
+					class:active={stepNrPart1 === i}
 				>
 					<p id="step-text-{id}" class="step-p {type}">
 						{type === 'interaction-instructions' ? '➤' : ''}
@@ -124,7 +125,7 @@
 					class="step {i === dataStepTextPart1_2.length - 1
 						? 'last-step'
 						: ''} {categorySelected === '' ? 'hidden' : ''}"
-					class:active={stepNr === stepNrThis}
+					class:active={stepNrPart1 === stepNrThis}
 				>
 					<p id="step-text-{id}" class="step-p {type}">
 						{type === 'interaction-instructions' ? '➤' : ''}
@@ -144,9 +145,9 @@
 			{/if}
 		</div>
 		<div class="steps">
-			<Scrolly bind:value={stepNr}>
+			<Scrolly bind:value={stepNrPart2}>
 				{#each dataStepTextPart1_1 as _, i}
-					<div class="step" class:active={stepNr === i}>
+					<div class="step" class:active={stepNrPart2 === i}>
 						<p>Hi there</p>
 					</div>
 				{/each}
