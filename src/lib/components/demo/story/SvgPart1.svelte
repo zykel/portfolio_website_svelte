@@ -44,9 +44,9 @@
 	let pizzaNameHovered = $state('');
 
 	const getIdFromStepNrPart1 = getContext('getIdFromStepNrPart1');
-	const getStepNrFromId = getContext('getStepNrFromId');
+	const getStepNrFromIdPart1 = getContext('getStepNrFromIdPart1');
 	$effect(() => {
-		if (stepNr === getStepNrFromId('show_example_pizza_price') - 1) pizzaNameHovered = '';
+		if (stepNr === getStepNrFromIdPart1('show_example_pizza_price') - 1) pizzaNameHovered = '';
 
 		if (
 			['show_example_pizza_price', 'show_example_pizza_popularity'].includes(
@@ -58,7 +58,7 @@
 			)?.name;
 		}
 
-		if (stepNr === getStepNrFromId('reveal_pizza_popularity_axis')) pizzaNameHovered = '';
+		if (stepNr === getStepNrFromIdPart1('reveal_pizza_popularity_axis')) pizzaNameHovered = '';
 	});
 </script>
 
@@ -80,7 +80,7 @@
 		stroke="lightgray"
 		stroke-width="2"
 		stroke-dasharray="5 5"
-		style:opacity={stepNr >= getStepNrFromId('reveal_pizza_popularity_axis') ? 1 : 0}
+		style:opacity={stepNr >= getStepNrFromIdPart1('reveal_pizza_popularity_axis') ? 1 : 0}
 		style:transition="opacity 1s"
 	/>
 	<WelcomeText {width} {height} {stepNr} />

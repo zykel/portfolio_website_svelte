@@ -76,27 +76,41 @@
 			type: ''
 		},
 		{
-			id: 'allow_pizza_bubbles-interaction',
+			id: 'allow_pizza_bubbles_interaction',
 			text: 'You may explore the pizzas based on their price and popularity.',
 			type: 'interaction-instructions'
 		}
 	]);
 
-	const allStepTexts = $derived([...dataStepTextPart1_1, ...dataStepTextPart1_2]);
+	const dataStepTextPart2 = $derived([
+		{
+			id: 'id_1',
+			text: `dummy`,
+			type: ''
+		},
+		{
+			id: 'id_2',
+			text: `dummy`,
+			type: ''
+		}
+	]);
 
-	const getIdFromStepNrPart1 = (/** @type {number} */ stepNrPart1) => allStepTexts[stepNrPart1]?.id;
-	const getStepNrFromId = (/** @type {string} */ id) =>
-		allStepTexts.findIndex((/** @type {{ id: string; }} */ d) => d.id === id);
+	const allStepTextsPart1 = $derived([...dataStepTextPart1_1, ...dataStepTextPart1_2]);
+
+	const getIdFromStepNrPart1 = (/** @type {number} */ stepNrPart1) =>
+		allStepTextsPart1[stepNrPart1]?.id;
+	const getStepNrFromIdPart1 = (/** @type {string} */ id) =>
+		allStepTextsPart1.findIndex((/** @type {{ id: string; }} */ d) => d.id === id);
 
 	setContext('getIdFromStepNrPart1', getIdFromStepNrPart1);
-	setContext('getStepNrFromId', getStepNrFromId);
+	setContext('getStepNrFromIdPart1', getStepNrFromIdPart1);
 
 	$inspect({ categorySelected });
 </script>
 
 <div class="part-container">
 	<div
-		class="svg-div {allStepTexts[stepNrPart1]?.type === 'interaction-instructions'
+		class="svg-div {allStepTextsPart1[stepNrPart1]?.type === 'interaction-instructions'
 			? 'indicate-interaction'
 			: ''}"
 		bind:clientWidth={width}
@@ -137,7 +151,8 @@
 	</div>
 </div>
 
-{#if false}
+<!-- {#if stepNrPart1 >= getStepNrFromIdPart1('allow_pizza_bubbles_interaction')} -->
+{#if categorySelected !== ''}
 	<div class="part-container">
 		<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
 			{#if width > 0 && height > 0}
@@ -146,9 +161,17 @@
 		</div>
 		<div class="steps">
 			<Scrolly bind:value={stepNrPart2}>
-				{#each dataStepTextPart1_1 as _, i}
-					<div class="step" class:active={stepNrPart2 === i}>
-						<p>Hi there</p>
+				{#each dataStepTextPart2 as { id, text, type }, i}
+					<div
+						class="step {i === dataStepTextPart2.length - 1
+							? 'last-step'
+							: ''} {categorySelected === '' ? 'hidden' : ''}"
+						class:active={stepNrPart2 === i}
+					>
+						<p id="step-text-{id}" class="step-p {type}">
+							{type === 'interaction-instructions' ? '➤' : ''}
+							{@html text}
+						</p>
 					</div>
 				{/each}
 			</Scrolly>

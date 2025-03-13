@@ -28,7 +28,7 @@
 
 	const circleRadius = 25;
 
-	const getStepNrFromId = getContext('getStepNrFromId');
+	const getStepNrFromIdPart1 = getContext('getStepNrFromIdPart1');
 
 	const axisTitleOffset = $derived(width / 10);
 	const axisTitlePriceY = new Tween(-height / 2, { easing: elasticOut, duration: 2000 });
@@ -38,7 +38,7 @@
 	const axisTitlePopularityY = new Tween(-height / 2, { easing: elasticOut, duration: 2000 });
 	$effect(() => {
 		axisTitlePopularityY.target =
-			stepNr >= getStepNrFromId('reveal_pizza_popularity_axis') ? height / 2 : -height / 2;
+			stepNr >= getStepNrFromIdPart1('reveal_pizza_popularity_axis') ? height / 2 : -height / 2;
 	});
 
 	const xPrice = $derived(width / 4);
@@ -130,7 +130,7 @@
 			}
 
 			// Count
-			if (stepNr >= getStepNrFromId('reveal_pizza_popularity_axis')) {
+			if (stepNr >= getStepNrFromIdPart1('reveal_pizza_popularity_axis')) {
 				const dataForceCount = getDataForce('count');
 				const forceDatumCount = dataForceCount.find(
 					(/** @type {any} */ dForce) => dForce.data.name === d.name

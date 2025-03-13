@@ -42,7 +42,7 @@
 			}
 		}
 		if (maxRatio > 0) value = maxIndex;
-		else value = undefined;
+		// else value = undefined;
 	};
 
 	const createObserver = (node, index) => {
