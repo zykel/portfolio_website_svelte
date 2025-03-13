@@ -176,8 +176,6 @@
 		}
 	}
 
-	$inspect(dataTweened);
-
 	let categoryFocused = $state('');
 </script>
 

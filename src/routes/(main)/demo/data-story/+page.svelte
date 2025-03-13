@@ -22,9 +22,6 @@
 	const dataPizzas = $derived(data.pizzaData);
 	const dataTime = $derived(data.timeData);
 
-	$inspect(dataPizzas);
-	$inspect(dataTime);
-
 	let width = $state(0);
 	let height = $state(0);
 
@@ -84,13 +81,18 @@
 
 	const dataStepTextPart2 = $derived([
 		{
-			id: 'id_1',
-			text: `dummy`,
+			id: 'plan_visit_start',
+			text: `To plan your visit, this view shows you when our restaurant is busiest.`,
 			type: ''
 		},
 		{
-			id: 'id_2',
-			text: `dummy`,
+			id: 'most_busy_noon',
+			text: `Most visitors stop by around noon between 11:30 and 14:00...`,
+			type: ''
+		},
+		{
+			id: 'most_busy_evening',
+			text: `...and between 17:00 and 20:00 in the evening.`,
 			type: ''
 		}
 	]);
@@ -102,10 +104,12 @@
 	const getStepNrFromIdPart1 = (/** @type {string} */ id) =>
 		allStepTextsPart1.findIndex((/** @type {{ id: string; }} */ d) => d.id === id);
 
+	const getStepNrFromIdPart2 = (/** @type {string} */ id) =>
+		dataStepTextPart2.findIndex((/** @type {{ id: string; }} */ d) => d.id === id);
+
 	setContext('getIdFromStepNrPart1', getIdFromStepNrPart1);
 	setContext('getStepNrFromIdPart1', getStepNrFromIdPart1);
-
-	$inspect({ categorySelected });
+	setContext('getStepNrFromIdPart2', getStepNrFromIdPart2);
 </script>
 
 <div class="part-container">
@@ -156,7 +160,7 @@
 	<div class="part-container">
 		<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
 			{#if width > 0 && height > 0}
-				<SvgPart2 {dataTweened} {width} {height} />
+				<SvgPart2 data={dataTime} {width} {height} stepNr={stepNrPart2} />
 			{/if}
 		</div>
 		<div class="steps">
