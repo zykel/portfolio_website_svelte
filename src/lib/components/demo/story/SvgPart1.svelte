@@ -15,6 +15,8 @@
 	import { elasticOut } from 'svelte/easing';
 	import PizzaPie from './charts/PizzaPie.svelte';
 	import PizzaBubbles from './charts/PizzaBubbles.svelte';
+	import { getContext } from 'svelte';
+	import WelcomeText from './charts/WelcomeText.svelte';
 
 	/**
 	 * @typedef {Object} PizzaDataEntry
@@ -40,6 +42,24 @@
 	const interactionStepReached = $derived(stepNr === startStep1_2 - 1);
 
 	let pizzaNameHovered = $state('');
+
+	const getIdFromStepNr = getContext('getIdFromStepNr');
+	const getStepNrFromId = getContext('getStepNrFromId');
+	$effect(() => {
+		if (stepNr === getStepNrFromId('show_example_pizza_price') - 1) pizzaNameHovered = '';
+
+		if (
+			['show_example_pizza_price', 'show_example_pizza_popularity'].includes(
+				getIdFromStepNr(stepNr)
+			)
+		) {
+			pizzaNameHovered = data.find(
+				(/** @type {{ category: string; }} */ d) => d.category === categorySelected
+			)?.name;
+		}
+
+		if (stepNr === getStepNrFromId('reveal_pizza_popularity_axis')) pizzaNameHovered = '';
+	});
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -60,9 +80,10 @@
 		stroke="lightgray"
 		stroke-width="2"
 		stroke-dasharray="5 5"
-		style:opacity={stepNr >= startStep1_2 ? 1 : 0}
+		style:opacity={stepNr >= getStepNrFromId('reveal_pizza_popularity_axis') ? 1 : 0}
 		style:transition="opacity 1s"
 	/>
+	<WelcomeText {width} {height} {stepNr} />
 	<PizzaPie
 		{data}
 		{width}

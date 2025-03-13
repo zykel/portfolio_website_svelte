@@ -1,9 +1,11 @@
 <script>
-	import { categoryColorScale } from '$lib/scripts/utilityStory.js';
+	import { categoryColorScale, categoryColorScaleExtraLight } from '$lib/scripts/utilityStory.js';
 	import { scaleLinear } from 'd3-scale';
 	import { forceSimulation, forceX, forceY, forceCollide } from 'd3-force';
 	import { Tween } from 'svelte/motion';
 	import { elasticOut } from 'svelte/easing';
+	import { getContext } from 'svelte';
+	import PizzaIcon from './PizzaIcon.svelte';
 
 	/**
 	 * @typedef {Object} PizzaDataEntry
@@ -26,10 +28,17 @@
 
 	const circleRadius = 25;
 
+	const getStepNrFromId = getContext('getStepNrFromId');
+
 	const axisTitleOffset = $derived(width / 10);
-	const axisTitleY = new Tween(-height / 2, { easing: elasticOut, duration: 2000 });
+	const axisTitlePriceY = new Tween(-height / 2, { easing: elasticOut, duration: 2000 });
 	$effect(() => {
-		axisTitleY.target = stepNr >= startStep1_2 ? height / 2 : -height / 2;
+		axisTitlePriceY.target = stepNr >= startStep1_2 ? height / 2 : -height / 2;
+	});
+	const axisTitlePopularityY = new Tween(-height / 2, { easing: elasticOut, duration: 2000 });
+	$effect(() => {
+		axisTitlePopularityY.target =
+			stepNr >= getStepNrFromId('reveal_pizza_popularity_axis') ? height / 2 : -height / 2;
 	});
 
 	const xPrice = $derived(width / 4);
@@ -104,8 +113,8 @@
 
 	$effect(() => {
 		pizzaDataTweened.forEach((/** @type {any} */ d) => {
+			// Price
 			if (stepNr >= startStep1_2) {
-				// Price
 				const dataForcePrice = getDataForce('price');
 				const forceDatumPrice = dataForcePrice.find(
 					(/** @type {any} */ dForce) => dForce.data.name === d.name
@@ -114,7 +123,14 @@
 				d.yPrice.target = forceDatumPrice.y;
 				// r is the same for price and count
 				d.r.target = forceDatumPrice.r;
-				// Count
+			} else {
+				d.xPrice.target = xPrice;
+				d.yPrice.target = yScalePrice(d.price) - height;
+				d.r.target = circleRadius;
+			}
+
+			// Count
+			if (stepNr >= getStepNrFromId('reveal_pizza_popularity_axis')) {
 				const dataForceCount = getDataForce('count');
 				const forceDatumCount = dataForceCount.find(
 					(/** @type {any} */ dForce) => dForce.data.name === d.name
@@ -122,9 +138,6 @@
 				d.xCount.target = forceDatumCount.x;
 				d.yCount.target = forceDatumCount.y;
 			} else {
-				d.xPrice.target = xPrice;
-				d.yPrice.target = yScalePrice(d.price) - height;
-				d.r.target = circleRadius;
 				d.xCount.target = xCount;
 				d.yCount.target = yScaleCount(d.count) - height;
 			}
@@ -137,8 +150,8 @@
 <text
 	class="bubble-axis-title"
 	x={axisTitleOffset}
-	y={axisTitleY.current}
-	transform={`rotate(-90, ${axisTitleOffset}, ${axisTitleY.current})`}
+	y={axisTitlePriceY.current}
+	transform={`rotate(-90, ${axisTitleOffset}, ${axisTitlePriceY.current})`}
 	text-anchor="middle"
 >
 	Price →
@@ -146,17 +159,30 @@
 <text
 	class="bubble-axis-title"
 	x={width - axisTitleOffset}
-	y={axisTitleY.current}
-	transform={`rotate(90, ${width - axisTitleOffset}, ${axisTitleY.current})`}
+	y={axisTitlePopularityY.current}
+	transform={`rotate(90, ${width - axisTitleOffset}, ${axisTitlePopularityY.current})`}
 	text-anchor="middle"
 >
 	← Popularity
 </text>
 
+{#if stepNr >= startStep1_2}
+	{#if pizzaNameHovered !== ''}
+		<rect
+			class="pizza-bubbles-name-background"
+			x={width / 2 - 10}
+			y={axisTitlePriceY.current - (pizzaNameHoveredWordArray.length / 2 + 1) * 30}
+			width={20}
+			height={(pizzaNameHoveredWordArray.length + 0.3) * 30}
+			fill="white"
+		/>
+	{/if}
+{/if}
+
 <!-- <text
 	class="bubble-axis-title"
 	x={axisTitleOffset}
-	y={axisTitleY.current - height / 4}
+	y={axisTitlePriceY.current - height / 4}
 	text-anchor="middle"
 >
 	{#each '↑ PRICE'.split('') as char}
@@ -166,7 +192,7 @@
 <text
 	class="bubble-axis-title"
 	x={width - axisTitleOffset}
-	y={axisTitleY.current - height / 4}
+	y={axisTitlePriceY.current - height / 4}
 	text-anchor="middle"
 >
 	{#each '↑ POPULARITY'.split('') as char}
@@ -178,7 +204,10 @@
 		{@const fill = ['', name].includes(pizzaNameHovered)
 			? categoryColorScale(category)
 			: 'lightgray'}
-		<circle
+		{@const fillExtraLight = ['', name].includes(pizzaNameHovered)
+			? categoryColorScaleExtraLight(category)
+			: 'rgb(231, 231, 231)'}
+		<!-- <circle
 			onpointerdown={(event) => {
 				event.stopPropagation();
 				pizzaNameHovered = name;
@@ -205,6 +234,36 @@
 			r={r.current}
 			{fill}
 			cursor="pointer"
+		/> -->
+
+		<PizzaIcon
+			x={xPrice.current - r.current}
+			y={yPrice.current - r.current}
+			width={2 * r.current}
+			height={2 * r.current}
+			transform="rotate({(i * 30) % 360} {xPrice.current} {yPrice.current})"
+			colorMain={fill}
+			colorSauce={fillExtraLight}
+			onpointerdown={(/** @type {PointerEvent} */ event) => {
+				event.stopPropagation();
+				pizzaNameHovered = name;
+			}}
+			cursor="pointer"
+		/>
+
+		<PizzaIcon
+			x={xCount.current - r.current}
+			y={yCount.current - r.current}
+			width={2 * r.current}
+			height={2 * r.current}
+			transform="rotate({(i * 30) % 360} {xCount.current} {yCount.current})"
+			colorMain={fill}
+			colorSauce={fillExtraLight}
+			onpointerdown={(/** @type {PointerEvent} */ event) => {
+				event.stopPropagation();
+				pizzaNameHovered = name;
+			}}
+			cursor="pointer"
 		/>
 		{#if pizzaNameHovered === name}
 			<text
@@ -213,6 +272,7 @@
 				text-anchor="middle"
 				font-size="1.5rem"
 				fill="black"
+				font-weight="bold"
 				dominant-baseline="middle">{price} $</text
 			>
 			<text
@@ -221,6 +281,7 @@
 				text-anchor="middle"
 				font-size="1.5rem"
 				fill="black"
+				font-weight="bold"
 				dominant-baseline="middle">{Math.round((count / maxCount) * 100)} %</text
 			>
 		{/if}
@@ -240,22 +301,13 @@
 </defs> -->
 {#if stepNr >= startStep1_2}
 	{#if pizzaNameHovered !== ''}
-		<rect
-			class="pizza-bubbles-name-background"
-			x={width / 2 - 10}
-			y={axisTitleY.current - (pizzaNameHoveredWordArray.length / 2 + 1) * 30}
-			width={20}
-			height={(pizzaNameHoveredWordArray.length + 0.3) * 30}
-			fill="white"
-		/>
-
 		{#each pizzaNameHoveredWordArray as word, i}
 			<text
 				onpointerdown={(event) => {
 					event.stopPropagation();
 				}}
 				x={width / 2}
-				y={axisTitleY.current +
+				y={axisTitlePriceY.current +
 					(pizzaNameHoveredWordArray.length / 2) * 30 -
 					(pizzaNameHoveredWordArray.length - i) * 30}
 				text-anchor="middle"

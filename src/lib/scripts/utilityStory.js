@@ -23,10 +23,28 @@ export const schemeObservable10Light = [
 	'#b4b7bc'
 ];
 
+export const schemeObservable10ExtraLight = [
+	'#cad5f2',
+	'#fbe9be',
+	'#ffd7d1',
+	'#d6efe9',
+	'#c9e7ce',
+	'#ffdeeb',
+	'#e5d3fb',
+	'#e2ecfc',
+	'#e3d5cd',
+	'#e1e2e4'
+];
+
 export const categoryColorScale = scaleOrdinal()
 	.domain(categories)
 	// .range(schemeObservable10);
 	.range(schemeObservable10Light);
+
+export const categoryColorScaleExtraLight = scaleOrdinal()
+	.domain(categories)
+	// .range(schemeObservable10);
+	.range(schemeObservable10ExtraLight);
 
 /** @param {PizzaDataEntry[]} dataPizzas */
 export const getCategoryDataStepped = (dataPizzas) => {

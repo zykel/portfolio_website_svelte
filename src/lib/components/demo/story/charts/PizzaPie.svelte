@@ -231,7 +231,7 @@
 			onpointerdown={(event) => {
 				if (interactionStepReached) {
 					categorySelected = data.category;
-					scrollToElement('step-text-6');
+					scrollToElement('step-text-reveal_pizza_price_axis');
 				}
 			}}
 			onpointermove={() => {
