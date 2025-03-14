@@ -201,7 +201,9 @@
 		position: sticky;
 		width: calc(min(900px, 100vw));
 		height: 80vh;
+		height: 80svh;
 		top: 10vh;
+		top: 10svh;
 		margin: 0;
 		transition: box-shadow 0.3s ease-in-out;
 		border-radius: 2rem;
@@ -213,8 +215,11 @@
 
 	.step {
 		height: 40vh;
-		margin: 0vh 0 70vh 0;
+		height: 40svh;
+		margin: 0 0 70vh 0;
+		margin: 0 0 70svh 0;
 		padding: 1vh;
+		padding: 1svh;
 		/* background-color: rgba(201, 144, 144, 0.411); */
 		display: flex;
 		justify-content: center;
@@ -224,6 +229,7 @@
 	}
 	.last-step {
 		margin-bottom: 75vh;
+		margin-bottom: 75svh;
 	}
 	.hidden {
 		display: none;

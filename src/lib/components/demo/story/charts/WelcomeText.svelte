@@ -9,7 +9,7 @@
 
 	let { width, height, stepNr } = $props();
 
-	const welcomeTextArray = ['Welcome test3 to', 'Pizza Bianca!'];
+	const welcomeTextArray = ['Welcome to', 'Pizza Bianca!'];
 
 	const yOffset = new Tween(0, { easing: backIn });
 	$effect(() => {
