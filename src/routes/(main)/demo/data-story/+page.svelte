@@ -97,7 +97,7 @@
 		},
 		{
 			id: 'visiting_hours_interaction',
-			text: `Feel free to explore our visiting hours, and see you soon at PIZZA BIANCA!`,
+			text: `Feel free to explore our visiting hours by tapping on the chart. And see you soon at PIZZA BIANCA!`,
 			type: 'interaction-instructions'
 		}
 	]);

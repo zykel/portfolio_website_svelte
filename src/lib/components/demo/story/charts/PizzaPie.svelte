@@ -8,6 +8,7 @@
 	import { transform } from '@observablehq/plot';
 	import { interpolateTransformSvg } from 'd3-interpolate';
 	import { pie, arc } from 'd3-shape';
+	import { getContext } from 'svelte';
 	import { stopPropagation } from 'svelte/legacy';
 	import { Tween } from 'svelte/motion';
 
@@ -177,6 +178,9 @@
 	}
 
 	let categoryFocused = $state('');
+
+	const getStepNrFromIdPart1 = getContext('getStepNrFromIdPart1');
+	$inspect(dataTweened);
 </script>
 
 <defs>
@@ -217,9 +221,17 @@
 			/>
 		</g>
 	{/each}
-	{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, rotate, transform, fill, toppingsData }, i}
+	{#each dataTweened as { datumPie, data, dSmall, dRim, dWide, opacityLight, opacityFull, rotate, transform, fill, toppingsData, category }, i}
 		{@const highlight =
 			[categoryFocused, categorySelected].includes(data.category) && interactionStepReached}
+		{@const modifiedLabelAngle =
+			data.category === 'Supreme'
+				? -Math.PI / 2 + 0.1
+				: data.category === 'Veggie'
+					? Math.PI / 2
+					: data.category === 'Classic'
+						? datumPie.startAngle - Math.PI / 2
+						: datumPie.endAngle - Math.PI / 2 - 0.1}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<g
@@ -268,14 +280,20 @@
                         : 'end'} -->
 			<text
 				class="pizza-slice-label"
-				x={arcScale.centroid(datumPie)[0] * 2.6}
-				y={arcScale.centroid(datumPie)[1] * 2.6}
+				x={width < 650 && stepNr <= getStepNrFromIdPart1('allow_category_select')
+					? Math.cos(modifiedLabelAngle) * radius * 1.4
+					: arcScale.centroid(datumPie)[0] * 2.6}
+				y={width < 650 && stepNr <= getStepNrFromIdPart1('allow_category_select')
+					? Math.sin(modifiedLabelAngle) * radius * 1.4
+					: arcScale.centroid(datumPie)[1] * 2.6}
 				text-anchor={rotate.current !== 0
 					? 'middle'
 					: arcScale.centroid(datumPie)[0] > 0
 						? 'start'
 						: 'end'}
+				font-size={width < 650 ? '1.5rem' : '2rem'}
 				{fill}
+				dominant-baseline="middle"
 				opacity={opacityFull.current}
 				pointer-events="none"
 				transform="rotate({-rotate.current}, {arcScale.centroid(datumPie)[0] *
@@ -293,7 +311,6 @@
 	}
 
 	.pizza-slice-label {
-		font-size: 2rem;
 		font-weight: bold;
 	}
 </style>
