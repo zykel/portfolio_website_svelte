@@ -94,6 +94,11 @@
 			id: 'most_busy_evening',
 			text: `...and between 17:00 and 20:00 in the evening.`,
 			type: ''
+		},
+		{
+			id: 'visiting_hours_interaction',
+			text: `Feel free to explore our visiting hours, and see you soon at PIZZA BIANCA!`,
+			type: 'interaction-instructions'
 		}
 	]);
 
@@ -158,7 +163,13 @@
 <!-- {#if stepNrPart1 >= getStepNrFromIdPart1('allow_pizza_bubbles_interaction')} -->
 {#if categorySelected !== ''}
 	<div class="part-container">
-		<div class="svg-div" bind:clientWidth={width} bind:clientHeight={height}>
+		<div
+			class="svg-div {dataStepTextPart2[stepNrPart2]?.type === 'interaction-instructions'
+				? 'indicate-interaction'
+				: ''}"
+			bind:clientWidth={width}
+			bind:clientHeight={height}
+		>
 			{#if width > 0 && height > 0}
 				<SvgPart2 data={dataTime} {width} {height} stepNr={stepNrPart2} />
 			{/if}
