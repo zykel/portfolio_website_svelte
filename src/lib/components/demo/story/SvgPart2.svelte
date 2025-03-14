@@ -92,7 +92,7 @@
 	<line
 		x1={xScale(startOrEnd === 'start' ? endTime : startTime) + xScale.bandwidth() / 2}
 		x2={xScale(startOrEnd === 'start' ? endTime : startTime) + xScale.bandwidth() / 2}
-		y1={yScale.range()[1] - 40}
+		y1={yScale.range()[1] - 20}
 		y2={yScale.range()[0]}
 		stroke="#333333"
 		stroke-width="3"
@@ -101,7 +101,7 @@
 	/>
 	<text
 		x={xScale(startOrEnd === 'start' ? endTime : startTime) + xScale.bandwidth() / 2}
-		y={yScale.range()[1] - 50}
+		y={yScale.range()[1] - 30}
 		text-anchor="middle"
 		fill="#333333"
 		font-size="1.5rem"
@@ -185,7 +185,7 @@
 
 	<text
 		class="x-axis-title"
-		x={width / 2}
+		x={(xScale.range()[0] + xScale.range()[1]) / 2}
 		y={yScale.range()[0] + 50}
 		text-anchor="middle"
 		fill="gray"
@@ -258,6 +258,5 @@
 
 <style>
 	svg {
-		/* background-color: #d1e6c3; */
 	}
 </style>

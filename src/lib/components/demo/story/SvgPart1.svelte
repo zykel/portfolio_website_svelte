@@ -118,7 +118,7 @@
 <style>
 	svg {
 		/* background-color: #f0f0f0; */
-		border: 1px solid #ccc;
+		/* border: 1px solid #ccc; */
 	}
 
 	.continue-button-container {

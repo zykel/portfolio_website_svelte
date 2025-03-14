@@ -40,10 +40,10 @@
 
 	const dataStepTextPart1_1 = $derived([
 		{ id: 'intro', text: 'At Pizza Bianca, we offer four types of pizzas.', type: '' },
-		{ id: 'reveal_supreme', text: 'We offer 9 types of "Supreme" pizzas...', type: '' },
-		{ id: 'reveal_veggie', text: '...9 types of "Veggie" pizzas...', type: '' },
-		{ id: 'reveal_classic', text: '...8 types of "Classic" pizzas...', type: '' },
-		{ id: 'reveal_chicken', text: '...and 6 types of "Chicken" pizzas.', type: '' },
+		{ id: 'reveal_supreme', text: 'We offer nine "Supreme" pizzas...', type: '' },
+		{ id: 'reveal_veggie', text: '...nine "Veggie" pizzas...', type: '' },
+		{ id: 'reveal_classic', text: '...eight "Classic" pizzas...', type: '' },
+		{ id: 'reveal_chicken', text: '...and six "Chicken" pizzas.', type: '' },
 		{
 			id: 'allow_category_select',
 			text: 'Select a category to explore the pizzas in that category.',
@@ -198,6 +198,9 @@
 	:global(body) {
 		margin: 0;
 		padding: 0;
+		background-color: hsla(35, 55%, 93%);
+		background-color: hsl(35, 85%, 95%);
+		/* background-color: hsla(249, 77%, 95%, 0.522); */
 	}
 
 	.part-container {
@@ -219,9 +222,11 @@
 		transition: box-shadow 0.3s ease-in-out;
 		border-radius: 2rem;
 		overflow: hidden;
+		background-color: white;
 	}
 	.indicate-interaction {
-		box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.4);
+		/* box-shadow: inset 0 0 1rem hsla(249, 77%, 75%, 0.4); */
+		box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.3);
 	}
 
 	.step {
@@ -250,9 +255,10 @@
 		width: 300px;
 		padding: 1rem;
 		background-color: rgb(253, 244, 231);
+		background-color: hsl(35deg 63.61% 68.44%);
 		border-radius: 1rem;
 		text-align: center;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 7px hsl(35deg 20.43% 46.48% / 53%);
 	}
 
 	.interaction-instructions {
