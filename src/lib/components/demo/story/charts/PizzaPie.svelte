@@ -140,8 +140,6 @@
 					(-(datumTweened.startAngle + angleRange / 2) / (2 * Math.PI)) * 360;
 
 				const stepReveal = startStep1_1 + datumTweened.data.stepReveal;
-				datumTweened.opacityLight.target = stepReveal <= stepNr ? 0.4 : 0;
-				datumTweened.opacityFull.target = stepReveal <= stepNr ? 1 : 0;
 				datumTweened.transform.target =
 					stepNr >= startStep1_2 && categorySelected === datumTweened.data.category
 						? `rotate(${rotationAfter1_2})`
@@ -158,6 +156,9 @@
 				if (stepNr >= startStep1_2 && categorySelected !== datumTweened.data.category) {
 					datumTweened.opacityLight.target = 0;
 					datumTweened.opacityFull.target = 0;
+				} else {
+					datumTweened.opacityLight.target = stepReveal <= stepNr ? 0.4 : 0;
+					datumTweened.opacityFull.target = stepReveal <= stepNr ? 1 : 0;
 				}
 			}
 		);
