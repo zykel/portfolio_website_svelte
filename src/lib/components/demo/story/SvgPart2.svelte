@@ -266,6 +266,7 @@
 				onpointerover={(event) => {
 					showHoverInfo(event);
 				}}
+				onpointerout={hideHoverInfo}
 				x={xScale.range()[0]}
 				y={0}
 				width={xScale.range()[1] - xScale.range()[0]}

@@ -206,16 +206,14 @@
 				d={dSmall}
 				opacity={opacityFull.current}
 				fill="white"
-				filter="url(#drop-shadow{(categorySelected === data.category ? '-heavy' : '') +
-					(rotate.current < -90 && rotate.current > -270 ? '-flipped' : '')})"
+				filter="url(#drop-shadow{rotate.current < -90 && rotate.current > -270 ? '-flipped' : ''})"
 			/>
 			<path
 				class="pizza-background-shadow"
 				d={dRim}
 				opacity={opacityFull.current}
 				fill="white"
-				filter="url(#drop-shadow{(categorySelected === data.category ? '-heavy' : '') +
-					(rotate.current < -90 && rotate.current > -270 ? '-flipped' : '')})"
+				filter="url(#drop-shadow{rotate.current < -90 && rotate.current > -270 ? '-flipped' : ''})"
 			/>
 		</g>
 	{/each}

@@ -6,6 +6,7 @@
 	import { elasticOut } from 'svelte/easing';
 	import { getContext } from 'svelte';
 	import PizzaIcon from './PizzaIcon.svelte';
+	import { filter } from '@observablehq/plot';
 
 	/**
 	 * @typedef {Object} PizzaDataEntry
@@ -147,6 +148,18 @@
 	const pizzaNameHoveredWordArray = $derived(pizzaNameHovered.split(' '));
 </script>
 
+<defs>
+	<filter id="bubbles-drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
+		<feDropShadow
+			dx="0"
+			dy="0"
+			stdDeviation="3"
+			flood-color={categoryColorScaleExtraLight(categorySelected)}
+			flood-opacity="1"
+		/>
+	</filter>
+</defs>
+
 <text
 	class="bubble-axis-title"
 	x={axisTitleOffset}
@@ -273,7 +286,8 @@
 				font-size="1.5rem"
 				fill="black"
 				font-weight="bold"
-				dominant-baseline="middle">{price} $</text
+				dominant-baseline="middle"
+				filter="url(#bubbles-drop-shadow)">{price} $</text
 			>
 			<text
 				x={xCount.current}
@@ -282,7 +296,8 @@
 				font-size="1.5rem"
 				fill="black"
 				font-weight="bold"
-				dominant-baseline="middle">{Math.round((count / maxCount) * 100)} %</text
+				dominant-baseline="middle"
+				filter="url(#bubbles-drop-shadow)">{Math.round((count / maxCount) * 100)} %</text
 			>
 		{/if}
 	{/each}
