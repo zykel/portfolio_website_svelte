@@ -20,14 +20,18 @@
 	const pizzaIconRadius = $derived(pizzaIconRadiusForce * 0.8);
 	const nrPizzaIcons = 40;
 
+	const y0RandomPositions = range(nrPizzaIcons).map(() => {
+		return (
+			0.35 * height + 0.4 * height * (Math.sin(Math.random() * Math.PI) - 0.5 + Math.random() * 0.5)
+		);
+	});
+
 	const getDataForce = () => {
-		const dataForce = range(nrPizzaIcons).map(() => {
+		const dataForce = y0RandomPositions.map((y0) => {
 			return {
 				x0: width / 2,
 				// y0: height / 2,
-				y0:
-					0.35 * height +
-					0.4 * height * (Math.sin(Math.random() * Math.PI) - 0.5 + Math.random() * 0.5),
+				y0,
 				r: pizzaIconRadiusForce
 			};
 		});
@@ -98,8 +102,8 @@
 	{#each welcomeTextArray as text, i}
 		<text
 			x={width / 2}
-			y={height / 2 + 30 - 60 * (1 - i)}
-			font-size="4rem"
+			y={height / 2 + 30 - 60 * (1 - i) + 10}
+			font-size={width < 450 ? '3rem' : '4rem'}
 			text-anchor="middle"
 			fill="#333333"
 			font-weight="bold"

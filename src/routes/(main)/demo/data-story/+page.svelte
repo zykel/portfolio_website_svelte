@@ -201,6 +201,7 @@
 		background-color: hsla(35, 55%, 93%);
 		background-color: hsl(35, 85%, 95%);
 		/* background-color: hsla(249, 77%, 95%, 0.522); */
+		overflow-x: hidden;
 	}
 
 	.part-container {
@@ -218,7 +219,8 @@
 		height: 80svh;
 		top: 10vh;
 		top: 10svh;
-		margin: 0;
+		margin-top: 10vh;
+		margin-top: 10svh;
 		transition: box-shadow 0.3s ease-in-out;
 		border-radius: 2rem;
 		overflow: hidden;
@@ -252,7 +254,7 @@
 	}
 
 	.step-p {
-		width: 300px;
+		width: calc(min(300px, 80vw));
 		padding: 1rem;
 		background-color: rgb(253, 244, 231);
 		background-color: hsl(35deg 63.61% 68.44%);

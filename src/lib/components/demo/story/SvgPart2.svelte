@@ -9,8 +9,10 @@
 	$inspect(data);
 	const maxCount = $derived(Math.max(...data.map((/** @type {{ count: any; }} */ d) => d.count)));
 
+	const margin = { left: 10, right: 10 };
+
 	const chartHeight = 200;
-	const chartWidth = $derived(Math.min(600, width));
+	const chartWidth = $derived(Math.min(600, width) - margin.left - margin.right);
 
 	const xScale = $derived(
 		scaleBand()
@@ -34,7 +36,11 @@
 			.curve(curveCardinal)
 	);
 
-	const xTicks = ['11:00', '13:00', '15:00', '17:00', '19:00', '21:00', '23:00'];
+	const xTicks = $derived(
+		width > 550
+			? ['11:00', '13:00', '15:00', '17:00', '19:00', '21:00', '23:00']
+			: ['11:00', '16:00', '21:00']
+	);
 	$inspect(xTicks);
 
 	const opacityNoonCovers = new Tween(0);
@@ -46,10 +52,6 @@
 		opacityNoonCovers.target = stepNr === getStepNrFromIdPart2('most_busy_noon') ? 1 : 0;
 		opacityEveningCovers.target = stepNr === getStepNrFromIdPart2('most_busy_evening') ? 1 : 0;
 	});
-
-	const updateHoverInfo = (event) => {
-		// console.log('hovering');
-	};
 
 	let hoverTime = $state('');
 	let hoverCount = $derived(
@@ -68,6 +70,12 @@
 		const time = xScale.domain()[timeIndex];
 		hoverTime = time;
 	};
+
+	$effect(() => {
+		if (stepNr < getStepNrFromIdPart2('visiting_hours_interaction')) {
+			hoverTime = '';
+		}
+	});
 
 	const hideHoverInfo = () => {
 		hoverTime = '';
@@ -146,6 +154,15 @@
 		</filter>
 	</defs>
 
+	<line
+		class="yaxis-line"
+		x1={width / 2 - chartWidth / 2}
+		x2={width / 2 + chartWidth / 2}
+		y1={yScale(0)}
+		y2={yScale(0)}
+		stroke="lightgray"
+		stroke-width="1"
+	/>
 	<g
 		class="y-axis"
 		style:opacity={stepNr >= getStepNrFromIdPart2('visiting_hours_interaction') ? '1' : '0'}
@@ -244,6 +261,9 @@
 			<rect
 				class="hover-interaction-rect"
 				onpointermove={(event) => {
+					showHoverInfo(event);
+				}}
+				onpointerover={(event) => {
 					showHoverInfo(event);
 				}}
 				x={xScale.range()[0]}
