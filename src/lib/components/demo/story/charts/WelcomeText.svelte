@@ -9,16 +9,16 @@
 
 	let { width, height, stepNr } = $props();
 
-	const welcomeTextArray = ['Welcome to', 'Pizza Bianca!'];
+	const welcomeTextArray = ['Welcome to', 'PIZZA BIANCA!'];
 
 	const yOffset = new Tween(0, { easing: backIn });
 	$effect(() => {
-		yOffset.target = stepNr === 0 ? 0 : -height;
+		yOffset.target = stepNr === 0 ? 0 : -2 * height;
 	});
 
-	const pizzaIconRadiusForce = 30;
-	const pizzaIconRadius = pizzaIconRadiusForce * 0.8;
-	const nrPizzaIcons = 60;
+	const pizzaIconRadiusForce = $derived(Math.max(width, height) / 10);
+	const pizzaIconRadius = $derived(pizzaIconRadiusForce * 0.8);
+	const nrPizzaIcons = 40;
 
 	const getDataForce = () => {
 		const dataForce = range(nrPizzaIcons).map(() => {
@@ -59,7 +59,7 @@
 	const getIconOpacity = (x, y) => {
 		const distanceMax = Math.sqrt((width / 2) ** 2 + (height / 2) ** 2);
 		const distance = Math.sqrt((x - width / 2) ** 2 + (y - height / 2) ** 2);
-		return (distance / distanceMax) ** 2 * 0.5 + 0.03;
+		return (distance / distanceMax) ** 2 * 0.1 + 0;
 	};
 </script>
 
@@ -69,7 +69,12 @@
 	</filter>
 </defs>
 
-<g class="welcome-content" transform={`translate(0, ${yOffset.current})`}>
+<g
+	class="welcome-content"
+	transform={`translate(0, ${yOffset.current})`}
+	style:opacity={stepNr === 0 ? 1 : 0}
+	style:transition="opacity 1s ease"
+>
 	<g class="pizza-icons">
 		{#each pizzaIconData as { x, y, r }}
 			<!-- <image
