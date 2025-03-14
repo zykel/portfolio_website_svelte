@@ -74,7 +74,7 @@
 		return pieData;
 	};
 
-	const radius = $derived(width / 5);
+	const radius = $derived(Math.min(width, height) / 5);
 
 	// @ts-ignore
 	const arcScale = $derived(arc().innerRadius(0).outerRadius(radius).cornerRadius(3));

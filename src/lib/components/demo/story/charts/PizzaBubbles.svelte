@@ -26,7 +26,7 @@
 		pizzaNameHovered = $bindable()
 	} = $props();
 
-	const circleRadius = 25;
+	const circleRadius = $derived((25 / 800) * height);
 
 	const getStepNrFromIdPart1 = getContext('getStepNrFromIdPart1');
 
@@ -171,7 +171,7 @@
 		<rect
 			class="pizza-bubbles-name-background"
 			x={width / 2 - 10}
-			y={axisTitlePriceY.current - (pizzaNameHoveredWordArray.length / 2 + 1) * 30}
+			y={axisTitlePriceY.current - (pizzaNameHoveredWordArray.length / 2) * 30}
 			width={20}
 			height={(pizzaNameHoveredWordArray.length + 0.3) * 30}
 			fill="white"
@@ -309,7 +309,7 @@
 				x={width / 2}
 				y={axisTitlePriceY.current +
 					(pizzaNameHoveredWordArray.length / 2) * 30 -
-					(pizzaNameHoveredWordArray.length - i) * 30}
+					(pizzaNameHoveredWordArray.length - i - 1) * 30}
 				text-anchor="middle"
 				font-size="2rem"
 				font-weight="bold"
