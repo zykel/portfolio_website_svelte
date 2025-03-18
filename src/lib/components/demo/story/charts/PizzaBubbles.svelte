@@ -259,7 +259,8 @@
 			colorSauce={fillExtraLight}
 			onpointerdown={(/** @type {PointerEvent} */ event) => {
 				event.stopPropagation();
-				pizzaNameHovered = name;
+				if (stepNr == getStepNrFromIdPart1('allow_pizza_bubbles_interaction'))
+					pizzaNameHovered = name;
 			}}
 			cursor="pointer"
 		/>
@@ -274,7 +275,8 @@
 			colorSauce={fillExtraLight}
 			onpointerdown={(/** @type {PointerEvent} */ event) => {
 				event.stopPropagation();
-				pizzaNameHovered = name;
+				if (stepNr == getStepNrFromIdPart1('allow_pizza_bubbles_interaction'))
+					pizzaNameHovered = name;
 			}}
 			cursor="pointer"
 		/>

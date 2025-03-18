@@ -14,12 +14,12 @@
 					</li>
 				</ul>
 				<br />
-				<p>To do so, I use an accessible example scenario.</p>
+				<p>To do so, I use an accessible example scenario:</p>
 
 				<div id="scenario-description-div">
 					<p class="bold">Scenario</p>
 					Bianca, the owner of a pizza restaurant, has collected the pizza sales data of the past year
-					[1] and she wants to work with the resulting data set.
+					<a href="#footnote-1">[1]</a> and she wants to work with the resulting data set.
 				</div>
 
 				Depending on Bianca's goals, three different solutions are suitable.
@@ -35,14 +35,14 @@
 					<li>Which ingredients are used how often?</li>
 				</ul>
 				<p>
-					Bianca would also like to be able to focus on specific pizzas or time periods to explore
+					Bianca would also like to be able to focus on specific pizzas and time periods to explore
 					the data in more detail.
 				</p>
 				<p>
 					To help Bianca reach her goals, I have created the following <a
 						data-sveltekit-reload
 						href="/demo/dashboard">dashboard</a
-					>:
+					> (intended for desktop usage):
 				</p>
 			</div>
 			<a data-sveltekit-reload href="/demo/dashboard">
@@ -50,9 +50,10 @@
 			>
 			<div class="limit-width">
 				<p>
-					The dashboard relies heavily on interaction to adjust various parameters and filters. For
-					an explanation of how the dashboard can be used to answer Bianca's questions, you may
-					refer to this YouTube video:
+					The dashboard relies on interaction to adjust various parameters and filters. For an
+					explanation of how the dashboard can be used to answer Bianca's questions, you may refer
+					to this YouTube video:
+					<!-- TODO: -->
 					<a href="https://www.youtube.com/watch?v=8Z9v6h5Y6Zo">Dashboard Demo</a>
 				</p>
 			</div>
@@ -61,9 +62,9 @@
 				<h2>2. Analytical report</h2>
 				<p>
 					In the second case of our <a href="#scenario-description-div">scenario</a>, Bianca has a
-					list of questions that she would like to be get answers for based on the data. She does
-					not want to explore the data herself, but rather receive a summary of the insights backed
-					up by visualizations. She has the following questions:
+					list of questions that she would like to get answers for based on the data. She does not
+					want to explore the data herself, but she rather wants a summary of the insights backed up
+					by visualizations. She has the following questions:
 				</p>
 				<ul>
 					<li>Which pizzas are sold the most/the least?</li>
@@ -93,7 +94,7 @@
 				<p>
 					In the third case of our <a href="#scenario-description-div">scenario</a>, Bianca wants to
 					engage potential customers, informing them about the pizzas offered in her restaurant and
-					allowing the users to playfully explore the pizzas by price and popularity.
+					allowing users to playfully explore the pizzas by price and popularity.
 				</p>
 				<p>
 					To help Bianca reach her goals, I have created the following <a
@@ -106,56 +107,15 @@
 				>
 			</div>
 
-			<a data-sveltekit-reload href="/demo/report">report</a>
-
-			[1] The data set was taken from XY and slightly adjusted for the demos.
+			<br />
+			<p id="footnote-1" class="footnote">
+				[1] The data set is <a
+					href="https://www.kaggle.com/datasets/shilongzhuang/pizza-sales?resource=download"
+					>taken from kaggle</a
+				> and slightly adjusted for the demos.
+			</p>
 		</div>
 	</div>
 </div>
 
 <!-- relatable -->
-
-<style>
-	.left-align-container {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		width: 100%;
-	}
-	.bold {
-		font-weight: bold;
-	}
-	ul {
-		margin: 1rem 0;
-	}
-	li {
-		margin-left: 1.5rem;
-		line-height: 1.7rem;
-	}
-	#scenario-description-div {
-		margin: 1rem 0;
-		background-color: rgb(225, 225, 225);
-		padding: 1rem;
-		border-left: 4px solid rgb(44, 44, 44);
-	}
-
-	.limit-width {
-		max-width: 700px;
-	}
-	p,
-	ul {
-		margin-block-end: 0.7rem;
-		line-height: 1.7rem;
-		/* margin-bottom: 1.7rem; */
-	}
-	h2 {
-		margin-top: 2rem;
-	}
-
-	.demo-teaser {
-		width: 100%;
-		margin: 1rem 0;
-		border-radius: 1rem;
-		box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-	}
-</style>

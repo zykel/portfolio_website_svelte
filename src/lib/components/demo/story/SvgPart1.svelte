@@ -68,7 +68,7 @@
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 {width} {height}"
 	onpointerdown={(event) => {
-		pizzaNameHovered = '';
+		if (stepNr == getStepNrFromIdPart1('allow_pizza_bubbles_interaction')) pizzaNameHovered = '';
 	}}
 >
 	<line

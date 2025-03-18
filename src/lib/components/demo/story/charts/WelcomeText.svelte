@@ -105,7 +105,6 @@
 			y={height / 2 + 30 - 60 * (1 - i) + 10}
 			font-size={width < 450 ? '3rem' : '4rem'}
 			text-anchor="middle"
-			fill="#333333"
 			font-weight="bold"
 			style:opacity={stepNr == 0 ? 1 : 0}
 			style:transition="opacity 1s"
@@ -116,4 +115,27 @@
 			{/each}
 		</text>
 	{/each}
+	<text
+		x={width / 2}
+		y={(height / 8) * 7}
+		font-size={'3.5rem'}
+		text-anchor="middle"
+		fill="#666666"
+		style:opacity={stepNr == 0 ? 1 : 0}
+		style:transition="opacity 1s"
+	>
+		^
+	</text>
+	<text
+		x={width / 2}
+		y={(height / 8) * 7}
+		font-size={'1.5rem'}
+		text-anchor="middle"
+		font-weight="bold"
+		fill="#666666"
+		style:opacity={stepNr == 0 ? 1 : 0}
+		style:transition="opacity 1s"
+	>
+		scroll up to continue
+	</text>
 </g>
