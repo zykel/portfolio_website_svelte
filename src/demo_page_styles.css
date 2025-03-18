@@ -15,10 +15,10 @@
 .bold {
 	font-weight: bold;
 }
-ul {
+.demo-container ul {
 	margin: 1rem 0;
 }
-li {
+.demo-container li {
 	margin-left: 1.5rem;
 	line-height: 1.7rem;
 }

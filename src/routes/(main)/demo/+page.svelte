@@ -1,7 +1,7 @@
 <div class="center-container">
 	<div class="slim-fit-container" style:box-sizing="border-box">
-		<div class="left-align-container">
-			<h1 class="demo-page__title">Types of solutions</h1>
+		<div class="left-align-container demo-container">
+			<h1 class="demo-page__title">Types of solutions I offer</h1>
 			<div class="limit-width">
 				On this page, I explain the different types of solutions I offer:
 				<ul>
