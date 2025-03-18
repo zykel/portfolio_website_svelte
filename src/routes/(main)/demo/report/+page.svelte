@@ -66,7 +66,13 @@
 	const titleRectHeight = 7;
 </script>
 
-{#snippet titleRect(x, y, width, height, color)}
+{#snippet titleRect(
+	/** @type {number} */ x,
+	/** @type {number} */ y,
+	/** @type {number} */ width,
+	/** @type {number} */ height,
+	/** @type {string} */ color
+)}
 	<div
 		style:position="absolute"
 		style:top="{50 + y}px"
@@ -74,7 +80,7 @@
 		style:width="{width}px"
 		style:height="{height}px"
 		style:background-color={color}
-		style:opacity="0.6"
+		style:opacity="0.5"
 		style:z-index="-1"
 	></div>
 {/snippet}
