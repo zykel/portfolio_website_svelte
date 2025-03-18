@@ -13,7 +13,7 @@
 	import QuestImproveBusiness from '$lib/components/demo/report/sections/QuestImproveBusiness.svelte';
 	import TableOfContents from '$lib/components/demo/report/sections/TableOfContents.svelte';
 	import HoverInfo from '$lib/components/demo/report/charts/HoverInfo.svelte';
-	import { getIngredientsData } from '$lib/scripts/utilityReport.js';
+	import { getIngredientsData, schemeObservable10Light } from '$lib/scripts/utilityReport.js';
 
 	let { data } = $props();
 
@@ -62,14 +62,53 @@
 	onMount(() => {
 		loaded = true;
 	});
+
+	const titleRectHeight = 7;
 </script>
+
+{#snippet titleRect(x, y, width, height, color)}
+	<div
+		style:position="absolute"
+		style:top="{50 + y}px"
+		style:left="{x}px"
+		style:width="{width}px"
+		style:height="{height}px"
+		style:background-color={color}
+		style:opacity="0.6"
+		style:z-index="-1"
+	></div>
+{/snippet}
 
 <main class="report-container" bind:clientWidth={extents.width}>
 	<section>
 		<!-- <hr class="limit-width" style:margin-top="1rem" /> -->
-		<h1 class="limit-width" bind:clientWidth={extents.widthLimited}>
-			Analytical Report: Pizza Sales
-		</h1>
+		<div id="title-div" class="limit-width">
+			{@render titleRect(20, 0, 3.2 * 70, titleRectHeight, schemeObservable10Light[0])}
+			{@render titleRect(
+				40,
+				titleRectHeight,
+				3.2 * 80,
+				titleRectHeight,
+				schemeObservable10Light[1]
+			)}
+			{@render titleRect(
+				0,
+				2 * titleRectHeight,
+				3.2 * 70,
+				titleRectHeight,
+				schemeObservable10Light[2]
+			)}
+			{@render titleRect(
+				10,
+				3 * titleRectHeight,
+				3.2 * 40,
+				titleRectHeight,
+				schemeObservable10Light[3]
+			)}
+			<h1 class="limit-width" bind:clientWidth={extents.widthLimited}>
+				Analytical Report: Pizza Sales
+			</h1>
+		</div>
 		<p class="default-text limit-width">
 			This report summarizes the findings from analyzing a synthetic pizza sales data set to answer
 			a list of questions. It also summarizes key insights that could help improve the business. The
@@ -110,6 +149,10 @@
 
 <style>
 	:global(body) {
+		position: relative;
+	}
+
+	#title-div {
 		position: relative;
 	}
 
