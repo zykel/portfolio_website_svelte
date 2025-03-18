@@ -29,7 +29,7 @@
 	const pizzaCategories = ['Classic', 'Veggie', 'Supreme', 'Chicken'];
 	const selected = $state({
 		timeUnit: timeUnits[0],
-		type: types[1],
+		type: types[0],
 		pizzaNames: [...pizzaNames],
 		pizzaCategories: [...pizzaCategories]
 	});
