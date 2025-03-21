@@ -9,6 +9,7 @@
 	"title_imprint": "Impressum",
 	"title_privacy": "Datenschutz",
 
+	"demo_project_title": "Beispielbasierte Erklärung meiner Lösungen",
 	"vehicle_project_title": "Analyse einer Methode der Konfliktforschung",
 	"methane_project_title": "Übersicht über einen Methan-Datensatz",
 	"tutorials_project_title": "Interaktive Tutorials für Studierende",
@@ -17,15 +18,16 @@
 	"endovis_project_title": "Analyse chirurgischer Prozessdaten",
 	"exex_project_title": "Erklärung einer Methode der Konfliktforschung",
 
+	"demo_project_description_short": "Ein Überblick über die verschiedenen Lösungen, die ich anbiete, basierend auf einem fiktiven Pizza-Verkaufsdatensatz.",
 	"vehicle_project_description_short": "Ein Visualisierungssystem zur Analyse der Ergebnisse einer Integration von Konflikt-Ereignisdaten.",
 	"tutorials_project_description_short": "Spielerische Erklärungen zum Erlernen der Grundlagen der Erstellung interaktiver Datenvisualisierungen.",
 	"methane_project_description_short": "Eine kurze Datengeschichte, die einen Methan-Datensatz einführt und am Ende dessen Erforschung ermöglicht.",
 	"teaching_tasks_project_description_short": "Übungsaufgaben zum Erlernen von D3.js anhand gesellschaftlich relevanter Datensätze.",
-	"characterization_project_description_short": "Ein Notebook zur Erklärung, welche Storytelling-Techniken in einer Sammlung von Datengeschichten verwendet wurden.",
+	"characterization_project_description_short": "Ein analytischer Bericht zur Erklärung, welche Storytelling-Techniken in einer Sammlung von Datengeschichten verwendet wurden.",
 	"endovis_project_description_short": "Eine interaktive Webanwendung zur Erforschung heterogener, zeitabhängiger chirurgischer Daten.",
 	"exex_project_description_short": "Eine interaktive Datengeschichte zur Erklärung einer Methode der Kausalinferenz für Konfliktforscher:innen.",
 
-	"tag_interactive_notebook": "Interaktives Notebook",
+	"tag_analytical_report": "Analytischer Bericht",
 	"tag_visualization_system": "Visualisierungssystem",
 	"tag_visual_data_story": "Visuelle Datengeschichte",
 

@@ -58,7 +58,7 @@
 
 {#if projectId === 'characterization'}
 	{@render details({
-		type: m.tag_interactive_notebook(),
+		type: m.tag_analytical_report(),
 		roles: `${m.word_conceptualization()}, ${m.word_design()}, ${m.word_implementation()}`,
 		partners: m.pn_ovgu()
 	})}
@@ -66,7 +66,7 @@
 
 {#if projectId === 'endovis'}
 	{@render details({
-		type: m.tag_interactive_notebook(),
+		type: m.tag_analytical_report(),
 		roles: `${m.word_conceptualization()}, ${m.word_design()}, ${m.word_implementation()}`,
 		partners: m.pn_ovgu()
 	})}

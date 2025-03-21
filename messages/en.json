@@ -23,11 +23,11 @@
 	"tutorials_project_description_short": "Playful explanations for learning the basics of creating interactive data visualizations.",
 	"methane_project_description_short": "A short story introducing a data set about methane emissions providing exploration at the end.",
 	"teaching_tasks_project_description_short": "Exercise tasks for learning D3.js based on socially relevant data sets and questions.",
-	"characterization_project_description_short": "An interactive notebook to explain the results of an analysis of the storytelling techniques used across 130 data stories.",
+	"characterization_project_description_short": "An analytical report to explain the results of an analysis of the storytelling techniques used across 130 data stories.",
 	"endovis_project_description_short": "An interactive web application to allow surgical experts to explore heterogeneous time-dependent surgical data.",
 	"exex_project_description_short": "An interactive data story for communicating a method for causal inference to conflict researchers.",
 
-	"tag_interactive_notebook": "Interactive notebook",
+	"tag_analytical_report": "Analytical report",
 	"tag_visualization_system": "Visualization system",
 	"tag_visual_data_story": "Visual data story",
 

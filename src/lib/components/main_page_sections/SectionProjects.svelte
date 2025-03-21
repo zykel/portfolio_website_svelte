@@ -11,7 +11,7 @@
 			description: m['demo_project_description_short'](),
 			type: [
 				m['tag_visualization_system'](),
-				m['tag_interactive_notebook'](),
+				m['tag_analytical_report'](),
 				m['tag_visual_data_story']()
 			],
 			video: 'demo-teaser',
@@ -31,7 +31,7 @@
 		// 	id: 'tutorials',
 		// 	title: m['tutorials_project_title'](),
 		// 	description: m['tutorials_project_description_short'](),
-		// 	type: m['tag_interactive_notebook'](),
+		// 	type: m['tag_analytical_report'](),
 		// 	video: 'tutorials-teaser',
 		// 	url: 'projects/teaching_tutorials',
 		// 	videoSrc: '/teaser_d3_tutorial.mp4'
@@ -49,7 +49,7 @@
 			id: 'characterization',
 			title: m['characterization_project_title'](),
 			description: m['characterization_project_description_short'](),
-			type: [m['tag_interactive_notebook']()],
+			type: [m['tag_analytical_report']()],
 			video: 'characterization-teaser',
 			url: 'projects/characterization',
 			videoSrc: '/teaser_characterization.mp4'
