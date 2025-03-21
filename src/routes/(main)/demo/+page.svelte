@@ -1,20 +1,20 @@
 <div class="center-container">
 	<div class="slim-fit-container" style:box-sizing="border-box">
 		<div class="left-align-container demo-container">
-			<h1 class="demo-page__title">Types of solutions I offer</h1>
+			<h1 class="demo-page__title">Explanations of the solutions I offer</h1>
 			<div class="limit-width">
 				On this page, I explain the different types of solutions I offer:
 				<ul>
-					<li><span class="bold">Dashboards</span> for exploring data sets to find insights</li>
+					<li><span class="bold">Dashboards</span> for exploring data sets to find insights.</li>
 					<li>
-						<span class="bold">Analytical reports</span> to summarize insights from an analysis
+						<span class="bold">Analytical reports</span> to summarize insights from an analysis.
 					</li>
 					<li>
-						<span class="bold">Data stories</span> to communicate insights in an engaging way
+						<span class="bold">Data stories</span> to communicate insights in an engaging way.
 					</li>
 				</ul>
 				<br />
-				<p>To do so, I use an accessible example scenario:</p>
+				<p>To do so, I use an accessible hypothetical example scenario:</p>
 
 				<div id="scenario-description-div">
 					<p class="bold">Scenario</p>
@@ -26,7 +26,7 @@
 
 				<h2>1. Dashboard</h2>
 				<p>
-					In the first case of our <a href="#scenario-description-div">scenario</a>, Bianca wants to
+					In the first case of the <a href="#scenario-description-div">scenario</a>, Bianca wants to
 					explore the sales data to answer the following questions:
 				</p>
 				<ul>
@@ -50,18 +50,18 @@
 			>
 			<div class="limit-width">
 				<p>
-					The dashboard relies on interaction to adjust various parameters and filters. For an
-					explanation of how the dashboard can be used to answer Bianca's questions, you may refer
-					to this YouTube video:
-					<!-- TODO: -->
-					<a href="https://www.youtube.com/watch?v=8Z9v6h5Y6Zo">Dashboard Demo</a>
+					The dashboard relies on interaction to adjust various parameters and filters to explore
+					the data.
+					<!-- TODO: For an explanation of how the dashboard can be used to answer Bianca's
+					questions, you may refer to this YouTube video:
+					<a href="https://www.youtube.com/watch?v=8Z9v6h5Y6Zo">Dashboard Demo</a> -->
 				</p>
 			</div>
 
 			<div class="limit-width">
 				<h2>2. Analytical report</h2>
 				<p>
-					In the second case of our <a href="#scenario-description-div">scenario</a>, Bianca has a
+					In the second case of the <a href="#scenario-description-div">scenario</a>, Bianca has a
 					list of questions that she would like to get answers for based on the data. She does not
 					want to explore the data herself, but she rather wants a summary of the insights backed up
 					by visualizations. She has the following questions:
@@ -92,7 +92,7 @@
 			<div class="limit-width">
 				<h2>3. Data story</h2>
 				<p>
-					In the third case of our <a href="#scenario-description-div">scenario</a>, Bianca wants to
+					In the third case of the <a href="#scenario-description-div">scenario</a>, Bianca wants to
 					engage potential customers, informing them about the pizzas offered in her restaurant and
 					allowing users to playfully explore the pizzas by price and popularity.
 				</p>
@@ -105,6 +105,10 @@
 				<a data-sveltekit-reload href="/demo/data-story">
 					<img class="demo-teaser" src="/demo/story.jpg" alt="Data story" /></a
 				>
+				<p>
+					Potential customers can scroll through the story and interact with the visualizations at
+					dedicated points.
+				</p>
 			</div>
 
 			<br />

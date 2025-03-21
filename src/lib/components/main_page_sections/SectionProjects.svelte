@@ -6,28 +6,41 @@
 
 	const projectInfos = [
 		{
+			id: 'demo',
+			title: m['demo_project_title'](),
+			description: m['demo_project_description_short'](),
+			type: [
+				m['tag_visualization_system'](),
+				m['tag_interactive_notebook'](),
+				m['tag_visual_data_story']()
+			],
+			video: 'demo-teaser',
+			url: 'demo',
+			videoSrc: '/teaser_demo.mp4'
+		},
+		{
 			id: 'vehicle',
 			title: m['vehicle_project_title'](),
 			description: m['vehicle_project_description_short'](),
-			type: m['tag_visualization_system'](),
+			type: [m['tag_visualization_system']()],
 			video: 'vehicle-teaser',
 			url: 'projects/vehicle',
 			videoSrc: '/teaser_meltt.mp4'
 		},
-		{
-			id: 'tutorials',
-			title: m['tutorials_project_title'](),
-			description: m['tutorials_project_description_short'](),
-			type: m['tag_interactive_notebook'](),
-			video: 'tutorials-teaser',
-			url: 'projects/teaching_tutorials',
-			videoSrc: '/teaser_d3_tutorial.mp4'
-		},
+		// {
+		// 	id: 'tutorials',
+		// 	title: m['tutorials_project_title'](),
+		// 	description: m['tutorials_project_description_short'](),
+		// 	type: m['tag_interactive_notebook'](),
+		// 	video: 'tutorials-teaser',
+		// 	url: 'projects/teaching_tutorials',
+		// 	videoSrc: '/teaser_d3_tutorial.mp4'
+		// },
 		{
 			id: 'methane',
 			title: m.methane_project_title(),
 			description: m.methane_project_description_short(),
-			type: m.tag_visual_data_story(),
+			type: [m.tag_visual_data_story()],
 			video: 'methane-teaser',
 			url: 'projects/methane',
 			videoSrc: '/teaser_methane.mp4'
@@ -36,7 +49,7 @@
 			id: 'characterization',
 			title: m['characterization_project_title'](),
 			description: m['characterization_project_description_short'](),
-			type: m['tag_interactive_notebook'](),
+			type: [m['tag_interactive_notebook']()],
 			video: 'characterization-teaser',
 			url: 'projects/characterization',
 			videoSrc: '/teaser_characterization.mp4'
@@ -45,7 +58,7 @@
 			id: 'endovis',
 			title: m['endovis_project_title'](),
 			description: m['endovis_project_description_short'](),
-			type: m['tag_visualization_system'](),
+			type: [m['tag_visualization_system']()],
 			video: 'endovis-teaser',
 			url: 'projects/endovis',
 			videoSrc: '/teaser_endovis.mp4'
@@ -54,7 +67,7 @@
 			id: 'exex',
 			title: m['exex_project_title'](),
 			description: m['exex_project_description_short'](),
-			type: m['tag_visual_data_story'](),
+			type: [m['tag_visual_data_story']()],
 			video: 'exex-teaser',
 			url: 'projects/exex',
 			videoSrc: '/teaser_exex.mp4'

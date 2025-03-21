@@ -9,6 +9,7 @@
 	"title_imprint": "imprint",
 	"title_privacy": "privacy",
 
+	"demo_project_title": "Example showcasing my solutions",
 	"vehicle_project_title": "Exploration of a conflict research method",
 	"methane_project_title": "Overview of a methane data set",
 	"tutorials_project_title": "D3.js tutorials for students",
@@ -17,6 +18,7 @@
 	"endovis_project_title": "Exploration of surgical process data",
 	"exex_project_title": "Explanation of a conflict research method",
 
+	"demo_project_description_short": "An overview of the different solutions I offer based on an example pizza sales data set.",
 	"vehicle_project_description_short": "A visualization system to analyze the results of a statistical method for merging conflict event data sets.",
 	"tutorials_project_description_short": "Playful explanations for learning the basics of creating interactive data visualizations.",
 	"methane_project_description_short": "A short story introducing a data set about methane emissions providing exploration at the end.",
