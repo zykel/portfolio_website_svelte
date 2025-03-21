@@ -17,15 +17,20 @@
 	<TeaserVideo {projectInfo} isProjectImg={true} bind:videoElement />
 
 	<div class="project-below-container">
-		<a class="project-below-text-container" href={projectInfo.url} target="_blank">
-			<div class="project-title-container">
-				<p class="project-title" data-video-id={projectInfo.video}>{projectInfo.title}</p>
-			</div>
-			<p class="project-description">{projectInfo.description}</p>
-			<div class="project-type-container">
-				<p class="project-type">{projectInfo.type}</p>
-			</div>
-		</a>
+		<div>
+			<a class="project-below-text-container" href={projectInfo.url} target="_blank">
+				<div class="project-title-container">
+					<p class="project-title" data-video-id={projectInfo.video}>{projectInfo.title}</p>
+				</div>
+				<p class="project-description">{projectInfo.description}</p>
+				<div class="project-type-container">
+					{#each projectInfo.type as tag, j}
+						<a class="project-type">{tag}</a>
+						{@html j < projectInfo.type.length - 1 ? '&nbsp;' : ''}
+					{/each}
+				</div>
+			</a>
+		</div>
 		<div class="project-below-play-btn-container">
 			<PlayButtonSVG videoId={projectInfo.video} {videoElement} />
 		</div>
