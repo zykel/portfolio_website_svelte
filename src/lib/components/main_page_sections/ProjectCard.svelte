@@ -25,7 +25,7 @@
 				<p class="project-description">{projectInfo.description}</p>
 				<div class="project-type-container">
 					{#each projectInfo.type as tag, j}
-						<a class="project-type">{tag}</a>
+						<p class="project-type">{tag}</p>
 						{@html j < projectInfo.type.length - 1 ? '&nbsp;' : ''}
 					{/each}
 				</div>
