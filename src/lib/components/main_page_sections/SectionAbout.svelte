@@ -32,8 +32,11 @@
 				{@html m['sec_about_work_paragraphs']()}
 				{@html m['sec_about_work_bulletlist']()}
 				<p class="paragraph">
-					On <a href="/demo" class="link-black" target="_blank">this page</a>, I provide a concrete
-					example for each of the solutions.
+					{m['sec_about_work_demo_reference_part1']()}
+					<a href="demo" class="link-black" target="_blank"
+						>{m['sec_about_work_demo_reference_linktext']()}</a
+					>
+					{m['sec_about_work_demo_reference_part2']()}
 				</p>
 
 				<h2 style:margin-top="3rem">{m['sec_about_background_title']()}</h2>

@@ -852,6 +852,15 @@ li.solutions-li {
 	text-align: right;
 }
 
+.link-black {
+	text-decoration: none; /* Remove the default underline */
+	color: #007bff; /* Set a custom color */
+}
+.link-black:hover {
+	color: #0056b3; /* Change color on hover */
+	text-decoration: underline; /* Optionally add underline on hover */
+}
+
 /* Contact */
 #contact {
 	/* height: 80vh; */

@@ -35,6 +35,10 @@
 	"sec_about_work_title": "MY WORK",
 	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating and communicating insights using data visualizations such as charts and maps.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include</p>",
 	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>dashboards</span> for exploring and analyzing data,</li><li class='solutions-li'><span class='highlight'>analytical reports</span> to summarize analytical insights and support decision-making, and</li><li class='solutions-li'><span class='highlight'>visual data stories</span> for communicating insights in an engaging way.</li></ul>",
+	"sec_about_work_demo_reference": "On <a href='demo' class='link-black' target='_blank'>this page</a>, I provide a concrete example for each of the solutions.",
+	"sec_about_work_demo_reference_part1": "On",
+	"sec_about_work_demo_reference_linktext": "this page",
+	"sec_about_work_demo_reference_part2": " I provide a concrete example for each of the solutions.",
 
 	"sec_about_background_title": "MY BACKGROUND",
 	"jobname_freelance": "Freelancer",
