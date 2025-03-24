@@ -15,7 +15,7 @@ export const infosUnilingual = {
 	},
 	characterization: {
 		projectURL: 'https://observablehq.com/@zykel/characterization',
-		tech: 'JavaScript, D3.js, Observable notebooks',
+		tech: 'JavaScript, D3.js, Observable Notebooks',
 		year: '2023',
 		publication:
 			'B. Mayer, N. Steinhauer, B. Preim, and M. Meuschke. “A Characterization of Interactive Visual Data Stories With a Spatio-Temporal Context.” In: <span class="italics">Computer Graphics Forum</span> 42.6 (2023), e14922. <a class="publication-doi" href="https://doi.org/10.1111/cgf.14922" target="_blank">doi: 10.1111/cgf.14922</a>.'

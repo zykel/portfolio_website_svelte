@@ -22,11 +22,11 @@
 	margin-left: 1.5rem;
 	line-height: 1.7rem;
 }
-a {
+#demo-content-container a {
 	text-decoration: none; /* Remove the default underline */
 	color: #007bff; /* Set a custom color */
 }
-a:hover {
+#demo-content-container a:hover {
 	color: #0056b3; /* Change color on hover */
 	text-decoration: underline; /* Optionally add underline on hover */
 }
@@ -40,13 +40,13 @@ a:hover {
 .limit-width {
 	max-width: 700px;
 }
-p,
-ul {
+#demo-content-container p,
+#demo-content-container ul {
 	margin-block-end: 0.7rem;
 	line-height: 1.7rem;
 	/* margin-bottom: 1.7rem; */
 }
-h2 {
+#demo-content-container h2 {
 	margin-top: 2rem;
 }
 

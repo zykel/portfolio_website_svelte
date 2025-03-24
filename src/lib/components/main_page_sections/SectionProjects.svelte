@@ -10,7 +10,7 @@
 			title: m['demo_project_title'](),
 			description: m['demo_project_description_short'](),
 			type: [
-				m['tag_visualization_system'](),
+				m['tag_dashboard'](),
 				m['tag_analytical_report'](),
 				m['tag_visual_data_story']()
 			],
@@ -22,7 +22,7 @@
 			id: 'vehicle',
 			title: m['vehicle_project_title'](),
 			description: m['vehicle_project_description_short'](),
-			type: [m['tag_visualization_system']()],
+			type: [m['tag_dashboard']()],
 			video: 'vehicle-teaser',
 			url: 'projects/vehicle',
 			videoSrc: '/teaser_meltt.mp4'
@@ -58,7 +58,7 @@
 			id: 'endovis',
 			title: m['endovis_project_title'](),
 			description: m['endovis_project_description_short'](),
-			type: [m['tag_visualization_system']()],
+			type: [m['tag_dashboard']()],
 			video: 'endovis-teaser',
 			url: 'projects/endovis',
 			videoSrc: '/teaser_endovis.mp4'

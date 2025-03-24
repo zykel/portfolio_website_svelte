@@ -19,7 +19,7 @@
 	"exex_project_title": "Erklärung einer Methode der Konfliktforschung",
 
 	"demo_project_description_short": "Ein Überblick über die verschiedenen Lösungen, die ich anbiete, basierend auf einem fiktiven Pizza-Verkaufsdatensatz.",
-	"vehicle_project_description_short": "Ein Visualisierungssystem zur Analyse der Ergebnisse einer Integration von Konflikt-Ereignisdaten.",
+	"vehicle_project_description_short": "Ein Dashboard zur Analyse der Ergebnisse einer Integration von Konflikt-Ereignisdaten.",
 	"tutorials_project_description_short": "Spielerische Erklärungen zum Erlernen der Grundlagen der Erstellung interaktiver Datenvisualisierungen.",
 	"methane_project_description_short": "Eine kurze Datengeschichte, die einen Methan-Datensatz einführt und am Ende dessen Erforschung ermöglicht.",
 	"teaching_tasks_project_description_short": "Übungsaufgaben zum Erlernen von D3.js anhand gesellschaftlich relevanter Datensätze.",
@@ -28,13 +28,13 @@
 	"exex_project_description_short": "Eine interaktive Datengeschichte zur Erklärung einer Methode der Kausalinferenz für Konfliktforscher:innen.",
 
 	"tag_analytical_report": "Analytischer Bericht",
-	"tag_visualization_system": "Visualisierungssystem",
+	"tag_dashboard": "Dashboard",
 	"tag_visual_data_story": "Visuelle Datengeschichte",
 
 	"sec_about_greeting": "Hi, ich bin<br />Benedikt!",
 	"sec_about_work_title": "MEINE ARBEIT",
 	"sec_about_work_paragraphs": "<p class='paragraph'>Ich arbeite freiberuflich und liebe es, interaktive Datenvisualisierungen wie Diagramme und Kartendarstellungen zu erschaffen.</p><p class='paragraph'>Während meiner Promotion habe ich mit Expert:innen aus der Konfliktforschung und Medizin zusammengearbeit. Dabei habe ich mich intensiv mit ihren fachlichen Herausforderungen auseinandergesetzt, um durch maßgeschneiderte Visualisierungslösungen echte Mehrwerte zu schaffen. Mein mathematischer Hintergrund hilft mir dabei, komplexe Probleme analytisch und strukturiert anzugehen.</p><p class='paragraph'>Meine individuell entwickelten Lösungen reichen von</p>",
-	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>Visualisierungssystemen</span> zur Datenanalyse und Entscheidungsfindung bis zu</li><li class='solutions-li'><span class='highlight'>Visuellen Datengeschichten</span> und <span class='highlight'>interaktiven Notebooks</span> um Erkenntnisse auf anschauliche und fesselnde Weise zu vermitteln.</li></ul>",
+	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>Dashboards</span> zur Datenanalyse und Entscheidungsfindung bis zu</li><li class='solutions-li'><span class='highlight'>Visuellen Datengeschichten</span> und <span class='highlight'>interaktiven Notebooks</span> um Erkenntnisse auf anschauliche und fesselnde Weise zu vermitteln.</li></ul>",
 
 	"sec_about_background_title": "MEIN HINTERGRUND",
 	"jobname_freelance": "Freiberuflich",
@@ -59,7 +59,7 @@
 	"btn_visit_project": "PROJEKT-WEBSEITE",
 
 	"vehicle_description_paragraph_1": "Das Ziel des Projekts war es, die Ergebnisse einer statistischen Methode der Konfliktforschung zu untersuchen. Die Methode wird verwendet, um verschiedene raum- und zeitabhängige Konfliktereignis-Datensätze auf Basis bestimmter Annahmen zu einem Gesamtdatensatz zu integrieren. Allerdings lieferte die Integrationsmethode unserem Kooperationspartner aus der Konfliktforschung unerwartete Ergebnisse. Unser Ziel war es entsprechend, ihm dabei zu helfen, besser zu verstehen, wie diese Ergebnisse zustande kamen. Hierfür nutzen wir Techniken der explorative visuelle Datenanalyse.",
-	"vehicle_description_paragraph_2": "Um das entsprechende Visualisierungssystem zu entwickeln, erarbeiteten wir ein tiefgehendes Verständnis der Integrationsmethode, um die relevanten Aspekte für eine weitere Untersuchung zu identifizieren. Wir entwarfen und testeten verschiedene Visualisierungen, um die am besten geeigneten Darstellungsformen für die vielschichtigen Informationen in den Integrationsresultaten zu finden. Die Visualisierungen wurden miteinander verknüpft, sodass sie synchron durch Filterung und Anpassung von Parametern erkundet werden konnten. Der Entwicklungsprozess erfolgte in enger Zusammenarbeit mit Expert:innen der Konfliktforschung.",
+	"vehicle_description_paragraph_2": "Um das entsprechende Dashboard zu entwickeln, erarbeiteten wir ein tiefgehendes Verständnis der Integrationsmethode, um die relevanten Aspekte für eine weitere Untersuchung zu identifizieren. Wir entwarfen und testeten verschiedene Visualisierungen, um die am besten geeigneten Darstellungsformen für die vielschichtigen Informationen in den Integrationsresultaten zu finden. Die Visualisierungen wurden miteinander verknüpft, sodass sie synchron durch Filterung und Anpassung von Parametern erkundet werden konnten. Der Entwicklungsprozess erfolgte in enger Zusammenarbeit mit Expert:innen der Konfliktforschung.",
 	"vehicle_description_paragraph_3": "Mithilfe des resultierenden Systems konnten wir erfolgreich identifizieren, warum die Datenintegration unerwartete Ergebnisse lieferte.",
 	"vehicle_description_paragraph_4": "Anmerkung: Da dies mein erstes größeres Projekt war und alle Berechnungen clientseitig anstatt auf einem Server durchgeführt werden, benötigt die Anwendung je nach Endgerät für Berechnungen längere Zeit.",
 	"caption_vehicle_all_events": "Eine Ansicht der Daten mit mehreren verknüpften Visualisierungen. Der Einsatz von vier verschiedenen Farben hilft dabei, die vier integrierten Datensätze zu unterscheiden",
@@ -77,7 +77,7 @@
 
 	"characterization_description_paragraph_1": "Um besser zu verstehen, wie visuelle Datenstories üblicherweise aufgebaut sind, haben wir 130 Online-Stories gesammelt und analysiert, welche Storytelling-Techniken sie verwenden.",
 	"characterization_description_paragraph_2": "Wir konzentierten uns auf Geschichten, deren Daten einen räumlichen und einen zeitlichen Bezug besitzen, da es bisher wenig systematische Analysen in diesem Bereich gab. Um die Geschichten anhand der verwendeten Storytelling-Techniken zu klassifizieren, führten wir drei bestehende Design-Spaces zusammen und passten sie an. Die Ergebnisse der Klassifikation analysierten wir, indem wir die insgesamte Verteilung untersuchten, Teilmengen verglichen, Trends identifizierten und fortgeschrittene Techniken wie multidimensionale Skalierung einsetzten.",
-	"characterization_description_paragraph_3": "Wir fassten die Ergebnisse in einem interaktiven Notebook zusammen, welches Visualisierungen mit textuellen Erklärungen kombiniert und die Option bietet, den zugrundeliegenden Code zur vollständigen Transparenz einzusehen.",
+	"characterization_description_paragraph_3": "Wir fassten die Ergebnisse in einem interaktiven Bericht zusammen, welcher Visualisierungen mit textuellen Erklärungen kombiniert und die Option bietet, den zugrundeliegenden Code zur vollständigen Transparenz einzusehen.",
 	"caption_characterization_deviations": "Für eine Teilmenge der Geschichten veranschaulichen Balken, wie stark die Nutzung der Storytelling-Techniken vom Durchschnitt über aller Geschichten hinweg abweicht",
 	"caption_characterization_trends": "Die Trends der letzten fünf Jahre hinsichtlich der durchschnittlichen Häufigkeit der Nutzung verschiedener Storytelling-Techniken",
 	"caption_characterization_mds": "Das Ergebnis der multidimensionalen Skalierung: Jeder Kreis stellt eine Geschichte dar, und die Nähe der Kreise zeigt an, wie ähnlich sich die entsprechenden Geschichten sind",
@@ -85,7 +85,7 @@
 	"caption_characterization_distribution": "Die Verteilung der paarweisen Ähnlichkeiten zwischen allen Geschichten",
 
 	"endovis_description_paragraph_1": "Integrierte Operationssäle liefern umfangreiche Daten über chirurgische Eingriffe. Dazu gehören Informationen über die verschiedenen Phasen eines Eingriffs, die eingesetzten Instrumente und die Messwerte unterschiedlicher Geräte. Solche Informationen sind häufig zeitabhängig und deren gesamtheitlich Analyse komplex.",
-	"endovis_description_paragraph_2": "Um eine solche umfassende Analyse zu ermöglichen, entwickelten wir ein Visualisierungssystem, mit dem die Informationen parallel zueinander inspiziert und gefiltert werden können. Hierfür erarbeiteten wir gemeinsam mit medizinischen Expert:innen die Ziele, welche sie mit den Daten verfolgen. Basierend auf den Zielen ermittelten wir, welche Ansichten der Daten relevant sind und welche Interaktionen benötigt werden, um die Daten in ausreichender Tiefe zu analysieren.",
+	"endovis_description_paragraph_2": "Um eine solche umfassende Analyse zu ermöglichen, entwickelten wir ein Dashboard, mit dem die Informationen parallel zueinander inspiziert und gefiltert werden können. Hierfür erarbeiteten wir gemeinsam mit medizinischen Expert:innen die Ziele, welche sie mit den Daten verfolgen. Basierend auf den Zielen ermittelten wir, welche Ansichten der Daten relevant sind und welche Interaktionen benötigt werden, um die Daten in ausreichender Tiefe zu analysieren.",
 	"endovis_description_paragraph_3": "Eine Prototyping-basiertes, iteratives Entwicklungsverfahren führte zu einer Lösung, die den Expert:innen ein tiefgehendes Verständnis der heterogenen Prozessdaten ermöglichte.",
 	"caption_endovis_procedures": "Mehrere Balkendiagramme, welche synchron umsortiert werden können",
 	"caption_endovis_align": "Ein zeitlicher Ausrichtungspunkt kann über mehrere Ansichten hinweg parallel geändert werden",
@@ -114,5 +114,16 @@
 
 	"pn_ovgu": "Otto-von-Guericke-Universität Magdeburg",
 	"pn_uni_konstanz": "Universität Konstanz",
-	"pn_university_zurich": "Universität Zürich"
+	"pn_university_zurich": "Universität Zürich",
+
+	"demo_page_title": "Erklärung der angebotenen Lösungen",
+	"demo_page_introduction": "Auf dieser Seite erkläre ich die unterschiedlichen Lösungen, die ich anbiete:<ul><li><span class='bold'>Dashboards</span> um Datensätze zu erforschen und Erkenntnisse zu gewinnen.</li><li><span class='bold'>Analytische Berichte</span> um Erkenntnisse aus einer Analyse zusammenzufassen.</li><li><span class='bold'>Datengeschichten</span> um datenbasierte Zusammenhänge auf unterhaltsame Art zu vermitteln.</li></ul><br /><p>Für die Erklärung verwende ich das folgende fiktive Beispielszenario:</p>",
+	"demo_page_scenario": "<div id='scenario-description-div'><p class='bold'>Szenario</p>Bianca, die Besitzerin eines Pizzarestaurants, hat die Pizza-Verkaufsdaten des vergangenen Jahres gesammelt <a href='#footnote-1'>[1]</a>  und möchte mit dem resultierenden Datensatz arbeiten.</div>Abhängig von Biancas Zielen ist eine der drei folgenden Lösungen angebracht.",
+	"demo_page_dashboard_goals": "<p>Im ersten Fall des <a href='#scenario-description-div'>Szenarios</a> möchte Bianca die Verkaufsdaten untersuchen, um die folgenden Fragen zu beantworten:</p><ul><li>Welche Pizzen werden am häufigsten verkauft und welche generieren die meisten Einkünfte?</li><li>Wann werden die meisten/wenigsten Pizzen verkauft?</li><li>Welche Zutaten werden wie häufig verwendet?</li></ul><p>Bianca hätte außerdem gerne die Möglichkeit, sich bei ihren Untersuchungen auf bestimmte Pizzen und Zeitabschnitte zu fokussieren um die Daten im Detail zu erkunden.</p><p>Um Bianca beim Erreichen ihrer Ziele zu unterstützen, habe ich das folgende <a data-sveltekit-reload href='/demo/dashboard'>Dashboard</a> entwickelt (zum Öffnen wird die Verwendung eines Desktop-Gerätes empfohlen):</p>",
+	"demo_page_dashboard_outro": "Das Dashboard basiert auf Interaktion um verschiedene Parameter und Filter anzupassen und so die Daten zu erkunden.",
+	"demo_page_report_goals": "<p>Im zweiten Fall des <a href='#scenario-description-div'>Szenarios</a> hat Bianca eine Liste von Fragen, für welche sie gerne Antworten basierend auf den Daten hätte. Sie möchte die Daten nicht selbst untersuchen, sondern eine Zusammenfassung der Erkenntnisse erhalten, unterstützt durch Diagramme. Sie hat die folgenden Fragen:</p><ul><li>Welche Pizzen werden am häufigsten/seltensten verkauft?</li><li>Wie sind die Verkäufe über eine durchschnittliche Woche/einen durchschnittlichen Tag verteilt?</li><li>Welche Zutaten werden am meisten verwendet?</li><li>Wie kann das Geschäft verbessert werden?</li></ul><p>Um Bianca beim Erreichen ihrer Ziele zu unterstützen, habe ich den folgenden <a data-sveltekit-reload href='/demo/report'>analytischen Bericht</a> entwickelt:</p>",
+	"demo_page_report_outro": "Bianca kann den Bericht verwenden, um fundierte Entscheidungen bezüglich ihres Geschäftes zu treffen. Sie kann ihn ebenfalls nutzen, um die Entscheidungen ihren Mitarbeitenden zu erklären, z.B. ihrer Geschäftsführerin.",
+	"demo_page_story_goals": "<p>Im dritten Fall des <a href='#scenario-description-div'>Szenarios</a> möchte Bianca potentiellen Kund:innen ermöglichen, sich auf unterhaltsame Art über die im Restaurant angebotenen Pizzen sowie deren Preise und Beliebtheit zu informieren.</p><p>Um Bianca beim Erreichen ihrer Ziele zu unterstützen, habe ich die folgende <a data-sveltekit-reload href='/demo/data-story'>Datengeschichte</a> entwickelt:</p>",
+	"demo_page_story_outro": "Potentielle Kund:innen können durch die Geschichte scrollen und an bestimmten Punkten mit den Grafiken interagieren.",
+	"demo_page_dataset_link": "Der Datensatz <a href='https://www.kaggle.com/datasets/shilongzhuang/pizza-sales?resource=download'>stammt von kaggle</a> und wurde für die Beispiele leicht angepasst."
 }

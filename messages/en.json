@@ -19,7 +19,7 @@
 	"exex_project_title": "Explanation of a conflict research method",
 
 	"demo_project_description_short": "An overview of the different solutions I offer based on an example pizza sales data set.",
-	"vehicle_project_description_short": "A visualization system to analyze the results of a statistical method for merging conflict event data sets.",
+	"vehicle_project_description_short": "A dashboard to analyze the results of a statistical method for merging conflict event data sets.",
 	"tutorials_project_description_short": "Playful explanations for learning the basics of creating interactive data visualizations.",
 	"methane_project_description_short": "A short story introducing a data set about methane emissions providing exploration at the end.",
 	"teaching_tasks_project_description_short": "Exercise tasks for learning D3.js based on socially relevant data sets and questions.",
@@ -28,13 +28,13 @@
 	"exex_project_description_short": "An interactive data story for communicating a method for causal inference to conflict researchers.",
 
 	"tag_analytical_report": "Analytical report",
-	"tag_visualization_system": "Visualization system",
+	"tag_dashboard": "Dashboard",
 	"tag_visual_data_story": "Visual data story",
 
 	"sec_about_greeting": "Hi, I'm<br />Benedikt!",
 	"sec_about_work_title": "MY WORK",
-	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating interactive data visualizations such as charts and maps.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include anything from</p>",
-	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>visualization systems</span> for data analysis and decision-making to</li><li class='solutions-li'><span class='highlight'>visual data stories</span> and <span class='highlight'>notebooks</span> for communicating insights in an engaging way.</li></ul>",
+	"sec_about_work_paragraphs": "<p class='paragraph'>I work as a freelancer and I love creating and communicating insights using data visualizations such as charts and maps.</p><p class='paragraph'>During my PhD studies, I collaborated with experts from conflict research and medicine, digging into their domain problems to produce visualization solutions to solve their problems. At that, my mathematical background enabled me to tackle complex problems in an analytical and structured way.</p><p class='paragraph'>My customized solutions include</p>",
+	"sec_about_work_bulletlist": "<ul class='solutions-ul'><li class='solutions-li'><span class='highlight'>dashboards</span> for exploring and analyzing data,</li><li class='solutions-li'><span class='highlight'>analytical reports</span> to summarize analytical insights and support decision-making, and</li><li class='solutions-li'><span class='highlight'>visual data stories</span> for communicating insights in an engaging way.</li></ul>",
 
 	"sec_about_background_title": "MY BACKGROUND",
 	"jobname_freelance": "Freelancer",
@@ -58,7 +58,7 @@
 	"btn_visit_project": "VISIT PROJECT WEBSITE",
 
 	"vehicle_description_paragraph_1": "In this project, the goal was to explore the results of a statistical conflict research method. The method was used to integrate several spatio-temporal conflict event data sets based on a set of assumptions. As the integration method produced unexpected results, we used visual exploration to better understand what was happening under the hood.",
-	"vehicle_description_paragraph_2": "To produce the corresponding visualization system, we developed a deeper understanding of how the integration method works to identify the aspects relevant for further exploration. We designed and tested various visualizations to identify the most suitable ways to represent the multi-faceted information contained in the integration results. The visualizations were linked, so they could be explored in synchrony via filtering and changing parameters. The development process took place in close collaboration with conflict research experts.",
+	"vehicle_description_paragraph_2": "To produce the corresponding dashboard, we developed a deeper understanding of how the integration method works to identify the aspects relevant for further exploration. We designed and tested various visualizations to identify the most suitable ways to represent the multi-faceted information contained in the integration results. The visualizations were linked, so they could be explored in synchrony via filtering and changing parameters. The development process took place in close collaboration with conflict research experts.",
 	"vehicle_description_paragraph_3": "With the final system, we could successfully identify multiple reasons for why the integration results looked the way they did.",
 	"vehicle_description_paragraph_4": "Disclaimer: As this was my first major project and all the calculations are performed client-side, the application takes some time for certain steps, depending on which device it is opened on.",
 	"caption_vehicle_all_events": "A view on the data using stacked bar charts. The use of four different color helps to distinguish the four different data sets that were integrated",
@@ -76,7 +76,7 @@
 
 	"characterization_description_paragraph_1": "To better understand how visual data stories are commonly written, we collected 130 online stories to analyze what kind of storytelling techniques they use.",
 	"characterization_description_paragraph_2": "We focused on stories with a spatio-temporal context, as systematic analyses of them were still quite sparse. To classify the stories based on the storytelling techniques they use, we merged and adapted three existing design spaces. We analyzed the results of the classification by exploring overall distributions, comparing subsets, identifying trends, and using advanced techniques like multidimensional scaling.",
-	"characterization_description_paragraph_3": "We summarized the results in an interactive notebook which facilitates an easy combination of visualizations and textual explanations, while providing the option to inspect the underlying code for full transparency.",
+	"characterization_description_paragraph_3": "We summarized the results in an interactive report which facilitates an easy combination of visualizations and textual explanations, while providing the option to inspect the underlying code for full transparency.",
 	"caption_characterization_deviations": "For a subset of stories, bars depict how far the usage of the different storytelling techniques deviates from the average for that subset",
 	"caption_characterization_trends": "The trends over the past five years regarding the average usage frequency of different storytelling techniques",
 	"caption_characterization_mds": "The result of multidimensional scaling: Each circle represents one story, and the proximity of the circles represents how similar the corresponding stories are to each other",
@@ -84,7 +84,7 @@
 	"caption_characterization_distribution": "The distribution of the pairwise similarities between all stories",
 
 	"endovis_description_paragraph_1": "Integrated operating rooms provide rich and heterogeneous data about surgical procedures. This includes information about the different phases of a procedure, the instruments used, and the measurements of different devices. Such information is commonly time-dependent and complex to analyze in unison.",
-	"endovis_description_paragraph_2": "To allow such comprehensive analysis, we created a visualization system to inspect and filter the information side-by-side. Together with medical experts, we discussed which views of the data are relevant for them and which interactions they require for analyzing the data more deeply. As they were not always aware of the different options that exist for doing so, we tried to get a deeper understanding of the goals they had for the data, based on which we provided them with a selection of suitable options to choose from.",
+	"endovis_description_paragraph_2": "To allow such comprehensive analysis, we created a dashboard to inspect and filter the information side-by-side. Together with medical experts, we discussed which views of the data are relevant for them and which interactions they require for analyzing the data more deeply. As they were not always aware of the different options that exist for doing so, we tried to get a deeper understanding of the goals they had for the data, based on which we provided them with a selection of suitable options to choose from.",
 	"endovis_description_paragraph_3": "This prototyping-based iterative procedure led to a solution which allowed the experts to get a much more comprehensive understanding of the heterogeneous data.",
 	"caption_endovis_procedures": "A set of bar charts that can be re-arranged in synchrony",
 	"caption_endovis_align": "A temporal alignment point can be changed across multiple views in parallel",
@@ -113,5 +113,16 @@
 
 	"pn_ovgu": "Otto von Guericke University Magdeburg",
 	"pn_uni_konstanz": "University of Konstanz",
-	"pn_university_zurich": "University of Zurich"
+	"pn_university_zurich": "University of Zurich",
+
+	"demo_page_title": "Explanations of the solutions I offer",
+	"demo_page_introduction": "On this page, I explain the different types of solutions I offer:<ul><li><span class='bold'>Dashboards</span> for exploring data sets to find insights.</li><li><span class='bold'>Analytical reports</span> to summarize insights from an analysis.</li><li><span class='bold'>Data stories</span> to communicate insights in an engaging way.</li></ul><br /><p>To do so, I use an accessible hypothetical example scenario:</p>",
+	"demo_page_scenario": "<div id='scenario-description-div'><p class='bold'>Scenario</p>Bianca, the owner of a pizza restaurant, has collected the pizza sales data of the past year <a href='#footnote-1'>[1]</a> and she wants to work with the resulting data set.</div>Depending on Bianca's goals, one of the three following solutions is suitable.",
+	"demo_page_dashboard_goals": "<p>In the first case of the <a href='#scenario-description-div'>scenario</a>, Bianca wants to explore the sales data to answer the following questions:</p><ul><li>Which pizzas are sold the most and which generate the highest revenue?</li><li>When are the most/the least pizzas sold?</li><li>Which ingredients are used how often?</li></ul><p>Bianca would also like to be able to focus on specific pizzas and time periods to explore the data in more detail.</p><p>To help Bianca reach her goals, I have created the following <a data-sveltekit-reload href='/demo/dashboard'>dashboard</a> (intended for desktop usage):</p>",
+	"demo_page_dashboard_outro": "The dashboard relies on interaction to adjust various parameters and filters to explore the data.",
+	"demo_page_report_goals": "<p>In the second case of the <a href='#scenario-description-div'>scenario</a>, Bianca has a list of questions that she would like to get answers for based on the data. She does not want to explore the data herself, but she rather wants a summary of the insights backed up by charts. She has the following questions:</p><ul><li>Which pizzas are sold the most/the least?</li><li>How are the sales distributed over the course of an average week/an average day?</li><li>Which ingredients are used the most?</li><li>How can the business be improved?</li></ul><p>To help Bianca reach her goals, I have created the following <a data-sveltekit-reload href='/demo/report'>analytical report</a>:</p>",
+	"demo_page_report_outro": "Bianca can use the report to make informed decisions about her business. She can also use it to explain decisions to her employees, like the restaurant manager.",
+	"demo_page_story_goals": "<p>In the third case of the <a href='#scenario-description-div'>scenario</a>, Bianca wants to engage potential customers, informing them about the pizzas offered in her restaurant and allowing users to playfully explore the pizzas by price and popularity.</p><p>To help Bianca reach her goals, I have created the following <a data-sveltekit-reload href='/demo/data-story'>data story</a>:</p>",
+	"demo_page_story_outro": "Potential customers can scroll through the story and interact with the visualizations at dedicated points.",
+	"demo_page_dataset_link": "The data set is <a href='https://www.kaggle.com/datasets/shilongzhuang/pizza-sales?resource=download'>taken from kaggle</a> and slightly adjusted for the demos."
 }
