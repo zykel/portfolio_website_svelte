@@ -27,11 +27,11 @@ export const setupPage = () => {
 	const pageLoadAnimation = document.getElementById('page-load-animation');
 
 	// Preload the videos (necessary for safari)
-	let videos = document.querySelectorAll('.teaser-video');
-	videos.forEach((video) => {
-		const videoElement = /** @type {HTMLVideoElement} */ (video);
-		videoElement.load();
-	});
+	// let videos = document.querySelectorAll('.teaser-video');
+	// videos.forEach((video) => {
+	// 	const videoElement = /** @type {HTMLVideoElement} */ (video);
+	// 	videoElement.load();
+	// });
 
 	// Ensure that fade in happens only upon page load
 	// Array.from(document.getElementsByClassName('to-fade-in')).forEach((node) =>
