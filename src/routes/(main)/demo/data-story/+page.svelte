@@ -225,6 +225,7 @@
 		border-radius: 2rem;
 		overflow: hidden;
 		background-color: white;
+		z-index: 0;
 	}
 	.indicate-interaction {
 		/* box-shadow: inset 0 0 1rem hsla(249, 77%, 75%, 0.4); */
