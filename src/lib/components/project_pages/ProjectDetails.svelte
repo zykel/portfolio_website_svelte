@@ -42,7 +42,7 @@
 
 {#if projectId === 'vehicle'}
 	{@render details({
-		type: `${m.tag_dashboard()}, Dashboard`,
+		type: `${m.tag_dashboard()}`,
 		roles: `${m.word_conceptualization()}, ${m.word_design()}, ${m.word_implementation()}`,
 		partners: `${m.pn_ovgu()}, ${m.pn_university_zurich()}`
 	})}
