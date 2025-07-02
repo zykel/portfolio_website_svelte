@@ -26,7 +26,7 @@
 	<div class="center-container">
 		<nav class="heading-nav slim-fit-container space-between-container">
 			<div class="nav-grid-left">
-				<a href="https://benediktmayer.com/" class="logo-link"
+				<a href="https://benediktmayer.com/{languageTag() === 'de' ? 'de' : ''}" class="logo-link"
 					><span class="logo-text-content">Benedikt Mayer</span></a
 				>
 			</div>
