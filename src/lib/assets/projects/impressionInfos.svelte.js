@@ -147,6 +147,37 @@ export const getImpressionInfos = (projectId) => {
 		};
 	}
 
+	if (projectId === 'climate_flows') {
+		return {
+			wide: [
+				{
+					src: '/projects/climate_flows/full_sankey_video.mp4',
+					caption: m.caption_climate_flows_full_sankey_video(),
+					videoId: 'full_sankey_video'
+				}
+			],
+			small_left: [
+				{
+					src: '/projects/climate_flows/treemap.mp4',
+					caption: m.caption_climate_flows_treemap(),
+					videoId: 'treemap'
+				},
+				{
+					src: '/projects/climate_flows/donut.webp',
+					caption: m.caption_climate_flows_donut(),
+					videoId: null
+				}
+			],
+			small_right: [
+				{
+					src: '/projects/climate_flows/barchart.webp',
+					caption: m.caption_climate_flows_barchart(),
+					videoId: null
+				}
+			]
+		};
+	}
+
 	if (projectId === 'exex') {
 		return {
 			wide: [

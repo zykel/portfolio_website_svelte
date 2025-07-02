@@ -34,6 +34,12 @@
 	{@render p(m.endovis_description_paragraph_3())}
 {/if}
 
+{#if projectId === 'climate_flows'}
+	{@render p(m.climate_flows_description_paragraph_1())}
+	{@render p(m.climate_flows_description_paragraph_2())}
+	{@render p(m.climate_flows_description_paragraph_3())}
+{/if}
+
 {#if projectId === 'exex'}
 	{@render p(m.exex_description_paragraph_1())}
 	{@render p(m.exex_description_paragraph_2())}

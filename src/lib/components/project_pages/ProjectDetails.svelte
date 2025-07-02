@@ -72,6 +72,14 @@
 	})}
 {/if}
 
+{#if projectId === 'climate_flows'}
+	{@render details({
+		type: m.tag_dashboard(),
+		roles: `${m.word_design()}, ${m.word_implementation()}`,
+		partners: 'Climate Policy Initiative'
+	})}
+{/if}
+
 {#if projectId === 'exex'}
 	{@render details({
 		type: m.tag_visual_data_story(),

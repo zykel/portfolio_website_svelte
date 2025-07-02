@@ -16,6 +16,7 @@
 	"teaching_tasks_project_title": "Programming tasks for students",
 	"characterization_project_title": "Analysis of spatio-temporal data stories",
 	"endovis_project_title": "Exploration of surgical process data",
+	"climate_flows_project_title": "Exploration of climate finance flows",
 	"exex_project_title": "Explanation of a conflict research method",
 
 	"demo_project_description_short": "An overview of the different solutions I offer based on an example pizza sales data set.",
@@ -25,6 +26,7 @@
 	"teaching_tasks_project_description_short": "Exercise tasks for learning D3.js based on socially relevant data sets and questions.",
 	"characterization_project_description_short": "An analytical report to explain the results of an analysis of the storytelling techniques used across 130 data stories.",
 	"endovis_project_description_short": "An interactive web application to allow surgical experts to explore heterogeneous time-dependent surgical data.",
+	"climate_flows_project_description_short": "A dashboard to explore global finance data flows within a web article.",
 	"exex_project_description_short": "An interactive data story for communicating a method for causal inference to conflict researchers.",
 
 	"tag_analytical_report": "Analytical report",
@@ -93,6 +95,14 @@
 	"caption_endovis_procedures": "A set of bar charts that can be re-arranged in synchrony",
 	"caption_endovis_align": "A temporal alignment point can be changed across multiple views in parallel",
 	"caption_endovis_expand": "Individual charts displaying device measurements over time can be enlarged for closer inspection",
+
+	"climate_flows_description_paragraph_1": "Together with the <a class='link-black' href='https://www.climatepolicyinitiative.org/'>Climate Policy Initiative</a> (CPI), I developed an interactive dashboard to explore the annual global climate finance data collected by CPI.",
+	"climate_flows_description_paragraph_2": "The dashboard allows filtering and drilling into various aspects of the data, like where each finance flow comes from and what it is used for. What made this project special was that the dashboard had to be embedded in a WordPress page without relying on further frontend frameworks like Svelte or React.",
+	"climate_flows_description_paragraph_3": "In the end, I was very delighted with the final statement I got from Pauline Baudry, CPI's Senior Design Associate that I worked together with the closest on the project: \"We are thrilled with the result of the data dashboard produced with Benedikt. The interactive sankey diagram brings CPI’s Global Landscape of Climate Finance data to the next level, allowing the user to explore finance flows in great depth.\"",
+	"caption_climate_flows_full_sankey_video": "The nodes and links of the sankey diagram can be hovered over to highlight the corresponding flows",
+	"caption_climate_flows_treemap": "By clicking a rectangle in the treemap representing a sector, the subsectors are displayed",
+	"caption_climate_flows_barchart": "The development statuses of the flows are displayed in a bar chart",
+	"caption_climate_flows_donut": "The international and domestic split is displayed in a donut chart. Hovering over a section yields additional information",
 
 	"exex_description_paragraph_1": "To explain the workings of a conflict research method to scientists from the field, we developed an interactive visual data story.",
 	"exex_description_paragraph_2": "In the story, we introduce the different mechanics of the method step-by-step. Each view transitions directly into the next to facilitate consistency and comprehension. At the end of each section corresponding to one mechanic, the user has the option to interact with a visualization to deepen their understanding of the conveyed information.",

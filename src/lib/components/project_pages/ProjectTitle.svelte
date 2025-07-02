@@ -24,6 +24,10 @@
 	{@render title(m.endovis_project_title())}
 {/if}
 
+{#if projectId === 'climate_flows'}
+	{@render title(m.climate_flows_project_title())}
+{/if}
+
 {#if projectId === 'exex'}
 	{@render title(m.exex_project_title())}
 {/if}
