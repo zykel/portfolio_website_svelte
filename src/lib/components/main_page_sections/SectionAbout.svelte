@@ -22,7 +22,7 @@
 	>
 		<div id="pic-and-hi-container">
 			<div id="profile-pic-container">
-				<img src="/profile_pic_cropped_lighter.jpg" alt="Profile picture" class="about-pic" />
+				<img src="profile_pic_cropped_lighter.jpg" alt="Photo of Benedikt" class="about-pic" />
 			</div>
 			<p id="hi-text">{@html m['sec_about_greeting']()}</p>
 		</div>

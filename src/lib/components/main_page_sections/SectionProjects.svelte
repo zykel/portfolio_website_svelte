@@ -9,11 +9,7 @@
 			id: 'demo',
 			title: m['demo_project_title'](),
 			description: m['demo_project_description_short'](),
-			type: [
-				m['tag_dashboard'](),
-				m['tag_analytical_report'](),
-				m['tag_visual_data_story']()
-			],
+			type: [m['tag_dashboard'](), m['tag_analytical_report'](), m['tag_visual_data_story']()],
 			video: 'demo-teaser',
 			url: 'demo',
 			videoSrc: '/teaser_demo.mp4'
@@ -54,14 +50,23 @@
 			url: 'projects/characterization',
 			videoSrc: '/teaser_characterization.mp4'
 		},
+		// {
+		// 	id: 'endovis',
+		// 	title: m['endovis_project_title'](),
+		// 	description: m['endovis_project_description_short'](),
+		// 	type: [m['tag_dashboard']()],
+		// 	video: 'endovis-teaser',
+		// 	url: 'projects/endovis',
+		// 	videoSrc: '/teaser_endovis.mp4'
+		// },
 		{
-			id: 'endovis',
-			title: m['endovis_project_title'](),
-			description: m['endovis_project_description_short'](),
+			id: 'climate_flows',
+			title: m['climate_flows_project_title'](),
+			description: m['climate_flows_project_description_short'](),
 			type: [m['tag_dashboard']()],
-			video: 'endovis-teaser',
-			url: 'projects/endovis',
-			videoSrc: '/teaser_endovis.mp4'
+			video: 'climate-flows-teaser',
+			url: 'projects/climate_flows',
+			videoSrc: '/teaser_climate_flows.mp4'
 		},
 		{
 			id: 'exex',

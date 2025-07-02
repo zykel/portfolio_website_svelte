@@ -16,6 +16,7 @@
 	"teaching_tasks_project_title": "Programmieraufgaben für Studierende",
 	"characterization_project_title": "Analyse von Datengeschichten",
 	"endovis_project_title": "Analyse chirurgischer Prozessdaten",
+	"climate_flows_project_title": "Analyse von Klimafinanzdaten",
 	"exex_project_title": "Erklärung einer Methode der Konfliktforschung",
 
 	"demo_project_description_short": "Ein Überblick über die verschiedenen Lösungen, die ich anbiete, basierend auf einem fiktiven Pizza-Verkaufsdatensatz.",
@@ -23,6 +24,7 @@
 	"tutorials_project_description_short": "Spielerische Erklärungen zum Erlernen der Grundlagen der Erstellung interaktiver Datenvisualisierungen.",
 	"methane_project_description_short": "Eine kurze Datengeschichte, die einen Methan-Datensatz einführt und am Ende dessen Erforschung ermöglicht.",
 	"teaching_tasks_project_description_short": "Übungsaufgaben zum Erlernen von D3.js anhand gesellschaftlich relevanter Datensätze.",
+	"climate_flows_project_description_short": "Ein Dashboard zur Erkundung globaler Klima-Finanzflüsse innerhalb eines Webartikels.",
 	"characterization_project_description_short": "Ein analytischer Bericht zur Erklärung, welche Storytelling-Techniken in einer Sammlung von Datengeschichten verwendet wurden.",
 	"endovis_project_description_short": "Eine interaktive Webanwendung zur Erforschung heterogener, zeitabhängiger chirurgischer Daten.",
 	"exex_project_description_short": "Eine interaktive Datengeschichte zur Erklärung einer Methode der Kausalinferenz für Konfliktforscher:innen.",
@@ -93,6 +95,14 @@
 	"caption_endovis_procedures": "Mehrere Balkendiagramme, welche synchron umsortiert werden können",
 	"caption_endovis_align": "Ein zeitlicher Ausrichtungspunkt kann über mehrere Ansichten hinweg parallel geändert werden",
 	"caption_endovis_expand": "Einzelne Diagramme, die Gerätemessungen über die Zeit anzeigen, können zur genaueren Betrachtung vergrößert werden",
+
+	"climate_flows_description_paragraph_1": "Gemeinsam mit der <a class='link-black' href='https://www.climatepolicyinitiative.org/'>Climate Policy Initiative</a> (CPI) habe ich ein interaktives Dashboard entwickelt, um die jährlich von der CPI erhobenen globalen Klimafinanzdaten zu erkunden.",
+	"climate_flows_description_paragraph_2": "Das Dashboard ermöglicht es, verschiedene Aspekte der Daten zu filtern und genauer zu analysieren – zum Beispiel, woher die jeweiligen Finanzflüsse stammen und wofür sie verwendet werden. Eine Besonderheit an diesem Projekt war, dass das Dashboard in eine WordPress-Seite eingebettet werden sollte, ohne auf zusätzliche Frontend-Frameworks wie Svelte oder React zurückzugreifen.",
+	"climate_flows_description_paragraph_3": "Am Ende des Projekts war ich sehr erfreut über das abschließende Feedback von Pauline Baudry, Senior Design Associate bei CPI, mit der ich am engsten während des Projektes zusammengearbeitet habe: „Wir sind begeistert vom Ergebnis des gemeinsam mit Benedikt erstellten Daten-Dashboards. Das interaktive Sankey-Diagramm hebt die Daten der CPI Global Landscape of Climate Finance auf ein neues Level und ermöglicht es den Nutzer:innen, Finanzflüsse im Detail zu erkunden.“",
+	"caption_climate_flows_full_sankey_video": "Durch Hovern über den Knoten und Verbindungen des Sankey-Diagramms können die zugehörigen Flüsse hervorgehoben werden",
+	"caption_climate_flows_treemap": "Durch Klicken auf einen Sektor im Treemap-Diagramm werden die entsprechenden Untersektoren angezeigt",
+	"caption_climate_flows_barchart": "Der mit den Finanzflüssen verbundene Entwicklungsstatus wird in einem Balkendiagramm dargestellt",
+	"caption_climate_flows_donut": "Die Aufteilung in internationale und nationale Finanzflüsse wird in einem Donut-Diagramm visualisiert. Durch Hovern über einem Segment werden zusätzliche Informationen angezeigt",
 
 	"exex_description_paragraph_1": "Um Konfliktforscher:innen die Funktionsweise einer wissenschaftlichen Methode zu erklären, entwickelten wir eine interaktive visuellen Datengeschichte.",
 	"exex_description_paragraph_2": "In der Geschichte führen wir schrittweise in die verschiedenen Mechaniken der Methode ein. Jede Ansicht geht fließend in die nächste über, um Konsistenz und Verständlichkeit zu fördern. Am Ende jedes Abschnitts, der eine Mechanik erklärt, hat der:die Nutzer:in die Möglichkeit, mit einer Visualisierung zu interagieren, um das vermittelte Wissen zu vertiefen.",
